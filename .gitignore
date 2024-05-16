@@ -7,5 +7,12 @@
 /var/
 /vendor/
 
+# Assets
+/node_modules/
+/public/build/
+yarn-error.log
+
 # IDE
 /.idea
+
+
