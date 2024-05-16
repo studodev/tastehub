@@ -1,0 +1,38 @@
+services:
+    db:
+        image: mariadb:10.11
+        environment:
+            MARIADB_ROOT_PASSWORD: root
+            MARIADB_DATABASE: tastehub
+            MARIADB_USER: tastehub
+            MARIADB_PASSWORD: tastehub
+
+    php:
+        build:
+            context: ./docker/php
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/var/www/app
+            - ./var/log:/var/www/app/var/log:delegated
+            - ./vendor:/var/www/app/vendor:delegated
+            - /var/www/app/var/cache
+        depends_on:
+            - db
+
+    nginx:
+        build:
+            context: ./docker/nginx
+            dockerfile: Dockerfile
+        volumes:
+            - ./public:/var/www/app/public
+        depends_on:
+            - php
+        ports:
+            - 80:80
+
+    webdb:
+        image: webdb/app
+        ports:
+            - 8080:22071
+        environment:
+            SCAN_HOSTS: db
