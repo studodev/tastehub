@@ -15,6 +15,16 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            form_login:
+                login_path: security_login
+                check_path: security_login
+                enable_csrf: true
+            logout:
+                path: /logout
+            remember_me:
+                secret: '%kernel.secret%'
+                name: KEEPLOGIN
+                lifetime: 2592000
 
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
