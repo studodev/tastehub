@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegisterType;
+use App\Form\ResetPasswordRequestType;
+use App\Service\ResetPasswordService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,8 +16,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 #[Route('', name: 'security_')]
 class SecurityController extends AbstractController
 {
-    public function __construct(private readonly EntityManagerInterface $em)
-    {
+    public function __construct(
+        private readonly EntityManagerInterface $em,
+        private readonly ResetPasswordService $resetPasswordService
+    ) {
     }
 
     #[Route('/login', name: 'login')]
@@ -47,5 +51,27 @@ class SecurityController extends AbstractController
         return $this->render('pages/security/register.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/reset-password', name: 'reset_password_request')]
+    public function resetPasswordRequest(Request $request): Response
+    {
+        $form = $this->createForm(ResetPasswordRequestType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $email = $form->get('email')->getData();
+            $this->resetPasswordService->request($email);
+        }
+
+        return $this->render('pages/security/reset-password-request.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/reset-password/{token}', name: 'reset_password')]
+    public function resetPassword(): Response
+    {
+
     }
 }

@@ -1,4 +1,6 @@
 parameters:
+    reset_password:
+        token_lifetime: 2 # In hours
 
 services:
     _defaults:

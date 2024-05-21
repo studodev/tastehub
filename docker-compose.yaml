@@ -36,3 +36,11 @@ services:
             - 8080:22071
         environment:
             SCAN_HOSTS: db
+
+    mailpit:
+        image: axllent/mailpit
+        ports:
+            - 8081:8025
+        environment:
+            MP_SMTP_AUTH_ACCEPT_ANY: 1
+            MP_SMTP_AUTH_ALLOW_INSECURE: 1
