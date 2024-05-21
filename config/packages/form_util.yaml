@@ -1,0 +1,3 @@
+form_util:
+    disable_client_validation: true
+    enable_constraint_based_accept_attribute: true
