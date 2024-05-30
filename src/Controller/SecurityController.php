@@ -3,17 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegisterType;
-use App\Form\ResetPasswordRequestType;
+use App\Form\Type\ChangePasswordType;
+use App\Form\Type\RegisterType;
+use App\Form\Type\ResetPasswordRequestType;
 use App\Service\ResetPasswordService;
+use App\Util\FlashMessageTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('', name: 'security_')]
+#[IsGranted('NOT_CONNECTED')]
 class SecurityController extends AbstractController
 {
     public function __construct(
@@ -62,16 +67,42 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $email = $form->get('email')->getData();
             $this->resetPasswordService->request($email);
+
+            return $this->redirectToRoute('security_reset_password_request', [
+                'status' => true,
+            ]);
         }
 
         return $this->render('pages/security/reset-password-request.html.twig', [
+            'status' => $request->query->get('status'),
             'form' => $form->createView(),
         ]);
     }
 
     #[Route('/reset-password/{token}', name: 'reset_password')]
-    public function resetPassword(): Response
+    public function resetPassword(Request $request, string $token): Response
     {
+        $resetPasswordRequest = $this->resetPasswordService->retrieveRequest($token);
 
+        if (!$resetPasswordRequest) {
+            throw new NotFoundHttpException();
+        }
+
+        $form = $this->createForm(ChangePasswordType::class, $resetPasswordRequest->getUser());
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $resetPasswordRequest->getUser()->setPassword(null);
+            $this->em->remove($resetPasswordRequest);
+            $this->em->flush();
+
+            $this->addFlash(FlashMessageTypeEnum::NOTICE->value, 'Votre mot de passe a bien été modifié');
+
+            return $this->redirectToRoute('security_login');
+        }
+
+        return $this->render('pages/security/reset-password.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

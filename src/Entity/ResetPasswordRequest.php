@@ -14,6 +14,8 @@ class ResetPasswordRequest
     #[ORM\Column]
     private ?int $id = null;
 
+    private ?string $token = null;
+
     #[ORM\Column(length: 20)]
     private ?string $selector = null;
 
@@ -30,6 +32,18 @@ class ResetPasswordRequest
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(?string $token): static
+    {
+        $this->token = $token;
+
+        return $this;
     }
 
     public function getSelector(): ?string
