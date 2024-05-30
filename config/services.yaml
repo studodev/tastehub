@@ -1,4 +1,11 @@
 parameters:
+    mailer:
+        templateFolder: mails/
+        sender:
+            name: TasteHub App
+            email: noreply@tastehub.app
+    reset_password:
+        token_lifetime: 2 # In hours
 
 services:
     _defaults:
