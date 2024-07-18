@@ -2,9 +2,8 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}TasteHub{% endblock %}</title>
-
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}TasteHub{% endblock %}</title>
 
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}{% endblock %}
@@ -13,6 +12,12 @@
         {% block javascripts %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% include 'components/layout/header.html.twig' %}
+
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+
+        {% include 'components/layout/footer.html.twig' %}
     </body>
 </html>

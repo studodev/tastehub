@@ -9,6 +9,7 @@ Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
     .addAliases({
+        '@fonts': path.resolve(__dirname, 'assets/fonts'),
         '@images': path.resolve(__dirname, 'assets/images'),
         '@styles': path.resolve(__dirname, 'assets/scss'),
     })

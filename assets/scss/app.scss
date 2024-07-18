@@ -1,3 +1,13 @@
+@use "base/core";
+@use "components/layout/header";
+@use "components/layout/footer";
+
 body {
-    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }

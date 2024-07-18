@@ -1,0 +1,48 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+    .logo img {
+        height: 36px;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 12px;
+
+        a {
+            font-size: 1.1rem;
+            padding: 6px 8px;
+            font-family: var(--font-family-title), sans-serif;
+            color: var(--color-eggplant);
+
+            i {
+                color: var(--color-raspberry);
+                padding-right: 2px;
+            }
+
+            span {
+                position: relative;
+                padding-bottom: 4px;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 25%;
+                    bottom: 0;
+                    display: block;
+                    width: 0;
+                    height: 2px;
+                    background-color: var(--color-raspberry);
+                    transition: width 300ms;
+                }
+            }
+
+            &:hover span:after {
+                width: 50%;
+            }
+        }
+    }
+}

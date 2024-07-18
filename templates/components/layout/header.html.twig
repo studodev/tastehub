@@ -1,0 +1,28 @@
+<header>
+    <a href="{{ path('main_index') }}" class="logo">
+        <img src="{{ asset('build/images/logo.svg') }}" alt="Logo où est inscrit TasteHub agrémenté d'une toque, d'un fouet et d'un saladier">
+    </a>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="icon icon-book"></i>
+                    <span>Mon livre</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="icon icon-compass"></i>
+                    <span>Explorer</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('security_login') }}">
+                    <i class="icon icon-user"></i>
+                    <span>Se connecter</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
