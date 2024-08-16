@@ -15,6 +15,7 @@ Encore
     })
 
     .addEntry('app', './assets/ts/app.ts')
+    .addEntry('security_common', './assets/ts/pages/security/common.ts')
 
     .splitEntryChunks()
     .enableSingleRuntimeChunk()

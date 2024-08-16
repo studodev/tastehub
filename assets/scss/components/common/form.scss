@@ -1,0 +1,58 @@
+@use "button";
+
+form {
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 4px;
+        margin-bottom: 18px;
+
+        label {
+            display: inline-block;
+            font-family: var(--font-family-title), sans-serif;
+            font-size: 1.1rem;
+            color: var(--color-eggplant);
+            cursor: pointer;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            border: 2px solid var(--color-pistachio);
+            border-radius: 5px;
+            padding: 8px;
+            font-size: 1rem;
+            outline-color: var(--color-raspberry);
+        }
+
+        input[type="checkbox"] {
+            display: none;
+
+            & + label:before {
+                content: "";
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                width: 1.2rem;
+                height: 1.2rem;
+                margin-right: 8px;
+                border: 2px solid var(--color-raspberry);
+                border-radius: 2px;
+                vertical-align: text-top;
+                font-family: var(--font-family-icon), sans-serif;
+                font-size: 0.6rem;
+                color: var(--color-light);
+            }
+
+            &:checked + label:before {
+                content: "\e904";
+                background-color: var(--color-raspberry);
+                border-color: var(--color-raspberry);
+            }
+
+            & + label {
+                font-size: 1rem;
+            }
+        }
+    }
+}

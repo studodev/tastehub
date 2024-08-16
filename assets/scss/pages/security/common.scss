@@ -1,0 +1,98 @@
+@use "../../components/common/form";
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: min(100%, var(--main-width));
+    padding: 20px 40px;
+
+    .content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto 1fr;
+
+        h1 {
+            align-self: end;
+        }
+
+        .alt-action {
+            justify-self: end;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            width: 250px;
+
+            span {
+                align-self: start;
+                color: var(--color-olive);
+            }
+
+            .button {
+                position: relative;
+                align-self: end;
+
+                &:before {
+                    content: "\e902";
+                    position: absolute;
+                    bottom: 10px;
+                    right: calc(100% + 8px);
+                    font-family: var(--font-family-icon), sans-serif;
+                    font-size: 1.6rem;
+                    color: var(--color-olive);
+                }
+            }
+        }
+
+        form {
+            grid-column-start: 2 span;
+            width: 300px;
+            margin: 40px auto;
+
+            .form-actions {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+
+                a {
+                    color: var(--color-raspberry);
+                    text-decoration: underline;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+
+    .decoration {
+        background-image: url('~@images/illustrations/security.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 80% 80%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        .content {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, min-content);
+
+            .alt-action {
+                grid-row-start: 3;
+                justify-self: center;
+            }
+
+            form {
+                grid-column-start: auto;
+            }
+        }
+    }
+}

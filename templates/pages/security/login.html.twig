@@ -4,29 +4,57 @@
     Se connecter | {{ parent() }}
 {% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('security_common') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('security_common') }}
+{% endblock %}
+
 {% block body %}
-    <h1>Se connecter</h1>
+    <div class="content">
+        <h1>Se connecter</h1>
 
-    <form method="post" novalidate>
-        {% if error %}
-            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+        <div class="alt-action">
+            <span>Pas encore inscrit ?</span>
+            <a href="{{ path('security_register') }}" class="button water small">
+                Nous rejoindre !
+            </a>
+        </div>
 
-        <label for="email">Email</label>
-        <input type="email" name="_username" id="email" value="{{ lastUserIdentifier }}" autocomplete="email" required autofocus>
-        <label for="password">Mot de passe</label>
-        <input type="password" name="_password" id="password" autocomplete="current-password" required>
+        <form method="post" novalidate>
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-        <label>
-            <input type="checkbox" name="_remember_me"> Se souvenir de moi
-        </label>
+            <div class="form-row">
+                <label for="email">Email</label>
+                <input type="email" name="_username" id="email" value="{{ lastUserIdentifier }}" autocomplete="email" required autofocus>
+            </div>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="form-row">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="_password" id="password" autocomplete="current-password" required>
+            </div>
 
-        <button>
-            Connexion
-        </button>
-    </form>
+            <div class="form-row">
+                <input type="checkbox" name="_remember_me" id="remember-me">
+                <label for="remember-me">Se souvenir de moi</label>
+            </div>
 
-    <a href="{{ path('security_reset_password_request') }}">Mot de passe oublié ?</a>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <div class="form-actions">
+                <button class="button">
+                    Connexion
+                </button>
+
+                <a href="{{ path('security_reset_password_request') }}">
+                    Oups… J'ai oublié mon mot de passe
+                </a>
+            </div>
+        </form>
+    </div>
+    <div class="decoration"></div>
 {% endblock %}

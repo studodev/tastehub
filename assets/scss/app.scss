@@ -1,4 +1,5 @@
 @use "base/core";
+@use "components/common/title";
 @use "components/layout/header";
 @use "components/layout/footer";
 
@@ -10,4 +11,5 @@ body {
 
 main {
     flex: 1;
+    margin: 0 auto;
 }

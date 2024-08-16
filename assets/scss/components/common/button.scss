@@ -1,0 +1,23 @@
+button {
+    border: none;
+}
+
+.button {
+    background-color: var(--color-eggplant);
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-family: var(--font-family-title), sans-serif;
+    font-size: 1.1rem;
+    color: var(--color-light);
+    cursor: pointer;
+
+    &.water {
+        background-color: var(--color-water);
+        color: var(--color-dark);
+    }
+
+    &.small {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+}
