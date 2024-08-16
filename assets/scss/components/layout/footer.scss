@@ -2,12 +2,19 @@ footer {
     padding: 12px;
 
     p {
+        font-size: 0.8rem;
         text-align: center;
         color: var(--color-raspberry);
 
         a {
             color: var(--color-eggplant);
-            text-decoration: underline var(--color-pistachio);
+            text-decoration: underline var(--color-water);
         }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    footer {
+        margin-bottom: var(--appbar-height);
     }
 }

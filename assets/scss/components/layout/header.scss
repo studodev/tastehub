@@ -10,38 +10,90 @@ header {
 
     nav ul {
         display: flex;
-        gap: 12px;
+        gap: 16px;
 
-        a {
-            font-size: 1.1rem;
-            padding: 6px 8px;
-            font-family: var(--font-family-title), sans-serif;
-            color: var(--color-eggplant);
-
-            i {
-                color: var(--color-raspberry);
-                padding-right: 2px;
+        li {
+            &.appbar-only {
+                display: none;
             }
 
-            span {
-                position: relative;
-                padding-bottom: 4px;
+            a {
+                font-size: 1.1rem;
+                padding: 6px 8px;
+                font-family: var(--font-family-title), sans-serif;
+                color: var(--color-eggplant);
 
-                &::after {
-                    content: "";
-                    position: absolute;
-                    left: 25%;
-                    bottom: 0;
-                    display: block;
-                    width: 0;
-                    height: 2px;
-                    background-color: var(--color-raspberry);
-                    transition: width 300ms;
+                i {
+                    color: var(--color-raspberry);
+                    padding-right: 2px;
+                }
+
+                span {
+                    position: relative;
+                    padding-bottom: 4px;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 25%;
+                        bottom: 0;
+                        display: block;
+                        width: 0;
+                        height: 2px;
+                        background-color: var(--color-raspberry);
+                        transition: width 300ms;
+                    }
+                }
+
+                &:hover span:after {
+                    width: 50%;
                 }
             }
+        }
+    }
+}
 
-            &:hover span:after {
-                width: 50%;
+@media screen and (max-width: 768px) {
+    header {
+        .logo img {
+            height: 28px;
+        }
+
+        nav {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: var(--appbar-height);
+            background-color: white;
+            box-shadow: 0 -1px 4px 0 var(--color-pistachio);
+
+            ul {
+                justify-content: space-evenly;
+                align-items: center;
+                height: 100%;
+
+                li {
+                    &.appbar-only {
+                        display: block;
+                    }
+
+                    a {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+
+                        span {
+                            font-size: 0.8rem;
+                            padding: 0;
+                        }
+
+                        &:hover span:after {
+                            width: 0;
+                        }
+                    }
+                }
             }
         }
     }
