@@ -46,7 +46,7 @@ main {
 
         form {
             grid-column-start: 2 span;
-            width: 300px;
+            width: min(100%, 350px);
             margin: 40px auto;
 
             .form-actions {

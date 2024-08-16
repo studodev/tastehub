@@ -30,12 +30,14 @@ form {
 
             & + label:before {
                 content: "";
+                position: absolute;
+                right: 100%;
                 display: inline-flex;
                 justify-content: center;
                 align-items: center;
-                width: 1.2rem;
-                height: 1.2rem;
-                margin-right: 8px;
+                width: var(--checkbox-size);
+                height: var(--checkbox-size);
+                margin-right: var(--checkbox-spacer);
                 border: 2px solid var(--color-raspberry);
                 border-radius: 2px;
                 vertical-align: text-top;
@@ -51,6 +53,11 @@ form {
             }
 
             & + label {
+                --checkbox-size: 1.2rem;
+                --checkbox-spacer: 8px;
+
+                position: relative;
+                margin-left: calc(var(--checkbox-size) + var(--checkbox-spacer));
                 font-size: 1rem;
             }
         }
