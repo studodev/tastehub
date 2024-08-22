@@ -62,4 +62,11 @@ form {
             }
         }
     }
+
+    .form-errors li {
+        border-left: 2px solid var(--color-warn);
+        padding-left: 6px;
+        margin-left: 2px;
+        margin-bottom: 8px;
+    }
 }

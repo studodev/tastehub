@@ -25,7 +25,9 @@
 
         <form method="post" novalidate>
             {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                <ul class="form-errors">
+                    <li>{{ error.messageKey|trans(error.messageData, 'security') }}</li>
+                </ul>
             {% endif %}
 
             <div class="form-row">
