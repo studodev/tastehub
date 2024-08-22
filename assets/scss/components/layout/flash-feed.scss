@@ -1,0 +1,41 @@
+#flash-feed {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    padding-left: 16px;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+
+        .flash-message {
+            display: flex;
+            max-width: 350px;
+            margin-bottom: 12px;
+            padding: 8px 4px 8px 12px;
+            background-color: var(--color-omelette);
+            box-shadow: 1px 1px 2px 0 var(--color-pistachio);
+            border-left: 4px solid var(--color-success);
+            border-radius: 5px;
+            word-break: break-word;
+            line-height: 1.2;
+            opacity: 0;
+
+            button {
+                border-left: 1px solid var(--color-pistachio);
+                color: var(--color-olive);
+                font-size: 0.7rem;
+                margin-left: 8px;
+
+                i {
+                    vertical-align: sub;
+                }
+            }
+
+            &.error {
+                border-color: var(--color-warn);
+            }
+        }
+    }
+}

@@ -9,7 +9,7 @@ main {
 
     .content {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr auto;
         grid-template-rows: auto 1fr;
 
         h1 {
@@ -44,7 +44,7 @@ main {
             }
         }
 
-        form {
+        form, p.information {
             grid-column-start: 2 span;
             width: min(100%, 350px);
             margin: 40px auto;
@@ -61,6 +61,10 @@ main {
                     font-size: 0.8rem;
                 }
             }
+        }
+
+        p.information {
+            width: 100%;
         }
     }
 

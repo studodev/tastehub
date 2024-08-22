@@ -7,7 +7,7 @@ use App\Form\Type\ChangePasswordType;
 use App\Form\Type\RegisterType;
 use App\Form\Type\ResetPasswordRequestType;
 use App\Service\ResetPasswordService;
-use App\Util\FlashMessageTypeEnum;
+use App\Util\FlashMessageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -96,7 +96,7 @@ class SecurityController extends AbstractController
             $this->em->remove($resetPasswordRequest);
             $this->em->flush();
 
-            $this->addFlash(FlashMessageTypeEnum::NOTICE->value, 'Votre mot de passe a bien été modifié');
+            $this->addFlash(FlashMessageType::Notice->value, 'Votre mot de passe a bien été modifié');
 
             return $this->redirectToRoute('security_login');
         }
