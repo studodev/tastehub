@@ -17,7 +17,10 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => 'E-mail',
+                'attr' => [
+                    'autofocus' => null,
+                ],
             ])
             ->add('username', null, [
                 'label' => 'Nom d\'utilisateur',

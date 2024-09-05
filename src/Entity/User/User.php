@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[ORM\UniqueConstraint(name: 'UNIQ_USERNAME', fields: ['username'])]
-#[UniqueEntity(fields: 'email', message: 'Cette adresse email est déjà associée à un compte')]
+#[UniqueEntity(fields: 'email', message: 'Cette adresse e-mail est déjà associée à un compte')]
 #[UniqueEntity(fields: 'username', message: 'Ce nom d\'utilisateur est déjà associée à un compte')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -23,13 +23,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[Assert\NotBlank(
-        message: 'Vous devez saisir une adresse email',
+        message: 'Vous devez saisir une adresse e-mail',
     )]
     #[Assert\Email(
-        message: 'Cette adresse email n\'est pas valide',
+        message: 'Cette adresse e-mail n\'est pas valide',
     )]
     #[AssertNotDisposableEmail([
-        'message' => 'Les adresses email jetables ne sont pas acceptées',
+        'message' => 'Les adresses e-mail jetables ne sont pas acceptées',
     ])]
     #[ORM\Column(length: 180)]
     private ?string $email = null;
