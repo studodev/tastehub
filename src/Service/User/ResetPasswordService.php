@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\User;
 
-use App\Entity\ResetPasswordRequest;
-use App\Repository\ResetPasswordRequestRepository;
-use App\Repository\UserRepository;
-use App\Util\SecurityUtil;
+use App\Entity\User\ResetPasswordRequest;
+use App\Repository\User\ResetPasswordRequestRepository;
+use App\Repository\User\UserRepository;
+use App\Service\MailerService;
+use App\Util\User\SecurityUtil;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;

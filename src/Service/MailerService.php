@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\ResetPasswordRequest;
+use App\Entity\User\ResetPasswordRequest;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;

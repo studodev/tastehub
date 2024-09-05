@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\User;
 
-use App\Repository\ResetPasswordRequestRepository;
+use App\Repository\User\ResetPasswordRequestRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 

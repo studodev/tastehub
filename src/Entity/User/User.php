@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\User;
 
-use App\Repository\UserRepository;
+use App\Repository\User\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Studodev\FormUtilBundle\Validator\NotDisposableEmail as AssertNotDisposableEmail;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
