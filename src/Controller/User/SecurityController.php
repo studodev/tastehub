@@ -3,11 +3,11 @@
 namespace App\Controller\User;
 
 use App\Entity\User\User;
+use App\Enum\FlashMessageType;
 use App\Form\Type\User\ChangePasswordType;
 use App\Form\Type\User\RegisterType;
 use App\Form\Type\User\ResetPasswordRequestType;
 use App\Service\User\ResetPasswordService;
-use App\Util\FlashMessageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

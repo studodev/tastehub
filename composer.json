@@ -11,6 +11,7 @@
         "doctrine/doctrine-bundle": "^2.12",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.1",
+        "dunglas/doctrine-json-odm": "^1.4",
         "studodev/form-util-bundle": "^1.1",
         "symfony/console": "7.1.*",
         "symfony/dotenv": "7.1.*",
