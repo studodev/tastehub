@@ -11,7 +11,7 @@ final class Version20240905130631 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Add recipe module metadata entities';
+        return 'Add recipe metadata tables';
     }
 
     public function up(Schema $schema): void
