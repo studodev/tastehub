@@ -5,15 +5,24 @@ button {
 }
 
 .button {
-    background-color: var(--color-eggplant);
+    --button-background-color: var(--color-eggplant);
+    --button-text-color: var(--color-light);
+
+    background-color: var(--button-background-color);
     padding: 8px 16px;
+    border: 2px solid var(--button-background-color);
     border-radius: 5px;
     font-family: var(--font-family-title), sans-serif;
     font-size: 1.1rem;
-    color: var(--color-light);
+    color: var(--button-text-color);
 
     &.water {
-        background-color: var(--color-water);
+        --button-background-color: var(--color-water);
+        --button-text-color: var(--color-dark);
+    }
+
+    &.outline {
+        background-color: transparent;
         color: var(--color-dark);
     }
 

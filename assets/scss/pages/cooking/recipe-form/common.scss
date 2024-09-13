@@ -1,8 +1,10 @@
+@use "../../../components/common/form";
+
 .timeline-container {
     --marker-size: 30px;
     position: relative;
-    max-width: 1024px;
-    margin: 30px auto;
+    max-width: 780px;
+    margin: 20px auto 40px;
 
     .timeline {
         display: flex;
@@ -27,12 +29,8 @@
                 background-color: var(--color-pistachio);
             }
 
-            &:not(:has(a)) {
-                padding: 8px 18px;
-            }
-
-            a {
-                padding: 8px 18px;
+            &:not(:has(a)), a {
+                padding: 6px 14px;
                 color: inherit;
             }
 
@@ -44,13 +42,13 @@
                 align-items: center;
                 position: absolute;
                 left: calc(50% - var(--marker-size) / 2);
-                bottom: calc(100% - 3px);
+                bottom: calc(100% - 4px);
                 width: var(--marker-size);
                 height: var(--marker-size);
                 border: 2px solid var(--color-water);
                 border-radius: 50%;
                 font-family: var(--font-family-content), sans-serif;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 font-weight: 700;
                 z-index: -1;
             }

@@ -41,5 +41,17 @@
         </ol>
     </div>
 
+    {{ form_start(form) }}
     {% block form %}{% endblock %}
+
+    <div class="form-actions">
+        <button class="button water">
+            Étape suivante
+        </button>
+
+        <a href="#" class="button water outline">
+            Étape précédente
+        </a>
+    </div>
+    {{ form_end(form) }}
 {% endblock %}

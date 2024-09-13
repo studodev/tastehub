@@ -31,6 +31,7 @@
         "twig/twig": "^3.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.6",
         "symfony/debug-bundle": "7.1.*",
         "symfony/maker-bundle": "^1.59",
         "symfony/monolog-bundle": "^3.0",

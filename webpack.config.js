@@ -14,8 +14,12 @@ Encore
         '@styles': path.resolve(__dirname, 'assets/scss'),
     })
 
+    /* ----- Main entrypoint ----- */
     .addEntry('app', './assets/ts/app.ts')
+
+    /* ----- Pages entrypoints ---- */
     .addEntry('cooking_recipe_form_common', './assets/ts/pages/cooking/recipe-form/common.ts')
+    .addEntry('cooking_recipe_form_metadata', './assets/ts/pages/cooking/recipe-form/metadata.ts')
     .addEntry('user_security_common', './assets/ts/pages/user/security/common.ts')
 
     .splitEntryChunks()
