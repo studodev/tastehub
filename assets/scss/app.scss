@@ -13,4 +13,6 @@ body {
 main {
     flex: 1;
     margin: 0 auto;
+    width: min(100%, var(--main-width));
+    padding: 20px 40px;
 }

@@ -1,1 +1,73 @@
+.timeline-container {
+    --marker-size: 30px;
+    position: relative;
+    max-width: 1024px;
+    margin: 30px auto;
+
+    .timeline {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        padding-top: var(--marker-size);
+        width: 100%;
+        overflow-y: auto;
+        list-style-type: none;
+        counter-reset: recipe-step-count;
+
+        li {
+            display: flex;
+            flex: 0;
+            position: relative;
+            background-color: var(--color-light);
+            border: 2px solid var(--color-pistachio);
+            border-radius: 5px;
+            font-family: var(--font-family-title), sans-serif;
+
+            &.active {
+                background-color: var(--color-pistachio);
+            }
+
+            &:not(:has(a)) {
+                padding: 8px 18px;
+            }
+
+            a {
+                padding: 8px 18px;
+                color: inherit;
+            }
+
+            &::before {
+                content: counter(recipe-step-count);
+                counter-increment: recipe-step-count;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                left: calc(50% - var(--marker-size) / 2);
+                bottom: calc(100% - 3px);
+                width: var(--marker-size);
+                height: var(--marker-size);
+                border: 2px solid var(--color-water);
+                border-radius: 50%;
+                font-family: var(--font-family-content), sans-serif;
+                font-size: 0.9rem;
+                font-weight: 700;
+                z-index: -1;
+            }
+        }
+    }
+
+    &:before {
+        --line-size: 2px;
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: calc(50% + (var(--marker-size) / 2) - var(--line-size));
+        left: 0;
+        right: 0;
+        height: var(--line-size);
+        background-color: var(--color-pistachio);
+        z-index: -1;
+    }
+}
 

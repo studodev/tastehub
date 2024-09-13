@@ -4,8 +4,6 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    width: min(100%, var(--main-width));
-    padding: 20px 40px;
 
     .content {
         display: grid;
