@@ -16,6 +16,7 @@ Encore
 
     .addEntry('app', './assets/ts/app.ts')
     .addEntry('security_common', './assets/ts/pages/security/common.ts')
+    .addEntry('recipe_form_common', './assets/ts/pages/recipe/recipe-form/common.ts')
 
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
