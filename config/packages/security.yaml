@@ -16,8 +16,8 @@ security:
             lazy: true
             provider: app_user_provider
             form_login:
-                login_path: security_login
-                check_path: security_login
+                login_path: user_security_login
+                check_path: user_security_login
                 enable_csrf: true
             logout:
                 path: /logout

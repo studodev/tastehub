@@ -3,7 +3,7 @@
 namespace App\Controller\User;
 
 use App\Entity\User\User;
-use App\Enum\FlashMessageType;
+use App\Enum\FlashMessageTypeEnum;
 use App\Form\Type\User\ChangePasswordType;
 use App\Form\Type\User\RegisterType;
 use App\Form\Type\User\ResetPasswordRequestType;
@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-#[Route('', name: 'security_')]
+#[Route('', name: 'user_security_')]
 #[IsGranted('NOT_CONNECTED')]
 class SecurityController extends AbstractController
 {
@@ -33,7 +33,7 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUserIdentifier = $authenticationUtils->getLastUsername();
 
-        return $this->render('pages/security/login.html.twig', [
+        return $this->render('pages/user/security/login.html.twig', [
             'lastUserIdentifier' => $lastUserIdentifier,
             'error' => $error,
         ]);
@@ -50,10 +50,10 @@ class SecurityController extends AbstractController
             $this->em->persist($user);
             $this->em->flush();
 
-            return $this->redirectToRoute('security_login');
+            return $this->redirectToRoute('user_security_login');
         }
 
-        return $this->render('pages/security/register.html.twig', [
+        return $this->render('pages/user/security/register.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -68,12 +68,12 @@ class SecurityController extends AbstractController
             $email = $form->get('email')->getData();
             $this->resetPasswordService->request($email);
 
-            return $this->redirectToRoute('security_reset_password_request', [
+            return $this->redirectToRoute('user_security_reset_password_request', [
                 'status' => true,
             ]);
         }
 
-        return $this->render('pages/security/reset-password-request.html.twig', [
+        return $this->render('pages/user/security/reset-password-request.html.twig', [
             'status' => $request->query->get('status'),
             'form' => $form->createView(),
         ]);
@@ -96,12 +96,12 @@ class SecurityController extends AbstractController
             $this->em->remove($resetPasswordRequest);
             $this->em->flush();
 
-            $this->addFlash(FlashMessageType::Notice->value, 'Votre mot de passe a bien été modifié');
+            $this->addFlash(FlashMessageTypeEnum::NOTICE->value, 'Votre mot de passe a bien été modifié');
 
-            return $this->redirectToRoute('security_login');
+            return $this->redirectToRoute('user_security_login');
         }
 
-        return $this->render('pages/security/reset-password.html.twig', [
+        return $this->render('pages/user/security/reset-password.html.twig', [
             'form' => $form->createView(),
         ]);
     }
