@@ -31,18 +31,18 @@
             {% endif %}
 
             <div class="form-row">
-                <label for="email">E-mail</label>
+                <label for="email" class="required">E-mail</label>
                 <input type="email" name="_username" id="email" value="{{ lastUserIdentifier }}" autocomplete="email" required autofocus>
             </div>
 
             <div class="form-row">
-                <label for="password">Mot de passe</label>
+                <label for="password" class="required">Mot de passe</label>
                 <input type="password" name="_password" id="password" autocomplete="current-password" required>
             </div>
 
             <div class="form-row">
                 <input type="checkbox" name="_remember_me" id="remember-me">
-                <label for="remember-me">Se souvenir de moi</label>
+                <label for="remember-me" class="silent-optional-badge">Se souvenir de moi</label>
             </div>
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">

@@ -4,6 +4,7 @@ namespace App\Form\Type\Cooking;
 
 use App\Entity\Cooking\Category;
 use App\Entity\Cooking\Recipe;
+use App\Form\Type\Common\TextareaCountableType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,12 +24,14 @@ class RecipeType extends AbstractType
                     'placeholder' => 'Poulet au maroilles, mijoté de poisson au curry, cookies aux 3 chocolats, ...',
                 ]
             ])
-            ->add('description', null, [
+            ->add('description', TextareaCountableType::class, [
                 'label' => 'Description',
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Est-ce un plat issu d\'une recette de famille ? Une recette que vous conseillez pour Noël ? Une recette découverte dans un autre pays que vous avez décidé de traduire ? Racontez-nous l\'histoire de cette recette',
                     'rows' => 8,
                 ],
+                'max_length' => 350,
             ])
             ->add('picture')
             ->add('category', EntityType::class, [
