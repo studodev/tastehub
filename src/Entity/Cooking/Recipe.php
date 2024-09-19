@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Dunglas\DoctrineJsonOdm\Type\JsonDocumentType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -27,6 +28,8 @@ class Recipe
 
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
+
+    private ?UploadedFile $pictureFile = null;
 
     #[ORM\Column(type: JsonDocumentType::NAME)]
     private RecipeTimer $timer;
@@ -116,6 +119,18 @@ class Recipe
     public function setPicture(string $picture): static
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getPictureFile(): ?UploadedFile
+    {
+        return $this->pictureFile;
+    }
+
+    public function setPictureFile(?UploadedFile $pictureFile): static
+    {
+        $this->pictureFile = $pictureFile;
 
         return $this;
     }

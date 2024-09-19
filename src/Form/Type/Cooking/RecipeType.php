@@ -4,6 +4,7 @@ namespace App\Form\Type\Cooking;
 
 use App\Entity\Cooking\Category;
 use App\Entity\Cooking\Recipe;
+use App\Form\Type\Common\FileUploaderType;
 use App\Form\Type\Common\TextareaCountableType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -33,7 +34,9 @@ class RecipeType extends AbstractType
                 ],
                 'max_length' => 350,
             ])
-            ->add('picture')
+            ->add('pictureFile', FileUploaderType::class, [
+                'label' => 'Photo de la recette',
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'label',

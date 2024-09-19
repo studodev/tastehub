@@ -11,7 +11,7 @@ button {
     background-color: var(--button-background-color);
     padding: 8px 16px;
     border: 2px solid var(--button-background-color);
-    border-radius: 5px;
+    border-radius: var(--radius-default);
     font-family: var(--font-family-title), sans-serif;
     font-size: 1.1rem;
     color: var(--button-text-color);

@@ -2,7 +2,9 @@ twig:
     file_name_pattern: '*.twig'
     form_themes:
         - 'form_div_layout.html.twig'
-        - 'components/common/form/theme.html.twig'
+        - 'components/common/form/theme/common.html.twig'
+        - 'components/common/form/theme/upload-file.html.twig'
+        - 'components/common/form/theme/widget-countable.html.twig'
 
 when@test:
     twig:

@@ -17,7 +17,7 @@
             background-color: var(--color-omelette);
             box-shadow: 1px 1px 2px 0 var(--color-pistachio);
             border-left: 4px solid var(--color-success);
-            border-radius: 5px;
+            border-radius: var(--radius-default);
             word-break: break-word;
             line-height: 1.2;
             opacity: 0;

@@ -1,0 +1,25 @@
+{% block file_uploader_widget %}
+    <div data-file-uploader>
+        <div class="empty-container">
+            <img src="{{ asset('build/images/pictogram/upload.svg') }}" alt="Fléche qui pointe vers un nuage">
+
+            <p>
+                Faites glisser votre fichier ou
+
+                <label for="{{ id }}" class="button water small silent-optional-badge">
+                    Séléctionnez votre fichier
+                </label>
+            </p>
+        </div>
+
+        <div class="preview-container hidden">
+            <img src="" alt="Prévisualisation de votre image" class="preview-image">
+
+            <button type="button" class="preview-remove">
+                <i class="icon icon-cross"></i>
+            </button>
+        </div>
+
+        {{ block('form_widget') }}
+    </div>
+{% endblock %}

@@ -47,7 +47,7 @@ export class CharCounter {
         const elements = Array.from(document.querySelectorAll("[data-char-counter]"));
 
         for (const element of elements) {
-            new CharCounter(element as HTMLElement);
+            new this(element as HTMLElement);
         }
     }
 }

@@ -1,0 +1,8 @@
+{% block textarea_countable_widget %}
+    <div data-char-counter>
+        {{ block('textarea_widget') }}
+        <div class="counter-message">
+            <span class="counter-message-value"></span> caractères
+        </div>
+    </div>
+{% endblock %}
