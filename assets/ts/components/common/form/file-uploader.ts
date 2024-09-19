@@ -67,7 +67,7 @@ export class FileUploader {
             this.elements.previewImage.src = e.target.result as string;
             this.elements.empty.classList.add('hidden');
             this.elements.preview.classList.remove('hidden');
-        }
+        };
         fileReader.readAsDataURL(file);
     }
 
