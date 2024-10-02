@@ -37,6 +37,7 @@
         position: relative;
 
         .preview-image-container {
+            display: flex;
             width: 100%;
 
             .preview-image {

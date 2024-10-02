@@ -11,6 +11,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Dunglas\DoctrineJsonOdm\Type\JsonDocumentType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -29,6 +30,10 @@ class Recipe
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
 
+    #[Assert\File(
+        maxSize: '10M',
+        extensions: ['jpeg', 'jpg'],
+    )]
     private ?UploadedFile $pictureFile = null;
 
     #[ORM\Column(type: JsonDocumentType::NAME)]

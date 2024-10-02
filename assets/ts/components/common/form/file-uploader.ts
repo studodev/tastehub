@@ -1,6 +1,5 @@
 import "@styles/components/common/form/file-uploader.scss";
 
-// TODO - Handle backend upload
 export class FileUploader {
     private static readonly imageTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp'];
     private elements: FileUploderElements;
