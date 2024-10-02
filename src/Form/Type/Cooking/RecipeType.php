@@ -23,7 +23,7 @@ class RecipeType extends AbstractType
                 ],
                 'attr' => [
                     'placeholder' => 'Poulet au maroilles, mijoté de poisson au curry, cookies aux 3 chocolats, ...',
-                ]
+                ],
             ])
             ->add('description', TextareaCountableType::class, [
                 'label' => 'Description',

@@ -15,29 +15,4 @@ class StepRecipeIngredientRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, StepRecipeIngredient::class);
     }
-
-//    /**
-//     * @return StepRecipeIngredient[] Returns an array of StepRecipeIngredient objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?StepRecipeIngredient
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

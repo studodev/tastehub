@@ -19,7 +19,7 @@ class ResetPasswordRequestType extends AbstractType
                     new NotBlank(
                         message: 'Veuillez saisir votre adresse email',
                     ),
-                ]
+                ],
             ])
         ;
     }

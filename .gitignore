@@ -16,7 +16,10 @@ yarn-error.log
 /public/data/*
 !/public/data/.gitkeep
 
+# Tools
+.php-cs-fixer.php
+.php-cs-fixer.cache
+
+
 # IDE
 /.idea
-
-

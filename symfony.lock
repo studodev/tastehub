@@ -47,6 +47,18 @@
             "ref": "c2ab78f625df0c89af5908d50a28602ff8c4919f"
         }
     },
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.64",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            ".php-cs-fixer.dist.php"
+        ]
+    },
     "studodev/form-util-bundle": {
         "version": "v1.1"
     },

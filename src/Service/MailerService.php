@@ -13,7 +13,7 @@ readonly class MailerService
 {
     public function __construct(
         private MailerInterface $mailer,
-        #[Autowire('%mailer%')] private array $config
+        #[Autowire('%mailer%')] private array $config,
     ) {
     }
 
@@ -32,7 +32,7 @@ readonly class MailerService
         string $subject,
         string $templateName,
         array $templateContext = [],
-        ?string $replyTo = null
+        ?string $replyTo = null,
     ): bool {
         $email = new TemplatedEmail();
 
@@ -52,6 +52,7 @@ readonly class MailerService
 
         try {
             $this->mailer->send($email);
+
             return true;
         } catch (TransportExceptionInterface) {
             return false;

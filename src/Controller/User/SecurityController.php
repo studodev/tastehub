@@ -23,7 +23,7 @@ class SecurityController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly ResetPasswordService $resetPasswordService
+        private readonly ResetPasswordService $resetPasswordService,
     ) {
     }
 
