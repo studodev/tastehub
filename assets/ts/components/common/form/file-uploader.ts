@@ -1,8 +1,8 @@
 import "@styles/components/common/form/file-uploader.scss";
 
-// TODO - Handle non image file
 // TODO - Handle backend upload
 export class FileUploader {
+    private static readonly imageTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp'];
     private elements: FileUploderElements;
 
     private constructor(container: HTMLElement) {
@@ -14,7 +14,10 @@ export class FileUploader {
         this.elements = {
             container: container,
             empty: container.querySelector('.empty-container'),
-            preview: container.querySelector('.preview-container'),
+            previewContainer: container.querySelector('.preview-container'),
+            previewImageContainer: container.querySelector('.preview-image-container'),
+            previewFileContainer: container.querySelector('.preview-file-container'),
+            previewFilename: container.querySelector('.preview-filename'),
             previewImage: container.querySelector('.preview-image'),
             previewRemove: container.querySelector('.preview-remove'),
             widget: container.querySelector('input[type="file"]'),
@@ -62,21 +65,49 @@ export class FileUploader {
     }
 
     private handleFile(file: File): void {
+        if (FileUploader.imageTypes.includes(file.type)) {
+            this.previewImage(file);
+        } else {
+            this.previewFile(file);
+        }
+    }
+
+    private previewImage(file: File): void {
         const fileReader = new FileReader();
         fileReader.onload = e => {
             this.elements.previewImage.src = e.target.result as string;
-            this.elements.empty.classList.add('hidden');
-            this.elements.preview.classList.remove('hidden');
+            this.displayMode(FileUploaderDisplayMode.ModePreviewImage);
         };
         fileReader.readAsDataURL(file);
+    }
+
+    private previewFile(file: File): void {
+        this.elements.previewFilename.textContent = file.name;
+        this.displayMode(FileUploaderDisplayMode.ModePreviewFile);
     }
 
     private clearFile(): void {
         this.elements.widget.files = null;
         this.elements.previewImage.src = null;
+        this.displayMode(FileUploaderDisplayMode.ModeEmpty);
+    }
 
-        this.elements.empty.classList.remove('hidden');
-        this.elements.preview.classList.add('hidden');
+    private displayMode(mode: FileUploaderDisplayMode): void {
+        if (mode === FileUploaderDisplayMode.ModeEmpty) {
+            this.elements.empty.classList.remove('hidden');
+            this.elements.previewContainer.classList.add('hidden');
+        } else {
+            this.elements.empty.classList.add('hidden');
+            this.elements.previewContainer.classList.remove('hidden');
+
+            if (mode === FileUploaderDisplayMode.ModePreviewFile) {
+                this.elements.previewImageContainer.classList.add('hidden');
+                this.elements.previewFileContainer.classList.remove('hidden');
+            } else {
+                this.elements.previewImageContainer.classList.remove('hidden');
+                this.elements.previewFileContainer.classList.add('hidden');
+            }
+        }
     }
 
     static init(): void {
@@ -92,7 +123,16 @@ interface FileUploderElements {
     container: HTMLElement,
     widget: HTMLInputElement,
     empty: HTMLElement,
-    preview: HTMLElement,
+    previewContainer: HTMLElement,
+    previewImageContainer: HTMLElement,
+    previewFileContainer: HTMLElement,
+    previewFilename: HTMLElement,
     previewImage: HTMLImageElement,
     previewRemove: HTMLButtonElement,
+}
+
+enum FileUploaderDisplayMode {
+    ModePreviewImage,
+    ModePreviewFile,
+    ModeEmpty,
 }

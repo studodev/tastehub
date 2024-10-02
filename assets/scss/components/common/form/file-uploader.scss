@@ -36,10 +36,40 @@
     .preview-container {
         position: relative;
 
-        .preview-image {
-            object-fit: cover;
+        .preview-image-container {
             width: 100%;
-            max-height: 300px;
+
+            .preview-image {
+                object-fit: cover;
+                width: 100%;
+                max-height: 300px;
+            }
+        }
+
+        .preview-file-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+
+            i {
+                margin-bottom: 30px;
+                font-size: 4rem;
+                color: var(--color-raspberry);
+            }
+
+            .preview-filename-title {
+                font-family: var(--font-family-title), sans-serif;
+                font-weight: 700;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                color: var(--color-raspberry);
+            }
+
+            .preview-filename {
+                font-size: 1.2rem;
+                color: var(--color-eggplant);
+            }
         }
 
         .preview-remove {
