@@ -12,7 +12,9 @@
 /public/build/
 yarn-error.log
 
+# Tools
+.php-cs-fixer.php
+.php-cs-fixer.cache
+
 # IDE
 /.idea
-
-

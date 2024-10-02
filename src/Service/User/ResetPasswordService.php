@@ -18,14 +18,14 @@ readonly class ResetPasswordService
         private MailerService $mailerService,
         private ResetPasswordRequestRepository $resetPasswordRequestRepository,
         private UserRepository $userRepository,
-        #[Autowire('%reset_password%')] private array $config
+        #[Autowire('%reset_password%')] private array $config,
     ) {
     }
 
     public function request(string $email): void
     {
         $user = $this->userRepository->findOneBy([
-            'email' => $email
+            'email' => $email,
         ]);
 
         if (!$user) {
@@ -73,6 +73,7 @@ readonly class ResetPasswordService
         if ($now > $resetPasswordRequest->getExpireAt()) {
             $this->em->remove($resetPasswordRequest);
             $this->em->flush();
+
             return null;
         }
 
