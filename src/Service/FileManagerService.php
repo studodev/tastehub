@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FileManagerService
+readonly class FileManagerService
 {
     public function __construct(
         private Filesystem $filesystem,
