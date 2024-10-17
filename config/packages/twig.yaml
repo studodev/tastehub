@@ -5,6 +5,7 @@ twig:
         - 'components/common/form/theme/common.html.twig'
         - 'components/common/form/theme/upload-file.html.twig'
         - 'components/common/form/theme/widget-countable.html.twig'
+        - 'components/common/form/theme/recipe-timer.html.twig'
 
 when@test:
     twig:

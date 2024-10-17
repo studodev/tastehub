@@ -21,7 +21,7 @@ class RecipeType extends AbstractType
         if (DraftRecipeStatusEnum::Metadata === $mode) {
             $this->prepareMetadataMode($builder);
         } elseif (DraftRecipeStatusEnum::Details === $mode) {
-
+            $this->prepareDetailsMode($builder);
         }
     }
 
@@ -64,6 +64,17 @@ class RecipeType extends AbstractType
                 'choice_label' => 'label',
                 'label' => 'Catégorie',
                 'expanded' => true,
+            ])
+        ;
+    }
+
+    private function prepareDetailsMode(FormBuilderInterface $builder)
+    {
+        $builder
+            ->add('timer', RecipeTimerType::class, [
+                'label' => 'Temps de réalisation',
+                'help' => 'Seul le champ <span class="accent">préparation</span> est obligatoire. Le <span class="accent">temps total</span> est calculé automatiquement.',
+                'help_html' => true,
             ])
         ;
     }

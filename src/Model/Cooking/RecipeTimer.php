@@ -2,8 +2,13 @@
 
 namespace App\Model\Cooking;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class RecipeTimer
 {
+    #[Assert\NotBlank(
+        message: 'Veuillez renseigner le temps de préparation',
+    )]
     private ?int $preparationTime;
 
     private ?int $cookingTime;

@@ -10,6 +10,7 @@ form {
             display: inline-block;
             font-family: var(--font-family-title), sans-serif;
             font-size: 1.1rem;
+            line-height: 1;
             color: var(--color-eggplant);
             cursor: pointer;
 
@@ -23,6 +24,15 @@ form {
                 color: var(--color-dark);
                 vertical-align: middle;
             }
+        }
+
+        .help-text {
+            font-weight: 700;
+            color: var(--color-eggplant);
+        }
+
+        label .accent, .help-text .accent {
+            color: var(--color-raspberry);
         }
 
         input[type="text"], input[type="email"], input[type="password"], textarea {

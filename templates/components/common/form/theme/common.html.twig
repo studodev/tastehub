@@ -11,8 +11,8 @@
     <div{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
         {{ form_label(form) }}
         {{ form_widget(form, widget_attr) }}
-        {{ form_errors(form) }}
         {{ form_help(form) }}
+        {{ form_errors(form) }}
     </div>
 {% endblock %}
 

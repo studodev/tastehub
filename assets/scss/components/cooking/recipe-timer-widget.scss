@@ -1,0 +1,67 @@
+.recipe-timer-widget {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--color-white);
+    border-radius: var(--radius-default);
+    overflow: hidden;
+
+    .timer-group {
+        --border-width: 2px;
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        column-gap: 10px;
+        padding: 4px 8px;
+        border: var(--border-width) solid var(--color-pistachio);
+        border-right-width: 0;
+    }
+
+     .timer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+
+         img {
+             height: 30px;
+         }
+
+        label {
+            font-family: var(--font-family-content), sans-serif;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 50px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--color-eggplant);
+        }
+    }
+
+    .total-timer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+        background-color: var(--color-eggplant);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--color-light);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .recipe-timer-widget {
+        flex-direction: column;
+
+        .timer-group {
+            flex-wrap: wrap;
+            border-right-width: var(--border-width);
+            border-bottom-width: 0;
+
+            .timer {
+                flex: 1 1 auto;
+            }
+        }
+    }
+}

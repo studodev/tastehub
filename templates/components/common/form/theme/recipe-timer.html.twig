@@ -1,0 +1,27 @@
+{% block recipe_timer_widget %}
+    <div class="recipe-timer-widget">
+        <div class="timer-group">
+            <div class="timer">
+                <img src="{{ asset('build/images/pictogram/preparation-time.svg') }}" alt="Icône représentant un saladier">
+                {{ form_widget(form.preparationTime) }}
+                {{ form_label(form.preparationTime) }}
+            </div>
+
+            <div class="timer">
+                <img src="{{ asset('build/images/pictogram/waiting-time.svg') }}" alt="Icône représentant un chronomètre">
+                {{ form_widget(form.waitingTime) }}
+                {{ form_label(form.waitingTime) }}
+            </div>
+
+            <div class="timer">
+                <img src="{{ asset('build/images/pictogram/cooking-time.svg') }}" alt="Icône représentant une poêle sur le feu">
+                {{ form_widget(form.cookingTime) }}
+                {{ form_label(form.cookingTime) }}
+            </div>
+        </div>
+
+        <div class="timer total-timer">
+            Temps total : <span>2h00</span>
+        </div>
+    </div>
+{% endblock %}

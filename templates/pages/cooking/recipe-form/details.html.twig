@@ -1,5 +1,15 @@
 {% extends 'pages/cooking/recipe-form/layout.html.twig' %}
 
-{% block form %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('cooking_recipe_form_details') }}
+{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('cooking_recipe_form_details') }}
+{% endblock %}
+
+{% block form %}
+    {{ form_row(form.timer) }}
 {% endblock %}

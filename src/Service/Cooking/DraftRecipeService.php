@@ -2,9 +2,7 @@
 
 namespace App\Service\Cooking;
 
-use App\Entity\Cooking\Recipe;
 use App\Model\Cooking\DraftRecipe;
-use App\Repository\Cooking\CategoryRepository;
 use App\Repository\Cooking\RecipeRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 
