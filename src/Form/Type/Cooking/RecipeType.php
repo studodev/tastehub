@@ -4,6 +4,7 @@ namespace App\Form\Type\Cooking;
 
 use App\Entity\Cooking\Category;
 use App\Entity\Cooking\Recipe;
+use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Form\Type\Common\FileUploaderType;
 use App\Form\Type\Common\TextareaCountableType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -14,6 +15,27 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class RecipeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $mode = $options['mode'];
+
+        if (DraftRecipeStatusEnum::Metadata === $mode) {
+            $this->prepareMetadataMode($builder);
+        } elseif (DraftRecipeStatusEnum::Details === $mode) {
+
+        }
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Recipe::class,
+        ]);
+
+        $resolver->setRequired('mode');
+        $resolver->setAllowedTypes('mode', DraftRecipeStatusEnum::class);
+    }
+
+    private function prepareMetadataMode(FormBuilderInterface $builder): void
     {
         $builder
             ->add('title', null, [
@@ -44,13 +66,6 @@ class RecipeType extends AbstractType
                 'expanded' => true,
             ])
         ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Recipe::class,
-        ]);
     }
 }
 

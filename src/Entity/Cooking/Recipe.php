@@ -21,15 +21,32 @@ class Recipe
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(
+        message: 'Veuillez saisir un titre',
+    )]
+    #[Assert\Length(
+        min: 5,
+        max: 60,
+        minMessage: 'Le titre doit contenir au minimum {{ limit }} caractères',
+        maxMessage: 'Le titre doit contenir au maximum {{ limit }} caractères',
+    )]
     #[ORM\Column(length: 60)]
     private ?string $title = null;
 
+    #[Assert\Length(
+        max: 350,
+        maxMessage: 'La description doit contenir au maximum {{ limit }} caractères',
+    )]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
 
+    #[Assert\Expression(
+        expression: 'this.getPicture() or this.getPictureFile()',
+        message: 'Veuillez choisir une image',
+    )]
     #[Assert\File(
         maxSize: '10M',
         extensions: ['jpeg', 'jpg'],
@@ -42,6 +59,9 @@ class Recipe
     #[ORM\Column(type: JsonDocumentType::NAME)]
     private QuantityCounter $quantityCounter;
 
+    #[Assert\NotBlank(
+        message: 'Veuillez sélectionner une catégorie',
+    )]
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;

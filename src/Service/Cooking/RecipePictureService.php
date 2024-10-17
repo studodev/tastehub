@@ -12,6 +12,7 @@ readonly class RecipePictureService
     {
     }
 
+    // TODO - Resize and optimize images
     public function upload(Recipe $recipe): void
     {
         if (null === $recipe->getPictureFile()) {

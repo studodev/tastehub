@@ -10,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 class CategoryFixtures extends Fixture implements FixtureGroupInterface
 {
     private const CATEGORIES = [
-        'Amuse bouche', 'Entrée', 'Plat', 'Dessert', 'Sauce', 'Boisson',
+        'Amuse bouche', 'Entrée', 'Plat', 'Dessert', 'Sauce', 'Boisson', 'Condiment',
     ];
 
     public function load(ObjectManager $manager): void

@@ -15,6 +15,7 @@
         "studodev/form-util-bundle": "^1.1",
         "symfony/console": "7.1.*",
         "symfony/dotenv": "7.1.*",
+        "symfony/expression-language": "7.1.*",
         "symfony/flex": "^2",
         "symfony/form": "7.1.*",
         "symfony/framework-bundle": "7.1.*",

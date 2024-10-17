@@ -23,7 +23,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[Assert\NotBlank(
-        message: 'Vous devez saisir une adresse e-mail',
+        message: 'Veuillez saisir une adresse e-mail',
     )]
     #[Assert\Email(
         message: 'Cette adresse e-mail n\'est pas valide',
@@ -35,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[Assert\NotBlank(
-        message: 'Vous devez choisir un nom d\'utilisateur',
+        message: 'Veuillez choisir un nom d\'utilisateur',
     )]
     #[Assert\Length(
         min: 3,
@@ -53,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[Assert\NotBlank(
-        message: 'Vous devez choisir un mot de passe',
+        message: 'Veuillez choisir un mot de passe',
     )]
     #[Assert\Length(
         min: 8,

@@ -17,27 +17,14 @@
 
     <div class="timeline-container">
         <ol class="timeline">
-            <li class="active">
-                <a href="#">
-                    Métadonnées
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    Détails
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    Ingrédients
-                </a>
-            </li>
-            <li>
-                Ustensiles
-            </li>
-            <li>
-                Étapes
-            </li>
+            {% set steps = enum_cases('App\\Enum\\Cooking\\DraftRecipeStatusEnum') %}
+            {% for step in steps %}
+                <li {{ step is same as draft.status ? 'class="active"' : '' }}>
+                    <a href="#">
+                        {{ step.value }}
+                    </a>
+                </li>
+            {% endfor %}
         </ol>
     </div>
 
