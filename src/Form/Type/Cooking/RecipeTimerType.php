@@ -17,6 +17,8 @@ class RecipeTimerType extends AbstractType
                 'label_html' => true,
                 'attr' => [
                     'placeholder' => '...',
+                    'class' => 'timer-preparation',
+                    'maxlength' => 4,
                 ],
             ])
             ->add('waitingTime', null, [
@@ -27,6 +29,8 @@ class RecipeTimerType extends AbstractType
                 ],
                 'attr' => [
                     'placeholder' => '...',
+                    'class' => 'timer-waiting',
+                    'maxlength' => 4,
                 ],
             ])
             ->add('cookingTime', null, [
@@ -37,6 +41,8 @@ class RecipeTimerType extends AbstractType
                 ],
                 'attr' => [
                     'placeholder' => '...',
+                    'class' => 'timer-cooking',
+                    'maxlength' => 4,
                 ],
             ])
         ;
