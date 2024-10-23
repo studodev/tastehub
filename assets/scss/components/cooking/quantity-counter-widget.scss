@@ -1,0 +1,10 @@
+.quantity-counter-widget {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+
+    .form-row {
+        margin-bottom: 0;
+    }
+}

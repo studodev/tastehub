@@ -12,4 +12,12 @@
 
 {% block form %}
     {{ form_row(form.timer) }}
+
+    <div class="row-group">
+        <div>
+            {{ form_row(form.quantityCounter) }}
+            {{ form_row(form.cookingMethods) }}
+        </div>
+        {{ form_row(form.diets) }}
+    </div>
 {% endblock %}

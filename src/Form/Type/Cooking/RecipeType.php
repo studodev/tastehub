@@ -3,6 +3,8 @@
 namespace App\Form\Type\Cooking;
 
 use App\Entity\Cooking\Category;
+use App\Entity\Cooking\CookingMethod;
+use App\Entity\Cooking\DietType;
 use App\Entity\Cooking\Recipe;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Form\Type\Common\FileUploaderType;
@@ -68,7 +70,7 @@ class RecipeType extends AbstractType
         ;
     }
 
-    private function prepareDetailsMode(FormBuilderInterface $builder)
+    private function prepareDetailsMode(FormBuilderInterface $builder): void
     {
         $builder
             ->add('timer', RecipeTimerType::class, [
@@ -76,22 +78,36 @@ class RecipeType extends AbstractType
                 'help' => 'Seul le champ <span class="accent">préparation</span> est obligatoire. Le <span class="accent">temps total</span> est calculé automatiquement.',
                 'help_html' => true,
             ])
+            ->add('quantityCounter', QuantityCounterType::class, [
+                'label' => 'Quantité réalisée',
+            ])
+            ->add('diets', EntityType::class, [
+                'label' => 'Régimes',
+                'required' => false,
+                'class' => DietType::class,
+                'multiple' => true,
+                'expanded' => true,
+                'choice_label' => function (DietType $dietType) {
+                    return sprintf('%s <i class="icon icon-%s"></i>', $dietType->getLabel(), $dietType->getIcon());
+                },
+                'label_html' => true,
+            ])
+            ->add('cookingMethods', EntityType::class, [
+                'label' => 'Modes de cuisson',
+                'class' => CookingMethod::class,
+                'multiple' => true,
+                'expanded' => true,
+                'choice_label' => function (CookingMethod $cookingMethod) {
+                    return sprintf('%s <i class="icon icon-%s"></i>', $cookingMethod->getLabel(), $cookingMethod->getIcon());
+                },
+                'label_html' => true,
+            ])
         ;
     }
 }
 
-//    ->add('timer')
-//    ->add('quantityCounter')
-//    ->add('diets', EntityType::class, [
-//        'class' => DietType::class,
-//        'choice_label' => 'id',
-//        'multiple' => true,
-//    ])
-//    ->add('cookingMethods', EntityType::class, [
-//        'class' => CookingMethod::class,
-//        'choice_label' => 'id',
-//        'multiple' => true,
-//    ])
+
+
 //    ->add('tags', EntityType::class, [
 //        'class' => Tag::class,
 //        'choice_label' => 'id',

@@ -1,0 +1,5 @@
+cooking:
+    quantity_counter_unit:
+        person: Personne
+        portion: Portion
+

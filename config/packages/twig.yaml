@@ -3,9 +3,11 @@ twig:
     form_themes:
         - 'form_div_layout.html.twig'
         - 'components/common/form/theme/common.html.twig'
+        - 'components/common/form/theme/incremental-number.html.twig'
         - 'components/common/form/theme/upload-file.html.twig'
         - 'components/common/form/theme/widget-countable.html.twig'
         - 'components/common/form/theme/recipe-timer.html.twig'
+        - 'components/common/form/theme/quantity-counter.html.twig'
 
 when@test:
     twig:

@@ -1,0 +1,28 @@
+@use "../../../components/cooking/quantity-counter-widget";
+
+form {
+    .row-group > .form-row:last-child {
+        flex-basis: 0;
+    }
+
+    .form-row {
+        margin-bottom: 30px;
+    }
+
+    #recipe_diets {
+        flex-direction: column;
+    }
+
+    #recipe_cookingMethods {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    form {
+        #recipe_diets {
+            flex-direction: row;
+        }
+    }
+}
