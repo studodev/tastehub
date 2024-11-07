@@ -76,6 +76,7 @@ class RecipeFormController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe, [
             'mode' => $draft->getStatus(),
         ]);
+        $form->handleRequest($request);
 
         return $this->render('pages/cooking/recipe-form/details.html.twig', [
             'form' => $form->createView(),

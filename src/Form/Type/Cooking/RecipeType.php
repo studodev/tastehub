@@ -6,7 +6,9 @@ use App\Entity\Cooking\Category;
 use App\Entity\Cooking\CookingMethod;
 use App\Entity\Cooking\DietType;
 use App\Entity\Cooking\Recipe;
+use App\Entity\Cooking\Tag;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
+use App\Form\Type\Common\AutocompleteEntityType;
 use App\Form\Type\Common\FileUploaderType;
 use App\Form\Type\Common\TextareaCountableType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -102,14 +104,11 @@ class RecipeType extends AbstractType
                 },
                 'label_html' => true,
             ])
+            ->add('tags', AutocompleteEntityType::class, [
+                'class' => Tag::class,
+                'choice_label' => 'label',
+                'multiple' => true,
+            ])
         ;
     }
 }
-
-
-
-//    ->add('tags', EntityType::class, [
-//        'class' => Tag::class,
-//        'choice_label' => 'id',
-//        'multiple' => true,
-//    ])

@@ -1,0 +1,42 @@
+[data-autocomplete-entity] {
+    .ts-wrapper {
+        .ts-control {
+            border: 2px solid var(--color-pistachio);
+            border-radius: var(--radius-default);
+            gap: 6px;
+
+            .item {
+                margin: 0;
+                background-color: var(--color-omelette);
+                border-radius: var(--radius-default);
+                font-size: 0.95rem;
+                font-weight: 500;
+
+                .remove {
+                    border-left: 2px solid var(--color-light);
+                }
+            }
+
+            input[type="text"] {
+                width: auto;
+            }
+        }
+
+        .ts-dropdown {
+            margin: 0;
+            border: none;
+            box-shadow: 0 3px 6px var(--shadow-default);
+            border-radius: 0 0 var(--radius-default) var(--radius-default);
+
+            .ts-dropdown-content .option {
+                font-size: 0.95rem;
+                color: var(--color-dark);
+
+                &.active {
+                    background-color: var(--color-omelette);
+                    color: inherit;
+                }
+            }
+        }
+    }
+}

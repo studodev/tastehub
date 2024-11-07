@@ -20,6 +20,9 @@
     // ----- Radius -----
     --radius-default: 5px;
 
+    // ----- Shadow -----
+    --shadow-default: color-mix(in srgb, var(--color-dark) 20%, transparent 80%);
+
     // ----- Layout -----
     --appbar-height: 54px;
     --main-width: 1280px;

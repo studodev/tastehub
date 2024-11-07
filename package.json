@@ -1,4 +1,8 @@
 {
+    "dependencies": {
+        "minireset.css": "^0.0.7",
+        "tom-select": "^2.3.1"
+    },
     "devDependencies": {
         "@babel/core": "^7.17.0",
         "@babel/preset-env": "^7.16.0",
@@ -21,8 +25,5 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
-    },
-    "dependencies": {
-        "minireset.css": "^0.0.7"
     }
 }
