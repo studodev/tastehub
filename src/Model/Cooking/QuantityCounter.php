@@ -6,16 +6,16 @@ use App\Enum\Cooking\QuantityCounterUnitEnum;
 
 class QuantityCounter
 {
-    private int $value = 2;
+    private ?int $value = 2;
 
     private QuantityCounterUnitEnum $unit = QuantityCounterUnitEnum::Person;
 
-    public function getValue(): int
+    public function getValue(): ?int
     {
         return $this->value;
     }
 
-    public function setValue(int $value): static
+    public function setValue(?int $value): static
     {
         $this->value = $value;
 

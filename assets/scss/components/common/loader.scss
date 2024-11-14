@@ -1,0 +1,20 @@
+@use "animation/spin";
+
+.loader {
+    --loader-size: 50px;
+    --loader-color: var(--color-eggplant);
+
+    width: var(--loader-size);
+    height: var(--loader-size);
+    border: 3px solid transparent;
+    border-top-color: var(--loader-color);
+    border-radius: 50%;
+    animation-name: spin;
+    animation-duration: 800ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    &.small {
+        --loader-size: 24px;
+    }
+}

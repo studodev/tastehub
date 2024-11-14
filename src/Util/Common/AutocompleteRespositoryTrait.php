@@ -4,7 +4,7 @@ namespace App\Util\Common;
 
 trait AutocompleteRespositoryTrait
 {
-    public function autocomplete(string $query): array
+    public function autocompleteQueryBuilder(string $query)
     {
         $stmt = $this->createQueryBuilder('t');
 
@@ -21,7 +21,15 @@ trait AutocompleteRespositoryTrait
         );
         $stmt->setParameter('query', '%' . $query . '%');
 
-        $stmt->setMaxResults(20);
+        $stmt->setMaxResults(10);
+
+        return $stmt;
+    }
+
+    public function autocomplete(string $query): array
+    {
+        $stmt = $this->autocompleteQueryBuilder($query);
+
         return $stmt->getQuery()->getResult();
     }
 }

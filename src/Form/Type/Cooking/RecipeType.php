@@ -11,6 +11,7 @@ use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
 use App\Form\Type\Common\FileUploaderType;
 use App\Form\Type\Common\TextareaCountableType;
+use App\Repository\Cooking\TagRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,6 +19,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RecipeType extends AbstractType
 {
+    public function __construct(private readonly TagRepository $tagRepository)
+    {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $mode = $options['mode'];
@@ -108,6 +113,8 @@ class RecipeType extends AbstractType
                 'class' => Tag::class,
                 'choice_label' => 'label',
                 'multiple' => true,
+                'placeholder_content' => 'Rechercher des tags ...',
+                'autocomplete_route' => 'cooking_tag_autocomplete',
             ])
         ;
     }

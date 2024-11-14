@@ -1,5 +1,7 @@
 {% block autocomplete_entity_widget %}
-    <div data-autocomplete-entity>
+    <div data-autocomplete-entity
+         data-url="{{ url(form.vars.autocomplete_route) }}"
+         data-placeholder="{{ form.vars.placeholder_content }}">
         {{ form_widget(form) }}
     </div>
 {% endblock %}
