@@ -41,6 +41,7 @@ class RecipeType extends AbstractType
             'data_class' => Recipe::class,
             'validation_groups' => function (FormInterface $form): array {
                 $mode = $form->getConfig()->getOption('mode');
+
                 return ['Default', $mode->value];
             },
         ]);
