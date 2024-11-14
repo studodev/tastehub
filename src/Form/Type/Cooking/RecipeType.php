@@ -110,11 +110,13 @@ class RecipeType extends AbstractType
                 'label_html' => true,
             ])
             ->add('tags', AutocompleteEntityType::class, [
+                'label' => 'Tags',
                 'class' => Tag::class,
                 'choice_label' => 'label',
                 'multiple' => true,
                 'placeholder_content' => 'Rechercher des tags ...',
                 'autocomplete_route' => 'cooking_tag_autocomplete',
+                'max_items' => 10,
             ])
         ;
     }

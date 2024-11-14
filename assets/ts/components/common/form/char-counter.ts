@@ -15,7 +15,7 @@ export class CharCounter {
         this.elements = {
             container: container,
             widget: container.querySelector('textarea, input'),
-            messageValue: container.querySelector('.counter-message-value'),
+            messageValue: container.querySelector('.form-counter-value'),
         };
     }
 

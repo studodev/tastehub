@@ -1,7 +1,11 @@
 {% block autocomplete_entity_widget %}
     <div data-autocomplete-entity
          data-url="{{ url(form.vars.autocomplete_route) }}"
-         data-placeholder="{{ form.vars.placeholder_content }}">
+         data-placeholder="{{ form.vars.placeholder_content }}"
+         data-max-items="{{ form.vars.max_items }}">
         {{ form_widget(form) }}
+        <div class="form-counter">
+            <span class="form-counter-value"></span> {{ block('form_label_content')|lower }}
+        </div>
     </div>
 {% endblock %}

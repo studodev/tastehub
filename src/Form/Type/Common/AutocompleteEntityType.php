@@ -26,15 +26,18 @@ class AutocompleteEntityType extends AbstractType
     {
         $view->vars['placeholder_content'] = $options['placeholder_content'];
         $view->vars['autocomplete_route'] = $options['autocomplete_route'];
+        $view->vars['max_items'] = $options['max_items'];
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'placeholder_content' => null,
+            'max_items' => null,
         ]);
 
         $resolver->setAllowedTypes('placeholder_content', ['null', 'string']);
+        $resolver->setAllowedTypes('max_items', ['null', 'int']);
 
         $resolver->setRequired('autocomplete_route');
         $resolver->setAllowedTypes('autocomplete_route', ['string']);
