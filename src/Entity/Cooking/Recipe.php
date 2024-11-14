@@ -2,6 +2,7 @@
 
 namespace App\Entity\Cooking;
 
+use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Model\Cooking\QuantityCounter;
 use App\Model\Cooking\RecipeTimer;
 use App\Repository\Cooking\RecipeRepository;
@@ -16,6 +17,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
 {
+    public const DESCRIPTION_MAX_LENGTH = 350;
+    public const MAX_TAGS = 10;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -34,7 +38,7 @@ class Recipe
     private ?string $title = null;
 
     #[Assert\Length(
-        max: 350,
+        max: self::DESCRIPTION_MAX_LENGTH,
         maxMessage: 'La description doit contenir au maximum {{ limit }} caractères',
     )]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -53,9 +57,15 @@ class Recipe
     )]
     private ?UploadedFile $pictureFile = null;
 
+    #[Assert\Valid(
+        groups: [DraftRecipeStatusEnum::Details->value],
+    )]
     #[ORM\Column(type: JsonDocumentType::NAME)]
     private RecipeTimer $timer;
 
+    #[Assert\Valid(
+        groups: [DraftRecipeStatusEnum::Details->value],
+    )]
     #[ORM\Column(type: JsonDocumentType::NAME)]
     private QuantityCounter $quantityCounter;
 
@@ -75,12 +85,22 @@ class Recipe
     /**
      * @var Collection<int, CookingMethod>
      */
+    // TODO - Add no cooking validation
+    #[Assert\Count(
+        min: 1,
+        minMessage: 'Vous devez sélectionner au moins {{ limit }} mode de cuisson',
+        groups: [DraftRecipeStatusEnum::Details->value],
+    )]
     #[ORM\ManyToMany(targetEntity: CookingMethod::class)]
     private Collection $cookingMethods;
 
     /**
      * @var Collection<int, Tag>
      */
+    #[Assert\Count(
+        max: self::MAX_TAGS,
+        maxMessage: 'Vous pouvez ajouter jusqu\'à {{ limit }} tags',
+    )]
     #[ORM\ManyToMany(targetEntity: Tag::class)]
     private Collection $tags;
 

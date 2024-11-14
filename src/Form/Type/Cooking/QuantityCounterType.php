@@ -17,14 +17,18 @@ class QuantityCounterType extends AbstractType
         $builder
             ->add('value', IncrementalNumberType::class, [
                 'label' => false,
+                'error_bubbling' => true,
+                'invalid_message' => 'La quantité réalisée doit être un nombre entier',
                 'attr' => [
                     'class' => 'input-value',
+                    'maxlength' => 3,
                 ],
             ])
             ->add('unit', EnumType::class, [
                 'class' => QuantityCounterUnitEnum::class,
                 'label' => false,
                 'expanded' => true,
+                'error_bubbling' => true,
                 'row_attr' => [
                     'class' => 'unit-selector',
                 ],
@@ -36,6 +40,7 @@ class QuantityCounterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => QuantityCounter::class,
+            'error_bubbling' => false,
         ]);
     }
 }

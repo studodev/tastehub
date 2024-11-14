@@ -15,6 +15,7 @@ use App\Repository\Cooking\TagRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RecipeType extends AbstractType
@@ -38,6 +39,10 @@ class RecipeType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Recipe::class,
+            'validation_groups' => function (FormInterface $form): array {
+                $mode = $form->getConfig()->getOption('mode');
+                return ['Default', $mode->value];
+            },
         ]);
 
         $resolver->setRequired('mode');
@@ -63,7 +68,7 @@ class RecipeType extends AbstractType
                     'placeholder' => 'Est-ce un plat issu d\'une recette de famille ? Une recette que vous conseillez pour Noël ? Une recette découverte dans un autre pays que vous avez décidé de traduire ? Racontez-nous l\'histoire de cette recette',
                     'rows' => 8,
                 ],
-                'max_length' => 350,
+                'max_length' => Recipe::DESCRIPTION_MAX_LENGTH,
             ])
             ->add('pictureFile', FileUploaderType::class, [
                 'label' => 'Photo de la recette',
@@ -116,7 +121,7 @@ class RecipeType extends AbstractType
                 'multiple' => true,
                 'placeholder_content' => 'Rechercher des tags ...',
                 'autocomplete_route' => 'cooking_tag_autocomplete',
-                'max_items' => 10,
+                'max_items' => Recipe::MAX_TAGS,
             ])
         ;
     }

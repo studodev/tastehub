@@ -11,6 +11,10 @@ class CookingMethodFixtures extends Fixture implements FixtureGroupInterface
 {
     private const METHODS = [
         [
+            'label' => 'Pas de cuisson',
+            'icon' => 'no-cooking',
+        ],
+        [
             'label' => 'Plaques de cuisson',
             'icon' => 'baking-tray',
         ],
@@ -37,10 +41,6 @@ class CookingMethodFixtures extends Fixture implements FixtureGroupInterface
         [
             'label' => 'Croque-Gaufrier',
             'icon' => 'waffle-iron',
-        ],
-        [
-            'label' => 'Pas de cuisson',
-            'icon' => 'no-cooking',
         ],
     ];
 

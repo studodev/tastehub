@@ -2,17 +2,31 @@
 
 namespace App\Model\Cooking;
 
+use App\Enum\Cooking\DraftRecipeStatusEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class RecipeTimer
 {
     #[Assert\NotBlank(
         message: 'Veuillez renseigner le temps de préparation',
+        groups: [DraftRecipeStatusEnum::Details->value],
+    )]
+    #[Assert\Positive(
+        message: 'Le temps de préparation doit être un nombre entier positif',
+        groups: [DraftRecipeStatusEnum::Details->value],
     )]
     private ?int $preparationTime;
 
+    #[Assert\PositiveOrZero(
+        message: 'Le temps de préparation doit être un nombre entier positif',
+        groups: [DraftRecipeStatusEnum::Details->value],
+    )]
     private ?int $cookingTime;
 
+    #[Assert\PositiveOrZero(
+        message: 'Le temps de préparation doit être un nombre entier positif',
+        groups: [DraftRecipeStatusEnum::Details->value],
+    )]
     private ?int $waitingTime;
 
     public function getPreparationTime(): ?int
