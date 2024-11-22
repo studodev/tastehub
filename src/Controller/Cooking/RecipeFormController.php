@@ -83,7 +83,7 @@ class RecipeFormController extends AbstractController
             $recipe->setTimer(clone $recipe->getTimer());
             $this->em->flush();
 
-//            $draft->setStatus(DraftRecipeStatusEnum::Ingredients);
+            $draft->setStatus(DraftRecipeStatusEnum::Ingredients);
             $this->draftRecipeService->update($draft);
 
             return $this->redirectToRoute('cooking_recipe_form_new');

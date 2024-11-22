@@ -1,0 +1,11 @@
+{% block _recipe_recipeIngredients_entry_widget %}
+    {% if value is not null %}
+        {{ value.ingredient.label }}
+        {{ form_row(form.quantity) }}
+        {{ form_row(form.unit) }}
+    {% else %}
+        Placholder
+        {{ form_row(form.quantity) }}
+        {{ form_row(form.unit) }}
+    {% endif %}
+{% endblock %}

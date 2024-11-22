@@ -1,6 +1,7 @@
 import TomSelect from "tom-select";
 import 'tom-select/dist/css/tom-select.css';
 import "@styles/components/common/form/autocomplete-entity.scss";
+import { RecursivePartial, TomSettings } from "tom-select/dist/types/types";
 import { flashFeed } from "../../layout/flash-feed/flash-feed";
 import { FlashMessageType } from "../../layout/flash-feed/flash-message-type";
 
@@ -29,30 +30,36 @@ export class AutocompleteEntity {
     private buildOptions(): void {
         this.options = {
             url: this.elements.container.dataset.url,
+            multiple: this.elements.select.multiple,
             placeholder: this.elements.container.dataset.placeholder,
             maxItems: Number(this.elements.container.dataset.maxItems),
         };
     }
 
     private buildWidget(): void {
-        this.selectWidget = new TomSelect(this.elements.select, {
+        const options: RecursivePartial<TomSettings> = {
             preload: true,
             highlight: false,
             placeholder: this.options.placeholder,
             hidePlaceholder: true,
-            maxItems: this.options.maxItems > 0 ? this.options.maxItems : null,
             load: this.load.bind(this),
             render: {
                 no_results: () => "<div class='empty'>Aucun résulat correspondant</div>",
                 loading: () => "<div class='loader small'></div>",
             },
-            plugins: {
+        };
+
+        if (this.options.multiple) {
+            options['maxItems'] = this.options.maxItems > 0 ? this.options.maxItems : null;
+            options['plugins'] = {
                 remove_button: {
                     title: 'Retirer',
                 },
                 no_active_items: {},
-            },
-        });
+            };
+        }
+
+        this.selectWidget = new TomSelect(this.elements.select, options);
 
         if (this.options.maxItems) {
             this.refreshCounter();
@@ -121,6 +128,7 @@ interface AutocompleteEntityElements {
 
 interface AutocompleteEntityOptions {
     url: string;
+    multiple: boolean;
     placeholder?: string;
     maxItems?: number;
 }

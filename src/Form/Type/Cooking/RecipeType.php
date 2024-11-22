@@ -14,6 +14,7 @@ use App\Form\Type\Common\TextareaCountableType;
 use App\Repository\Cooking\TagRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,11 +29,11 @@ class RecipeType extends AbstractType
     {
         $mode = $options['mode'];
 
-        if (DraftRecipeStatusEnum::Metadata === $mode) {
-            $this->prepareMetadataMode($builder);
-        } elseif (DraftRecipeStatusEnum::Details === $mode) {
-            $this->prepareDetailsMode($builder);
-        }
+        match ($mode) {
+            DraftRecipeStatusEnum::Metadata => $this->prepareMetadataMode($builder),
+            DraftRecipeStatusEnum::Details => $this->prepareDetailsMode($builder),
+            DraftRecipeStatusEnum::Ingredients => $this->prepareIngredientsMode($builder),
+        };
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -123,6 +124,26 @@ class RecipeType extends AbstractType
                 'placeholder_content' => 'Rechercher des tags ...',
                 'autocomplete_route' => 'cooking_tag_autocomplete',
                 'max_items' => Recipe::MAX_TAGS,
+            ])
+        ;
+    }
+
+    private function prepareIngredientsMode(FormBuilderInterface $builder): void
+    {
+        $builder
+            ->add('recipeIngredientGenerator', RecipeIngredientType::class, [
+                'label' => false,
+                'mapped' => false,
+            ])
+            ->add('recipeIngredients', CollectionType::class, [
+                'entry_type' => RecipeIngredientType::class,
+                'entry_options' => [
+                    'label' => false,
+                ],
+                'label' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
             ])
         ;
     }

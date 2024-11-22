@@ -28,6 +28,10 @@
             }
         }
 
+        &.single .ts-control .item {
+            background-color: transparent;
+        }
+
         .ts-dropdown {
             margin: 0;
             border: none;

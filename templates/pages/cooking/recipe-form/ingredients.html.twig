@@ -1,5 +1,25 @@
 {% extends 'pages/cooking/recipe-form/layout.html.twig' %}
 
-{% block form %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('cooking_recipe_form_ingredients') }}
+{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('cooking_recipe_form_ingredients') }}
+{% endblock %}
+
+{% block form %}
+    <div class="row-group">
+        {{ form_row(form.recipeIngredientGenerator.ingredient) }}
+        {{ form_row(form.recipeIngredientGenerator.quantity) }}
+        {{ form_row(form.recipeIngredientGenerator.unit) }}
+    </div>
+
+    <button type="button" class="button">
+        Ajouter l'ingrédient
+    </button>
+
+    {{ form_row(form.recipeIngredients) }}
 {% endblock %}

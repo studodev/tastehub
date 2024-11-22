@@ -21,6 +21,7 @@ Encore
     .addEntry('cooking_recipe_form_common', './assets/ts/pages/cooking/recipe-form/common.ts')
     .addEntry('cooking_recipe_form_metadata', './assets/ts/pages/cooking/recipe-form/metadata.ts')
     .addEntry('cooking_recipe_form_details', './assets/ts/pages/cooking/recipe-form/details.ts')
+    .addEntry('cooking_recipe_form_ingredients', './assets/ts/pages/cooking/recipe-form/ingredients.ts')
 
     .addEntry('user_security_common', './assets/ts/pages/user/security/common.ts')
 

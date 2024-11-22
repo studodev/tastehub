@@ -36,7 +36,7 @@ form {
             color: var(--color-raspberry);
         }
 
-        input[type="text"], input[type="email"], input[type="password"], textarea {
+        input[type="text"], input[type="email"], input[type="password"], textarea, select {
             width: 100%;
             border: 2px solid var(--color-pistachio);
             border-radius: var(--radius-default);
