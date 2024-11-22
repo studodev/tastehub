@@ -78,7 +78,31 @@ class RecipeFormController extends AbstractController
         ]);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $recipe->setQuantityCounter(clone $recipe->getQuantityCounter());
+            $recipe->setTimer(clone $recipe->getTimer());
+            $this->em->flush();
+
+            $draft->setStatus(DraftRecipeStatusEnum::Ingredients);
+            $this->draftRecipeService->update($draft);
+
+            return $this->redirectToRoute('cooking_recipe_form_new');
+        }
+
         return $this->render('pages/cooking/recipe-form/details.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    public function ingredients(Request $request, DraftRecipe $draft): Response
+    {
+        $recipe = $draft->getRecipe();
+        $form = $this->createForm(RecipeType::class, $recipe, [
+            'mode' => $draft->getStatus(),
+        ]);
+        $form->handleRequest($request);
+
+        return $this->render('pages/cooking/recipe-form/ingredients.html.twig', [
             'form' => $form->createView(),
         ]);
     }
