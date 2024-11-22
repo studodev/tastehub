@@ -13,6 +13,7 @@ class CookingMethodFixtures extends Fixture implements FixtureGroupInterface
         [
             'label' => 'Pas de cuisson',
             'icon' => 'no-cooking',
+            'singular' => true,
         ],
         [
             'label' => 'Plaques de cuisson',
@@ -50,6 +51,11 @@ class CookingMethodFixtures extends Fixture implements FixtureGroupInterface
             $method = new CookingMethod();
             $method->setLabel($entry['label']);
             $method->setIcon($entry['icon']);
+
+            if (array_key_exists('singular', $entry)) {
+                $method->setSingular($entry['singular']);
+            }
+
             $manager->persist($method);
         }
 

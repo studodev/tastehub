@@ -19,6 +19,9 @@ class CookingMethod
     #[ORM\Column(length: 30)]
     private ?string $icon = null;
 
+    #[ORM\Column]
+    private bool $singular = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class CookingMethod
     public function setIcon(string $icon): static
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function isSingular(): bool
+    {
+        return $this->singular;
+    }
+
+    public function setSingular(bool $singular): static
+    {
+        $this->singular = $singular;
 
         return $this;
     }

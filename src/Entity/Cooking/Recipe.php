@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Dunglas\DoctrineJsonOdm\Type\JsonDocumentType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -85,7 +86,6 @@ class Recipe
     /**
      * @var Collection<int, CookingMethod>
      */
-    // TODO - Add no cooking validation
     #[Assert\Count(
         min: 1,
         minMessage: 'Vous devez sélectionner au moins {{ limit }} mode de cuisson',
@@ -344,5 +344,21 @@ class Recipe
         }
 
         return $this;
+    }
+
+    #[Assert\Callback]
+    public function validateCookingMethod(ExecutionContextInterface $context): void
+    {
+        $singularCookingMethods = $this->cookingMethods->filter(function (CookingMethod $cookingMethod) {
+            return $cookingMethod->isSingular();
+        });
+
+        if (count($singularCookingMethods) > 0 && count($this->cookingMethods) > 1) {
+            $context
+                ->buildViolation('Ces modes de cuisson sont incompatibles')
+                ->atPath('cookingMethods')
+                ->addViolation()
+            ;
+        }
     }
 }
