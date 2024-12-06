@@ -11,15 +11,17 @@
 {% endblock %}
 
 {% block form %}
-    <div class="row-group">
-        {{ form_row(form.recipeIngredientGenerator.ingredient) }}
-        {{ form_row(form.recipeIngredientGenerator.quantity) }}
-        {{ form_row(form.recipeIngredientGenerator.unit) }}
+    <div data-recipe-item-collection>
+        <div class="row-group item-source">
+            {{ form_row(form.recipeIngredientGenerator.ingredient) }}
+            {{ form_row(form.recipeIngredientGenerator.quantity) }}
+            {{ form_row(form.recipeIngredientGenerator.unit) }}
+        </div>
+
+        <button type="button" class="button item-add-trigger">
+            Ajouter l'ingrédient
+        </button>
+
+        {{ form_row(form.recipeIngredients) }}
     </div>
-
-    <button type="button" class="button">
-        Ajouter l'ingrédient
-    </button>
-
-    {{ form_row(form.recipeIngredients) }}
 {% endblock %}

@@ -102,6 +102,10 @@ class RecipeFormController extends AbstractController
         ]);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->em->flush();
+        }
+
         return $this->render('pages/cooking/recipe-form/ingredients.html.twig', [
             'form' => $form->createView(),
         ]);

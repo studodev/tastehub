@@ -139,11 +139,15 @@ class RecipeType extends AbstractType
                 'entry_type' => RecipeIngredientType::class,
                 'entry_options' => [
                     'label' => false,
+                    'mode' => RecipeIngredientType::MODE_COLLECTION,
                 ],
                 'label' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
+                'attr' => [
+                    'class' => 'item-holder'
+                ],
             ])
         ;
     }

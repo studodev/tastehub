@@ -6,6 +6,8 @@ services:
             MARIADB_DATABASE: tastehub
             MARIADB_USER: tastehub
             MARIADB_PASSWORD: tastehub
+        ports:
+            - "33061:3306"
 
     php:
         build:
@@ -28,19 +30,19 @@ services:
         depends_on:
             - php
         ports:
-            - 80:80
+            - "80:80"
 
     webdb:
         image: webdb/app
         ports:
-            - 8080:22071
+            - "8080:22071"
         environment:
             SCAN_HOSTS: db
 
     mailpit:
         image: axllent/mailpit
         ports:
-            - 8081:8025
+            - "8081:8025"
         environment:
             MP_SMTP_AUTH_ACCEPT_ANY: 1
             MP_SMTP_AUTH_ALLOW_INSECURE: 1

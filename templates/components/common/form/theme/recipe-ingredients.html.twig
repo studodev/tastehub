@@ -1,11 +1,14 @@
 {% block _recipe_recipeIngredients_entry_widget %}
     {% if value is not null %}
-        {{ value.ingredient.label }}
-        {{ form_row(form.quantity) }}
-        {{ form_row(form.unit) }}
+        <span class="item-data-ingredient-label">{{ value.ingredient.label }}</span>
     {% else %}
-        Placholder
-        {{ form_row(form.quantity) }}
-        {{ form_row(form.unit) }}
+        <span class="item-data-ingredient-label"></span>
     {% endif %}
+
+    {{ form_row(form.ingredient) }}
+    {{ form_row(form.quantity) }}
+    {{ form_row(form.unit) }}
+    <button type="button" class="item-remove-trigger" aria-label="Supprimer l'ingrédient">
+        <i class="icon icon-trash"></i>
+    </button>
 {% endblock %}
