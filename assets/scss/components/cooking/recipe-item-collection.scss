@@ -1,0 +1,47 @@
+.item-holder {
+    display: flex;
+    gap: 10px;
+    padding: 16px;
+    flex-wrap: wrap;
+
+    .item {
+        display: flex;
+        align-items: center;
+
+        .item-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 12px;
+            background-color: var(--color-white);
+            border-radius: var(--radius-default);
+            color: var(--color-eggplant);
+
+            img {
+                height: 40px;
+            }
+
+            .item-form {
+                display: flex;
+                gap: 4px;
+                .form-row {
+                    margin: 0;
+
+                    input {
+                        max-width: 50px;
+                        text-align: center;
+                    }
+
+                    select {
+                        max-width: 80px;
+                    }
+                }
+            }
+        }
+
+        .item-remove-trigger {
+            font-size: 1.2rem;
+            color: var(--color-warn);
+        }
+    }
+}

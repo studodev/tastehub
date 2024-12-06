@@ -1,3 +1,5 @@
+import "@styles/components/cooking/recipe-item-collection.scss";
+
 // TODO - Add abstract
 export class RecipeItemCollection {
     protected elements: RecipeItemCollectionElement;

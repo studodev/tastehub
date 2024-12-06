@@ -13,7 +13,12 @@ export class RecipeIngredientCollection extends RecipeItemCollection {
         const ingredientInputField = this.elements.itemSource.querySelector('.item-data-ingredient') as HTMLSelectElement;
         const ingredientOutputField = prototype.querySelector('.item-data-ingredient') as HTMLSelectElement;
         const ingredientOutputLabel = prototype.querySelector('.item-data-ingredient-label');
+        const ingredientOutputPictogram = prototype.querySelector('.item-data-ingredient-pictogram') as HTMLImageElement;
+        const selectedIngredient = ingredientInputField.options[ingredientInputField.selectedIndex];
+
         ingredientOutputField.value = ingredientInputField.value;
-        ingredientOutputLabel.textContent = ingredientInputField.options[ingredientInputField.selectedIndex].textContent;
+        ingredientOutputLabel.textContent = selectedIngredient.textContent;
+        ingredientOutputPictogram.src = selectedIngredient.dataset.pictogram;
+
     }
 }
