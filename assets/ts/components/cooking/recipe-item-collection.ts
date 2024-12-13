@@ -32,21 +32,25 @@ export class RecipeItemCollection {
     private addItem() {
         let prototypeString = this.elements.itemHolder.dataset.prototype;
 
-        const index = this.elements.itemHolder.children.length;
-        prototypeString = prototypeString.replace(/__name__/g, String(index));
+        let index = this.elements.itemHolder.dataset.index;
+        prototypeString = prototypeString.replace(/__name__/g, index);
 
         const prototypeParsed = new DOMParser().parseFromString(prototypeString, 'text/html');
         const prototype = prototypeParsed.querySelector('body').firstChild;
 
-        this.buildPrototype(prototype as HTMLElement);
-        this.elements.itemHolder.appendChild(prototype);
+        if (this.prepareItem(prototype as HTMLElement)) {
+            this.elements.itemHolder.appendChild(prototype);
+            this.elements.itemHolder.dataset.index = String(Number(index) + 1);
+        }
     }
 
     private removeItem(item: HTMLElement): void {
         item.remove();
     }
 
-    protected buildPrototype(prototype: HTMLElement): void {}
+    protected prepareItem(prototype: HTMLElement): boolean {
+        return true;
+    }
 
     static init(): void {
         const elements = Array.from(document.querySelectorAll("[data-recipe-item-collection]"));

@@ -76,6 +76,10 @@ export class AutocompleteEntity {
         this.selectWidget.on("item_remove", () => {
             this.refreshCounter();
         });
+
+        this.elements.select.addEventListener('change', () => {
+            this.selectWidget.sync();
+        })
     }
 
     private load(query: string, callback: Function): void {

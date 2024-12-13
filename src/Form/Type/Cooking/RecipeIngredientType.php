@@ -73,14 +73,17 @@ class RecipeIngredientType extends AbstractType
                     'class' => 'item-data-quantity',
                     ...$quantityAttr,
                 ],
+                'error_bubbling' => true,
             ])
             ->add('unit', EnumType::class, [
                 'label' => self::MODE_SOURCE === $mode ? 'Unité de mesure' : false,
                 'class' => IngredientUnitEnum::class,
+                'placeholder' => 'Choisissez une unité',
                 'attr' => [
                     'class' => 'item-data-unit',
                     ...$unitAttr,
                 ],
+                'error_bubbling' => true,
             ])
         ;
     }
@@ -90,6 +93,7 @@ class RecipeIngredientType extends AbstractType
         $resolver->setDefaults([
             'data_class' => RecipeIngredient::class,
             'mode' => self::MODE_SOURCE,
+            'error_bubbling' => false,
         ]);
     }
 }

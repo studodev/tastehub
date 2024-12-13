@@ -1,47 +1,64 @@
-.item-holder {
-    display: flex;
-    gap: 10px;
-    padding: 16px;
-    flex-wrap: wrap;
+[data-recipe-item-collection] {
+    .item-add-trigger {
+        display: block;
+        margin: 0 auto;
+    }
 
-    .item {
+    .item-holder {
         display: flex;
-        align-items: center;
+        gap: 22px;
+        padding: 16px 0;
+        flex-wrap: wrap;
+        margin-top: 20px;
 
-        .item-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 6px 12px;
-            background-color: var(--color-white);
-            border-radius: var(--radius-default);
-            color: var(--color-eggplant);
+        .form-row {
+            margin-bottom: 0;
 
-            img {
-                height: 40px;
-            }
-
-            .item-form {
+            .item {
                 display: flex;
-                gap: 4px;
-                .form-row {
-                    margin: 0;
+                align-items: center;
 
-                    input {
-                        max-width: 50px;
-                        text-align: center;
+                .item-content {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    padding: 6px 12px;
+                    background-color: var(--color-white);
+                    border-radius: var(--radius-default);
+                    box-shadow: 0 3px 6px var(--shadow-default);
+                    color: var(--color-eggplant);
+
+                    img {
+                        height: 40px;
                     }
 
-                    select {
-                        max-width: 80px;
+                    .item-form {
+                        display: flex;
+                        gap: 4px;
+                        .form-row {
+                            margin: 0;
+
+                            input {
+                                max-width: 50px;
+                                text-align: center;
+                            }
+
+                            select {
+                                max-width: 80px;
+                            }
+                        }
                     }
                 }
-            }
-        }
 
-        .item-remove-trigger {
-            font-size: 1.2rem;
-            color: var(--color-warn);
+                .item-remove-trigger {
+                    font-size: 1.2rem;
+                    color: var(--color-warn);
+                }
+            }
+
+            .form-errors li {
+                margin-left: 0;
+            }
         }
     }
 }

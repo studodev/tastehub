@@ -20,6 +20,8 @@ class Recipe
 {
     public const DESCRIPTION_MAX_LENGTH = 350;
     public const MAX_TAGS = 10;
+    public const MIN_INGREDIENTS = 2;
+    public const MAX_INGREDIENTS = 100;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -107,6 +109,14 @@ class Recipe
     /**
      * @var Collection<int, RecipeIngredient>
      */
+    #[Assert\Count(
+        min: self::MIN_INGREDIENTS,
+        max: self::MAX_INGREDIENTS,
+        minMessage: 'Vous devez ajouter au moins {{ limit }} ingredients',
+        maxMessage: 'Vous pouvez ajouter jusqu\'à {{ limit }} ingredients',
+        groups: [DraftRecipeStatusEnum::Ingredients->value],
+    )]
+    #[Assert\Valid]
     #[ORM\OneToMany(targetEntity: RecipeIngredient::class, mappedBy: 'recipe', cascade: ["persist", "remove"], orphanRemoval: true)]
     private Collection $recipeIngredients;
 
@@ -359,6 +369,30 @@ class Recipe
                 ->atPath('cookingMethods')
                 ->addViolation()
             ;
+        }
+    }
+
+    #[Assert\Callback]
+    public function validateIngredients(ExecutionContextInterface $context): void
+    {
+        $ingredients = [];
+        $invalidIngredients = [];
+
+        foreach ($this->recipeIngredients as $recipeIngredient) {
+            $ingredient = $recipeIngredient->getIngredient();
+            if (in_array($ingredient, $ingredients)) {
+                if (!in_array($ingredient, $invalidIngredients)) {
+                    $invalidIngredients[] = $ingredient;
+
+                    $context
+                        ->buildViolation(sprintf('L\'ingredient "%s" est présent plusieurs fois', $ingredient->getLabel()))
+                        ->atPath('recipeIngredients')
+                        ->addViolation()
+                    ;
+                }
+            }
+
+            $ingredients[] = $recipeIngredient->getIngredient();
         }
     }
 }

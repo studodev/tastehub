@@ -38,17 +38,23 @@ form {
 
         input[type="text"], input[type="email"], input[type="password"], textarea, select {
             width: 100%;
+            background-color: var(--color-white);
             border: 2px solid var(--color-pistachio);
             border-radius: var(--radius-default);
             padding: 8px;
             font-family: var(--font-family-content), sans-serif;
             font-size: 1rem;
             outline-color: var(--color-raspberry);
+            line-height: 1.2;
 
             &::placeholder {
                 color: color-mix(in srgb, var(--color-eggplant) 80%, transparent 20%);
                 font-style: italic;
             }
+        }
+
+        select {
+            field-sizing: content;
         }
 
         textarea {
@@ -139,7 +145,7 @@ form {
 
     .row-group {
         display: flex;
-        gap: 20px;
+        column-gap: 20px;
 
         & > * {
             flex: 1 1 50%;
@@ -157,6 +163,14 @@ form {
 }
 
 @media screen and (max-width: 1024px) {
+    form {
+        .row-group:not(.tiny) {
+            flex-direction: column;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
     form {
         .row-group {
             flex-direction: column;

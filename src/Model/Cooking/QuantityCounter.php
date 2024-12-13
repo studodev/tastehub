@@ -20,7 +20,7 @@ class QuantityCounter
     )]
     private ?int $value = 2;
 
-    private QuantityCounterUnitEnum $unit = QuantityCounterUnitEnum::Person;
+    private ?QuantityCounterUnitEnum $unit = QuantityCounterUnitEnum::Person;
 
     public function getValue(): ?int
     {
@@ -34,12 +34,12 @@ class QuantityCounter
         return $this;
     }
 
-    public function getUnit(): QuantityCounterUnitEnum
+    public function getUnit(): ?QuantityCounterUnitEnum
     {
         return $this->unit;
     }
 
-    public function setUnit(QuantityCounterUnitEnum $unit): static
+    public function setUnit(?QuantityCounterUnitEnum $unit): static
     {
         $this->unit = $unit;
 

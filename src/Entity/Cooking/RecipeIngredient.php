@@ -5,6 +5,7 @@ namespace App\Entity\Cooking;
 use App\Enum\Cooking\IngredientUnitEnum;
 use App\Repository\Cooking\RecipeIngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeIngredientRepository::class)]
 class RecipeIngredient
@@ -22,9 +23,18 @@ class RecipeIngredient
     #[ORM\JoinColumn(nullable: false)]
     private ?Ingredient $ingredient = null;
 
+    #[Assert\NotBlank(
+        message: 'Vous devez saisir une quantité',
+    )]
+    #[Assert\Positive(
+        message: 'Vous devez saisir une quantité positive',
+    )]
     #[ORM\Column]
     private ?float $quantity = null;
 
+    #[Assert\NotBlank(
+        message: 'Vous devez choisir une unité',
+    )]
     #[ORM\Column(length: 10)]
     private ?IngredientUnitEnum $unit = null;
 
@@ -62,7 +72,7 @@ class RecipeIngredient
         return $this->quantity;
     }
 
-    public function setQuantity(float $quantity): static
+    public function setQuantity(?float $quantity): static
     {
         $this->quantity = $quantity;
 
