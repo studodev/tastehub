@@ -13,8 +13,15 @@ class CollectionIndexExtension extends AbstractTypeExtension
     {
         $children = $form->all();
 
+        $lastChildren = end($children);
+        if ($lastChildren) {
+            $index = $lastChildren->getName() + 1;
+        } else {
+            $index = 0;
+        }
+
         $view->vars['attr'] = array_merge([
-            'data-index' => end($children)->getName() + 1,
+            'data-index' => $index,
         ], $view->vars['attr']);
     }
 
