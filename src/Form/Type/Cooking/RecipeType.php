@@ -7,11 +7,14 @@ use App\Entity\Cooking\CookingMethod;
 use App\Entity\Cooking\DietType;
 use App\Entity\Cooking\Recipe;
 use App\Entity\Cooking\Tag;
+use App\Entity\Cooking\Utensil;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
+use App\Enum\PictogramTypeEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
 use App\Form\Type\Common\FileUploaderType;
 use App\Form\Type\Common\TextareaCountableType;
 use App\Repository\Cooking\TagRepository;
+use App\Service\PictogramService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -21,8 +24,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RecipeType extends AbstractType
 {
-    public function __construct(private readonly TagRepository $tagRepository)
-    {
+    public function __construct(
+        private readonly PictogramService $pictogramService,
+        private readonly TagRepository $tagRepository,
+    ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -33,6 +38,7 @@ class RecipeType extends AbstractType
             DraftRecipeStatusEnum::Metadata => $this->prepareMetadataMode($builder),
             DraftRecipeStatusEnum::Details => $this->prepareDetailsMode($builder),
             DraftRecipeStatusEnum::Ingredients => $this->prepareIngredientsMode($builder),
+            DraftRecipeStatusEnum::Utensils => $this->prepareUtensilsMode($builder),
         };
     }
 
@@ -140,6 +146,48 @@ class RecipeType extends AbstractType
                 'entry_options' => [
                     'label' => false,
                     'mode' => RecipeIngredientType::MODE_COLLECTION,
+                ],
+                'label' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'error_bubbling' => false,
+                'attr' => [
+                    'class' => 'item-holder',
+                ],
+            ])
+        ;
+    }
+
+    private function prepareUtensilsMode(FormBuilderInterface $builder): void
+    {
+        $builder
+            ->add('utensilGenerator', AutocompleteEntityType::class, [
+                'label' => false,
+                'mapped' => false,
+                'class' => Utensil::class,
+                'choice_label' => 'label',
+                'choice_attr' => function (Utensil $utensil) {
+                    return [
+                        'data-pictogram' => $this->pictogramService->buildUrl(PictogramTypeEnum::Ingredient, $utensil->getPictogram()),
+                    ];
+                },
+                'placeholder' => '',
+                'placeholder_content' => 'Rechercher un ustensile ...',
+                'autocomplete_route' => 'cooking_utensil_autocomplete',
+                'attr' => [
+                    'class' => 'item-data-utensil',
+                ]
+            ])
+            ->add('utensils', CollectionType::class, [
+                'entry_type' => EntityType::class,
+                'entry_options' => [
+                    'label' => false,
+                    'class' => Utensil::class,
+                    'choice_label' => 'label',
+                    'attr' => [
+                        'class' => 'item-data-utensil hidden',
+                    ],
                 ],
                 'label' => false,
                 'allow_add' => true,

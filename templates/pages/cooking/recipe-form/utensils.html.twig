@@ -1,0 +1,25 @@
+{% extends 'pages/cooking/recipe-form/layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('cooking_recipe_form_utensils') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('cooking_recipe_form_utensils') }}
+{% endblock %}
+
+{% block form %}
+    <div data-recipe-item-collection>
+        <div class="row-group tiny item-source">
+            {{ form_row(form.utensilGenerator) }}
+        </div>
+
+        <button type="button" class="button item-add-trigger">
+            Ajouter l'ustensile
+        </button>
+
+        {{ form_row(form.utensils) }}
+    </div>
+{% endblock %}

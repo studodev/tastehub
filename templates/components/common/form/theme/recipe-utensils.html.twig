@@ -1,0 +1,22 @@
+{% block _recipe_utensils_entry_widget %}
+    <div class="item">
+        <div class="item-content">
+            {% set pictogramType = enum('App\\Enum\\PictogramTypeEnum').Ingredient %}
+            <img src="{{ data is empty ? '' : pictogram_url(pictogramType, data.pictogram) }}" alt=" " class="item-data-utensil-pictogram">
+
+            <div class="item-form">
+                {{ form_widget(form) }}
+            </div>
+
+            {% if data is not empty %}
+                <span class="item-data-utensil-label">{{ data.label }}</span>
+            {% else %}
+                <span class="item-data-utensil-label"></span>
+            {% endif %}
+        </div>
+
+        <button type="button" class="item-remove-trigger" aria-label="Supprimer l'ustensile">
+            <i class="icon icon-trash"></i>
+        </button>
+    </div>
+{% endblock %}

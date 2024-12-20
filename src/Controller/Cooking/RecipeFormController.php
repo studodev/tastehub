@@ -104,9 +104,31 @@ class RecipeFormController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
+
+            $draft->setStatus(DraftRecipeStatusEnum::Utensils);
+            $this->draftRecipeService->update($draft);
+
+            return $this->redirectToRoute('cooking_recipe_form_new');
         }
 
         return $this->render('pages/cooking/recipe-form/ingredients.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    public function utensils(Request $request, DraftRecipe $draft): Response
+    {
+        $recipe = $draft->getRecipe();
+        $form = $this->createForm(RecipeType::class, $recipe, [
+            'mode' => $draft->getStatus(),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->em->flush();
+        }
+
+        return $this->render('pages/cooking/recipe-form/utensils.html.twig', [
             'form' => $form->createView(),
         ]);
     }

@@ -121,6 +121,12 @@ class Recipe
     private Collection $recipeIngredients;
 
     /**
+     * @var Collection<int, Utensil>
+     */
+    #[ORM\ManyToMany(targetEntity: Utensil::class)]
+    private Collection $utensils;
+
+    /**
      * @var Collection<int, Step>
      */
     #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'recipe', orphanRemoval: true)]
@@ -134,6 +140,7 @@ class Recipe
         $this->cookingMethods = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->recipeIngredients = new ArrayCollection();
+        $this->utensils = new ArrayCollection();
         $this->steps = new ArrayCollection();
     }
 
@@ -323,6 +330,30 @@ class Recipe
                 $recipeIngredient->setRecipe(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Utensil>
+     */
+    public function getUtensils(): Collection
+    {
+        return $this->utensils;
+    }
+
+    public function addUtensil(Utensil $utensil): static
+    {
+        if (!$this->utensils->contains($utensil)) {
+            $this->utensils->add($utensil);
+        }
+
+        return $this;
+    }
+
+    public function removeUtensil(Utensil $utensil): static
+    {
+        $this->utensils->removeElement($utensil);
 
         return $this;
     }

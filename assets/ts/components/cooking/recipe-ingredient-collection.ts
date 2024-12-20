@@ -14,7 +14,6 @@ export class RecipeIngredientCollection extends RecipeItemCollection {
         const unitInputField = this.elements.itemSource.querySelector('.item-data-unit') as HTMLSelectElement;
         const unitOutputField = prototype.querySelector('.item-data-unit') as HTMLInputElement;
 
-        console.log(!selectedIngredient.value);
         if (!selectedIngredient.value || !quantityInputField.value || !unitInputField.value) {
             flashFeed.push(FlashMessageType.Error, "Vous devez séléctionner un ingrédient, une quantité et une unité");
             return false;

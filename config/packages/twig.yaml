@@ -10,6 +10,7 @@ twig:
         - 'components/common/form/theme/recipe-timer.html.twig'
         - 'components/common/form/theme/quantity-counter.html.twig'
         - 'components/common/form/theme/recipe-ingredients.html.twig'
+        - 'components/common/form/theme/recipe-utensils.html.twig'
 
 when@test:
     twig:

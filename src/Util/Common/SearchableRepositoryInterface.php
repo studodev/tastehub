@@ -4,7 +4,7 @@ namespace App\Util\Common;
 
 interface SearchableRepositoryInterface
 {
-    public function displayField();
+    public function displayField(): string;
 
-    public function searchableFields();
+    public function searchableFields(): array;
 }
