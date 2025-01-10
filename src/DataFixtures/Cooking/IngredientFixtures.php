@@ -3,6 +3,7 @@
 namespace App\DataFixtures\Cooking;
 
 use App\Entity\Cooking\Ingredient;
+use App\Entity\Cooking\IngredientType;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -211,7 +212,7 @@ class IngredientFixtures extends Fixture implements FixtureGroupInterface, Depen
             $ingredient = new Ingredient();
             $ingredient->setLabel($entry['label']);
 
-            $type = $this->getReference(sprintf('ingredient_type_%s', $entry['type']));
+            $type = $this->getReference(sprintf('ingredient_type_%s', $entry['type']), IngredientType::class);
             $ingredient->setType($type);
 
             $manager->persist($ingredient);

@@ -13,32 +13,32 @@
         "doctrine/orm": "^3.1",
         "dunglas/doctrine-json-odm": "^1.4",
         "studodev/form-util-bundle": "^1.1",
-        "symfony/console": "7.1.*",
-        "symfony/dotenv": "7.1.*",
-        "symfony/expression-language": "7.1.*",
+        "symfony/console": "7.2.*",
+        "symfony/dotenv": "7.2.*",
+        "symfony/expression-language": "7.2.*",
         "symfony/flex": "^2",
-        "symfony/form": "7.1.*",
-        "symfony/framework-bundle": "7.1.*",
-        "symfony/http-client": "7.1.*",
-        "symfony/mailer": "7.1.*",
-        "symfony/runtime": "7.1.*",
-        "symfony/security-bundle": "7.1.*",
-        "symfony/translation": "7.1.*",
-        "symfony/twig-bundle": "7.1.*",
-        "symfony/validator": "7.1.*",
+        "symfony/form": "7.2.*",
+        "symfony/framework-bundle": "7.2.*",
+        "symfony/http-client": "7.2.*",
+        "symfony/mailer": "7.2.*",
+        "symfony/runtime": "7.2.*",
+        "symfony/security-bundle": "7.2.*",
+        "symfony/translation": "7.2.*",
+        "symfony/twig-bundle": "7.2.*",
+        "symfony/validator": "7.2.*",
         "symfony/webpack-encore-bundle": "^2.1",
-        "symfony/yaml": "7.1.*",
+        "symfony/yaml": "7.2.*",
         "twig/extra-bundle": "^3.0",
         "twig/twig": "^3.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.6",
+        "doctrine/doctrine-fixtures-bundle": "^4.0",
         "friendsofphp/php-cs-fixer": "^3.64",
-        "symfony/debug-bundle": "7.1.*",
+        "symfony/debug-bundle": "7.2.*",
         "symfony/maker-bundle": "^1.59",
         "symfony/monolog-bundle": "^3.0",
-        "symfony/stopwatch": "7.1.*",
-        "symfony/web-profiler-bundle": "7.1.*"
+        "symfony/stopwatch": "7.2.*",
+        "symfony/web-profiler-bundle": "7.2.*"
     },
     "config": {
         "allow-plugins": {
@@ -87,7 +87,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.1.*"
+            "require": "7.2.*"
         }
     }
 }
