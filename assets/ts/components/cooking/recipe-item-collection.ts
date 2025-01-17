@@ -1,10 +1,15 @@
 import "@styles/components/cooking/recipe-item-collection.scss";
+import { AbstractComponent } from "../abstract-component";
 
-// TODO - Add abstract
-export class RecipeItemCollection {
+export abstract class RecipeItemCollection extends AbstractComponent{
     protected elements: RecipeItemCollectionElement;
 
-    protected constructor(container: HTMLElement) {
+    static getComponentSelector(): string {
+        return '[data-recipe-item-collection]';
+    }
+
+    constructor(container: HTMLElement) {
+        super();
         this.buildElements(container);
         this.bindEvents();
     }
@@ -48,17 +53,7 @@ export class RecipeItemCollection {
         item.remove();
     }
 
-    protected prepareItem(prototype: HTMLElement): boolean {
-        return true;
-    }
-
-    static init(): void {
-        const elements = Array.from(document.querySelectorAll("[data-recipe-item-collection]"));
-
-        for (const element of elements) {
-            new this(element as HTMLElement);
-        }
-    }
+    protected abstract prepareItem(prototype: HTMLElement): boolean;
 }
 
 interface RecipeItemCollectionElement {

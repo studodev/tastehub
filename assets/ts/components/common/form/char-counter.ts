@@ -1,10 +1,16 @@
 import "@styles/components/common/form/char-counter.scss";
+import { AbstractComponent } from "../../abstract-component";
 
-export class CharCounter {
+export class CharCounter extends AbstractComponent {
     private elements: CharCounterElements;
     private options: CharCounterOptions;
 
-    private constructor(container: HTMLElement) {
+    static getComponentSelector(): string {
+        return '[data-char-counter]';
+    }
+
+    constructor(container: HTMLElement) {
+        super();
         this.buildElements(container);
         this.buildOptions();
         this.bindEvents();
@@ -40,14 +46,6 @@ export class CharCounter {
             this.elements.messageValue.classList.add('invalid');
         } else {
             this.elements.messageValue.classList.remove('invalid');
-        }
-    }
-
-    static init(): void {
-        const elements = Array.from(document.querySelectorAll("[data-char-counter]"));
-
-        for (const element of elements) {
-            new this(element as HTMLElement);
         }
     }
 }
