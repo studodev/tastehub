@@ -1,7 +1,7 @@
 {% block _recipe_steps_entry_widget %}
 <li class="step form-row">
     <div class="step-header">
-        <h2>Étape {{ name == '__name__' ? name : name|number_format + 1 }}</h2>
+        <h2>Étape {{ name is not same as '__name__' ? name|number_format + 1 }}</h2>
         <button type="button" class="button warn small item-remove-trigger">
             Supprimer l'étape
         </button>

@@ -1,6 +1,6 @@
 import "@styles/pages/cooking/recipe-form/steps.scss";
 import { CharCounter } from "../../../components/common/form/char-counter";
-import { RecipeItemCollection } from "../../../components/cooking/recipe-item-collection";
+import { RecipeStepCollection } from "../../../components/cooking/recipe-step-collection";
 
 CharCounter.init();
-RecipeItemCollection.init();
+RecipeStepCollection.init();
