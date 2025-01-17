@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\Common;
 
 use App\Entity\User\ResetPasswordRequest;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;

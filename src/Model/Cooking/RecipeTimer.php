@@ -18,13 +18,13 @@ class RecipeTimer
     private ?int $preparationTime;
 
     #[Assert\PositiveOrZero(
-        message: 'Le temps de préparation doit être un nombre entier positif',
+        message: 'Le temps de cuisson doit être un nombre entier positif',
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
     private ?int $cookingTime;
 
     #[Assert\PositiveOrZero(
-        message: 'Le temps de préparation doit être un nombre entier positif',
+        message: 'Le temps de pose doit être un nombre entier positif',
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
     private ?int $waitingTime;

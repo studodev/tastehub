@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\Common;
 
-use App\Enum\FileManagerBucketEnum;
+use App\Enum\Common\FileManagerBucketEnum;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

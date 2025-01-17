@@ -2,16 +2,16 @@ twig:
     file_name_pattern: '*.twig'
     form_themes:
         - 'form_div_layout.html.twig'
-        - 'components/common/form/theme/common.html.twig'
-        - 'components/common/form/theme/autocomplete-entity.html.twig'
-        - 'components/common/form/theme/incremental-number.html.twig'
-        - 'components/common/form/theme/upload-file.html.twig'
-        - 'components/common/form/theme/widget-countable.html.twig'
-        - 'components/common/form/theme/recipe-timer.html.twig'
-        - 'components/common/form/theme/quantity-counter.html.twig'
-        - 'components/common/form/theme/recipe-ingredients.html.twig'
-        - 'components/common/form/theme/recipe-utensils.html.twig'
-        - 'components/common/form/theme/recipe-steps.html.twig'
+        - 'components/common/form/common.html.twig'
+        - 'components/common/form/autocomplete-entity.html.twig'
+        - 'components/common/form/incremental-number.html.twig'
+        - 'components/common/form/upload-file.html.twig'
+        - 'components/common/form/widget-countable.html.twig'
+        - 'components/cooking/form/recipe-timer.html.twig'
+        - 'components/cooking/form/quantity-counter.html.twig'
+        - 'components/cooking/form/recipe-ingredients.html.twig'
+        - 'components/cooking/form/recipe-utensils.html.twig'
+        - 'components/cooking/form/recipe-steps.html.twig'
 
 when@test:
     twig:

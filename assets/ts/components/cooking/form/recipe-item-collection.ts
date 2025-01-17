@@ -1,7 +1,7 @@
-import "@styles/components/cooking/recipe-item-collection.scss";
-import { AbstractComponent } from "../abstract-component";
+import "@styles/components/cooking/form/recipe-item-collection.scss";
+import { AbstractComponent } from "../../abstract-component";
 
-export abstract class RecipeItemCollection extends AbstractComponent{
+export abstract class RecipeItemCollection extends AbstractComponent {
     protected elements: RecipeItemCollectionElement;
 
     static getComponentSelector(): string {

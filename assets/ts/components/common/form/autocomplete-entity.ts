@@ -2,15 +2,21 @@ import TomSelect from "tom-select";
 import 'tom-select/dist/css/tom-select.css';
 import "@styles/components/common/form/autocomplete-entity.scss";
 import { RecursivePartial, TomSettings } from "tom-select/dist/types/types";
+import { AbstractComponent } from "../../abstract-component";
 import { flashFeed } from "../../layout/flash-feed/flash-feed";
 import { FlashMessageType } from "../../layout/flash-feed/flash-message-type";
 
-export class AutocompleteEntity {
+export class AutocompleteEntity extends AbstractComponent{
     private elements: AutocompleteEntityElements;
     private options: AutocompleteEntityOptions;
     private selectWidget: TomSelect;
 
-    private constructor(container: HTMLElement) {
+    static getComponentSelector(): string {
+        return '[data-autocomplete-entity]';
+    }
+
+    constructor(container: HTMLElement) {
+        super();
         this.buildElements(container);
         this.buildOptions();
         this.buildWidget();
@@ -109,14 +115,6 @@ export class AutocompleteEntity {
             this.elements.counter.value.classList.add('invalid');
         } else {
             this.elements.counter.value.classList.remove('invalid');
-        }
-    }
-
-    static init(): void {
-        const elements = Array.from(document.querySelectorAll("[data-autocomplete-entity]"));
-
-        for (const element of elements) {
-            new this(element as HTMLElement);
         }
     }
 }

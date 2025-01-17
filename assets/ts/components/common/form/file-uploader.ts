@@ -1,10 +1,17 @@
 import "@styles/components/common/form/file-uploader.scss";
+import { AbstractComponent } from "../../abstract-component";
 
-export class FileUploader {
+// TODO - See bug for file with same name
+export class FileUploader extends AbstractComponent{
     private static readonly imageTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp'];
     private elements: FileUploderElements;
 
-    private constructor(container: HTMLElement) {
+    static getComponentSelector(): string {
+        return '[data-file-uploader]';
+    }
+
+    constructor(container: HTMLElement) {
+        super();
         this.buildElements(container);
         this.bindEvents();
     }
@@ -106,14 +113,6 @@ export class FileUploader {
                 this.elements.previewImageContainer.classList.remove('hidden');
                 this.elements.previewFileContainer.classList.add('hidden');
             }
-        }
-    }
-
-    static init(): void {
-        const elements = Array.from(document.querySelectorAll("[data-file-uploader]"));
-
-        for (const element of elements) {
-            new this(element as HTMLElement);
         }
     }
 }

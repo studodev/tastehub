@@ -2,8 +2,8 @@
 
 namespace App\Util\Twig;
 
-use App\Enum\PictogramTypeEnum;
-use App\Service\PictogramService;
+use App\Enum\Common\PictogramTypeEnum;
+use App\Service\Common\PictogramService;
 use Twig\Extension\RuntimeExtensionInterface;
 
 readonly class AssetRuntime implements RuntimeExtensionInterface

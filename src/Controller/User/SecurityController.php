@@ -3,7 +3,7 @@
 namespace App\Controller\User;
 
 use App\Entity\User\User;
-use App\Enum\FlashMessageTypeEnum;
+use App\Enum\Common\FlashMessageTypeEnum;
 use App\Form\Type\User\ChangePasswordType;
 use App\Form\Type\User\RegisterType;
 use App\Form\Type\User\ResetPasswordRequestType;

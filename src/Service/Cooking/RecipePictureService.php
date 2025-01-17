@@ -3,8 +3,8 @@
 namespace App\Service\Cooking;
 
 use App\Entity\Cooking\Recipe;
-use App\Enum\FileManagerBucketEnum;
-use App\Service\FileManagerService;
+use App\Enum\Common\FileManagerBucketEnum;
+use App\Service\Common\FileManagerService;
 
 readonly class RecipePictureService
 {

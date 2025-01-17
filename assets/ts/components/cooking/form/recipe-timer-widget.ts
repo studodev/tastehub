@@ -1,10 +1,16 @@
-import "@styles/components/cooking/recipe-timer-widget.scss";
-import { TimeUtils } from "../../utils/time-utils";
+import "@styles/components/cooking/form/recipe-timer-widget.scss";
+import { TimeUtils } from "../../../utils/time-utils";
+import { AbstractComponent } from "../../abstract-component";
 
-export class RecipeTimerWidget {
+export class RecipeTimerWidget extends AbstractComponent {
     private elements: RecipeTimerWidgetElements;
 
-    private constructor(container: HTMLElement) {
+    static getComponentSelector(): string {
+        return '.recipe-timer-widget';
+    }
+
+    constructor(container: HTMLElement) {
+        super();
         this.buildElements(container);
         this.bindEvents();
         this.updateTotal();
@@ -39,14 +45,6 @@ export class RecipeTimerWidget {
         }
 
         this.elements.totalTimer.innerText = TimeUtils.formatRelativeMinutes(total);
-    }
-
-    static init(): void {
-        const elements = Array.from(document.querySelectorAll(".recipe-timer-widget"));
-
-        for (const element of elements) {
-            new this(element as HTMLElement);
-        }
     }
 }
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\Common;
 
-use App\Enum\PictogramTypeEnum;
+use App\Enum\Common\PictogramTypeEnum;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 

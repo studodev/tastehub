@@ -4,10 +4,10 @@ namespace App\Form\Type\Cooking;
 
 use App\Entity\Cooking\Ingredient;
 use App\Entity\Cooking\RecipeIngredient;
+use App\Enum\Common\PictogramTypeEnum;
 use App\Enum\Cooking\IngredientUnitEnum;
-use App\Enum\PictogramTypeEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
-use App\Service\PictogramService;
+use App\Service\Common\PictogramService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;

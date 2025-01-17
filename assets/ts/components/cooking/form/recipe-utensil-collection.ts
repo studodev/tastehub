@@ -1,5 +1,5 @@
-import { flashFeed } from "../layout/flash-feed/flash-feed";
-import { FlashMessageType } from "../layout/flash-feed/flash-message-type";
+import { flashFeed } from "../../layout/flash-feed/flash-feed";
+import { FlashMessageType } from "../../layout/flash-feed/flash-message-type";
 import { RecipeItemCollection } from "./recipe-item-collection";
 
 export class RecipeUtensilCollection extends RecipeItemCollection {

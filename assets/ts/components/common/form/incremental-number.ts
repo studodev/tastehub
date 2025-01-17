@@ -1,9 +1,15 @@
 import "@styles/components/common/form/incremental-number.scss";
+import { AbstractComponent } from "../../abstract-component";
 
-export class IncrementalNumber {
+export class IncrementalNumber extends AbstractComponent{
     private elements: IncrementalNumberElements;
 
-    private constructor(container: HTMLElement) {
+    static getComponentSelector(): string {
+        return '[data-incremental-number]';
+    }
+
+    constructor(container: HTMLElement) {
+        super();
         this.buildElements(container);
         this.bindEvents();
     }
@@ -34,14 +40,6 @@ export class IncrementalNumber {
         }
 
         this.elements.input.value = String(value);
-    }
-
-    static init(): void {
-        const elements = Array.from(document.querySelectorAll("[data-incremental-number]"));
-
-        for (const element of elements) {
-            new this(element as HTMLElement);
-        }
     }
 }
 
