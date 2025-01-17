@@ -2,6 +2,7 @@
 
 namespace App\Controller\Cooking;
 
+use App\Entity\Cooking\Step;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Form\Type\Cooking\RecipeType;
 use App\Model\Cooking\DraftRecipe;
@@ -126,9 +127,35 @@ class RecipeFormController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
+
+            $draft->setStatus(DraftRecipeStatusEnum::Steps);
+            $this->draftRecipeService->update($draft);
+
+            return $this->redirectToRoute('cooking_recipe_form_new');
         }
 
         return $this->render('pages/cooking/recipe-form/utensils.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    public function steps(Request $request, DraftRecipe $draft): Response
+    {
+        $recipe = $draft->getRecipe();
+        $recipe->addStep(new Step());
+
+        $form = $this->createForm(RecipeType::class, $recipe, [
+            'mode' => $draft->getStatus(),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->em->flush();
+
+            return $this->redirectToRoute('cooking_recipe_form_new');
+        }
+
+        return $this->render('pages/cooking/recipe-form/steps.html.twig', [
             'form' => $form->createView(),
         ]);
     }

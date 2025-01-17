@@ -22,9 +22,14 @@ button {
         --button-text-color: var(--color-dark);
     }
 
+    &.warn {
+        --button-background-color: var(--color-warn);
+        --button-text-color: var(--color-light);
+    }
+
     &.outline {
         background-color: transparent;
-        color: var(--color-dark);
+        --button-text-color: var(--color-dark);
     }
 
     &.small {

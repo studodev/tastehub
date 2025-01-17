@@ -64,7 +64,7 @@ class RecipeIngredientType extends AbstractType
                 'aria-label' => 'Unité de mesure',
             ];
         }
-        
+
         $builder
             ->add('quantity', null, [
                 'label' => self::MODE_SOURCE === $mode ? 'Quantité' : false,

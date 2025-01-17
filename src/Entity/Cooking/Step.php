@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: StepRepository::class)]
 class Step
 {
+    public const DESCRIPTION_MAX_LENGTH = 500;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

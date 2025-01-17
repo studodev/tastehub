@@ -1,0 +1,27 @@
+{% extends 'pages/cooking/recipe-form/layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('cooking_recipe_form_steps') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('cooking_recipe_form_steps') }}
+{% endblock %}
+
+{% block form %}
+    <div data-recipe-item-collection>
+        <ol class="item-holder"
+            data-index="{{ form.steps|length > 0 ? form.steps|last.vars.name + 1 : 0 }}"
+            data-prototype="{{ form_widget(form.steps.vars.prototype)|e('html_attr') }}">
+            {% for stepForm in form.steps %}
+                {{ form_widget(stepForm) }}
+            {% endfor %}
+        </ol>
+
+        <button type="button" class="button item-add-trigger">
+            Ajouter une étape
+        </button>
+    </div>
+{% endblock %}

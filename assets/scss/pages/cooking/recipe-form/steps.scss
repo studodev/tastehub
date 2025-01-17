@@ -1,0 +1,33 @@
+.item-holder {
+    list-style-type: none;
+
+    .step {
+        width: 100%;
+
+        .step-header {
+            display: flex;
+            align-items: center;
+
+            h2 {
+                flex: 1;
+            }
+        }
+
+        .step-separator {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            padding-inline: 28px;
+            color: var(--color-eggplant);
+
+            &:before, &:after {
+                content: "";
+                flex: 1;
+                max-width: 400px;
+                height: 0;
+                border: 1px solid var(--color-raspberry);
+            }
+        }
+    }
+}

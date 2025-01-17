@@ -1,0 +1,16 @@
+{% block _recipe_steps_entry_widget %}
+<li class="step form-row">
+    <div class="step-header">
+        <h2>Étape {{ name == '__name__' ? name : name|number_format + 1 }}</h2>
+        <button type="button" class="button warn small item-remove-trigger">
+            Supprimer l'étape
+        </button>
+    </div>
+
+    {{ form_row(form.description) }}
+
+    <div class="step-separator">
+        <i class="icon icon-chef-hat"></i>
+    </div>
+</li>
+{% endblock %}

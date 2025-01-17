@@ -39,6 +39,7 @@ class RecipeType extends AbstractType
             DraftRecipeStatusEnum::Details => $this->prepareDetailsMode($builder),
             DraftRecipeStatusEnum::Ingredients => $this->prepareIngredientsMode($builder),
             DraftRecipeStatusEnum::Utensils => $this->prepareUtensilsMode($builder),
+            DraftRecipeStatusEnum::Steps => $this->prepareSteps($builder),
         };
     }
 
@@ -197,6 +198,22 @@ class RecipeType extends AbstractType
                 'attr' => [
                     'class' => 'item-holder',
                 ],
+            ])
+        ;
+    }
+
+    private function prepareSteps(FormBuilderInterface $builder): void
+    {
+        $builder
+            ->add('steps', CollectionType::class, [
+                'entry_type' => StepType::class,
+                'entry_options' => [
+                    'label' => false,
+                ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label' => false,
             ])
         ;
     }
