@@ -1,16 +1,27 @@
 {% block _recipe_steps_entry_widget %}
-<li class="step form-row">
-    <div class="step-header">
-        <h2>Étape {{ name is not same as '__name__' ? name|number_format + 1 }}</h2>
-        <button type="button" class="button warn small item-remove-trigger">
-            Supprimer l'étape
+<li class="step form-row orderer-item">
+    <div class="step-order-control">
+        <button type="button" class="orderer-trigger-up" aria-label="Remonter l'étape">
+            <i class="icon icon-arrow-up"></i>
+        </button>
+        <button type="button" class="orderer-trigger-down" aria-label="Descendre l'étape">
+            <i class="icon icon-arrow-down"></i>
         </button>
     </div>
 
-    {{ form_row(form.description) }}
+    <div class="step-content">
+        <div class="step-header">
+            <h2>Étape {{ name is not same as '__name__' ? name|number_format + 1 }}</h2>
+            <button type="button" class="button warn small item-remove-trigger">
+                Supprimer l'étape
+            </button>
+        </div>
 
-    <div class="step-separator">
-        <i class="icon icon-chef-hat"></i>
+        {{ form_row(form.description) }}
+
+        <div class="step-separator">
+            <i class="icon icon-chef-hat"></i>
+        </div>
     </div>
 </li>
 {% endblock %}

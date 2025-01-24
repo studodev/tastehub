@@ -82,3 +82,11 @@
 .icon-trash:before {
     content: "\e914";
 }
+.icon-arrow-down:before {
+    content: "\e915";
+}
+.icon-arrow-up:before {
+    content: "\e915";
+    display: inline-block;
+    transform: rotate(180deg);
+}

@@ -2,14 +2,35 @@
     list-style-type: none;
 
     .step {
+        display: flex;
+        flex-direction: row;
         width: 100%;
 
-        .step-header {
+        .step-order-control {
             display: flex;
-            align-items: center;
+            flex-direction: column;
 
-            h2 {
-                flex: 1;
+            button {
+                padding: 0;
+                line-height: 0;
+
+                i {
+                    font-size: 1.2rem;
+                    color: var(--color-pistachio);
+                }
+            }
+        }
+
+        .step-content {
+            flex: 1;
+
+            .step-header {
+                display: flex;
+                align-items: center;
+
+                h2 {
+                    flex: 1;
+                }
             }
         }
 

@@ -150,9 +150,10 @@ class RecipeFormController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->flush();
+            dump($recipe->getSteps());
+//            $this->em->flush();
 
-            return $this->redirectToRoute('cooking_recipe_form_new');
+//            return $this->redirectToRoute('cooking_recipe_form_new');
         }
 
         return $this->render('pages/cooking/recipe-form/steps.html.twig', [
