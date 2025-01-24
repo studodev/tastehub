@@ -178,7 +178,7 @@ class RecipeType extends AbstractType
                 'autocomplete_route' => 'cooking_utensil_autocomplete',
                 'attr' => [
                     'class' => 'item-data-utensil',
-                ]
+                ],
             ])
             ->add('utensils', CollectionType::class, [
                 'entry_type' => EntityType::class,

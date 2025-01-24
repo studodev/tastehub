@@ -16,8 +16,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RecipeIngredientType extends AbstractType
 {
-    const MODE_SOURCE = 'source';
-    const MODE_COLLECTION = 'collection';
+    public const MODE_SOURCE = 'source';
+    public const MODE_COLLECTION = 'collection';
 
     public function __construct(private readonly PictogramService $pictogramService)
     {
@@ -42,7 +42,7 @@ class RecipeIngredientType extends AbstractType
                 'autocomplete_route' => 'cooking_ingredient_autocomplete',
                 'attr' => [
                     'class' => 'item-data-ingredient',
-                ]
+                ],
             ]);
 
             $quantityAttr = [];
@@ -54,7 +54,7 @@ class RecipeIngredientType extends AbstractType
                 'choice_label' => 'label',
                 'attr' => [
                     'class' => 'item-data-ingredient hidden',
-                ]
+                ],
             ]);
 
             $quantityAttr = [

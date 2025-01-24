@@ -17,6 +17,7 @@ readonly class PictogramService
     public function buildUrl(PictogramTypeEnum $type, string $name): string
     {
         $path = sprintf('%s/%s/%s', $this->config['basePath'], $type->value, $name);
+
         return $this->package->getUrl($path);
     }
 }

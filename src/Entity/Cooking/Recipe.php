@@ -117,7 +117,7 @@ class Recipe
         groups: [DraftRecipeStatusEnum::Ingredients->value],
     )]
     #[Assert\Valid]
-    #[ORM\OneToMany(targetEntity: RecipeIngredient::class, mappedBy: 'recipe', cascade: ["persist", "remove"], orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: RecipeIngredient::class, mappedBy: 'recipe', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $recipeIngredients;
 
     /**
