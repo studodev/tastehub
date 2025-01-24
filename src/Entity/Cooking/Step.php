@@ -61,7 +61,7 @@ class Step
         return $this->number;
     }
 
-    public function setNumber(int $number): static
+    public function setNumber(?int $number): static
     {
         $this->number = $number;
 

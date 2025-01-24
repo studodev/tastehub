@@ -13,12 +13,14 @@ use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
 use App\Form\Type\Common\FileUploaderType;
 use App\Form\Type\Common\TextareaCountableType;
-use App\Repository\Cooking\TagRepository;
 use App\Service\Common\PictogramService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Event\PreSubmitEvent;
+use Symfony\Component\Form\Event\SubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,7 +28,6 @@ class RecipeType extends AbstractType
 {
     public function __construct(
         private readonly PictogramService $pictogramService,
-        private readonly TagRepository $tagRepository,
     ) {
     }
 
@@ -215,6 +216,35 @@ class RecipeType extends AbstractType
                 'by_reference' => false,
                 'label' => false,
             ])
+            ->addEventListener(
+                FormEvents::PRE_SUBMIT,
+                [$this, 'reorderSteps']
+            )
+            ->addEventListener(
+                FormEvents::SUBMIT,
+                [$this, 'defineStepNumber']
+            )
         ;
+    }
+
+    public function reorderSteps(PreSubmitEvent $event): void
+    {
+        $data = $event->getData();
+
+        if (!array_key_exists('steps', $data)) {
+            return;
+        }
+
+        $data['steps'] = array_values($data['steps']);
+        $event->setData($data);
+    }
+
+    public function defineStepNumber(SubmitEvent $event): void
+    {
+        $recipe = $event->getData();
+
+        foreach ($recipe->getSteps() as $i => $step) {
+            $step->setNumber($i);
+        }
     }
 }

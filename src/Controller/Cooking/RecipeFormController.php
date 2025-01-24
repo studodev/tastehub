@@ -142,7 +142,10 @@ class RecipeFormController extends AbstractController
     public function steps(Request $request, DraftRecipe $draft): Response
     {
         $recipe = $draft->getRecipe();
-        $recipe->addStep(new Step());
+
+        if ($recipe->getSteps()->isEmpty()) {
+            $recipe->addStep(new Step());
+        }
 
         $form = $this->createForm(RecipeType::class, $recipe, [
             'mode' => $draft->getStatus(),
@@ -150,10 +153,9 @@ class RecipeFormController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($recipe->getSteps());
-//            $this->em->flush();
+            $this->em->flush();
 
-//            return $this->redirectToRoute('cooking_recipe_form_new');
+            return $this->redirectToRoute('cooking_recipe_form_new');
         }
 
         return $this->render('pages/cooking/recipe-form/steps.html.twig', [
