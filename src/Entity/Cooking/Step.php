@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StepRepository::class)]
 class Step
@@ -18,11 +19,18 @@ class Step
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(
+        message: 'Veuillez saisir une description',
+    )]
+    #[Assert\Length(
+        max: self::DESCRIPTION_MAX_LENGTH,
+        maxMessage: 'La description doit contenir au maximum {{ limit }} caractères',
+    )]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $number = null;
+    private ?int $number = 0;
 
     #[ORM\ManyToOne(inversedBy: 'steps')]
     #[ORM\JoinColumn(nullable: false)]

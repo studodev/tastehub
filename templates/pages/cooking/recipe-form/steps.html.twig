@@ -11,6 +11,8 @@
 {% endblock %}
 
 {% block form %}
+    {{ form_errors(form) }}
+
     <div data-recipe-item-collection>
         <ol class="item-holder"
             data-list-orderer

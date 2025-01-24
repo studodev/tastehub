@@ -142,11 +142,6 @@ class RecipeFormController extends AbstractController
     public function steps(Request $request, DraftRecipe $draft): Response
     {
         $recipe = $draft->getRecipe();
-
-        if ($recipe->getSteps()->isEmpty()) {
-            $recipe->addStep(new Step());
-        }
-
         $form = $this->createForm(RecipeType::class, $recipe, [
             'mode' => $draft->getStatus(),
         ]);

@@ -129,6 +129,11 @@ class Recipe
     /**
      * @var Collection<int, Step>
      */
+    #[Assert\Count(
+        min: 1,
+        minMessage: 'Vous devez ajouter au moins une étape',
+    )]
+    #[Assert\Valid]
     #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'recipe', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $steps;
 
@@ -142,6 +147,7 @@ class Recipe
         $this->recipeIngredients = new ArrayCollection();
         $this->utensils = new ArrayCollection();
         $this->steps = new ArrayCollection();
+        $this->steps->add(new Step());
     }
 
     public function getId(): ?int
