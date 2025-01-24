@@ -1,10 +1,26 @@
+import { domObserver } from "../services/dom-observer";
+
 export abstract class AbstractComponent {
+    static elements: HTMLElement[] = [];
+
     static init<T extends AbstractComponent>(this: Component<T>): void {
-        const elements = Array.from(document.querySelectorAll(this.getComponentSelector()));
+        this.mount();
+
+        domObserver.observe().subscribe(() => {
+            this.mount();
+        });
+    }
+
+    static mount<T extends AbstractComponent>(this: Component<T>): void {
+        let elements: HTMLElement[] = Array.from(document.querySelectorAll(this.getComponentSelector()));
 
         for (const element of elements) {
-            new this(element as HTMLElement);
+            if (!this.elements.includes(element)) {
+                new this(element);
+            }
         }
+
+        this.elements = elements;
     }
 
     static getComponentSelector(): string {
@@ -13,6 +29,8 @@ export abstract class AbstractComponent {
 }
 
 type Component<T> = {
+    elements: HTMLElement[];
     new(...args: any[]): T;
+    mount(this: Component<T>): void;
     getComponentSelector(): string;
 };
