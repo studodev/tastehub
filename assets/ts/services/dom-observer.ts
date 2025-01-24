@@ -1,9 +1,9 @@
 import { Observable, Subject } from "rxjs";
 
-class DomObserver {
+export class DomObserver {
     private readonly subject = new Subject<MutationRecord[]>();
 
-    constructor() {
+    constructor(private target: HTMLElement, private options: MutationObserverInit) {
         this.bind();
     }
 
@@ -12,10 +12,7 @@ class DomObserver {
             this.subject.next(mutations);
         });
 
-        mutationObserver.observe(document.body, {
-            childList: true,
-            subtree: true,
-        });
+        mutationObserver.observe(this.target, this.options);
     }
 
     observe(): Observable<MutationRecord[]> {
@@ -23,4 +20,7 @@ class DomObserver {
     }
 }
 
-export const domObserver = new DomObserver();
+export const bodyDomObserver = new DomObserver(document.body, {
+    childList: true,
+    subtree: true,
+});

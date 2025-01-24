@@ -23,7 +23,7 @@ export abstract class RecipeItemCollection extends AbstractComponent {
         };
     }
 
-    private bindEvents(): void {
+    protected bindEvents(): void {
         this.elements.addTrigger.addEventListener('click', () => this.addItem());
 
         this.elements.itemHolder.addEventListener('click', e => {
@@ -49,7 +49,7 @@ export abstract class RecipeItemCollection extends AbstractComponent {
         }
     }
 
-    private removeItem(item: HTMLElement): void {
+    protected removeItem(item: HTMLElement): void {
         item.remove();
     }
 

@@ -11,7 +11,10 @@
 
     <div class="step-content">
         <div class="step-header">
-            <h2>Étape {{ name is not same as '__name__' ? name|number_format + 1 }}</h2>
+            <h2>
+                Étape
+                <span>{{ name is not same as '__name__' ? name|number_format + 1 }}</span>
+            </h2>
             <button type="button" class="button warn small item-remove-trigger">
                 Supprimer l'étape
             </button>

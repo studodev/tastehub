@@ -1,4 +1,5 @@
 import "@styles/components/common/list-orderer.scss";
+import { DomObserver } from "../../services/dom-observer";
 import { AbstractComponent } from "../abstract-component";
 
 export class ListOrderer extends AbstractComponent {
@@ -36,6 +37,14 @@ export class ListOrderer extends AbstractComponent {
                 this.move(item, false);
             }
         });
+
+        const listDomObserver = new DomObserver(this.elements.container, {
+            childList: true,
+        });
+
+        listDomObserver.observe().subscribe(() => {
+           this.disableEdgeTrigger();
+        });
     }
 
     private move(item :HTMLElement, up = true): void {
@@ -48,6 +57,9 @@ export class ListOrderer extends AbstractComponent {
             this.elements.container.insertBefore(item, items[index + 2]);
         }
 
+        const changeEvent = new CustomEvent('order-change');
+        this.elements.container.dispatchEvent(changeEvent);
+
         this.disableEdgeTrigger();
     }
 
@@ -55,16 +67,18 @@ export class ListOrderer extends AbstractComponent {
         const items = Array.from(this.elements.container.children);
 
         for (const i in items) {
+            const item = items[i];
+
             if (Number(i) === 0) {
-                items[i].querySelector('.orderer-trigger-up').classList.add('disabled');
+                item.querySelector('.orderer-trigger-up').classList.add('disabled');
             } else {
-                items[i].querySelector('.orderer-trigger-up').classList.remove('disabled');
+                item.querySelector('.orderer-trigger-up').classList.remove('disabled');
             }
 
             if (Number(i) === items.length - 1) {
-                items[i].querySelector('.orderer-trigger-down').classList.add('disabled');
+                item.querySelector('.orderer-trigger-down').classList.add('disabled');
             } else {
-                items[i].querySelector('.orderer-trigger-down').classList.remove('disabled');
+                item.querySelector('.orderer-trigger-down').classList.remove('disabled');
             }
         }
     }

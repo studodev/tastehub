@@ -1,4 +1,4 @@
-import { domObserver } from "../services/dom-observer";
+import { bodyDomObserver } from "../services/dom-observer";
 
 export abstract class AbstractComponent {
     static elements: HTMLElement[] = [];
@@ -6,7 +6,7 @@ export abstract class AbstractComponent {
     static init<T extends AbstractComponent>(this: Component<T>): void {
         this.mount();
 
-        domObserver.observe().subscribe(() => {
+        bodyDomObserver.observe().subscribe(() => {
             this.mount();
         });
     }
