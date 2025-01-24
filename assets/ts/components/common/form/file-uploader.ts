@@ -1,7 +1,6 @@
 import "@styles/components/common/form/file-uploader.scss";
 import { AbstractComponent } from "../../abstract-component";
 
-// TODO - See bug for file with same name
 export class FileUploader extends AbstractComponent{
     private static readonly imageTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp'];
     private elements: FileUploderElements;
@@ -93,7 +92,7 @@ export class FileUploader extends AbstractComponent{
     }
 
     private clearFile(): void {
-        this.elements.widget.files = null;
+        this.elements.widget.value = "";
         this.elements.previewImage.src = null;
         this.displayMode(FileUploaderDisplayMode.ModeEmpty);
     }
