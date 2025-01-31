@@ -83,9 +83,31 @@ export class AutocompleteEntity extends AbstractComponent{
             this.refreshCounter();
         });
 
-        this.elements.select.addEventListener('change', () => {
+        this.selectWidget.on("change", (value: string) => {
+            const optionsElement = Array.from(this.selectWidget.input.querySelectorAll(`option[value="${value}"]`));
+            const option = this.selectWidget.options[value];
+
+            if (!option) {
+                return;
+            }
+
+            for (const key of Object.keys(option)) {
+                if (!key.startsWith("data:")) {
+                    continue;
+                }
+
+                for (const optionElement of optionsElement) {
+                    if (optionElement instanceof HTMLElement) {
+                        const dataName = key.replace("data:", "");
+                        optionElement.dataset[dataName] = option[key];
+                    }
+                }
+            }
+        });
+
+        this.elements.select.addEventListener("change", () => {
             this.selectWidget.sync();
-        })
+        });
     }
 
     private load(query: string, callback: Function): void {

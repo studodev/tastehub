@@ -4,10 +4,8 @@ namespace App\Form\Type\Cooking;
 
 use App\Entity\Cooking\Ingredient;
 use App\Entity\Cooking\RecipeIngredient;
-use App\Enum\Common\PictogramTypeEnum;
 use App\Enum\Cooking\IngredientUnitEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
-use App\Service\Common\PictogramService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
@@ -19,10 +17,6 @@ class RecipeIngredientType extends AbstractType
     public const MODE_SOURCE = 'source';
     public const MODE_COLLECTION = 'collection';
 
-    public function __construct(private readonly PictogramService $pictogramService)
-    {
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $mode = $options['mode'];
@@ -32,11 +26,6 @@ class RecipeIngredientType extends AbstractType
                 'label' => 'Ingredient',
                 'class' => Ingredient::class,
                 'choice_label' => 'label',
-                'choice_attr' => function (Ingredient $ingredient) {
-                    return [
-                        'data-pictogram' => $this->pictogramService->buildUrl(PictogramTypeEnum::Ingredient, $ingredient->getType()->getPictogram()),
-                    ];
-                },
                 'placeholder' => '',
                 'placeholder_content' => 'Rechercher un ingredient ...',
                 'autocomplete_route' => 'cooking_ingredient_autocomplete',

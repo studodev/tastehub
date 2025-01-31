@@ -8,12 +8,10 @@ use App\Entity\Cooking\DietType;
 use App\Entity\Cooking\Recipe;
 use App\Entity\Cooking\Tag;
 use App\Entity\Cooking\Utensil;
-use App\Enum\Common\PictogramTypeEnum;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
 use App\Form\Type\Common\FileUploaderType;
 use App\Form\Type\Common\TextareaCountableType;
-use App\Service\Common\PictogramService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Event\PreSubmitEvent;
@@ -26,11 +24,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RecipeType extends AbstractType
 {
-    public function __construct(
-        private readonly PictogramService $pictogramService,
-    ) {
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $mode = $options['mode'];
@@ -169,11 +162,6 @@ class RecipeType extends AbstractType
                 'mapped' => false,
                 'class' => Utensil::class,
                 'choice_label' => 'label',
-                'choice_attr' => function (Utensil $utensil) {
-                    return [
-                        'data-pictogram' => $this->pictogramService->buildUrl(PictogramTypeEnum::Ingredient, $utensil->getPictogram()),
-                    ];
-                },
                 'placeholder' => '',
                 'placeholder_content' => 'Rechercher un ustensile ...',
                 'autocomplete_route' => 'cooking_utensil_autocomplete',

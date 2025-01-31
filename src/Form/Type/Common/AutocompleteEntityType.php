@@ -11,7 +11,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-// TODO - Reload choices from request
 class AutocompleteEntityType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -34,6 +33,7 @@ class AutocompleteEntityType extends AbstractType
         $resolver->setDefaults([
             'placeholder_content' => null,
             'max_items' => null,
+            'choice_lazy' => true,
         ]);
 
         $resolver->setAllowedTypes('placeholder_content', ['null', 'string']);

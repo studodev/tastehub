@@ -6,18 +6,32 @@ trait AutocompleteRespositoryTrait
 {
     public function autocomplete(string $query): array
     {
-        $stmt = $this->createQueryBuilder('t');
+        $configuration = $this->configureSearch();
+        $stmt = $this->createQueryBuilder('root');
 
-        $textField = sprintf('t.%s AS text', $this->displayField());
-        $stmt->select('t.id AS value', $textField);
+        $selectClauses = [
+            'root.id AS value',
+            sprintf('root.%s AS text', $configuration->getDisplayLabel()),
+        ];
 
-        $clauses = [];
-        foreach ($this->searchableFields() as $field) {
-            $clauses[] = $stmt->expr()->like(sprintf('t.%s', $field), ':query');
+        foreach ($configuration->getExtraFields() as $alias => $field) {
+            $selectClauses[] = sprintf('%s AS data:%s', $field, $alias);
+        }
+
+        $stmt->select(...$selectClauses);
+
+        foreach ($configuration->getJoins() as $alias => $join) {
+            $stmt->join($join, $alias);
+        }
+
+        $whereClauses = [];
+
+        foreach ($configuration->getSearchableFields() as $field) {
+            $whereClauses[] = $stmt->expr()->like(sprintf('root.%s', $field), ':query');
         }
 
         $stmt->where(
-            $stmt->expr()->orX(...$clauses),
+            $stmt->expr()->orX(...$whereClauses),
         );
         $stmt->setParameter('query', '%' . $query . '%');
 

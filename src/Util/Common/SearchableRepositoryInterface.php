@@ -2,9 +2,9 @@
 
 namespace App\Util\Common;
 
+use App\Model\Common\SearchableRepositoryConfiguration;
+
 interface SearchableRepositoryInterface
 {
-    public function displayField(): string;
-
-    public function searchableFields(): array;
+    public function configureSearch(): SearchableRepositoryConfiguration;
 }

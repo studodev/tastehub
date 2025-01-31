@@ -132,6 +132,7 @@ class Recipe
     #[Assert\Count(
         min: 1,
         minMessage: 'Vous devez ajouter au moins une étape',
+        groups: [DraftRecipeStatusEnum::Steps->value],
     )]
     #[Assert\Valid]
     #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'recipe', cascade: ['persist', 'remove'], orphanRemoval: true)]
@@ -147,7 +148,6 @@ class Recipe
         $this->recipeIngredients = new ArrayCollection();
         $this->utensils = new ArrayCollection();
         $this->steps = new ArrayCollection();
-        $this->steps->add(new Step());
     }
 
     public function getId(): ?int

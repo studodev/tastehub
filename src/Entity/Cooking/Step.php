@@ -2,6 +2,7 @@
 
 namespace App\Entity\Cooking;
 
+use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Repository\Cooking\StepRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -21,6 +22,7 @@ class Step
 
     #[Assert\NotBlank(
         message: 'Veuillez saisir une description',
+        groups: [DraftRecipeStatusEnum::Steps->value],
     )]
     #[Assert\Length(
         max: self::DESCRIPTION_MAX_LENGTH,

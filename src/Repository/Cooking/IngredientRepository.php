@@ -3,6 +3,7 @@
 namespace App\Repository\Cooking;
 
 use App\Entity\Cooking\Ingredient;
+use App\Model\Common\SearchableRepositoryConfiguration;
 use App\Util\Common\AutocompleteRespositoryTrait;
 use App\Util\Common\SearchableRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -20,13 +21,21 @@ class IngredientRepository extends ServiceEntityRepository implements Searchable
         parent::__construct($registry, Ingredient::class);
     }
 
-    public function displayField(): string
+    public function configureSearch(): SearchableRepositoryConfiguration
     {
-        return 'label';
-    }
+        $configuration = new SearchableRepositoryConfiguration();
 
-    public function searchableFields(): array
-    {
-        return ['label'];
+        $configuration
+            ->setDisplayLabel('label')
+            ->setSearchableFields(['label'])
+            ->setExtraFields([
+                'pictogram' => 't.pictogram'
+            ])
+            ->setJoins([
+                't' => 'root.type',
+            ])
+        ;
+
+        return $configuration;
     }
 }

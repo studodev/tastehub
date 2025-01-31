@@ -2,7 +2,6 @@
 
 namespace App\Controller\Cooking;
 
-use App\Entity\Cooking\Step;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Form\Type\Cooking\RecipeType;
 use App\Model\Cooking\DraftRecipe;
