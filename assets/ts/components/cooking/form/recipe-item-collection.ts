@@ -15,11 +15,14 @@ export abstract class RecipeItemCollection extends AbstractComponent {
     }
 
     private buildElements(container: HTMLElement): void {
+        const scopeEndElements = Array.from(container.querySelectorAll('[data-collection-scope-end]'));
+
         this.elements = {
             container: container,
-            addTrigger: container.querySelector('.item-add-trigger'),
-            itemHolder: container.querySelector('.item-holder'),
-            itemSource: container.querySelector('.item-source'),
+            scopeEnds: scopeEndElements,
+            addTrigger: this.findScopedElement(container, scopeEndElements, '.item-add-trigger'),
+            itemHolder: this.findScopedElement(container, scopeEndElements, '.item-holder'),
+            itemSource: this.findScopedElement(container, scopeEndElements, '.item-source'),
         };
     }
 
@@ -28,7 +31,12 @@ export abstract class RecipeItemCollection extends AbstractComponent {
 
         this.elements.itemHolder.addEventListener('click', e => {
             const target = e.target as HTMLElement;
-            if (target.classList.contains('item-remove-trigger') || target.closest('.item-remove-trigger')) {
+
+            const isOutOfScope = this.isOutOfScope(this.elements.scopeEnds, target);
+            const isElement = target.classList.contains('item-remove-trigger');
+            const isChild = target.closest('.item-remove-trigger');
+
+            if (!isOutOfScope && (isElement || isChild)) {
                 this.removeItem(target.closest('.form-row'));
             }
         });
@@ -53,11 +61,32 @@ export abstract class RecipeItemCollection extends AbstractComponent {
         item.remove();
     }
 
+    private findScopedElement(container: HTMLElement, scopeEnds: Array<Element>, selector: string): HTMLElement {
+        const allElements = container.querySelectorAll(selector);
+
+        const filteredElements = Array.from(allElements).filter(element => {
+            return !this.isOutOfScope(scopeEnds, element);
+        });
+
+        return filteredElements.shift() as HTMLElement;
+    }
+
+    private isOutOfScope(scopeEnds: Array<Element>, element: Element): boolean {
+        for (const scopeEnd of scopeEnds) {
+            if (scopeEnd.contains(element)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     protected abstract prepareItem(prototype: HTMLElement): boolean;
 }
 
 interface RecipeItemCollectionElement {
     container: HTMLElement,
+    scopeEnds: Array<Element>,
     addTrigger: HTMLElement,
     itemHolder: HTMLElement,
     itemSource: HTMLElement,

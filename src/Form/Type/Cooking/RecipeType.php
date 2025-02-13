@@ -14,6 +14,7 @@ use App\Form\Type\Common\FileUploaderType;
 use App\Form\Type\Common\TextareaCountableType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Event\PreSetDataEvent;
 use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Event\SubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -194,16 +195,10 @@ class RecipeType extends AbstractType
     private function prepareSteps(FormBuilderInterface $builder): void
     {
         $builder
-            ->add('steps', CollectionType::class, [
-                'entry_type' => StepType::class,
-                'entry_options' => [
-                    'label' => false,
-                ],
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'label' => false,
-            ])
+            ->addEventListener(
+                FormEvents::PRE_SET_DATA,
+                [$this, 'configureStepForm']
+            )
             ->addEventListener(
                 FormEvents::PRE_SUBMIT,
                 [$this, 'reorderSteps']
@@ -213,6 +208,23 @@ class RecipeType extends AbstractType
                 [$this, 'defineStepNumber']
             )
         ;
+    }
+
+    public function configureStepForm(PreSetDataEvent $event): void
+    {
+        $form = $event->getForm();
+
+        $form->add('steps', CollectionType::class, [
+            'entry_type' => StepType::class,
+            'entry_options' => [
+                'label' => false,
+                'recipe' => $event->getData(),
+            ],
+            'allow_add' => true,
+            'allow_delete' => true,
+            'by_reference' => false,
+            'label' => false,
+        ]);
     }
 
     public function reorderSteps(PreSubmitEvent $event): void

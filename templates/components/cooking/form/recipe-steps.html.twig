@@ -20,6 +20,18 @@
                 </button>
             </div>
 
+            <div data-step-item-collection data-collection-scope-end>
+                <div class="row-group tiny item-source">
+                    {{ form_row(form.stepRecipeIngredientGenerator) }}
+                </div>
+
+                <button type="button" class="button item-add-trigger">
+                    Ajouter
+                </button>
+
+                {{ form_row(form.stepRecipeIngredients) }}
+            </div>
+
             {{ form_row(form.description) }}
 
             <div class="step-separator">

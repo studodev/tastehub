@@ -10,11 +10,9 @@
                 {{ form_row(form.unit) }}
             </div>
 
-            {% if value is not null %}
-                <span class="item-data-ingredient-label">{{ value.ingredient.label }}</span>
-            {% else %}
-                <span class="item-data-ingredient-label"></span>
-            {% endif %}
+            <span class="item-data-ingredient-label">
+                {{ value is null ?: value.ingredient.label }}
+            </span>
         </div>
 
         <button type="button" class="item-remove-trigger" aria-label="Supprimer l'ingrédient">

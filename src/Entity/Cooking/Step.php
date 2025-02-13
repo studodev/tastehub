@@ -10,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+// TODO - Add constraints
 #[ORM\Entity(repositoryClass: StepRepository::class)]
 class Step
 {
@@ -41,7 +42,7 @@ class Step
     /**
      * @var Collection<int, StepRecipeIngredient>
      */
-    #[ORM\OneToMany(targetEntity: StepRecipeIngredient::class, mappedBy: 'step', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: StepRecipeIngredient::class, mappedBy: 'step', cascade: ['persist'], orphanRemoval: true)]
     private Collection $stepRecipeIngredients;
 
     public function __construct()

@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Form\Type\Cooking;
+
+use App\Entity\Cooking\Recipe;
+use App\Entity\Cooking\RecipeIngredient;
+use App\Entity\Cooking\StepRecipeIngredient;
+use App\Enum\Common\PictogramTypeEnum;
+use App\Service\Common\PictogramService;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class StepRecipeIngredientType extends AbstractType
+{
+    public const MODE_SOURCE = 'source';
+    public const MODE_COLLECTION = 'collection';
+
+    public function __construct(private readonly PictogramService $pictogramService)
+    {
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        if (self::MODE_COLLECTION === $options['mode']) {
+            $builder->add('quantity', null, [
+                'label' => 'Quantité',
+                'attr' => [
+                    'class' => 'item-data-quantity',
+                ],
+            ]);
+
+            $recipeIngredientOptions = [
+                'label' => false,
+                'attr' => [
+                    'class' => 'item-data-ingredient hidden',
+                ],
+            ];
+        } else {
+            $recipeIngredientOptions = [
+                'label' => 'Ingrédients de l\'étape',
+                'attr' => [
+                    'class' => 'item-data-ingredient',
+                ],
+            ];
+        }
+
+        $builder->add('recipeIngredient', EntityType::class, [
+            'class' => RecipeIngredient::class,
+            'choices' => $options['recipe']->getRecipeIngredients(),
+            'choice_label' => 'ingredient.label',
+            'choice_attr' => function (RecipeIngredient $recipeIngredient) {
+                $pictogram = $recipeIngredient->getIngredient()->getType()->getPictogram();
+
+                return [
+                    'data-pictogram' => $this->pictogramService->buildUrl(PictogramTypeEnum::Ingredient, $pictogram),
+                    'data-quantity' => $recipeIngredient->getQuantity(),
+                    'data-quantity-unit' => $recipeIngredient->getUnit()->value,
+                ];
+            },
+            ...$recipeIngredientOptions,
+        ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => StepRecipeIngredient::class,
+            'mode' => self::MODE_SOURCE,
+        ]);
+
+        $resolver
+            ->setRequired('recipe')
+            ->setAllowedTypes('recipe', Recipe::class)
+        ;
+    }
+}
