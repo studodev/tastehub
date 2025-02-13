@@ -5,6 +5,12 @@ export class StepRecipeIngredientCollection extends RecipeItemCollection {
         return '[data-step-item-collection]';
     }
 
+    protected bindEvents(): void {
+        super.bindEvents();
+
+        this.elements.itemSource.querySelector('select').addEventListener('change', () => this.addItem());
+    }
+
     protected prepareItem(prototype: HTMLElement): boolean {
         const ingredientInputField = this.elements.itemSource.querySelector('.item-data-ingredient') as HTMLSelectElement;
         const selectedIngredient = ingredientInputField.options[ingredientInputField.selectedIndex];

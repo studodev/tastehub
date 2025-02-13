@@ -25,7 +25,7 @@ class StepRecipeIngredientType extends AbstractType
     {
         if (self::MODE_COLLECTION === $options['mode']) {
             $builder->add('quantity', null, [
-                'label' => 'Quantité',
+                'label' => 'Quantité à utiliser',
                 'attr' => [
                     'class' => 'item-data-quantity',
                 ],
@@ -33,16 +33,13 @@ class StepRecipeIngredientType extends AbstractType
 
             $recipeIngredientOptions = [
                 'label' => false,
-                'attr' => [
-                    'class' => 'item-data-ingredient hidden',
-                ],
+                'row_attr' => [
+                    'class' => 'hidden',
+                ]
             ];
         } else {
             $recipeIngredientOptions = [
                 'label' => 'Ingrédients de l\'étape',
-                'attr' => [
-                    'class' => 'item-data-ingredient',
-                ],
             ];
         }
 
@@ -59,6 +56,9 @@ class StepRecipeIngredientType extends AbstractType
                     'data-quantity-unit' => $recipeIngredient->getUnit()->value,
                 ];
             },
+            'attr' => [
+                'class' => 'item-data-ingredient',
+            ],
             ...$recipeIngredientOptions,
         ]);
     }

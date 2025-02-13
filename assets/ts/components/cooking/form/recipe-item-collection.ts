@@ -27,7 +27,7 @@ export abstract class RecipeItemCollection extends AbstractComponent {
     }
 
     protected bindEvents(): void {
-        this.elements.addTrigger.addEventListener('click', () => this.addItem());
+        this.elements.addTrigger?.addEventListener('click', () => this.addItem());
 
         this.elements.itemHolder.addEventListener('click', e => {
             const target = e.target as HTMLElement;
@@ -42,7 +42,7 @@ export abstract class RecipeItemCollection extends AbstractComponent {
         });
     }
 
-    private addItem() {
+    protected addItem() {
         let prototypeString = this.elements.itemHolder.dataset.prototype;
 
         let index = this.elements.itemHolder.dataset.index;
@@ -87,7 +87,7 @@ export abstract class RecipeItemCollection extends AbstractComponent {
 interface RecipeItemCollectionElement {
     container: HTMLElement,
     scopeEnds: Array<Element>,
-    addTrigger: HTMLElement,
+    addTrigger: HTMLElement|null,
     itemHolder: HTMLElement,
     itemSource: HTMLElement,
 }

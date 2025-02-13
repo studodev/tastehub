@@ -1,20 +1,23 @@
 {% block _recipe_steps_entry_stepRecipeIngredients_entry_widget %}
-    <div class="item">
+    <div class="item item-step-ingredient">
         <div class="item-content">
             {% set pictogramType = enum('App\\Enum\\Common\\PictogramTypeEnum').Ingredient %}
             <img src="{{ value is null ? '' : pictogram_url(pictogramType, value.recipeIngredient.ingredient.type.pictogram) }}" alt=" " class="item-data-ingredient-pictogram">
 
-            <div class="item-form">
-                {{ form_row(form.recipeIngredient) }}
-                {{ form_row(form.quantity) }}
-                <span class="item-data-quantity-unit">
-                    {{ value is null ?: value.recipeIngredient.unit.value }}
-                </span>
-            </div>
-
+            <div>
                 <span class="item-data-ingredient-label">
                     {{ value is null ?: value.recipeIngredient.ingredient.label }}
                 </span>
+
+                <div class="item-form">
+                    {{ form_row(form.recipeIngredient) }}
+                    {{ form_label(form.quantity) }}
+                    {{ form_widget(form.quantity) }}
+                    <span class="item-data-quantity-unit">
+                        {{ value is null ?: value.recipeIngredient.unit.value }}
+                    </span>
+                </div>
+            </div>
         </div>
 
         <button type="button" class="item-remove-trigger" aria-label="Supprimer l'ingrédient">

@@ -4,9 +4,7 @@ export class RecipeStepCollection extends RecipeItemCollection {
     protected bindEvents(): void {
         super.bindEvents();
 
-        this.elements.itemHolder.addEventListener('order-change', () => {
-            this.reorderItems()
-        });
+        this.elements.itemHolder.addEventListener('order-change', () => this.reorderItems());
     }
 
     protected prepareItem(prototype: HTMLElement): boolean {
