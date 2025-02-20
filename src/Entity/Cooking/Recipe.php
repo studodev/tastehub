@@ -6,6 +6,7 @@ use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Model\Cooking\QuantityCounter;
 use App\Model\Cooking\RecipeTimer;
 use App\Repository\Cooking\RecipeRepository;
+use App\Validator\UniqueCollectionElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -117,6 +118,11 @@ class Recipe
         groups: [DraftRecipeStatusEnum::Ingredients->value],
     )]
     #[Assert\Valid]
+    #[UniqueCollectionElement(
+        field: 'ingredient',
+        label: 'label',
+        message: 'L\'ingredient "{{ label }}" est présent plusieurs fois'
+    )]
     #[ORM\OneToMany(targetEntity: RecipeIngredient::class, mappedBy: 'recipe', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $recipeIngredients;
 
@@ -406,30 +412,6 @@ class Recipe
                 ->atPath('cookingMethods')
                 ->addViolation()
             ;
-        }
-    }
-
-    #[Assert\Callback]
-    public function validateIngredients(ExecutionContextInterface $context): void
-    {
-        $ingredients = [];
-        $invalidIngredients = [];
-
-        foreach ($this->recipeIngredients as $recipeIngredient) {
-            $ingredient = $recipeIngredient->getIngredient();
-            if (in_array($ingredient, $ingredients)) {
-                if (!in_array($ingredient, $invalidIngredients)) {
-                    $invalidIngredients[] = $ingredient;
-
-                    $context
-                        ->buildViolation(sprintf('L\'ingredient "%s" est présent plusieurs fois', $ingredient->getLabel()))
-                        ->atPath('recipeIngredients')
-                        ->addViolation()
-                    ;
-                }
-            }
-
-            $ingredients[] = $recipeIngredient->getIngredient();
         }
     }
 }

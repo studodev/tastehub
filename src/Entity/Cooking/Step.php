@@ -4,11 +4,13 @@ namespace App\Entity\Cooking;
 
 use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Repository\Cooking\StepRepository;
+use App\Validator\UniqueCollectionElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 // TODO - Add constraints
 #[ORM\Entity(repositoryClass: StepRepository::class)]
@@ -42,6 +44,11 @@ class Step
     /**
      * @var Collection<int, StepRecipeIngredient>
      */
+    #[UniqueCollectionElement(
+        field: 'recipeIngredient',
+        label: 'ingredient.label',
+        message: 'L\'ingredient "{{ label }}" est présent plusieurs fois'
+    )]
     #[ORM\OneToMany(targetEntity: StepRecipeIngredient::class, mappedBy: 'step', cascade: ['persist'], orphanRemoval: true)]
     private Collection $stepRecipeIngredients;
 
@@ -60,7 +67,7 @@ class Step
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(?string $description): static
     {
         $this->description = $description;
 
