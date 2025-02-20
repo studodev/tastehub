@@ -40,6 +40,7 @@ class StepRecipeIngredientType extends AbstractType
         } else {
             $recipeIngredientOptions = [
                 'label' => 'Ingrédients de l\'étape',
+                'placeholder' => 'Choisissez un ingredient ...',
             ];
         }
 

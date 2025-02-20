@@ -26,6 +26,8 @@ export class StepRecipeIngredientCollection extends RecipeItemCollection {
         ingredientOutputQuantity.value = selectedIngredient.dataset.quantity;
         ingredientOutputQuantityUnit.textContent = selectedIngredient.dataset.quantityUnit;
 
+        ingredientInputField.selectedIndex = null;
+
         return true;
     }
 }
