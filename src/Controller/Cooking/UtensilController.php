@@ -26,7 +26,7 @@ class UtensilController extends AbstractController
         $utensils = $this->utensilRepository->autocomplete($query);
 
         foreach ($utensils as &$utensil) {
-            $utensil['data:pictogram'] = $this->pictogramService->buildUrl(PictogramTypeEnum::Ingredient, $utensil['data:pictogram']);
+            $utensil['data:pictogram'] = $this->pictogramService->buildUrl(PictogramTypeEnum::Utensil, $utensil['data:pictogram']);
         }
 
         return $this->json([

@@ -29,6 +29,7 @@
                     color: var(--color-eggplant);
 
                     img {
+                        aspect-ratio: 1 / 1;
                         height: 40px;
                         filter: invert(23%) sepia(52%) saturate(1905%) hue-rotate(309deg) brightness(97%) contrast(95%);
                     }

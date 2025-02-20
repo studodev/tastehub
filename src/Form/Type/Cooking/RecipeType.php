@@ -177,7 +177,7 @@ class RecipeType extends AbstractType
                     'class' => Utensil::class,
                     'choice_label' => 'label',
                     'attr' => [
-                        'class' => 'item-data-utensil hidden',
+                        'class' => 'item-data-utensil',
                     ],
                 ],
                 'label' => false,
