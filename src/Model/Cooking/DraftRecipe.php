@@ -13,6 +13,8 @@ class DraftRecipe
 
     private ?DraftRecipeStatusEnum $status = DraftRecipeStatusEnum::Metadata;
 
+    private array $savedStates = [];
+
     public function __construct()
     {
         $this->recipe = new Recipe();
@@ -50,6 +52,25 @@ class DraftRecipe
     public function setStatus(?DraftRecipeStatusEnum $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getSavedState(DraftRecipeStatusEnum $draftRecipeStatusEnum): ?array
+    {
+        return $this->savedStates[$draftRecipeStatusEnum->value] ?? null;
+    }
+
+    public function setSavedState(DraftRecipeStatusEnum $draftRecipeStatusEnum, array $data): static
+    {
+        $this->savedStates[$draftRecipeStatusEnum->value] = $data;
+
+        return $this;
+    }
+
+    public function removeSavedState(DraftRecipeStatusEnum $draftRecipeStatusEnum): static
+    {
+        unset($this->savedStates[$draftRecipeStatusEnum->value]);
 
         return $this;
     }

@@ -1,6 +1,8 @@
 import { RecipeItemCollection } from "./recipe-item-collection";
 
 export class StepRecipeIngredientCollection extends RecipeItemCollection {
+    protected prototypeName = '__item__';
+
     static getComponentSelector(): string {
         return '[data-step-item-collection]';
     }

@@ -33,6 +33,7 @@ class StepType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'error_bubbling' => false,
+                'prototype_name' => '__item__',
                 'attr' => [
                     'class' => 'item-holder',
                 ],

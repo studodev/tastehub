@@ -3,6 +3,7 @@ import { AbstractComponent } from "../../abstract-component";
 
 export abstract class RecipeItemCollection extends AbstractComponent {
     protected elements: RecipeItemCollectionElement;
+    protected prototypeName = '__name__';
 
     static getComponentSelector(): string {
         return '[data-recipe-item-collection]';
@@ -46,7 +47,8 @@ export abstract class RecipeItemCollection extends AbstractComponent {
         let prototypeString = this.elements.itemHolder.dataset.prototype;
 
         let index = this.elements.itemHolder.dataset.index;
-        prototypeString = prototypeString.replace(/__name__/g, index);
+        const regex = new RegExp(this.prototypeName, "g");
+        prototypeString = prototypeString.replace(regex, index);
 
         const prototypeParsed = new DOMParser().parseFromString(prototypeString, 'text/html');
         const prototype = prototypeParsed.querySelector('body').firstChild;

@@ -39,13 +39,21 @@ class RecipeFormController extends AbstractController
             DraftRecipeStatusEnum::Steps => 'steps',
         };
 
+        if ($savedState = $draft->getSavedState($draft->getStatus())) {
+            $request->setMethod('POST');
+            $request->request->replace($savedState);
+            $draft->removeSavedState($draft->getStatus());
+            $isRestoredState = true;
+        }
+
         return $this->forward(sprintf('%s::%s', RecipeFormController::class, $method), [
             'request' => $request,
             'draft' => $draft,
+            'isRestoredState' => $isRestoredState ?? false,
         ]);
     }
 
-    public function metadata(Request $request, DraftRecipe $draft): Response
+    public function metadata(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
         $recipe = $draft->getRecipe();
         $form = $this->createForm(RecipeType::class, $recipe, [
@@ -59,10 +67,12 @@ class RecipeFormController extends AbstractController
             $this->em->persist($recipe);
             $this->em->flush();
 
-            $draft->setStatus(DraftRecipeStatusEnum::Details);
-            $this->draftRecipeService->update($draft);
+            if (!$isRestoredState) {
+                $draft->setStatus(DraftRecipeStatusEnum::Details);
+                $this->draftRecipeService->update($draft);
 
-            return $this->redirectToRoute('cooking_recipe_form_new');
+                return $this->redirectToRoute('cooking_recipe_form_new');
+            }
         }
 
         return $this->render('pages/cooking/recipe-form/metadata.html.twig', [
@@ -70,7 +80,7 @@ class RecipeFormController extends AbstractController
         ]);
     }
 
-    public function details(Request $request, DraftRecipe $draft): Response
+    public function details(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
         $recipe = $draft->getRecipe();
         $form = $this->createForm(RecipeType::class, $recipe, [
@@ -83,10 +93,12 @@ class RecipeFormController extends AbstractController
             $recipe->setTimer(clone $recipe->getTimer());
             $this->em->flush();
 
-            $draft->setStatus(DraftRecipeStatusEnum::Ingredients);
-            $this->draftRecipeService->update($draft);
+            if (!$isRestoredState) {
+                $draft->setStatus(DraftRecipeStatusEnum::Ingredients);
+                $this->draftRecipeService->update($draft);
 
-            return $this->redirectToRoute('cooking_recipe_form_new');
+                return $this->redirectToRoute('cooking_recipe_form_new');
+            }
         }
 
         return $this->render('pages/cooking/recipe-form/details.html.twig', [
@@ -94,7 +106,7 @@ class RecipeFormController extends AbstractController
         ]);
     }
 
-    public function ingredients(Request $request, DraftRecipe $draft): Response
+    public function ingredients(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
         $recipe = $draft->getRecipe();
         $form = $this->createForm(RecipeType::class, $recipe, [
@@ -105,10 +117,12 @@ class RecipeFormController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
 
-            $draft->setStatus(DraftRecipeStatusEnum::Utensils);
-            $this->draftRecipeService->update($draft);
+            if (!$isRestoredState) {
+                $draft->setStatus(DraftRecipeStatusEnum::Utensils);
+                $this->draftRecipeService->update($draft);
 
-            return $this->redirectToRoute('cooking_recipe_form_new');
+                return $this->redirectToRoute('cooking_recipe_form_new');
+            }
         }
 
         return $this->render('pages/cooking/recipe-form/ingredients.html.twig', [
@@ -116,7 +130,7 @@ class RecipeFormController extends AbstractController
         ]);
     }
 
-    public function utensils(Request $request, DraftRecipe $draft): Response
+    public function utensils(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
         $recipe = $draft->getRecipe();
         $form = $this->createForm(RecipeType::class, $recipe, [
@@ -127,10 +141,12 @@ class RecipeFormController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
 
-            $draft->setStatus(DraftRecipeStatusEnum::Steps);
-            $this->draftRecipeService->update($draft);
+            if (!$isRestoredState) {
+                $draft->setStatus(DraftRecipeStatusEnum::Steps);
+                $this->draftRecipeService->update($draft);
 
-            return $this->redirectToRoute('cooking_recipe_form_new');
+                return $this->redirectToRoute('cooking_recipe_form_new');
+            }
         }
 
         return $this->render('pages/cooking/recipe-form/utensils.html.twig', [
@@ -138,7 +154,7 @@ class RecipeFormController extends AbstractController
         ]);
     }
 
-    public function steps(Request $request, DraftRecipe $draft): Response
+    public function steps(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
         $recipe = $draft->getRecipe();
         $form = $this->createForm(RecipeType::class, $recipe, [
@@ -149,7 +165,9 @@ class RecipeFormController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
 
-            return $this->redirectToRoute('cooking_recipe_form_new');
+            if (!$isRestoredState) {
+                return $this->redirectToRoute('cooking_recipe_form_new');
+            }
         }
 
         return $this->render('pages/cooking/recipe-form/steps.html.twig', [
@@ -158,9 +176,11 @@ class RecipeFormController extends AbstractController
     }
 
     #[Route('/rewind', name: 'rewind')]
-    public function rewind(): Response
+    public function rewind(Request $request): Response
     {
         $draft = $this->draftRecipeService->retrieve();
+
+        $draft->setSavedState($draft->getStatus(), $request->request->all());
 
         $statuses = DraftRecipeStatusEnum::cases();
         $statusIndex = array_search($draft->getStatus(), $statuses);

@@ -20,9 +20,7 @@
             {% set steps = enum_cases('App\\Enum\\Cooking\\DraftRecipeStatusEnum') %}
             {% for step in steps %}
                 <li {{ step is same as draft.status ? 'class="active"' : '' }}>
-                    <a href="#">
-                        {{ step.value }}
-                    </a>
+                    {{ step.value }}
                 </li>
             {% endfor %}
         </ol>
@@ -41,9 +39,9 @@
         </button>
 
         {% if enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Metadata is not same as draft.status %}
-            <a href="{{ path('cooking_recipe_form_rewind') }}" class="button water outline">
+            <button formaction="{{ path('cooking_recipe_form_rewind') }}" class="button water outline">
                 Étape précédente
-            </a>
+            </button>
         {% endif %}
     </div>
     {{ form_end(form) }}
