@@ -29,7 +29,7 @@ class IngredientRepository extends ServiceEntityRepository implements Searchable
             ->setDisplayLabel('label')
             ->setSearchableFields(['label'])
             ->setExtraFields([
-                'pictogram' => 't.pictogram'
+                'pictogram' => 't.pictogram',
             ])
             ->setJoins([
                 't' => 'root.type',

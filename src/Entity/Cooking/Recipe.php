@@ -439,7 +439,7 @@ class Recipe
                     ->atPath('steps')
                     ->addViolation()
                 ;
-            } else if ($ingredients[$recipeIngredient->getId()] !== $recipeIngredient->getQuantity()) {
+            } elseif ($ingredients[$recipeIngredient->getId()] !== $recipeIngredient->getQuantity()) {
                 $message = sprintf('La quantité totale (%s %s) de l\'ingrédient "%s" n\'est pas correctement répartie dans les étapes', $recipeIngredient->getQuantity(), $recipeIngredient->getUnit()->value, $recipeIngredient->getIngredient()->getLabel());
                 $context
                     ->buildViolation($message)

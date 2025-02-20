@@ -15,7 +15,7 @@ class UtensilController extends AbstractController
 {
     public function __construct(
         private readonly PictogramService $pictogramService,
-        private readonly UtensilRepository $utensilRepository
+        private readonly UtensilRepository $utensilRepository,
     ) {
     }
 

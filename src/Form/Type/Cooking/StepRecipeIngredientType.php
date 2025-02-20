@@ -35,7 +35,7 @@ class StepRecipeIngredientType extends AbstractType
                 'label' => false,
                 'row_attr' => [
                     'class' => 'hidden',
-                ]
+                ],
             ];
         } else {
             $recipeIngredientOptions = [

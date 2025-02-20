@@ -29,7 +29,7 @@ class UtensilRepository extends ServiceEntityRepository implements SearchableRep
             ->setDisplayLabel('label')
             ->setSearchableFields(['label'])
             ->setExtraFields([
-                'pictogram' => 'root.pictogram'
+                'pictogram' => 'root.pictogram',
             ])
         ;
 
