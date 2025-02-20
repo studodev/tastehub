@@ -414,4 +414,39 @@ class Recipe
             ;
         }
     }
+
+    #[Assert\Callback(groups: [DraftRecipeStatusEnum::Steps->value])]
+    public function validateIngredientsInSteps(ExecutionContextInterface $context): void
+    {
+        $ingredients = [];
+
+        foreach ($this->getSteps() as $step) {
+            foreach ($step->getStepRecipeIngredients() as $stepRecipeIngredient) {
+                $recipeIngredient = $stepRecipeIngredient->getRecipeIngredient();
+
+                if (array_key_exists($recipeIngredient->getId(), $ingredients)) {
+                    $ingredients[$recipeIngredient->getId()] += $stepRecipeIngredient->getQuantity();
+                } else {
+                    $ingredients[$recipeIngredient->getId()] = $stepRecipeIngredient->getQuantity();
+                }
+            }
+        }
+
+        foreach ($this->recipeIngredients as $recipeIngredient) {
+            if (!array_key_exists($recipeIngredient->getId(), $ingredients)) {
+                $context
+                    ->buildViolation(sprintf('L\'ingrédient "%s" doit être utilisé dans au moins une étape', $recipeIngredient->getIngredient()->getLabel()))
+                    ->atPath('steps')
+                    ->addViolation()
+                ;
+            } else if ($ingredients[$recipeIngredient->getId()] !== $recipeIngredient->getQuantity()) {
+                $message = sprintf('La quantité totale (%s %s) de l\'ingrédient "%s" n\'est pas correctement répartie dans les étapes', $recipeIngredient->getQuantity(), $recipeIngredient->getUnit()->value, $recipeIngredient->getIngredient()->getLabel());
+                $context
+                    ->buildViolation($message)
+                    ->atPath('steps')
+                    ->addViolation()
+                ;
+            }
+        }
+    }
 }
