@@ -33,7 +33,11 @@
 
     <div class="form-actions">
         <button class="button water">
-            Étape suivante
+            {% if enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Steps is same as draft.status %}
+                Valider ma recette
+            {% else %}
+                Étape suivante
+            {% endif %}
         </button>
 
         {% if enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Metadata is not same as draft.status %}
