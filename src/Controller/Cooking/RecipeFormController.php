@@ -156,4 +156,22 @@ class RecipeFormController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/rewind', name: 'rewind')]
+    public function rewind(): Response
+    {
+        $draft = $this->draftRecipeService->retrieve();
+
+        $statuses = DraftRecipeStatusEnum::cases();
+        $statusIndex = array_search($draft->getStatus(), $statuses);
+
+        if ($statusIndex > 0) {
+            $statusIndex--;
+        }
+
+        $draft->setStatus($statuses[$statusIndex]);
+        $this->draftRecipeService->update($draft);
+
+        return $this->redirectToRoute('cooking_recipe_form_new');
+    }
 }

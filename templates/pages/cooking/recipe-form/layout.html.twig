@@ -36,9 +36,11 @@
             Étape suivante
         </button>
 
-        <a href="#" class="button water outline">
-            Étape précédente
-        </a>
+        {% if enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Metadata is not same as draft.status %}
+            <a href="{{ path('cooking_recipe_form_rewind') }}" class="button water outline">
+                Étape précédente
+            </a>
+        {% endif %}
     </div>
     {{ form_end(form) }}
 {% endblock %}
