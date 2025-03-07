@@ -43,7 +43,7 @@
         <a href="{{ path('cooking_recipe_form_new') }}" class="button water small">
             Créer une autre recette
         </a>
-        <a href="#" class="button water outline small">
+        <a href="{{ path('cooking_recipe_view_single', {slug: recipe.slug}) }}" class="button water outline small">
             Voir la recette
         </a>
     </section>
