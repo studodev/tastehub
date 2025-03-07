@@ -3,11 +3,15 @@
 namespace App\Entity\Cooking;
 
 use App\Repository\Cooking\CategoryRepository;
+use App\Util\Common\SlugEntityTrait;
+use App\Util\Common\SluggableInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category
+class Category implements SluggableInterface
 {
+    use SlugEntityTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -31,5 +35,10 @@ class Category
         $this->label = $label;
 
         return $this;
+    }
+
+    public function getSlugSource(): string
+    {
+        return $this->label;
     }
 }

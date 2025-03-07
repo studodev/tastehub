@@ -187,7 +187,7 @@ class RecipeFormController extends AbstractController
     {
         $draft->getRecipe()->setState(RecipeStateEnum::Published);
         $this->em->flush();
-        $this->draftRecipeService->clear();
+//        $this->draftRecipeService->clear();
 
         return $this->render('pages/cooking/recipe-form/completed.html.twig', [
             'recipe' => $draft->getRecipe(),

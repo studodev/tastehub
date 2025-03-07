@@ -8,6 +8,8 @@ use App\Enum\Cooking\RecipeStateEnum;
 use App\Model\Cooking\QuantityCounter;
 use App\Model\Cooking\RecipeTimer;
 use App\Repository\Cooking\RecipeRepository;
+use App\Util\Common\SlugEntityTrait;
+use App\Util\Common\SluggableInterface;
 use App\Validator\UniqueCollectionElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -19,8 +21,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
-class Recipe
+class Recipe implements SluggableInterface
 {
+    use SlugEntityTrait;
+
     public const DESCRIPTION_MAX_LENGTH = 350;
     public const MAX_TAGS = 10;
     public const MIN_INGREDIENTS = 2;
@@ -430,6 +434,11 @@ class Recipe
         }
 
         return $this;
+    }
+
+    public function getSlugSource(): string
+    {
+        return $this->title;
     }
 
     #[Assert\Callback]
