@@ -20,7 +20,25 @@
         <p>
             Votre recette <strong>{{ recipe.title }}</strong> a bien été msie ligne !
         </p>
-        <img src="{{ asset('build/images/illustrations/recipe-category/main.svg') }}" alt="Illustration d'un maître sushi tenant un plateau de sushis">
+
+        {% if recipe.category.slug starts with 'entree' %}
+            {% set categoryIllustration = 'starter' %}
+            {% set categoryIllustrationAlt = 'Chef mélengeant le contenu d\'un saladier' %}
+        {% elseif recipe.category.slug starts with 'dessert' %}
+            {% set categoryIllustration = 'dessert' %}
+            {% set categoryIllustrationAlt = 'Chef préparant le glaçage d\'un gâteau' %}
+        {% elseif recipe.category.slug starts with 'boisson' %}
+            {% set categoryIllustration = 'drink' %}
+            {% set categoryIllustrationAlt = 'Barmaid préparant un cocktail' %}
+        {% elseif recipe.category.slug starts with 'sauce' %}
+            {% set categoryIllustration = 'sauce' %}
+            {% set categoryIllustrationAlt = 'Chef goutant une sauce dans une marmite' %}
+        {% else %}
+            {% set categoryIllustration = 'main' %}
+            {% set categoryIllustrationAlt = 'Illustration d\'un maître sushi tenant un plateau de sushis' %}
+        {% endif %}
+
+        <img src="{{ asset('build/images/illustrations/recipe-category/' ~ categoryIllustration ~ '.svg') }}" alt="{{ categoryIllustrationAlt }}">
 
         <a href="{{ path('cooking_recipe_form_new') }}" class="button water small">
             Créer une autre recette
