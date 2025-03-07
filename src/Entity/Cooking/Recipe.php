@@ -2,7 +2,9 @@
 
 namespace App\Entity\Cooking;
 
+use App\Entity\User\User;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
+use App\Enum\Cooking\RecipeStateEnum;
 use App\Model\Cooking\QuantityCounter;
 use App\Model\Cooking\RecipeTimer;
 use App\Repository\Cooking\RecipeRepository;
@@ -61,6 +63,9 @@ class Recipe
     )]
     private ?UploadedFile $pictureFile = null;
 
+    #[ORM\Column(enumType: RecipeStateEnum::class)]
+    private RecipeStateEnum $state = RecipeStateEnum::Draft;
+
     #[Assert\Valid(
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
@@ -79,6 +84,10 @@ class Recipe
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $author = null;
 
     /**
      * @var Collection<int, DietType>
@@ -209,6 +218,18 @@ class Recipe
         return $this;
     }
 
+    public function getState(): RecipeStateEnum
+    {
+        return $this->state;
+    }
+
+    public function setState(RecipeStateEnum $state): static
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
     public function getTimer(): RecipeTimer
     {
         return $this->timer;
@@ -241,6 +262,18 @@ class Recipe
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(User $author): static
+    {
+        $this->author = $author;
 
         return $this;
     }

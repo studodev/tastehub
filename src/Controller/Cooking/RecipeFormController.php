@@ -3,6 +3,7 @@
 namespace App\Controller\Cooking;
 
 use App\Enum\Cooking\DraftRecipeStatusEnum;
+use App\Enum\Cooking\RecipeStateEnum;
 use App\Form\Type\Cooking\RecipeType;
 use App\Model\Cooking\DraftRecipe;
 use App\Service\Cooking\DraftRecipeService;
@@ -12,9 +13,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Twig\Environment;
 
 #[Route('/recipe/form', name: 'cooking_recipe_form_')]
+#[IsGranted('ROLE_USER')]
 class RecipeFormController extends AbstractController
 {
     public function __construct(
@@ -37,6 +40,7 @@ class RecipeFormController extends AbstractController
             DraftRecipeStatusEnum::Ingredients => 'ingredients',
             DraftRecipeStatusEnum::Utensils => 'utensils',
             DraftRecipeStatusEnum::Steps => 'steps',
+            DraftRecipeStatusEnum::Completed => 'completed',
         };
 
         if ($savedState = $draft->getSavedState($draft->getStatus())) {
@@ -62,6 +66,7 @@ class RecipeFormController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $recipe->setAuthor($this->getUser());
             $this->recipePictureService->upload($recipe);
 
             $this->em->persist($recipe);
@@ -166,12 +171,26 @@ class RecipeFormController extends AbstractController
             $this->em->flush();
 
             if (!$isRestoredState) {
+                $draft->setStatus(DraftRecipeStatusEnum::Completed);
+                $this->draftRecipeService->update($draft);
+
                 return $this->redirectToRoute('cooking_recipe_form_new');
             }
         }
 
         return $this->render('pages/cooking/recipe-form/steps.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    public function completed(DraftRecipe $draft): Response
+    {
+        $draft->getRecipe()->setState(RecipeStateEnum::Published);
+        $this->em->flush();
+        $this->draftRecipeService->clear();
+
+        return $this->render('pages/cooking/recipe-form/completed.html.twig', [
+            'recipe' => $draft->getRecipe(),
         ]);
     }
 

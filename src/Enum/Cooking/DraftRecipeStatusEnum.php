@@ -9,4 +9,5 @@ enum DraftRecipeStatusEnum: string
     case Ingredients = 'Ingrédients';
     case Utensils = 'Ustensiles';
     case Steps = 'Étapes';
+    case Completed = 'Terminée';
 }

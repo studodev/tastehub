@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Création d'une recette | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('cooking_recipe_form_completed') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('cooking_recipe_form_completed') }}
+{% endblock %}
+
+{% block body %}
+    <h1>Création d'une recette</h1>
+
+    <section>
+        <h2>Bravo</h2>
+        <p>
+            Votre recette <strong>{{ recipe.title }}</strong> a bien été msie ligne !
+        </p>
+        <img src="{{ asset('build/images/illustrations/recipe-category/main.svg') }}" alt="Illustration d'un maître sushi tenant un plateau de sushis">
+
+        <a href="{{ path('cooking_recipe_form_new') }}" class="button water small">
+            Créer une autre recette
+        </a>
+        <a href="#" class="button water outline small">
+            Voir la recette
+        </a>
+    </section>
+{% endblock %}

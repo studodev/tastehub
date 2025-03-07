@@ -19,9 +19,11 @@
         <ol class="timeline">
             {% set steps = enum_cases('App\\Enum\\Cooking\\DraftRecipeStatusEnum') %}
             {% for step in steps %}
-                <li {{ step is same as draft.status ? 'class="active"' : '' }}>
-                    {{ step.value }}
-                </li>
+                {% if step is not same as enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Completed %}
+                    <li {{ step is same as draft.status ? 'class="active"' : '' }}>
+                        {{ step.value }}
+                    </li>
+                {% endif %}
             {% endfor %}
         </ol>
     </div>
