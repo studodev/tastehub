@@ -69,6 +69,7 @@ header {
             height: var(--appbar-height);
             background-color: var(--color-white);
             box-shadow: 0 -1px 4px 0 var(--color-pistachio);
+            z-index: 100;
 
             ul {
                 justify-content: space-evenly;
