@@ -83,13 +83,10 @@
             right: 8px;
             width: var(--button-size);
             height: var(--button-size);
+            line-height: var(--button-size);
             font-size: 1rem;
             background-color: var(--color-water);
             border-radius: 50%;
-
-            i {
-                vertical-align: text-bottom;
-            }
         }
     }
 

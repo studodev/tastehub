@@ -113,6 +113,7 @@ form {
             label {
                 font-family: var(--font-family-content), sans-serif;
                 color: var(--color-dark);
+                user-select: none;
             }
         }
 

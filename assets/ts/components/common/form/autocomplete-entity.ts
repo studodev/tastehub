@@ -74,8 +74,8 @@ export class AutocompleteEntity extends AbstractComponent{
         }
 
         this.selectWidget.on("item_add", () => {
+            this.selectWidget.close();
             this.selectWidget.setTextboxValue("");
-            this.selectWidget.refreshOptions();
             this.refreshCounter();
         });
 

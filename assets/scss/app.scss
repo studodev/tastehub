@@ -17,3 +17,9 @@ main {
     width: min(100%, var(--main-width));
     padding: 20px 40px;
 }
+
+@media screen and (max-width: 768px) {
+    main {
+        padding-inline: 20px;
+    }
+}
