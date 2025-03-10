@@ -70,3 +70,24 @@
         }
     }
 }
+
+@media screen and (max-width: 480px) {
+    .item-holder > .form-row {
+        width: 100%;
+
+        .item {
+            width: 100%;
+
+            .item-content {
+                flex-wrap: wrap;
+                flex: 1;
+
+                .item-form {
+                    justify-content: end;
+                    flex: 1 0 100%;
+                    order: 1;
+                }
+            }
+        }
+    }
+}
