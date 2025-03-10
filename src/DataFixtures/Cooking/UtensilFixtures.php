@@ -12,123 +12,123 @@ class UtensilFixtures extends Fixture implements FixtureGroupInterface
     private const UTENSILS = [
         [
             'label' => 'Bol',
-            'pictogram' => 'bowl.svg'
+            'pictogram' => 'bowl.svg',
         ],
         [
             'label' => 'Tamis',
-            'pictogram' => 'kitchen-sieve.svg'
+            'pictogram' => 'kitchen-sieve.svg',
         ],
         [
             'label' => 'Maryse',
-            'pictogram' => 'spatula.svg'
+            'pictogram' => 'spatula.svg',
         ],
         [
             'label' => 'Spatule',
-            'pictogram' => 'spatula.svg'
+            'pictogram' => 'spatula.svg',
         ],
         [
             'label' => 'Moule à gâteau',
-            'pictogram' => 'cake-mold.svg'
+            'pictogram' => 'cake-mold.svg',
         ],
         [
             'label' => 'Couteau',
-            'pictogram' => 'knife.svg'
+            'pictogram' => 'knife.svg',
         ],
         [
             'label' => 'Cuillère',
-            'pictogram' => 'spoon.svg'
+            'pictogram' => 'spoon.svg',
         ],
         [
             'label' => 'Emporte-pièce',
-            'pictogram' => 'cookie-cutter.svg'
+            'pictogram' => 'cookie-cutter.svg',
         ],
         [
             'label' => 'Louche',
-            'pictogram' => 'ladle.svg'
+            'pictogram' => 'ladle.svg',
         ],
         [
             'label' => 'Passoire',
-            'pictogram' => 'strainer.svg'
+            'pictogram' => 'strainer.svg',
         ],
         [
             'label' => 'Planche à découper',
-            'pictogram' => 'cutting-board.svg'
+            'pictogram' => 'cutting-board.svg',
         ],
         [
             'label' => 'Casserole',
-            'pictogram' => 'pan.svg'
+            'pictogram' => 'pan.svg',
         ],
         [
             'label' => 'Thermomètre',
-            'pictogram' => 'thermometer.svg'
+            'pictogram' => 'thermometer.svg',
         ],
         [
             'label' => 'Poêle à frire',
-            'pictogram' => 'frying-pan.svg'
+            'pictogram' => 'frying-pan.svg',
         ],
         [
             'label' => 'Rouleau à pâtisserie',
-            'pictogram' => 'pastry-roll.svg'
+            'pictogram' => 'pastry-roll.svg',
         ],
         [
             'label' => 'Pince de cuisine',
-            'pictogram' => 'tongs.svg'
+            'pictogram' => 'tongs.svg',
         ],
         [
             'label' => 'Râpe',
-            'pictogram' => 'grater.svg'
+            'pictogram' => 'grater.svg',
         ],
         [
             'label' => 'Poche à douille',
-            'pictogram' => 'piping-bag.svg'
+            'pictogram' => 'piping-bag.svg',
         ],
         [
             'label' => 'Épluche-légumes',
-            'pictogram' => 'vegetable-peeler.svg'
+            'pictogram' => 'vegetable-peeler.svg',
         ],
         [
             'label' => 'Mixeur plongeant',
-            'pictogram' => 'household-appliances.svg'
+            'pictogram' => 'household-appliances.svg',
         ],
         [
             'label' => 'Mixeur',
-            'pictogram' => 'household-appliances.svg'
+            'pictogram' => 'household-appliances.svg',
         ],
         [
             'label' => 'Blender',
-            'pictogram' => 'household-appliances.svg'
+            'pictogram' => 'household-appliances.svg',
         ],
         [
             'label' => 'Hachoir',
-            'pictogram' => 'household-appliances.svg'
+            'pictogram' => 'household-appliances.svg',
         ],
         [
             'label' => 'Grille',
-            'pictogram' => 'rack.svg'
+            'pictogram' => 'rack.svg',
         ],
         [
             'label' => 'Fouet',
-            'pictogram' => 'whisk.svg'
+            'pictogram' => 'whisk.svg',
         ],
         [
             'label' => 'Moules individuels',
-            'pictogram' => 'individual-molds.svg'
+            'pictogram' => 'individual-molds.svg',
         ],
         [
             'label' => 'Shaker',
-            'pictogram' => 'shaker.svg'
+            'pictogram' => 'shaker.svg',
         ],
         [
             'label' => 'Wok',
-            'pictogram' => 'wok.svg'
+            'pictogram' => 'wok.svg',
         ],
         [
             'label' => 'Balance de cuisine',
-            'pictogram' => 'kitchen-scale.svg'
+            'pictogram' => 'kitchen-scale.svg',
         ],
         [
             'label' => 'Écumoire',
-            'pictogram' => 'skimmer.svg'
+            'pictogram' => 'skimmer.svg',
         ],
     ];
 
