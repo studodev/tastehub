@@ -55,6 +55,8 @@ header {
 
 @media screen and (max-width: 768px) {
     header {
+        padding-inline: 20px;
+
         .logo img {
             height: 28px;
         }
@@ -65,8 +67,9 @@ header {
             right: 0;
             bottom: 0;
             height: var(--appbar-height);
-            background-color: white;
+            background-color: var(--color-white);
             box-shadow: 0 -1px 4px 0 var(--color-pistachio);
+            z-index: 100;
 
             ul {
                 justify-content: space-evenly;

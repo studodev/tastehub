@@ -1,0 +1,12 @@
+form {
+    .highlight-row {
+        label {
+            color: var(--color-olive);
+            font-size: 1.3rem;
+        }
+
+        input[type="text"] {
+            font-size: 1.2rem;
+        }
+    }
+}

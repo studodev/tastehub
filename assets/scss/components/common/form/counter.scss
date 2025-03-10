@@ -1,0 +1,15 @@
+.form-counter {
+    margin-top: 2px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-eggplant);
+    align-self: end;
+
+    .form-counter-value {
+        color: var(--color-success);
+
+        &.invalid {
+            color: var(--color-warn);
+        }
+    }
+}

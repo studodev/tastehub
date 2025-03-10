@@ -11,7 +11,7 @@ final class Version20240905150836 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Remove Doctrine comment in tables';
     }
 
     public function up(Schema $schema): void

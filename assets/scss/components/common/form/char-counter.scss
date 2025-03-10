@@ -1,0 +1,6 @@
+@use "counter";
+
+[data-char-counter] {
+    display: flex;
+    flex-direction: column;
+}

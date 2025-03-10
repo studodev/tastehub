@@ -5,7 +5,7 @@ namespace App\Service\User;
 use App\Entity\User\ResetPasswordRequest;
 use App\Repository\User\ResetPasswordRequestRepository;
 use App\Repository\User\UserRepository;
-use App\Service\MailerService;
+use App\Service\Common\MailerService;
 use App\Util\User\SecurityUtil;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;

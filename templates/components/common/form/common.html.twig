@@ -1,0 +1,61 @@
+{% block form_row %}
+    {% set widget_attr = {} %}
+    {% if help is not empty %}
+        {% set widget_attr = {attr: {'aria-describedby': id ~"_help"}} %}
+    {% endif %}
+
+    {% set row_attr = row_attr|merge({
+        class: 'form-row' ~ (row_attr.class is defined ? ' ' ~ row_attr.class : ''),
+    }) %}
+
+    <div{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        {{ form_label(form) }}
+        {{ form_widget(form, widget_attr) }}
+        {{ form_help(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block form_errors %}
+    {% if errors|length > 0 %}
+        <ul class="form-errors">
+            {% for error in errors %}
+                <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block checkbox_row %}
+    {% set widget_attr = {} %}
+    {% if help is not empty %}
+        {% set widget_attr = {attr: {'aria-describedby': id ~"_help"}} %}
+    {% endif %}
+
+    {% set row_attr = row_attr|merge({
+        class: 'form-row' ~ (row_attr.class is defined ? ' ' ~ row_attr.class : ''),
+    }) %}
+
+    <div{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        {{ form_widget(form, widget_attr) }}
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_help(form) }}
+    </div>
+{% endblock %}
+
+{% block choice_widget_expanded %}
+    {% set attr = attr|merge({
+        class: 'choices' ~ (attr.class is defined ? ' ' ~ attr.class : ''),
+    }) %}
+
+    <div {{ block('widget_container_attributes') }}>
+        {% for child in form %}
+            {{ form_widget(child) }}
+            {{ form_label(child, null, {
+                translation_domain: choice_translation_domain,
+                label_attr: { class: 'silent-optional-badge' },
+            }) }}
+        {% endfor %}
+    </div>
+{% endblock %}

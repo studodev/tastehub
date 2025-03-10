@@ -1,0 +1,90 @@
+<?php
+
+namespace App\Form\Type\Cooking;
+
+use App\Entity\Cooking\Ingredient;
+use App\Entity\Cooking\RecipeIngredient;
+use App\Enum\Cooking\IngredientUnitEnum;
+use App\Form\Type\Common\AutocompleteEntityType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class RecipeIngredientType extends AbstractType
+{
+    public const MODE_SOURCE = 'source';
+    public const MODE_COLLECTION = 'collection';
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $mode = $options['mode'];
+
+        if (self::MODE_SOURCE === $options['mode']) {
+            $builder->add('ingredient', AutocompleteEntityType::class, [
+                'label' => 'Ingredient',
+                'class' => Ingredient::class,
+                'choice_label' => 'label',
+                'placeholder' => '',
+                'placeholder_content' => 'Rechercher un ingredient ...',
+                'autocomplete_route' => 'cooking_ingredient_autocomplete',
+                'attr' => [
+                    'class' => 'item-data-ingredient',
+                ],
+            ]);
+
+            $quantityAttr = [];
+            $unitAttr = [];
+        } else {
+            $builder->add('ingredient', EntityType::class, [
+                'class' => Ingredient::class,
+                'label' => false,
+                'choice_label' => 'label',
+                'row_attr' => [
+                    'class' => 'hidden',
+                ],
+                'attr' => [
+                    'class' => 'item-data-ingredient',
+                ],
+            ]);
+
+            $quantityAttr = [
+                'aria-label' => 'Quantité',
+            ];
+            $unitAttr = [
+                'aria-label' => 'Unité de mesure',
+            ];
+        }
+
+        $builder
+            ->add('quantity', null, [
+                'label' => self::MODE_SOURCE === $mode ? 'Quantité' : false,
+                'attr' => [
+                    'class' => 'item-data-quantity',
+                    ...$quantityAttr,
+                ],
+                'error_bubbling' => true,
+            ])
+            ->add('unit', EnumType::class, [
+                'label' => self::MODE_SOURCE === $mode ? 'Unité de mesure' : false,
+                'class' => IngredientUnitEnum::class,
+                'placeholder' => 'Choisissez une unité',
+                'attr' => [
+                    'class' => 'item-data-unit',
+                    ...$unitAttr,
+                ],
+                'error_bubbling' => true,
+            ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => RecipeIngredient::class,
+            'mode' => self::MODE_SOURCE,
+            'error_bubbling' => false,
+        ]);
+    }
+}

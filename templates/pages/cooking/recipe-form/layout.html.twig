@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Création d'une recette | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('cooking_recipe_form_common') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('cooking_recipe_form_common') }}
+{% endblock %}
+
+{% block body %}
+    <h1>Création d'une recette</h1>
+
+    <div class="timeline-container">
+        <ol class="timeline">
+            {% set steps = enum_cases('App\\Enum\\Cooking\\DraftRecipeStatusEnum') %}
+            {% for step in steps %}
+                {% if step is not same as enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Completed %}
+                    <li {{ step is same as draft.status ? 'class="active"' : '' }}>
+                        {{ step.value }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+    </div>
+
+    {{ form_start(form) }}
+    {% block form %}{% endblock %}
+
+    <div class="form-actions">
+        <button class="button water">
+            {% if enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Steps is same as draft.status %}
+                Valider ma recette
+            {% else %}
+                Étape suivante
+            {% endif %}
+        </button>
+
+        {% if enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Metadata is not same as draft.status %}
+            <button formaction="{{ path('cooking_recipe_form_rewind') }}" class="button water outline">
+                Étape précédente
+            </button>
+        {% endif %}
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

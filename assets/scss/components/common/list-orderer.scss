@@ -1,0 +1,7 @@
+[data-list-orderer] {
+    .orderer-trigger-up.disabled, .orderer-trigger-down.disabled {
+        opacity: 0.4;
+        cursor: default;
+        pointer-events: none;
+    }
+}

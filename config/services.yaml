@@ -1,9 +1,13 @@
 parameters:
+    file_manager:
+        directory: '%kernel.project_dir%/public/data/'
     mailer:
         templateFolder: mails/
         sender:
             name: TasteHub App
             email: noreply@tastehub.app
+    pictogram:
+        basePath: build/images/pictogram
     reset_password:
         token_lifetime: 2 # In hours
 

@@ -1,4 +1,3 @@
-import { FlashFeedElements } from "./flash-feed-elements";
 import { FlashMessage } from "./flash-message";
 import { FlashMessageType } from "./flash-message-type";
 import { StringUtils } from "../../../utils/string-utils";
@@ -43,6 +42,12 @@ class FlashFeed {
             }
         }
     }
+}
+
+interface FlashFeedElements {
+    container: HTMLElement;
+    template: HTMLTemplateElement;
+    feed?: HTMLElement;
 }
 
 export const flashFeed = new FlashFeed();

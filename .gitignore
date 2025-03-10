@@ -12,6 +12,10 @@
 /public/build/
 yarn-error.log
 
+# Data
+/public/data/*
+!/public/data/.gitkeep
+
 # Tools
 .php-cs-fixer.php
 .php-cs-fixer.cache

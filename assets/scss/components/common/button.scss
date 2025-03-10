@@ -1,20 +1,35 @@
 button {
     border: none;
     background-color: transparent;
+    font-family: var(--font-family-title), sans-serif;
     cursor: pointer;
 }
 
 .button {
-    background-color: var(--color-eggplant);
+    --button-background-color: var(--color-eggplant);
+    --button-text-color: var(--color-light);
+
+    background-color: var(--button-background-color);
     padding: 8px 16px;
-    border-radius: 5px;
+    border: 2px solid var(--button-background-color);
+    border-radius: var(--radius-default);
     font-family: var(--font-family-title), sans-serif;
     font-size: 1.1rem;
-    color: var(--color-light);
+    color: var(--button-text-color);
 
     &.water {
-        background-color: var(--color-water);
-        color: var(--color-dark);
+        --button-background-color: var(--color-water);
+        --button-text-color: var(--color-dark);
+    }
+
+    &.warn {
+        --button-background-color: var(--color-warn);
+        --button-text-color: var(--color-light);
+    }
+
+    &.outline {
+        background-color: transparent;
+        --button-text-color: var(--color-dark);
     }
 
     &.small {
