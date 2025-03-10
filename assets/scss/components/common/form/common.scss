@@ -178,3 +178,12 @@ form {
         }
     }
 }
+
+@media screen and (max-width: 480px) {
+    form {
+        .form-actions {
+            align-items: center;
+            flex-direction: column;
+        }
+    }
+}
