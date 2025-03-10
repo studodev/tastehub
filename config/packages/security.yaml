@@ -20,7 +20,7 @@ security:
                 check_path: user_security_login
                 enable_csrf: true
             logout:
-                path: /logout
+                path: /deconnexion
             remember_me:
                 secret: '%kernel.secret%'
                 name: KEEPLOGIN

@@ -27,7 +27,7 @@ class SecurityController extends AbstractController
     ) {
     }
 
-    #[Route('/login', name: 'login')]
+    #[Route('/connexion', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -39,7 +39,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route('/register', name: 'register')]
+    #[Route('/inscription', name: 'register')]
     public function register(Request $request): Response
     {
         $user = new User();
@@ -58,7 +58,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route('/reset-password', name: 'reset_password_request')]
+    #[Route('/reinitialiser-mot-de-passe', name: 'reset_password_request')]
     public function resetPasswordRequest(Request $request): Response
     {
         $form = $this->createForm(ResetPasswordRequestType::class);
@@ -79,7 +79,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route('/reset-password/{token}', name: 'reset_password')]
+    #[Route('/reinitialiser-mot-de-passe/{token}', name: 'reset_password')]
     public function resetPassword(Request $request, string $token): Response
     {
         $resetPasswordRequest = $this->resetPasswordService->retrieveRequest($token);

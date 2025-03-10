@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Twig\Environment;
 
-#[Route('/recipe/form', name: 'cooking_recipe_form_')]
+#[Route('/recette/editeur', name: 'cooking_recipe_form_')]
 #[IsGranted('ROLE_USER')]
 class RecipeFormController extends AbstractController
 {
@@ -28,7 +28,7 @@ class RecipeFormController extends AbstractController
     ) {
     }
 
-    #[Route('/new', name: 'new')]
+    #[Route(name: 'editor')]
     public function index(Request $request): Response
     {
         $draft = $this->draftRecipeService->retrieve();
@@ -76,7 +76,7 @@ class RecipeFormController extends AbstractController
                 $draft->setStatus(DraftRecipeStatusEnum::Details);
                 $this->draftRecipeService->update($draft);
 
-                return $this->redirectToRoute('cooking_recipe_form_new');
+                return $this->redirectToRoute('cooking_recipe_form_editor');
             }
         }
 
@@ -102,7 +102,7 @@ class RecipeFormController extends AbstractController
                 $draft->setStatus(DraftRecipeStatusEnum::Ingredients);
                 $this->draftRecipeService->update($draft);
 
-                return $this->redirectToRoute('cooking_recipe_form_new');
+                return $this->redirectToRoute('cooking_recipe_form_editor');
             }
         }
 
@@ -126,7 +126,7 @@ class RecipeFormController extends AbstractController
                 $draft->setStatus(DraftRecipeStatusEnum::Utensils);
                 $this->draftRecipeService->update($draft);
 
-                return $this->redirectToRoute('cooking_recipe_form_new');
+                return $this->redirectToRoute('cooking_recipe_form_editor');
             }
         }
 
@@ -150,7 +150,7 @@ class RecipeFormController extends AbstractController
                 $draft->setStatus(DraftRecipeStatusEnum::Steps);
                 $this->draftRecipeService->update($draft);
 
-                return $this->redirectToRoute('cooking_recipe_form_new');
+                return $this->redirectToRoute('cooking_recipe_form_editor');
             }
         }
 
@@ -174,7 +174,7 @@ class RecipeFormController extends AbstractController
                 $draft->setStatus(DraftRecipeStatusEnum::Completed);
                 $this->draftRecipeService->update($draft);
 
-                return $this->redirectToRoute('cooking_recipe_form_new');
+                return $this->redirectToRoute('cooking_recipe_form_editor');
             }
         }
 
@@ -194,7 +194,7 @@ class RecipeFormController extends AbstractController
         ]);
     }
 
-    #[Route('/rewind', name: 'rewind')]
+    #[Route('/retour', name: 'rewind')]
     public function rewind(Request $request): Response
     {
         $draft = $this->draftRecipeService->retrieve();
@@ -211,6 +211,6 @@ class RecipeFormController extends AbstractController
         $draft->setStatus($statuses[$statusIndex]);
         $this->draftRecipeService->update($draft);
 
-        return $this->redirectToRoute('cooking_recipe_form_new');
+        return $this->redirectToRoute('cooking_recipe_form_editor');
     }
 }

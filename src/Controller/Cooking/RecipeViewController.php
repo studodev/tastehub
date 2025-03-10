@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/recipe', name: 'cooking_recipe_view_')]
+#[Route('/recette', name: 'cooking_recipe_view_')]
 class RecipeViewController extends AbstractController
 {
     #[Route('/{slug:recipe}', name: 'single')]

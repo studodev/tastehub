@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/utensil', name: 'cooking_utensil_')]
+#[Route('/ustensile', name: 'cooking_utensil_')]
 class UtensilController extends AbstractController
 {
     public function __construct(
