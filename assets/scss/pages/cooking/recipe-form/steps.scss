@@ -1,5 +1,6 @@
-.item-holder {
+form [data-recipe-item-collection] .item-holder {
     list-style-type: none;
+    margin: 0;
 
     .step {
         display: flex;
@@ -27,9 +28,12 @@
             .step-header {
                 display: flex;
                 align-items: center;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-bottom: 12px;
 
                 h2 {
-                    flex: 1;
+                    flex: 1 0 max-content;
                 }
             }
 
