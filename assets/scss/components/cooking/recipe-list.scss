@@ -1,0 +1,57 @@
+@use "../common/form/common";
+
+.recipe-list {
+    .title-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        margin-bottom: 16px;
+
+        .actions {
+            display: flex;
+            gap: 16px;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            .form-row:first-child {
+                min-width: min(600px, 100%);
+
+                label {
+                    text-align: center;
+                    margin-inline: auto;
+                }
+            }
+
+            .form-row:last-child {
+                min-width: min(250px, 100%);
+                align-self: end;
+            }
+        }
+
+        .filter-container {
+            flex: 0 0 20%;
+
+            .fake-label {
+                font-family: var(--font-family-title), sans-serif;
+                font-size: 1.4rem;
+                color: var(--color-olive);
+                margin-bottom: 8px;
+            }
+        }
+
+        .recipe-container {
+            flex: 0 0 auto;
+        }
+    }
+}

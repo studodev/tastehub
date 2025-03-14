@@ -44,16 +44,19 @@ export class AutocompleteEntity extends AbstractComponent{
 
     private buildWidget(): void {
         const options: RecursivePartial<TomSettings> = {
-            preload: true,
             highlight: false,
             placeholder: this.options.placeholder,
             hidePlaceholder: true,
-            load: this.load.bind(this),
             render: {
                 no_results: () => "<div class='empty'>Aucun résulat correspondant</div>",
                 loading: () => "<div class='loader small'></div>",
             },
         };
+
+        if (this.options.url) {
+            options['load'] = this.load.bind(this);
+            options['preload'] = true;
+        }
 
         if (this.options.multiple) {
             options['maxItems'] = this.options.maxItems > 0 ? this.options.maxItems : null;
@@ -151,7 +154,7 @@ interface AutocompleteEntityElements {
 }
 
 interface AutocompleteEntityOptions {
-    url: string;
+    url: string|null;
     multiple: boolean;
     placeholder?: string;
     maxItems?: number;

@@ -1,6 +1,6 @@
 {% block autocomplete_entity_widget %}
     <div data-autocomplete-entity
-         data-url="{{ url(form.vars.autocomplete_route) }}"
+         data-url="{{ form.vars.autocomplete_route ? url(form.vars.autocomplete_route) }}"
          data-placeholder="{{ form.vars.placeholder_content }}"
          data-max-items="{{ form.vars.max_items }}">
         {{ form_widget(form) }}

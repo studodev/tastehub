@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Explorer les recettes | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('cooking_recipe_explore_index') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('cooking_recipe_explore_index') }}
+{% endblock %}
+
+{% block body %}
+    <section class="recipe-list">
+        <header class="title-container">
+            <h1>Explorer les recettes</h1>
+
+            <div class="actions">
+                <a href="#" class="button outline small water">Voir mon livre de recette</a>
+                <a href="{{ path('cooking_recipe_form_editor') }}" class="button small water">Créer une recette</a>
+            </div>
+        </header>
+
+        {{ form_start(form) }}
+        <div class="search-container">
+            {{ form_row(form.query) }}
+            {{ form_row(form.sort) }}
+        </div>
+
+        <aside class="filter-container">
+            <div class="fake-label">Filtrer</div>
+
+            {{ form_row(form.categories) }}
+            {{ form_row(form.diets) }}
+            {{ form_row(form.tags) }}
+            {{ form_row(form.duration) }}
+        </aside>
+
+        <ul class="recipe-container">
+
+        </ul>
+
+        {{ form_end(form) }}
+    </section>
+{% endblock %}
