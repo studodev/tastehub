@@ -9,6 +9,7 @@ button {
     --button-background-color: var(--color-eggplant);
     --button-text-color: var(--color-light);
 
+    display: inline-block;
     background-color: var(--button-background-color);
     padding: 8px 16px;
     border: 2px solid var(--button-background-color);
