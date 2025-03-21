@@ -2,7 +2,7 @@
 @use "inspiration-banner";
 @use "recipe-card";
 
-.recipe-list {
+.recipe-gallery {
     .title-container {
         display: flex;
         flex-wrap: wrap;
@@ -67,7 +67,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-    .recipe-list form {
+    .recipe-gallery form {
         .filter-container {
             flex: 0 0 100%;
         }
