@@ -17,7 +17,7 @@ class RecipeFilter
 
     private ?RecipeDurationRangeEnum $duration = null;
 
-    private RecipeSortEnum $sort = RecipeSortEnum::Rating;
+    private RecipeSortEnum $sort = RecipeSortEnum::Newest;
 
     public function getQuery(): ?string
     {

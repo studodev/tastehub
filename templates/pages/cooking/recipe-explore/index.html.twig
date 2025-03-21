@@ -29,14 +29,14 @@
             {{ form_row(form.sort) }}
         </div>
 
-        <aside class="filter-container">
-            <div class="fake-label">Filtrer</div>
+        <details class="filter-container">
+            <summary class="fake-label">Filtrer</summary>
 
             {{ form_row(form.categories) }}
             {{ form_row(form.diets) }}
             {{ form_row(form.tags) }}
             {{ form_row(form.duration) }}
-        </aside>
+        </details>
 
         <ul class="recipe-container">
             {% include 'components/cooking/recipe-list.html.twig' with {

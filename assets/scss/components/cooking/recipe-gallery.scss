@@ -45,7 +45,10 @@
         }
 
         .filter-container {
+            position: sticky;
+            top: 16px;
             flex: 0 0 20%;
+            align-self: start;
 
             .fake-label {
                 font-family: var(--font-family-title), sans-serif;
@@ -69,6 +72,7 @@
 @media screen and (max-width: 1024px) {
     .recipe-gallery form {
         .filter-container {
+            position: static;
             flex: 0 0 100%;
         }
 
