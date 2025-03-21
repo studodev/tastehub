@@ -39,13 +39,15 @@
         </aside>
 
         <ul class="recipe-container">
-
+            {% include 'components/cooking/recipe-list.html.twig' with {
+                recipes: recipes,
+            } only %}
         </ul>
 
         {{ form_end(form) }}
 
         <footer>
-            {{ include('components/cooking/inspiration-banner.html.twig') }}
+            {% include 'components/cooking/inspiration-banner.html.twig' only %}
         </footer>
     </section>
 {% endblock %}

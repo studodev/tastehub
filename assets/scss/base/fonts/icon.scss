@@ -90,3 +90,9 @@
     display: inline-block;
     transform: rotate(180deg);
 }
+.icon-clock:before {
+    content: "\e916";
+}
+.icon-star:before {
+    content: "\e917";
+}

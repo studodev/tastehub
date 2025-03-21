@@ -1,4 +1,4 @@
-footer {
+body > footer {
     padding: 12px;
 
     p {
@@ -14,7 +14,7 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
-    footer {
+    body > footer {
         margin-bottom: var(--appbar-height);
     }
 }

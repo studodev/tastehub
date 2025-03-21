@@ -1,6 +1,7 @@
 parameters:
     file_manager:
         directory: '%kernel.project_dir%/public/data/'
+        uri: 'data/'
     mailer:
         templateFolder: mails/
         sender:

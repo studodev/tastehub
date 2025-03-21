@@ -1,4 +1,4 @@
-header {
+body > header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -54,7 +54,7 @@ header {
 }
 
 @media screen and (max-width: 768px) {
-    header {
+    body > header {
         padding-inline: 20px;
 
         .logo img {
