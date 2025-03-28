@@ -1,9 +1,6 @@
 @use "animation/spin";
 
-.loader {
-    --loader-size: 50px;
-    --loader-color: var(--color-eggplant);
-
+@mixin default {
     width: var(--loader-size);
     height: var(--loader-size);
     border: 3px solid transparent;
@@ -13,6 +10,12 @@
     animation-duration: 800ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+}
+
+.loader {
+    --loader-size: 50px;
+    --loader-color: var(--color-eggplant);
+    @include default;
 
     &.small {
         --loader-size: 24px;

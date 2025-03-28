@@ -66,6 +66,9 @@ class RecipeFilterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => RecipeFilter::class,
+            'row_attr' => [
+                'class' => 'recipe-filter',
+            ],
         ]);
     }
 }

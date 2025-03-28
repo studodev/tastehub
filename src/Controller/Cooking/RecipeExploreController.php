@@ -6,6 +6,7 @@ use App\Enum\Cooking\RecipeStateEnum;
 use App\Form\Type\Cooking\RecipeFilterType;
 use App\Model\Cooking\RecipeFilter;
 use App\Repository\Cooking\RecipeRepository;
+use App\Service\Common\PaginationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ final class RecipeExploreController extends AbstractController
     }
 
     #[Route(name: 'index')]
-    public function index(Request $request): Response
+    public function index(Request $request, PaginationService $paginationService): Response
     {
         $filter = new RecipeFilter();
         $form = $this->createForm(RecipeFilterType::class, $filter);
@@ -29,13 +30,27 @@ final class RecipeExploreController extends AbstractController
             // TODO
         }
 
-        $recipes = $this->recipeRepository->findBy([
-            'state' => RecipeStateEnum::Published,
-        ]);
+        $recipeQueryBuilder = $this->recipeRepository->findByFilterQueryBuilder();
+        $offset = $request->query->getInt('offset');
+        $pagination = $paginationService->paginate($recipeQueryBuilder, $offset, 2);
+
+        if ($request->isXmlHttpRequest()) {
+            return $this->json([
+                'status' => true,
+                'view' => $this->renderView('components/cooking/recipe-list.html.twig', [
+                    'recipes' => $pagination->getResults(),
+                ]),
+                'details' => [
+                    'offset' => $pagination->getOffset(),
+                    'limit' => $pagination->getLimit(),
+                    'total' => $pagination->getTotal(),
+                ],
+            ]);
+        }
 
         return $this->render('pages/cooking/recipe-explore/index.html.twig', [
             'form' => $form->createView(),
-            'recipes' => $recipes,
+            'pagination' => $pagination,
         ]);
     }
 }

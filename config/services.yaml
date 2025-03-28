@@ -7,6 +7,8 @@ parameters:
         sender:
             name: TasteHub App
             email: noreply@tastehub.app
+    pagination:
+        limit: 10
     pictogram:
         basePath: build/images/pictogram
     reset_password:

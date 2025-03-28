@@ -58,13 +58,25 @@
             }
         }
 
-        .recipe-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            justify-content: space-evenly;
+        .recipe-holder-wrapper {
             flex: 1 1 auto;
-            padding: 12px 0 0 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+
+            .recipe-holder {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 24px;
+                justify-content: space-evenly;
+                width: 100%;
+                padding: 12px 0 0 30px;
+            }
+
+            .recipe-load-more {
+                display: inline-block;
+                align-self: center;
+            }
         }
     }
 }
@@ -76,7 +88,7 @@
             flex: 0 0 100%;
         }
 
-        .recipe-container {
+        .recipe-holder-wrapper .recipe-holder {
             padding-left: 0;
         }
     }

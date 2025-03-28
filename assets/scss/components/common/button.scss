@@ -1,3 +1,5 @@
+@use "loader" as loader;
+
 button {
     border: none;
     background-color: transparent;
@@ -9,6 +11,7 @@ button {
     --button-background-color: var(--color-eggplant);
     --button-text-color: var(--color-light);
 
+    position: relative;
     display: inline-block;
     background-color: var(--button-background-color);
     padding: 8px 16px;
@@ -36,5 +39,25 @@ button {
     &.small {
         font-size: 1rem;
         padding: 6px 12px;
+    }
+
+    &.busy {
+        user-select: none;
+        pointer-events: none;
+        color: transparent;
+
+        & > * {
+            visibility: hidden;
+        }
+
+        &::before {
+            --loader-size: 25px;
+            --loader-color: var(--color-pistachio);
+            content: "";
+            position: absolute;
+            top: calc(50% - var(--loader-size) / 2);
+            left: calc(50% - var(--loader-size) / 2);
+            @include loader.default;
+        }
     }
 }
