@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-// TODO - Add filter + empty container
 #[Route('/recette', name: 'cooking_recipe_explore_')]
 final class RecipeExploreController extends AbstractController
 {
