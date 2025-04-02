@@ -48,7 +48,7 @@ export class RecipeGallery extends AbstractComponent {
 
         this.elements.loadMore.classList.add('busy');
         apiProvider.fetch(url.toString()).then(data => {
-            this.options.offset = data.details.offset + data.details.limit;
+            this.options.offset = data.details.offset;
             this.options.total = data.details.total;
 
             this.render(data.view);

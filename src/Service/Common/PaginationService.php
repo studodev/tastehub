@@ -7,7 +7,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
-class PaginationService
+final readonly class PaginationService
 {
     public function __construct(
         #[Autowire('%pagination%')] private array $config,
@@ -20,28 +20,22 @@ class PaginationService
 
         $pagination
             ->setQueryBuilder($queryBuilder)
-            ->setOffset($offset)
             ->setLimit($limit ?? $this->config['limit'])
         ;
 
-        $countQueryBuilder = clone $queryBuilder;
         $queryBuilder
             ->setFirstResult($offset)
-            ->setMaxResults($limit ?? $this->config['limit'])
+            ->setMaxResults($pagination->getLimit())
         ;
 
+        $paginator = new Paginator($queryBuilder);
+
         $pagination
-            ->setResults($queryBuilder->getQuery()->getResult())
-            ->setTotal($this->count($countQueryBuilder))
+            ->setResults($paginator->getIterator()->getArrayCopy())
+            ->setTotal($paginator->count())
+            ->setOffset($offset + $pagination->getLimit())
         ;
 
         return $pagination;
-    }
-
-    private function count(QueryBuilder $queryBuilder): int
-    {
-        $paginator = new Paginator($queryBuilder);
-
-        return $paginator->count();
     }
 }
