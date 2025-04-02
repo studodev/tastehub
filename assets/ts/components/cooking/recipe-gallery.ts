@@ -2,9 +2,11 @@ import "@styles/components/cooking/recipe-gallery.scss";
 import { apiProvider } from "../../services/api-provider";
 import { AbstractComponent } from "../abstract-component";
 
+// TODO Manage errors + loading + no result
 export class RecipeGallery extends AbstractComponent {
     private elements: RecipeGalleryElements;
     private options: RecipeGalleryOptions;
+    private searchTimer: ReturnType<typeof setTimeout>;
 
     static getComponentSelector(): string {
         return '.recipe-gallery';
@@ -40,25 +42,47 @@ export class RecipeGallery extends AbstractComponent {
         this.elements.loadMore.addEventListener('click', () => {
             this.load();
         });
+
+        this.elements.filter.addEventListener('input', () => {
+            clearTimeout(this.searchTimer);
+            this.searchTimer = setTimeout(() => {
+                this.search();
+            }, 2000);
+        });
     }
 
-    private load(): void {
+    private search(): void {
+        this.options.offset = 0;
+        this.load(true);
+    }
+
+    private load(reset: boolean = false): void {
+        this.elements.loadMore.classList.add('busy');
+
         const url = new URL(this.options.url);
         url.searchParams.set('offset', this.options.offset.toString());
 
-        this.elements.loadMore.classList.add('busy');
+        const formData = new FormData(this.elements.filter);
+        formData.forEach((value, key) => {
+            url.searchParams.append(key, value.toString());
+        });
+
         apiProvider.fetch(url.toString()).then(data => {
             this.options.offset = data.details.offset;
             this.options.total = data.details.total;
 
-            this.render(data.view);
+            this.render(data.view, reset);
             this.updateDisplay();
             this.elements.loadMore.classList.remove('busy');
         });
     }
 
-    private render(view: string): void {
-        this.elements.holder.insertAdjacentHTML('beforeend', view);
+    private render(view: string, reset: boolean): void {
+        if (reset) {
+            this.elements.holder.innerHTML = view
+        } else {
+            this.elements.holder.insertAdjacentHTML('beforeend', view);
+        }
     }
 
     private updateDisplay(): void {

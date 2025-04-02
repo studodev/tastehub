@@ -27,10 +27,11 @@ final class RecipeExploreController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO
+            $recipeQueryBuilder = $this->recipeRepository->findByFilterQueryBuilder($filter);
+        } else {
+            $recipeQueryBuilder = $this->recipeRepository->findByFilterQueryBuilder();
         }
 
-        $recipeQueryBuilder = $this->recipeRepository->findByFilterQueryBuilder();
         $offset = $request->query->getInt('offset');
         $pagination = $paginationService->paginate($recipeQueryBuilder, $offset, 2);
 

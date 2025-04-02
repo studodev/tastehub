@@ -34,12 +34,14 @@ class RecipeFilterType extends AbstractType
                 'label' => 'Catégories',
                 'choice_label' => 'label',
                 'multiple' => true,
+                'placeholder_content' => 'Tout afficher',
             ])
             ->add('diets', AutocompleteEntityType::class, [
                 'class' => DietType::class,
                 'label' => 'Régimes spécifiques',
                 'choice_label' => 'label',
                 'multiple' => true,
+                'placeholder_content' => 'Tout afficher',
             ])
             ->add('tags', AutocompleteEntityType::class, [
                 'class' => Tag::class,
@@ -47,10 +49,12 @@ class RecipeFilterType extends AbstractType
                 'choice_label' => 'label',
                 'multiple' => true,
                 'autocomplete_route' => 'cooking_tag_autocomplete',
+                'placeholder_content' => 'Tout afficher',
             ])
             ->add('duration', EnumType::class, [
                 'class' => RecipeDurationRangeEnum::class,
                 'label' => 'Durée de la recette',
+                'placeholder' => 'Tout afficher',
             ])
             ->add('sort', EnumType::class, [
                 'class' => RecipeSortEnum::class,
@@ -66,7 +70,8 @@ class RecipeFilterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => RecipeFilter::class,
-            'row_attr' => [
+            'method' => 'GET',
+            'attr' => [
                 'class' => 'recipe-filter',
             ],
         ]);
