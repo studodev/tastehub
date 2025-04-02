@@ -2,7 +2,7 @@ import "@styles/components/cooking/recipe-gallery.scss";
 import { apiProvider } from "../../services/api-provider";
 import { AbstractComponent } from "../abstract-component";
 
-// TODO Manage errors + loading + no result
+// TODO Improve loading + no result
 export class RecipeGallery extends AbstractComponent {
     private elements: RecipeGalleryElements;
     private options: RecipeGalleryOptions;
@@ -47,7 +47,7 @@ export class RecipeGallery extends AbstractComponent {
             clearTimeout(this.searchTimer);
             this.searchTimer = setTimeout(() => {
                 this.search();
-            }, 2000);
+            }, 1000);
         });
     }
 
@@ -73,8 +73,7 @@ export class RecipeGallery extends AbstractComponent {
 
             this.render(data.view, reset);
             this.updateDisplay();
-            this.elements.loadMore.classList.remove('busy');
-        });
+        }).finally(() => this.elements.loadMore.classList.remove('busy'));
     }
 
     private render(view: string, reset: boolean): void {
