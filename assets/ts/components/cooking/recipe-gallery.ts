@@ -2,7 +2,7 @@ import "@styles/components/cooking/recipe-gallery.scss";
 import { apiProvider } from "../../services/api-provider";
 import { AbstractComponent } from "../abstract-component";
 
-// TODO Improve loading + no result
+// TODO Improve loading 
 export class RecipeGallery extends AbstractComponent {
     private elements: RecipeGalleryElements;
     private options: RecipeGalleryOptions;
@@ -27,6 +27,7 @@ export class RecipeGallery extends AbstractComponent {
             filter: container.querySelector('.recipe-filter'),
             loadMore: container.querySelector('.recipe-load-more'),
             endBanner: container.querySelector('.inspiration-banner'),
+            empty: container.querySelector('.recipe-holder-empty')
         };
     }
 
@@ -47,7 +48,7 @@ export class RecipeGallery extends AbstractComponent {
             clearTimeout(this.searchTimer);
             this.searchTimer = setTimeout(() => {
                 this.search();
-            }, 1000);
+            }, 500);
         });
     }
 
@@ -85,6 +86,12 @@ export class RecipeGallery extends AbstractComponent {
     }
 
     private updateDisplay(): void {
+        if (this.options.total === 0) {
+            this.elements.empty.classList.remove('hidden');
+        } else {
+            this.elements.empty.classList.add('hidden');
+        }
+
         if (this.options.offset >= this.options.total) {
             this.elements.loadMore.classList.add('hidden');
             this.elements.endBanner.classList.remove('hidden');
@@ -101,6 +108,7 @@ interface RecipeGalleryElements {
     filter: HTMLFormElement;
     loadMore: HTMLButtonElement;
     endBanner: HTMLElement;
+    empty: HTMLElement;
 }
 
 interface RecipeGalleryOptions {

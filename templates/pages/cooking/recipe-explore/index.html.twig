@@ -49,6 +49,14 @@
             </ul>
 
             <button type="button" class="recipe-load-more button">Voir plus</button>
+
+            <div class="recipe-holder-empty">
+                <img src="{{ asset('build/images/illustrations/empty.svg') }}" alt="Une personne entourée d'ingrédients devant une assiette vide">
+                <p>
+                    <span>Oh non, nous n'avons rien pour vous régaler</span>
+                    Mais ne partez pas le ventre vide !<br> Essayez de refaire une recherche avec d'autres critères, il y a sûrement un festin qui vous attend.
+                </p>
+            </div>
         </div>
         {{ form_end(form) }}
 
