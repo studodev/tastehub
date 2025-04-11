@@ -1,10 +1,10 @@
 @use "animation/spin";
 
 @mixin default {
-    width: var(--loader-size);
-    height: var(--loader-size);
-    border: 3px solid transparent;
-    border-top-color: var(--loader-color);
+    width: var(--loader-size, 50px);
+    height: var(--loader-size, 50px);
+    border: var(--loader-thickness, 3px) solid transparent;
+    border-top-color: var(--loader-color, var(--color-eggplant));
     border-radius: 50%;
     animation-name: spin;
     animation-duration: 800ms;
@@ -13,8 +13,6 @@
 }
 
 .loader {
-    --loader-size: 50px;
-    --loader-color: var(--color-eggplant);
     @include default;
 
     &.small {

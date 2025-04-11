@@ -2,7 +2,7 @@ import "@styles/components/cooking/recipe-gallery.scss";
 import { apiProvider } from "../../services/api-provider";
 import { AbstractComponent } from "../abstract-component";
 
-// TODO Improve loading 
+// TODO - Add expanded filters
 export class RecipeGallery extends AbstractComponent {
     private elements: RecipeGalleryElements;
     private options: RecipeGalleryOptions;
@@ -58,7 +58,11 @@ export class RecipeGallery extends AbstractComponent {
     }
 
     private load(reset: boolean = false): void {
-        this.elements.loadMore.classList.add('busy');
+        if (reset) {
+            this.elements.container.classList.add('loading');
+        } else {
+            this.elements.loadMore.classList.add('busy');
+        }
 
         const url = new URL(this.options.url);
         url.searchParams.set('offset', this.options.offset.toString());
@@ -74,7 +78,13 @@ export class RecipeGallery extends AbstractComponent {
 
             this.render(data.view, reset);
             this.updateDisplay();
-        }).finally(() => this.elements.loadMore.classList.remove('busy'));
+        }).finally(() => {
+            if (reset) {
+                this.elements.container.classList.remove('loading');
+            } else {
+                this.elements.loadMore.classList.remove('busy');
+            }
+        });
     }
 
     private render(view: string, reset: boolean): void {

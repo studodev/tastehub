@@ -1,4 +1,5 @@
 @use "../common/form/common";
+@use "../common/loader" as loader;
 @use "inspiration-banner";
 @use "recipe-card";
 
@@ -46,11 +47,14 @@
 
         .filter-container {
             position: sticky;
-            top: 16px;
+            top: 0;
             flex: 0 0 20%;
             align-self: start;
+            padding-top: 16px;
 
             .fake-label {
+                position: relative;
+                width: 100%;
                 font-family: var(--font-family-title), sans-serif;
                 font-size: 1.4rem;
                 color: var(--color-olive);
@@ -109,17 +113,46 @@
             }
         }
     }
+
+    &.loading {
+        .recipe-holder {
+            filter: blur(5px) opacity(90%);
+        }
+
+        .filter-container .fake-label:after {
+            --loader-thickness: 4px;
+            --loader-size: 35px;
+            --loader-color: var(--color-raspberry);
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            @include loader.default();
+            z-index: 1;
+        }
+    }
 }
 
 @media screen and (max-width: 1024px) {
-    .recipe-gallery form {
-        .filter-container {
-            position: static;
-            flex: 0 0 100%;
+    .recipe-gallery {
+        form {
+            .filter-container {
+                flex: 0 0 100%;
+                left: 0;
+                right: 0;
+                z-index: 1;
+                background-color: var(--color-light);
+                border-bottom: 2px solid var(--color-raspberry);
+            }
+
+            .recipe-holder-wrapper .recipe-holder {
+                padding-left: 0;
+            }
         }
 
-        .recipe-holder-wrapper .recipe-holder {
-            padding-left: 0;
+        &.loading .filter-container .fake-label:after {
+            --loader-size: 25px;
+            --loader-thickness: 3px;
         }
     }
 }
