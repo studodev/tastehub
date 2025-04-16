@@ -22,7 +22,7 @@ main {
 }
 
 @media screen and (max-width: 768px) {
-    main {
-        padding-inline: 20px;
+    .page-spacer {
+        padding-inline: calc(var(--page-spacer-inline) / 2);
     }
 }
