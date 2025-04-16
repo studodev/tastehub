@@ -12,12 +12,14 @@
     {{ encore_entry_script_tags('cooking_recipe_explore_index') }}
 {% endblock %}
 
+{% block mainClass %}{% endblock %}
+
 {% block body %}
     <section class="recipe-gallery"
          data-url="{{ url('cooking_recipe_explore_index') }}"
          data-offset="{{ pagination.offset }}"
          data-total="{{ pagination.total }}">
-        <header class="title-container">
+        <header class="title-container page-spacer">
             <h1>Explorer les recettes</h1>
 
             <div class="actions">
@@ -27,13 +29,13 @@
         </header>
 
         {{ form_start(form) }}
-        <div class="search-container">
+        <div class="search-container page-spacer">
             {{ form_row(form.query) }}
             {{ form_row(form.sort) }}
         </div>
 
-        <aside class="filter-container">
-            <div class="fake-label">Filtrer</div>
+        <aside class="filter-container" data-expander>
+            <div class="fake-label expander-trigger">Filtrer</div>
 
             {{ form_row(form.categories) }}
             {{ form_row(form.diets) }}

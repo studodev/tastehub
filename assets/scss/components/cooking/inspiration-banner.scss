@@ -1,23 +1,30 @@
 .inspiration-banner {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 16px;
     width: fit-content;
     margin: 32px auto 0;
 
     .content {
+        display: flex;
+        flex-direction: column;
+
         .fake-title {
             font-family: var(--font-family-title), sans-serif;
             font-size: 1.4rem;
             color: var(--color-olive);
             margin-bottom: 12px;
             text-wrap: pretty;
+            text-align: center;
         }
 
-        .button {
-            margin-right: 16px;
-            margin-bottom: 8px;
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
         }
     }
 

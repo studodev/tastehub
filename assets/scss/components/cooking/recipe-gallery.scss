@@ -10,7 +10,6 @@
         justify-content: space-between;
         align-items: center;
         gap: 16px;
-        padding: 12px 0;
         margin-bottom: 16px;
 
         .actions {
@@ -50,7 +49,7 @@
             top: 0;
             flex: 0 0 20%;
             align-self: start;
-            padding-top: 16px;
+            padding-left: var(--page-spacer-inline);
 
             .fake-label {
                 position: relative;
@@ -67,6 +66,8 @@
             display: flex;
             flex-direction: column;
             gap: 32px;
+            padding-block: 12px;
+            padding-inline: var(--page-spacer-inline);
 
             .recipe-holder {
                 display: grid;
@@ -74,7 +75,6 @@
                 gap: 24px;
                 justify-content: space-evenly;
                 width: 100%;
-                padding: 12px 0 0 30px;
             }
 
             .recipe-load-more {
@@ -141,12 +141,43 @@
                 left: 0;
                 right: 0;
                 z-index: 1;
+                padding: 12px;
                 background-color: var(--color-light);
                 border-bottom: 2px solid var(--color-raspberry);
+                margin-bottom: 16px;
+
+                .fake-label {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    &:after {
+                        content: "\e915";
+                        display: inline-block;
+                        transform: rotate(180deg);
+                        font-size: 1.4rem;
+                        color: inherit;
+                        font-family: var(--font-family-icon), sans-serif;
+                    }
+                }
+
+                &:not(.expanded) {
+                    .fake-label {
+                        margin-bottom: 0;
+
+                        &:after {
+                            transform: rotate(0);
+                        }
+                    }
+
+                    .form-row {
+                        display: none;
+                    }
+                }
             }
 
-            .recipe-holder-wrapper .recipe-holder {
-                padding-left: 0;
+            .recipe-holder-wrapper {
+                padding-inline: calc(var(--page-spacer-inline) / 2);
             }
         }
 
