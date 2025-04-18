@@ -13,6 +13,7 @@ export class FileUploader extends AbstractComponent{
         super();
         this.buildElements(container);
         this.bindEvents();
+        this.loadPreview();
     }
 
     private buildElements(container: HTMLElement): void {
@@ -59,6 +60,23 @@ export class FileUploader extends AbstractComponent{
         this.elements.previewRemove.addEventListener('click', () => {
             this.clearFile();
         });
+    }
+
+    private loadPreview(): void
+    {
+        const currentPictureString = this.elements.widget.dataset.currentFile;
+        if (!currentPictureString) {
+            return;
+        }
+
+        const currentPicture = JSON.parse(currentPictureString);
+        if (currentPicture.type === 'image') {
+            this.elements.previewImage.src = currentPicture.path;
+            this.displayMode(FileUploaderDisplayMode.ModePreviewImage);
+        } else {
+            this.elements.previewFilename.textContent = currentPicture.path;
+            this.displayMode(FileUploaderDisplayMode.ModePreviewFile);
+        }
     }
 
     private dropFile(file: File): void {

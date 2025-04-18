@@ -8,6 +8,7 @@ use App\Entity\Cooking\DietType;
 use App\Entity\Cooking\Recipe;
 use App\Entity\Cooking\Tag;
 use App\Entity\Cooking\Utensil;
+use App\Enum\Common\FileManagerBucketEnum;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
 use App\Form\Type\Common\FileUploaderType;
@@ -76,6 +77,11 @@ class RecipeType extends AbstractType
             ])
             ->add('pictureFile', FileUploaderType::class, [
                 'label' => 'Photo de la recette',
+                'current_file' => [
+                    'type' => FileUploaderType::IMAGE_PREVIEW_TYPE,
+                    'bucket' => FileManagerBucketEnum::Recipe,
+                    'filename' => $builder->getData()->getPicture(),
+                ],
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
