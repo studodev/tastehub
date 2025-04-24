@@ -37,7 +37,7 @@ class FileUploaderType extends AbstractType
             $subResolver->setRequired(['type', 'bucket', 'filename']);
             $subResolver->setAllowedValues('type', [self::IMAGE_PREVIEW_TYPE, self::FILE_PREVIEW_TYPE]);
             $subResolver->setAllowedTypes('bucket', FileManagerBucketEnum::class);
-            $subResolver->setAllowedTypes('filename', 'string');
+            $subResolver->setAllowedTypes('filename', ['null', 'string']);
 
             return $subResolver->resolve($value);
         });
@@ -47,9 +47,9 @@ class FileUploaderType extends AbstractType
     {
         parent::buildView($view, $form, $options);
 
-        $attr = [];
-        if (null !== $options['current_file']) {
+        if (null !== $options['current_file'] && null !== $options['current_file']['filename']) {
             $currentFile = $options['current_file'];
+            $attr = [];
 
             if (self::IMAGE_PREVIEW_TYPE === $currentFile['type']) {
                 $path = $this->fileManager->getUrl($currentFile['filename'], $currentFile['bucket']);
@@ -61,9 +61,9 @@ class FileUploaderType extends AbstractType
                 'type' => $currentFile['type'],
                 'path' => $path,
             ]);
-        }
 
-        $view->vars['attr'] = array_merge($view->vars['attr'], $attr);
+            $view->vars['attr'] = array_merge($view->vars['attr'], $attr);
+        }
     }
 
     public function getParent(): string
