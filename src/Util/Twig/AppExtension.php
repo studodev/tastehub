@@ -11,7 +11,7 @@ class AppExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('file_url', [AssetRuntime::class, 'getFileUrl']),
+            new TwigFunction('recipe_image_url', [AssetRuntime::class, 'getRecipeImageUrl']),
             new TwigFunction('pictogram_url', [AssetRuntime::class, 'getPictogramUrl']),
         ];
     }

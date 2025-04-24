@@ -2,23 +2,23 @@
 
 namespace App\Util\Twig;
 
-use App\Enum\Common\FileManagerBucketEnum;
+use App\Entity\Cooking\Recipe;
 use App\Enum\Common\PictogramTypeEnum;
-use App\Service\Common\FileManagerService;
 use App\Service\Common\PictogramService;
+use App\Service\Cooking\RecipePictureService;
 use Twig\Extension\RuntimeExtensionInterface;
 
 readonly class AssetRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
-        private FileManagerService $fileManagerService,
+        private RecipePictureService $recipePictureService,
         private PictogramService $pictogramService,
     ) {
     }
 
-    public function getFileUrl(string $filename, FileManagerBucketEnum $bucket): string
+    public function getRecipeImageUrl(Recipe $recipe): string
     {
-        return $this->fileManagerService->getUrl($filename, $bucket);
+        return $this->recipePictureService->getUrl($recipe);
     }
 
     public function getPictogramUrl(PictogramTypeEnum $type, string $name): string

@@ -1,6 +1,5 @@
 <article class="recipe-card">
-    {% set recipeBucket = enum('App\\Enum\\Common\\FileManagerBucketEnum').Recipe %}
-    <img src="{{ file_url(recipe.picture, recipeBucket) }}" alt="{{ recipe.title }}">
+    <img src="{{ recipe_image_url(recipe) }}" alt="{{ recipe.title }}">
 
     <div class="recipe-rate">
         <i class="icon icon-star"></i>
