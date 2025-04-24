@@ -21,10 +21,15 @@ readonly class RecipePictureService
 
         $filename = $this->fileManager->upload($recipe->getPictureFile(), FileManagerBucketEnum::Recipe);
 
+        $this->remove($recipe);
+        $recipe->setPicture($filename);
+    }
+
+    public function remove(Recipe $recipe): void
+    {
         if (null !== $recipe->getPicture()) {
             $this->fileManager->remove($recipe->getPicture(), FileManagerBucketEnum::Recipe);
+            $recipe->setPicture(null);
         }
-
-        $recipe->setPicture($filename);
     }
 }

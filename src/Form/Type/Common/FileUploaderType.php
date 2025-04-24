@@ -34,10 +34,11 @@ class FileUploaderType extends AbstractType
 
             $subResolver = new OptionsResolver();
 
-            $subResolver->setRequired(['type', 'bucket', 'filename']);
+            $subResolver->setRequired(['type', 'bucket', 'filename', 'delete_url']);
             $subResolver->setAllowedValues('type', [self::IMAGE_PREVIEW_TYPE, self::FILE_PREVIEW_TYPE]);
             $subResolver->setAllowedTypes('bucket', FileManagerBucketEnum::class);
             $subResolver->setAllowedTypes('filename', ['null', 'string']);
+            $subResolver->setAllowedTypes('delete_url', ['null', 'string']);
 
             return $subResolver->resolve($value);
         });
@@ -60,6 +61,7 @@ class FileUploaderType extends AbstractType
             $attr['data-current-file'] = json_encode([
                 'type' => $currentFile['type'],
                 'path' => $path,
+                'delete_url' => $currentFile['delete_url'],
             ]);
 
             $view->vars['attr'] = array_merge($view->vars['attr'], $attr);

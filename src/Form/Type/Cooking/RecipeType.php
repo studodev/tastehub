@@ -23,9 +23,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\RouterInterface;
 
 class RecipeType extends AbstractType
 {
+    public function __construct(private readonly RouterInterface $router)
+    {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $mode = $options['mode'];
@@ -56,6 +61,13 @@ class RecipeType extends AbstractType
 
     private function prepareMetadataMode(FormBuilderInterface $builder): void
     {
+        $recipe = $builder->getData();
+        if ($recipe->getId()) {
+            $deleteUrl = $this->router->generate('cooking_recipe_form_delete_image', [
+                'id' => $recipe->getId(),
+            ]);
+        }
+
         $builder
             ->add('title', null, [
                 'label' => 'Nom de la recette',
@@ -80,7 +92,8 @@ class RecipeType extends AbstractType
                 'current_file' => [
                     'type' => FileUploaderType::IMAGE_PREVIEW_TYPE,
                     'bucket' => FileManagerBucketEnum::Recipe,
-                    'filename' => $builder->getData()->getPicture(),
+                    'filename' => $recipe->getPicture(),
+                    'delete_url' => $deleteUrl ?? null,
                 ],
             ])
             ->add('category', EntityType::class, [

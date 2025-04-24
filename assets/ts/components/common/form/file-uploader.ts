@@ -1,9 +1,11 @@
 import "@styles/components/common/form/file-uploader.scss";
+import { apiProvider } from "../../../services/api-provider";
 import { AbstractComponent } from "../../abstract-component";
 
 export class FileUploader extends AbstractComponent{
     private static readonly imageTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp'];
     private elements: FileUploderElements;
+    private deleteAction?: string;
 
     static getComponentSelector(): string {
         return '[data-file-uploader]';
@@ -62,8 +64,7 @@ export class FileUploader extends AbstractComponent{
         });
     }
 
-    private loadPreview(): void
-    {
+    private loadPreview(): void {
         const currentPictureString = this.elements.widget.dataset.currentFile;
         if (!currentPictureString) {
             return;
@@ -77,6 +78,8 @@ export class FileUploader extends AbstractComponent{
             this.elements.previewFilename.textContent = currentPicture.path;
             this.displayMode(FileUploaderDisplayMode.ModePreviewFile);
         }
+
+        this.deleteAction = currentPicture.delete_url;
     }
 
     private dropFile(file: File): void {
@@ -111,8 +114,16 @@ export class FileUploader extends AbstractComponent{
 
     private clearFile(): void {
         this.elements.widget.value = "";
-        this.elements.previewImage.src = null;
+        this.elements.previewImage.src = "";
         this.displayMode(FileUploaderDisplayMode.ModeEmpty);
+
+        if (this.deleteAction) {
+            apiProvider.fetch(this.deleteAction, {
+                method: 'DELETE',
+            });
+
+            this.deleteAction = undefined;
+        }
     }
 
     private displayMode(mode: FileUploaderDisplayMode): void {
