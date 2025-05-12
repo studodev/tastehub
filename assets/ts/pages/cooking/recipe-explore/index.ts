@@ -1,4 +1,3 @@
-import "@styles/pages/cooking/recipe-explore/index.scss";
 import { Expander } from "../../../components/common/expander";
 import { AutocompleteEntity } from "../../../components/common/form/autocomplete-entity";
 import { RecipeGallery } from "../../../components/cooking/recipe-gallery";
