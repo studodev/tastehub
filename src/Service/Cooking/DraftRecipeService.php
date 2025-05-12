@@ -31,13 +31,13 @@ readonly class DraftRecipeService
         return $draft;
     }
 
-    // TODO - Check savedStates not updated on form navigation
     public function update(DraftRecipe $draft): void
     {
         if ($recipeId = $draft->getRecipe()->getId()) {
             $draft->setRecipeIdentifier($recipeId);
         }
 
+        $draft = clone $draft;
         $draft->setRecipe(null);
         $this->requestStack->getSession()->set(self::SESSION_KEY, $draft);
     }

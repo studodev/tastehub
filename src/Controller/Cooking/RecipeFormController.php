@@ -48,6 +48,7 @@ class RecipeFormController extends AbstractController
             $request->setMethod('POST');
             $request->request->replace($savedState);
             $draft->removeSavedState($draft->getStatus());
+            $this->draftRecipeService->update($draft);
             $isRestoredState = true;
         }
 

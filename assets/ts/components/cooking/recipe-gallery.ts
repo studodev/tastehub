@@ -2,7 +2,6 @@ import "@styles/components/cooking/recipe-gallery.scss";
 import { apiProvider } from "../../services/api-provider";
 import { AbstractComponent } from "../abstract-component";
 
-// TODO - Add expanded filters
 export class RecipeGallery extends AbstractComponent {
     private elements: RecipeGalleryElements;
     private options: RecipeGalleryOptions;
