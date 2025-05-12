@@ -2,6 +2,7 @@
 
 namespace App\Controller\Cooking;
 
+use App\Entity\Cooking\Recipe;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Enum\Cooking\RecipeStateEnum;
 use App\Form\Type\Cooking\RecipeType;
@@ -47,6 +48,7 @@ class RecipeFormController extends AbstractController
             $request->setMethod('POST');
             $request->request->replace($savedState);
             $draft->removeSavedState($draft->getStatus());
+            $this->draftRecipeService->update($draft);
             $isRestoredState = true;
         }
 
@@ -212,5 +214,17 @@ class RecipeFormController extends AbstractController
         $this->draftRecipeService->update($draft);
 
         return $this->redirectToRoute('cooking_recipe_form_editor');
+    }
+
+    // TODO - Add voter
+    #[Route('{id}/supprimer-image', name: 'delete_image', methods: ['DELETE'])]
+    public function deleteImage(Recipe $recipe): Response
+    {
+        $this->recipePictureService->remove($recipe);
+        $this->em->flush();
+
+        return $this->json([
+            'status' => true,
+        ]);
     }
 }

@@ -1,11 +1,14 @@
 parameters:
     file_manager:
         directory: '%kernel.project_dir%/public/data/'
+        uri: 'data/'
     mailer:
         templateFolder: mails/
         sender:
             name: TasteHub App
             email: noreply@tastehub.app
+    pagination:
+        limit: 10
     pictogram:
         basePath: build/images/pictogram
     reset_password:

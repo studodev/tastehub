@@ -15,19 +15,19 @@ class RecipeTimer
         message: 'Le temps de préparation doit être un nombre entier positif',
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
-    private ?int $preparationTime;
+    private ?int $preparationTime = null;
 
     #[Assert\PositiveOrZero(
         message: 'Le temps de cuisson doit être un nombre entier positif',
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
-    private ?int $cookingTime;
+    private ?int $cookingTime = null;
 
     #[Assert\PositiveOrZero(
         message: 'Le temps de pose doit être un nombre entier positif',
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
-    private ?int $waitingTime;
+    private ?int $waitingTime = null;
 
     public function getPreparationTime(): ?int
     {
@@ -63,5 +63,10 @@ class RecipeTimer
         $this->waitingTime = $waitingTime;
 
         return $this;
+    }
+
+    public function getTotalTime(): int
+    {
+        return $this->getPreparationTime() + $this->getCookingTime() + $this->getWaitingTime();
     }
 }

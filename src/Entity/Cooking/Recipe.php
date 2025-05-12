@@ -10,6 +10,7 @@ use App\Model\Cooking\RecipeTimer;
 use App\Repository\Cooking\RecipeRepository;
 use App\Util\Common\SlugEntityTrait;
 use App\Util\Common\SluggableInterface;
+use App\Util\Common\TimableTrait;
 use App\Validator\UniqueCollectionElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -21,9 +22,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Recipe implements SluggableInterface
 {
     use SlugEntityTrait;
+    use TimableTrait;
 
     public const DESCRIPTION_MAX_LENGTH = 350;
     public const MAX_TAGS = 10;
@@ -54,7 +57,7 @@ class Recipe implements SluggableInterface
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
     #[Assert\Expression(
@@ -179,7 +182,7 @@ class Recipe implements SluggableInterface
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    public function setTitle(?string $title): static
     {
         $this->title = $title;
 
@@ -203,7 +206,7 @@ class Recipe implements SluggableInterface
         return $this->picture;
     }
 
-    public function setPicture(string $picture): static
+    public function setPicture(?string $picture): static
     {
         $this->picture = $picture;
 

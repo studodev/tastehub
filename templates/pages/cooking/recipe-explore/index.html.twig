@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Explorer les recettes | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('cooking_recipe_explore_index') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('cooking_recipe_explore_index') }}
+{% endblock %}
+
+{% block mainClass %}{% endblock %}
+
+{% block body %}
+    <section class="recipe-gallery"
+         data-url="{{ url('cooking_recipe_explore_index') }}"
+         data-offset="{{ pagination.offset }}"
+         data-total="{{ pagination.total }}">
+        <header class="title-container page-spacer">
+            <h1>Explorer les recettes</h1>
+
+            <div class="actions">
+                <a href="#" class="button outline small water">Voir mon livre de recette</a>
+                <a href="{{ path('cooking_recipe_form_editor') }}" class="button small water">Créer une recette</a>
+            </div>
+        </header>
+
+        {{ form_start(form) }}
+        <div class="search-container page-spacer">
+            {{ form_row(form.query) }}
+            {{ form_row(form.sort) }}
+        </div>
+
+        <aside class="filter-container" data-expander>
+            <div class="fake-label expander-trigger">Filtrer</div>
+
+            {{ form_row(form.categories) }}
+            {{ form_row(form.diets) }}
+            {{ form_row(form.tags) }}
+            {{ form_row(form.duration) }}
+        </aside>
+
+        <div class="recipe-holder-wrapper">
+            <ul class="recipe-holder">
+                {% include 'components/cooking/recipe-list.html.twig' with {
+                    recipes: pagination.results,
+                } only %}
+            </ul>
+
+            <button type="button" class="recipe-load-more button">Voir plus</button>
+
+            <div class="recipe-holder-empty">
+                <img src="{{ asset('build/images/illustrations/empty.svg') }}" alt="Une personne entourée d'ingrédients devant une assiette vide">
+                <p>
+                    <span>Oh non, nous n'avons rien pour vous régaler</span>
+                    Mais ne partez pas le ventre vide !<br> Essayez de refaire une recherche avec d'autres critères, il y a sûrement un festin qui vous attend.
+                </p>
+            </div>
+        </div>
+        {{ form_end(form) }}
+
+        <footer>
+            {% include 'components/cooking/inspiration-banner.html.twig' only %}
+        </footer>
+    </section>
+{% endblock %}

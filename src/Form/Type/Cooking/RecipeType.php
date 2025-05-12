@@ -8,6 +8,7 @@ use App\Entity\Cooking\DietType;
 use App\Entity\Cooking\Recipe;
 use App\Entity\Cooking\Tag;
 use App\Entity\Cooking\Utensil;
+use App\Enum\Common\FileManagerBucketEnum;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
 use App\Form\Type\Common\FileUploaderType;
@@ -22,9 +23,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\RouterInterface;
 
 class RecipeType extends AbstractType
 {
+    public function __construct(private readonly RouterInterface $router)
+    {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $mode = $options['mode'];
@@ -55,6 +61,13 @@ class RecipeType extends AbstractType
 
     private function prepareMetadataMode(FormBuilderInterface $builder): void
     {
+        $recipe = $builder->getData();
+        if ($recipe->getId()) {
+            $deleteUrl = $this->router->generate('cooking_recipe_form_delete_image', [
+                'id' => $recipe->getId(),
+            ]);
+        }
+
         $builder
             ->add('title', null, [
                 'label' => 'Nom de la recette',
@@ -76,6 +89,12 @@ class RecipeType extends AbstractType
             ])
             ->add('pictureFile', FileUploaderType::class, [
                 'label' => 'Photo de la recette',
+                'current_file' => [
+                    'type' => FileUploaderType::IMAGE_PREVIEW_TYPE,
+                    'bucket' => FileManagerBucketEnum::Recipe,
+                    'filename' => $recipe->getPicture(),
+                    'delete_url' => $deleteUrl ?? null,
+                ],
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,

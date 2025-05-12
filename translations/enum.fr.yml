@@ -2,4 +2,11 @@ cooking:
     quantity_counter_unit:
         person: Personne
         portion: Portion
-
+    recipe_sort:
+        aplha: Alphabétique
+        newest: Plus récents
+        rating: Mieux notés
+    recipe_duration_range:
+        short: Courte (< 30 min)
+        medium: Moyenne (30 min - 1h)
+        long: Longue (> 1h)

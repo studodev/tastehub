@@ -23,6 +23,7 @@ readonly class DraftRecipeService
         if (!$draft instanceof DraftRecipe) {
             $draft = new DraftRecipe();
         } elseif ($draft->getRecipeIdentifier()) {
+            $draft = clone $draft;
             $recipe = $this->recipeRepository->find($draft->getRecipeIdentifier());
             $draft->setRecipe($recipe);
         }
@@ -36,6 +37,7 @@ readonly class DraftRecipeService
             $draft->setRecipeIdentifier($recipeId);
         }
 
+        $draft = clone $draft;
         $draft->setRecipe(null);
         $this->requestStack->getSession()->set(self::SESSION_KEY, $draft);
     }

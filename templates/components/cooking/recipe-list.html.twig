@@ -1,0 +1,5 @@
+{% for recipe in recipes %}
+    {% include 'components/cooking/recipe-card.html.twig' with {
+        recipe: recipe,
+    } only %}
+{% endfor %}

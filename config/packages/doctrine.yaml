@@ -21,6 +21,10 @@ doctrine:
                 alias: App
         controller_resolver:
             auto_mapping: true
+        dql:
+            string_functions:
+                JSON_VALUE: Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mariadb\JsonValue
+                IFNULL: DoctrineExtensions\Query\Mysql\IfNull
 
 when@test:
     doctrine:

@@ -3,6 +3,7 @@
 namespace App\Service\Common;
 
 use App\Enum\Common\FileManagerBucketEnum;
+use Symfony\Component\Asset\PackageInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -11,6 +12,7 @@ readonly class FileManagerService
 {
     public function __construct(
         private Filesystem $filesystem,
+        #[Autowire('@assets._default_package')] private PackageInterface $package,
         #[Autowire('%file_manager%')] private array $config,
     ) {
     }
@@ -28,6 +30,16 @@ readonly class FileManagerService
     {
         $path = sprintf('%s%s', $this->buildPath($bucket), $filename);
         $this->filesystem->remove($path);
+    }
+
+    public function getUrl(string $filename, FileManagerBucketEnum $bucket): string
+    {
+        return $this->package->getUrl(sprintf('%s%s', $this->buildBaseUrl($bucket), $filename));
+    }
+
+    private function buildBaseUrl(FileManagerBucketEnum $bucket): string
+    {
+        return sprintf('%s%s', $this->config['uri'], $bucket->value);
     }
 
     private function buildPath(FileManagerBucketEnum $bucket): string

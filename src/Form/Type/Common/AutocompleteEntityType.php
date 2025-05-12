@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AutocompleteEntityType extends AbstractType
@@ -31,16 +32,17 @@ class AutocompleteEntityType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
+            'autocomplete_route' => null,
             'placeholder_content' => null,
             'max_items' => null,
-            'choice_lazy' => true,
+            'choice_lazy' => function (Options $options) {
+                return !!$options['autocomplete_route'];
+            },
         ]);
 
         $resolver->setAllowedTypes('placeholder_content', ['null', 'string']);
         $resolver->setAllowedTypes('max_items', ['null', 'int']);
-
-        $resolver->setRequired('autocomplete_route');
-        $resolver->setAllowedTypes('autocomplete_route', ['string']);
+        $resolver->setAllowedTypes('autocomplete_route', ['null', 'string']);
     }
 
     public function getParent(): string

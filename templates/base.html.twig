@@ -15,7 +15,7 @@
     <body>
         {% include 'components/layout/header.html.twig' %}
 
-        <main>
+        <main class="{% block mainClass %}page-spacer{% endblock %}">
             {% block body %}{% endblock %}
         </main>
 
