@@ -32,7 +32,7 @@ final class RecipeExploreController extends AbstractController
         }
 
         $offset = $request->query->getInt('offset');
-        $pagination = $paginationService->paginate($recipeQueryBuilder, $offset, 2);
+        $pagination = $paginationService->paginate($recipeQueryBuilder, $offset);
 
         if ($request->isXmlHttpRequest()) {
             return $this->json([
