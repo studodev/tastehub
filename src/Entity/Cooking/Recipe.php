@@ -8,6 +8,7 @@ use App\Enum\Cooking\RecipeStateEnum;
 use App\Model\Cooking\QuantityCounter;
 use App\Model\Cooking\RecipeTimer;
 use App\Repository\Cooking\RecipeRepository;
+use App\Util\Common\AllowedUsersInterface;
 use App\Util\Common\SlugEntityTrait;
 use App\Util\Common\SluggableInterface;
 use App\Util\Common\TimableTrait;
@@ -24,7 +25,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 // TODO - Add char counter on title
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class Recipe implements SluggableInterface
+class Recipe implements SluggableInterface, AllowedUsersInterface
 {
     use SlugEntityTrait;
     use TimableTrait;
@@ -494,5 +495,10 @@ class Recipe implements SluggableInterface
                 ;
             }
         }
+    }
+
+    public function allowedUsers(): array
+    {
+        return [$this->author];
     }
 }

@@ -239,9 +239,9 @@ class RecipeFormController extends AbstractController
         return $this->redirectToRoute('cooking_recipe_form_editor');
     }
 
-    // TODO - Add voter
     #[Route('/nouvelle', name: 'new')]
     #[Route('/{id}', name: 'update')]
+    #[IsGranted('ALLOWED_USERS', 'recipe')]
     public function init(?Recipe $recipe = null): Response
     {
         $this->draftRecipeService->create($recipe);
@@ -249,8 +249,8 @@ class RecipeFormController extends AbstractController
         return $this->redirectToRoute('cooking_recipe_form_editor');
     }
 
-    // TODO - Add voter
     #[Route('/{id}/supprimer-image', name: 'delete_image', methods: ['DELETE'])]
+    #[IsGranted('ALLOWED_USERS', 'recipe')]
     public function deleteImage(Recipe $recipe): Response
     {
         $this->recipePictureService->remove($recipe);
