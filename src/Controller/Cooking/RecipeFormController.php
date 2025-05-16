@@ -239,10 +239,10 @@ class RecipeFormController extends AbstractController
         return $this->redirectToRoute('cooking_recipe_form_editor');
     }
 
-    // TODO - Fix new recipe button on explore (when update is in progress)
     // TODO - Add voter
+    #[Route('/nouvelle', name: 'new')]
     #[Route('/{id}', name: 'update')]
-    public function update(Recipe $recipe): Response
+    public function init(?Recipe $recipe = null): Response
     {
         $this->draftRecipeService->create($recipe);
 
