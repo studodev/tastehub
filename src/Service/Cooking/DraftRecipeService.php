@@ -2,6 +2,7 @@
 
 namespace App\Service\Cooking;
 
+use App\Entity\Cooking\Recipe;
 use App\Model\Cooking\DraftRecipe;
 use App\Repository\Cooking\RecipeRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -27,6 +28,20 @@ readonly class DraftRecipeService
             $recipe = $this->recipeRepository->find($draft->getRecipeIdentifier());
             $draft->setRecipe($recipe);
         }
+
+        return $draft;
+    }
+
+    public function create(?Recipe $recipe): DraftRecipe
+    {
+        $draft = new DraftRecipe();
+
+        if ($recipe) {
+            $draft->setRecipe($recipe);
+            $draft->setUpdating(true);
+        }
+
+        $this->update($draft);
 
         return $draft;
     }

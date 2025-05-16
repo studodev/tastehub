@@ -191,9 +191,32 @@ class RecipeFormController extends AbstractController
         $this->em->flush();
         $this->draftRecipeService->clear();
 
-        return $this->render('pages/cooking/recipe-form/completed.html.twig', [
-            'recipe' => $draft->getRecipe(),
+        return $this->render('pages/cooking/recipe-form/completed.html.twig');
+    }
+
+    #[Route('/save', name: 'save')]
+    public function save(Request $request): Response
+    {
+        $draft = $this->draftRecipeService->retrieve();
+
+        $form = $this->createForm(RecipeType::class, $draft->getRecipe(), [
+            'mode' => $draft->getStatus(),
         ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->em->flush();
+            $this->draftRecipeService->clear();
+
+            return $this->redirectToRoute('cooking_recipe_view_single', [
+                'slug' => $draft->getRecipe()->getSlug(),
+            ]);
+        }
+
+        $draft->setSavedState($draft->getStatus(), $request->request->all());
+        $this->draftRecipeService->update($draft);
+
+        return $this->redirectToRoute('cooking_recipe_form_editor');
     }
 
     #[Route('/retour', name: 'rewind')]
@@ -216,8 +239,18 @@ class RecipeFormController extends AbstractController
         return $this->redirectToRoute('cooking_recipe_form_editor');
     }
 
+    // TODO - Fix new recipe button on explore (when update is in progress)
     // TODO - Add voter
-    #[Route('{id}/supprimer-image', name: 'delete_image', methods: ['DELETE'])]
+    #[Route('/{id}', name: 'update')]
+    public function update(Recipe $recipe): Response
+    {
+        $this->draftRecipeService->create($recipe);
+
+        return $this->redirectToRoute('cooking_recipe_form_editor');
+    }
+
+    // TODO - Add voter
+    #[Route('/{id}/supprimer-image', name: 'delete_image', methods: ['DELETE'])]
     public function deleteImage(Recipe $recipe): Response
     {
         $this->recipePictureService->remove($recipe);

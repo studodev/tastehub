@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Création d'une recette | {{ parent() }}
+    {{ draft.updating ? 'Édition' : 'Création' }} d'une recette | {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -13,7 +13,16 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Création d'une recette</h1>
+    {{ form_start(form) }}
+    <div class="title-container">
+        <h1>{{ draft.updating ? 'Édition' : 'Création' }} d'une recette</h1>
+
+        {% if draft.updating %}
+            <button formaction="{{ path('cooking_recipe_form_save') }}" class="button small">
+                Terminer l'édition
+            </button>
+        {% endif %}
+    </div>
 
     <div class="timeline-container">
         <ol class="timeline">
@@ -28,7 +37,6 @@
         </ol>
     </div>
 
-    {{ form_start(form) }}
     {% block form %}{% endblock %}
 
     <div class="form-actions">
@@ -36,7 +44,7 @@
             {% if enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Steps is same as draft.status %}
                 Valider ma recette
             {% else %}
-                Étape suivante
+                Sauvegarder et continuer
             {% endif %}
         </button>
 

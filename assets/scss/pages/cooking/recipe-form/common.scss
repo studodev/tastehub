@@ -1,5 +1,12 @@
 @use "../../../components/common/form/common";
 
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 48px;
+}
+
 .timeline-container {
     --marker-size: 30px;
     position: relative;

@@ -11,6 +11,8 @@ class DraftRecipe
 
     private ?Recipe $recipe;
 
+    private bool $updating = false;
+
     private ?DraftRecipeStatusEnum $status = DraftRecipeStatusEnum::Metadata;
 
     private array $savedStates = [];
@@ -40,6 +42,18 @@ class DraftRecipe
     public function setRecipe(?Recipe $recipe): static
     {
         $this->recipe = $recipe;
+
+        return $this;
+    }
+
+    public function isUpdating(): bool
+    {
+        return $this->updating;
+    }
+
+    public function setUpdating(bool $updating): static
+    {
+        $this->updating = $updating;
 
         return $this;
     }

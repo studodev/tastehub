@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Création d'une recette | {{ parent() }}
+    {{ draft.updating ? 'Édition' : 'Création' }} d'une recette | {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -13,24 +13,24 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Création d'une recette</h1>
+    <h1>{{ draft.updating ? 'Édition' : 'Création' }} d'une recette</h1>
 
     <section>
         <h2>Bravo</h2>
         <p>
-            Votre recette <strong>{{ recipe.title }}</strong> a bien été mise en ligne !
+            Votre recette <strong>{{ draft.recipe.title }}</strong> a bien été {{ draft.updating ? 'mise à jour' : 'mise en ligne'}} !
         </p>
 
-        {% if recipe.category.slug starts with 'entree' %}
+        {% if draft.recipe.category.slug starts with 'entree' %}
             {% set categoryIllustration = 'starter' %}
             {% set categoryIllustrationAlt = 'Chef mélengeant le contenu d\'un saladier' %}
-        {% elseif recipe.category.slug starts with 'dessert' %}
+        {% elseif draft.recipe.category.slug starts with 'dessert' %}
             {% set categoryIllustration = 'dessert' %}
             {% set categoryIllustrationAlt = 'Chef préparant le glaçage d\'un gâteau' %}
-        {% elseif recipe.category.slug starts with 'boisson' %}
+        {% elseif draft.recipe.category.slug starts with 'boisson' %}
             {% set categoryIllustration = 'drink' %}
             {% set categoryIllustrationAlt = 'Barmaid préparant un cocktail' %}
-        {% elseif recipe.category.slug starts with 'sauce' %}
+        {% elseif draft.recipe.category.slug starts with 'sauce' %}
             {% set categoryIllustration = 'sauce' %}
             {% set categoryIllustrationAlt = 'Chef goutant une sauce dans une marmite' %}
         {% else %}
@@ -41,9 +41,9 @@
         <img src="{{ asset('build/images/illustrations/recipe-category/' ~ categoryIllustration ~ '.svg') }}" alt="{{ categoryIllustrationAlt }}">
 
         <a href="{{ path('cooking_recipe_form_editor') }}" class="button water small">
-            Créer une autre recette
+            Créer une nouvelle recette
         </a>
-        <a href="{{ path('cooking_recipe_view_single', {slug: recipe.slug}) }}" class="button water outline small">
+        <a href="{{ path('cooking_recipe_view_single', {slug: draft.recipe.slug}) }}" class="button water outline small">
             Voir la recette
         </a>
     </section>
