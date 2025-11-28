@@ -5,6 +5,7 @@ namespace App\Security\Voter;
 use App\Util\Common\AllowedUsersInterface;
 use Symfony\Component\Security\Core\Authentication\Token\NullToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\Vote;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class AllowedUsersVoter extends Voter
@@ -16,7 +17,7 @@ class AllowedUsersVoter extends Voter
         return self::ATTRIBUTE === $attribute;
     }
 
-    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
+    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token, ?Vote $vote = null): bool
     {
         if (null === $subject) {
             return true;
