@@ -36,7 +36,7 @@ class AutocompleteEntityType extends AbstractType
             'placeholder_content' => null,
             'max_items' => null,
             'choice_lazy' => function (Options $options) {
-                return !!$options['autocomplete_route'];
+                return (bool) $options['autocomplete_route'];
             },
         ]);
 

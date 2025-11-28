@@ -26,7 +26,7 @@ class RecipeRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('r');
 
         $whereClauses = [
-            $qb->expr()->eq('r.state', ':published_state')
+            $qb->expr()->eq('r.state', ':published_state'),
         ];
         $havingClauses = [];
 

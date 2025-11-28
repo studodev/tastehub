@@ -13,8 +13,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FileUploaderType extends AbstractType
 {
-    const IMAGE_PREVIEW_TYPE = 'image';
-    const FILE_PREVIEW_TYPE = 'file';
+    public const IMAGE_PREVIEW_TYPE = 'image';
+    public const FILE_PREVIEW_TYPE = 'file';
 
     public function __construct(private readonly FileManagerService $fileManager)
     {

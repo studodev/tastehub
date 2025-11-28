@@ -81,7 +81,8 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "check:php": "vendor/bin/php-cs-fixer fix --diff --dry-run"
+        "php:check": "vendor/bin/php-cs-fixer fix --diff --dry-run",
+        "php:fix": "vendor/bin/php-cs-fixer fix --diff"
     },
     "conflict": {
         "symfony/symfony": "*"

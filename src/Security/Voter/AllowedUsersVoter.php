@@ -18,7 +18,7 @@ class AllowedUsersVoter extends Voter
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
-        if ($subject === null) {
+        if (null === $subject) {
             return true;
         }
 
