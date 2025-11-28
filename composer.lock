@@ -1657,28 +1657,28 @@
         },
         {
             "name": "studodev/form-util-bundle",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studodev/form-util-bundle.git",
-                "reference": "5b6fbd27a4df0ae90f68df095ee25e31d223e427"
+                "reference": "755f9c0cb7936ec51e021c0c0eb363534d33ea0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studodev/form-util-bundle/zipball/5b6fbd27a4df0ae90f68df095ee25e31d223e427",
-                "reference": "5b6fbd27a4df0ae90f68df095ee25e31d223e427",
+                "url": "https://api.github.com/repos/studodev/form-util-bundle/zipball/755f9c0cb7936ec51e021c0c0eb363534d33ea0e",
+                "reference": "755f9c0cb7936ec51e021c0c0eb363534d33ea0e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
-                "symfony/form": "^6.4 || ^7.0",
-                "symfony/mime": "^6.4 || ^7.0",
-                "symfony/validator": "^6.4 || ^7.0"
+                "symfony/form": "^6.4 || ^7.4",
+                "symfony/mime": "^6.4 || ^7.4",
+                "symfony/validator": "^6.4 || ^7.4"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.54",
                 "symfony/test-pack": "^1.1",
-                "symfony/var-dumper": "^7.0"
+                "symfony/var-dumper": "^7.4"
             },
             "type": "library",
             "autoload": {
@@ -1705,9 +1705,9 @@
             ],
             "support": {
                 "issues": "https://github.com/studodev/form-util-bundle/issues",
-                "source": "https://github.com/studodev/form-util-bundle/tree/v1.1.1"
+                "source": "https://github.com/studodev/form-util-bundle/tree/v1.1.2"
             },
-            "time": "2024-05-21T21:16:29+00:00"
+            "time": "2025-11-28T15:01:00+00:00"
         },
         {
             "name": "symfony/asset",
