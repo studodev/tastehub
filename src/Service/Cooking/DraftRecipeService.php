@@ -28,6 +28,7 @@ readonly class DraftRecipeService
             $recipe = $this->recipeRepository->find($draft->getRecipeIdentifier());
             $draft->setRecipe($recipe);
         } else {
+            $draft = clone $draft;
             $draft->setRecipe(new Recipe());
         }
 
