@@ -1,8 +1,16 @@
 {% block textarea_countable_widget %}
+    {{ _self.render_countable_widget(block('textarea_widget')) }}
+{% endblock %}
+
+{% block text_countable_widget %}
+    {{ _self.render_countable_widget(block('form_widget')) }}
+{% endblock %}
+
+{% macro render_countable_widget(widget) %}
     <div data-char-counter>
-        {{ block('textarea_widget') }}
+        {{ widget|raw }}
         <div class="form-counter">
             <span class="form-counter-value"></span> caractères
         </div>
     </div>
-{% endblock %}
+{% endmacro %}

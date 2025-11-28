@@ -14,6 +14,7 @@ use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
 use App\Form\Type\Common\FileUploaderType;
 use App\Form\Type\Common\TextareaCountableType;
+use App\Form\Type\Common\TextCountableType;
 use App\Service\Common\PictogramService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -73,7 +74,7 @@ class RecipeType extends AbstractType
         }
 
         $builder
-            ->add('title', null, [
+            ->add('title', TextCountableType::class, [
                 'label' => 'Nom de la recette',
                 'row_attr' => [
                     'class' => 'highlight-row',
@@ -81,6 +82,8 @@ class RecipeType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Poulet au maroilles, mijoté de poisson au curry, cookies aux 3 chocolats, ...',
                 ],
+                'min_length' => Recipe::TITLE_MIN_LENGTH,
+                'max_length' => Recipe::TITLE_MAX_LENGTH,
             ])
             ->add('description', TextareaCountableType::class, [
                 'label' => 'Description',

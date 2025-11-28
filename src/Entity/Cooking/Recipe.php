@@ -30,6 +30,8 @@ class Recipe implements SluggableInterface, AllowedUsersInterface
     use SlugEntityTrait;
     use TimableTrait;
 
+    public const TITLE_MIN_LENGTH = 5;
+    public const TITLE_MAX_LENGTH = 60;
     public const DESCRIPTION_MAX_LENGTH = 350;
     public const MAX_TAGS = 10;
     public const MIN_INGREDIENTS = 2;
@@ -44,12 +46,12 @@ class Recipe implements SluggableInterface, AllowedUsersInterface
         message: 'Veuillez saisir un titre',
     )]
     #[Assert\Length(
-        min: 5,
-        max: 60,
+        min: self::TITLE_MIN_LENGTH,
+        max: self::TITLE_MAX_LENGTH,
         minMessage: 'Le titre doit contenir au minimum {{ limit }} caractères',
         maxMessage: 'Le titre doit contenir au maximum {{ limit }} caractères',
     )]
-    #[ORM\Column(length: 60)]
+    #[ORM\Column(length: self::TITLE_MAX_LENGTH)]
     private ?string $title = null;
 
     #[Assert\Length(
