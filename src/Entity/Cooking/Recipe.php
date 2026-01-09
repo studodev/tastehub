@@ -488,7 +488,7 @@ class Recipe implements SluggableInterface, AllowedUsersInterface
                     ->addViolation()
                 ;
             } elseif ($ingredients[$recipeIngredient->getId()] !== $recipeIngredient->getQuantity()) {
-                $message = sprintf('La quantité totale (%s %s) de l\'ingrédient "%s" n\'est pas correctement répartie dans les étapes', $recipeIngredient->getQuantity(), $recipeIngredient->getUnit()->value, $recipeIngredient->getIngredient()->getLabel());
+                $message = sprintf('La quantité totale (%s %s) de l\'ingrédient "%s" n\'est pas correctement répartie dans les étapes', $recipeIngredient->getQuantity(), $recipeIngredient->getUnit()->getSymbol(), $recipeIngredient->getIngredient()->getLabel());
                 $context
                     ->buildViolation($message)
                     ->atPath('steps')

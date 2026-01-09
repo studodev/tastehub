@@ -54,7 +54,7 @@ class StepRecipeIngredientType extends AbstractType
                 return [
                     'data-pictogram' => $this->pictogramService->buildUrl(PictogramTypeEnum::Ingredient, $pictogram),
                     'data-quantity' => $recipeIngredient->getQuantity(),
-                    'data-quantity-unit' => $recipeIngredient->getUnit()->value,
+                    'data-quantity-unit' => $recipeIngredient->getUnit()->getSymbol(),
                 ];
             },
             'attr' => [

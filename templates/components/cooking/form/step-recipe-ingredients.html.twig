@@ -14,7 +14,7 @@
                     {{ form_label(form.quantity) }}
                     {{ form_widget(form.quantity) }}
                     <span class="item-data-quantity-unit">
-                        {{ value is null ?: value.recipeIngredient.unit.value }}
+                        {{ value is null ?: value.recipeIngredient.unit.symbol }}
                     </span>
                 </div>
             </div>

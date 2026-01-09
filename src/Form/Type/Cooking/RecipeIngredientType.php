@@ -4,13 +4,12 @@ namespace App\Form\Type\Cooking;
 
 use App\Entity\Cooking\Ingredient;
 use App\Entity\Cooking\RecipeIngredient;
+use App\Entity\Cooking\Unit;
 use App\Enum\Common\PictogramTypeEnum;
-use App\Enum\Cooking\IngredientUnitEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
 use App\Service\Common\PictogramService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -45,8 +44,10 @@ class RecipeIngredientType extends AbstractType
                 ],
             ]);
 
-            $quantityAttr = [];
-            $unitAttr = [];
+            $unitOptions = [
+                'placeholder' => 'Choisissez une unité',
+                'choice_label' => 'displayName',
+            ];
         } else {
             $builder->add('ingredient', EntityType::class, [
                 'class' => Ingredient::class,
@@ -60,6 +61,10 @@ class RecipeIngredientType extends AbstractType
                 ],
             ]);
 
+            $unitOptions = [
+                'placeholder' => 'Unité',
+                'choice_label' => 'symbol',
+            ];
             $quantityAttr = [
                 'aria-label' => 'Quantité',
             ];
@@ -73,19 +78,19 @@ class RecipeIngredientType extends AbstractType
                 'label' => self::MODE_SOURCE === $mode ? 'Quantité' : false,
                 'attr' => [
                     'class' => 'item-data-quantity',
-                    ...$quantityAttr,
+                    ...$quantityAttr ?? [],
                 ],
                 'error_bubbling' => true,
             ])
-            ->add('unit', EnumType::class, [
+            ->add('unit', null, [
                 'label' => self::MODE_SOURCE === $mode ? 'Unité de mesure' : false,
-                'class' => IngredientUnitEnum::class,
-                'placeholder' => 'Choisissez une unité',
+                'class' => Unit::class,
                 'attr' => [
                     'class' => 'item-data-unit',
-                    ...$unitAttr,
+                    ...$unitAttr ?? [],
                 ],
                 'error_bubbling' => true,
+                ...$unitOptions,
             ])
         ;
     }

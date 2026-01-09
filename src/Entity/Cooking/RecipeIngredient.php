@@ -2,7 +2,6 @@
 
 namespace App\Entity\Cooking;
 
-use App\Enum\Cooking\IngredientUnitEnum;
 use App\Repository\Cooking\RecipeIngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -35,8 +34,8 @@ class RecipeIngredient
     #[Assert\NotBlank(
         message: 'Vous devez choisir une unité',
     )]
-    #[ORM\Column(length: 10)]
-    private ?IngredientUnitEnum $unit = null;
+    #[ORM\ManyToOne]
+    private ?Unit $unit = null;
 
     public function getId(): ?int
     {
@@ -79,12 +78,12 @@ class RecipeIngredient
         return $this;
     }
 
-    public function getUnit(): ?IngredientUnitEnum
+    public function getUnit(): ?Unit
     {
         return $this->unit;
     }
 
-    public function setUnit(?IngredientUnitEnum $unit): static
+    public function setUnit(?Unit $unit): static
     {
         $this->unit = $unit;
 
