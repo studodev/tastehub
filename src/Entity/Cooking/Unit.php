@@ -96,10 +96,6 @@ class Unit
 
     public function getDisplayName(): string
     {
-        if ($this->getLabel() === $this->getSymbol()) {
-            return $this->getLabel();
-        }
-
         return sprintf('%s (%s)', $this->getLabel(), $this->getSymbol());
     }
 }

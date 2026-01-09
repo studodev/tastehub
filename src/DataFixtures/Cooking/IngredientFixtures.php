@@ -223,7 +223,7 @@ class IngredientFixtures extends Fixture implements FixtureGroupInterface, Depen
 
     public static function getGroups(): array
     {
-        return ['init'];
+        return ['init', 'ingredient'];
     }
 
     public function getDependencies(): array

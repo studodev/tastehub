@@ -42,6 +42,6 @@ class DietTypeFixtures extends Fixture implements FixtureGroupInterface
 
     public static function getGroups(): array
     {
-        return ['init'];
+        return ['init', 'diet_type'];
     }
 }

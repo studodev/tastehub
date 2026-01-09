@@ -12,14 +12,17 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RecipeIngredientType extends AbstractType
 {
     public const MODE_SOURCE = 'source';
     public const MODE_COLLECTION = 'collection';
 
-    public function __construct(private readonly PictogramService $pictogramService)
-    {
+    public function __construct(
+        private readonly PictogramService $pictogramService,
+        private readonly TranslatorInterface $translator,
+    ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -85,6 +88,9 @@ class RecipeIngredientType extends AbstractType
             ->add('unit', null, [
                 'label' => self::MODE_SOURCE === $mode ? 'Unité de mesure' : false,
                 'class' => Unit::class,
+                'group_by' => function (Unit $unit) {
+                    return $unit->getType()->trans($this->translator);
+                },
                 'attr' => [
                     'class' => 'item-data-unit',
                     ...$unitAttr ?? [],

@@ -26,6 +26,6 @@ class CategoryFixtures extends Fixture implements FixtureGroupInterface
 
     public static function getGroups(): array
     {
-        return ['init'];
+        return ['init', 'category'];
     }
 }

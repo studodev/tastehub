@@ -10,3 +10,8 @@ cooking:
         short: Courte (< 30 min)
         medium: Moyenne (30 min - 1h)
         long: Longue (> 1h)
+    unit_type:
+        mass: Poids
+        volume: Volume
+        count: Unité
+        empirical: Autre

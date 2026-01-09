@@ -64,6 +64,6 @@ class CookingMethodFixtures extends Fixture implements FixtureGroupInterface
 
     public static function getGroups(): array
     {
-        return ['init'];
+        return ['init', 'cooking_method'];
     }
 }
