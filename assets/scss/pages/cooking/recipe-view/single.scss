@@ -1,0 +1,29 @@
+.recipe-header {
+    background-color: var(--color-white);
+    display: flex;
+    border-radius: var(--radius-default);
+    overflow: hidden;
+
+    .recipe-image {
+        flex: 1;
+        object-fit: cover;
+    }
+
+    .recipe-summary {
+        flex: 2;
+        padding: 16px;
+
+        .header-aligned {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .recipe-title {
+            .recipe-category {
+                font-size: 1.2rem;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

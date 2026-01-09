@@ -13,6 +13,8 @@ class RecipeViewController extends AbstractController
     #[Route('/{slug:recipe}', name: 'single')]
     public function single(Recipe $recipe): Response
     {
-        return new Response($recipe->getTitle());
+        return $this->render('pages/cooking/recipe-view/single.html.twig', [
+            'recipe' => $recipe,
+        ]);
     }
 }

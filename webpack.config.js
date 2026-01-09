@@ -28,6 +28,8 @@ Encore
     .addEntry('cooking_recipe_form_steps', './assets/ts/pages/cooking/recipe-form/steps.ts')
     .addEntry('cooking_recipe_form_completed', './assets/ts/pages/cooking/recipe-form/completed.ts')
 
+    .addEntry('cooking_recipe_view_single', './assets/ts/pages/cooking/recipe-view/single.ts')
+
     .addEntry('user_security_common', './assets/ts/pages/user/security/common.ts')
 
     .splitEntryChunks()

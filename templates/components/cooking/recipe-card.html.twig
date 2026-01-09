@@ -1,14 +1,16 @@
-<article class="recipe-card">
-    <img src="{{ recipe_image_url(recipe) }}" alt="{{ recipe.title }}">
+<a href="{{ path('cooking_recipe_view_single', {slug: recipe.slug}) }}">
+    <article class="recipe-card">
+        <img src="{{ recipe_image_url(recipe) }}" alt="{{ recipe.title }}">
 
-    <div class="recipe-rate">
-        <i class="icon icon-star"></i>
-        4.3
-    </div>
-    <div class="recipe-time">
-        <i class="icon icon-clock"></i>
-        {{ recipe.timer.totalTime|format_duration }}
-    </div>
-    <div class="recipe-category">{{ recipe.category.label }}</div>
-    <h2>{{ recipe.title }}</h2>
-</article>
+        <div class="recipe-rate">
+            <i class="icon icon-star"></i>
+            4.3
+        </div>
+        <div class="recipe-time">
+            <i class="icon icon-clock"></i>
+            {{ recipe.timer.totalTime|format_duration }}
+        </div>
+        <div class="recipe-category">{{ recipe.category.label }}</div>
+        <h2>{{ recipe.title }}</h2>
+    </article>
+</a>
