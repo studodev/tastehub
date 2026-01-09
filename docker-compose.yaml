@@ -32,12 +32,10 @@ services:
         ports:
             - "80:80"
 
-    webdb:
-        image: webdb/app
+    phpmyadmin:
+        image: phpmyadmin:latest
         ports:
-            - "8080:22071"
-        environment:
-            SCAN_HOSTS: db
+            - "8080:80"
 
     mailpit:
         image: axllent/mailpit
