@@ -2,22 +2,42 @@
 
 namespace App\DataFixtures\Cooking;
 
+use App\DataFixtures\Common\AbstractFixture;
 use App\Entity\Cooking\Category;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class CategoryFixtures extends Fixture implements FixtureGroupInterface
+class CategoryFixtures extends AbstractFixture implements FixtureGroupInterface
 {
-    private const CATEGORIES = [
-        'Amuse bouche', 'Entrée', 'Plat', 'Dessert', 'Sauce', 'Boisson', 'Condiment',
+    private const array CATEGORIES = [
+        [
+            'label' => 'Amuse bouche',
+        ],
+        [
+            'label' => 'Entrée',
+        ],
+        [
+            'label' => 'Plat',
+        ],
+        [
+            'label' => 'Dessert',
+        ],
+        [
+            'label' => 'Sauce',
+        ],
+        [
+            'label' => 'Boisson',
+        ],
+        [
+            'label' => 'Condiment',
+        ],
     ];
 
     public function load(ObjectManager $manager): void
     {
         foreach (self::CATEGORIES as $entry) {
             $category = new Category();
-            $category->setLabel($entry);
+            $this->hydrate($category, $entry);
             $manager->persist($category);
         }
 

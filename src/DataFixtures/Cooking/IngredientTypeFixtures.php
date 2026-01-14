@@ -2,14 +2,14 @@
 
 namespace App\DataFixtures\Cooking;
 
+use App\DataFixtures\Common\AbstractFixture;
 use App\Entity\Cooking\IngredientType;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class IngredientTypeFixtures extends Fixture implements FixtureGroupInterface
+class IngredientTypeFixtures extends AbstractFixture implements FixtureGroupInterface
 {
-    private const TYPES = [
+    private const array TYPES = [
         'beer' => [
             'label' => 'Bière',
             'pictogram' => 'beer.svg',
@@ -120,10 +120,8 @@ class IngredientTypeFixtures extends Fixture implements FixtureGroupInterface
     {
         foreach (self::TYPES as $key => $entry) {
             $type = new IngredientType();
-            $type->setLabel($entry['label']);
-            $type->setPictogram($entry['pictogram']);
-
-            $this->addReference(sprintf('ingredient_type_%s', $key), $type);
+            $this->hydrate($type, $entry);
+            $this->addReference($key, $type);
             $manager->persist($type);
         }
 

@@ -2,14 +2,14 @@
 
 namespace App\DataFixtures\Cooking;
 
+use App\DataFixtures\Common\AbstractFixture;
 use App\Entity\Cooking\CookingMethod;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class CookingMethodFixtures extends Fixture implements FixtureGroupInterface
+class CookingMethodFixtures extends AbstractFixture implements FixtureGroupInterface
 {
-    private const METHODS = [
+    private const array METHODS = [
         [
             'label' => 'Pas de cuisson',
             'icon' => 'no-cooking',
@@ -49,13 +49,7 @@ class CookingMethodFixtures extends Fixture implements FixtureGroupInterface
     {
         foreach (self::METHODS as $entry) {
             $method = new CookingMethod();
-            $method->setLabel($entry['label']);
-            $method->setIcon($entry['icon']);
-
-            if (array_key_exists('singular', $entry)) {
-                $method->setSingular($entry['singular']);
-            }
-
+            $this->hydrate($method, $entry);
             $manager->persist($method);
         }
 

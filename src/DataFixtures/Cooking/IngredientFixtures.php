@@ -2,207 +2,303 @@
 
 namespace App\DataFixtures\Cooking;
 
+use App\DataFixtures\Common\AbstractFixture;
 use App\Entity\Cooking\Ingredient;
 use App\Entity\Cooking\IngredientType;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class IngredientFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
+class IngredientFixtures extends AbstractFixture implements FixtureGroupInterface, DependentFixtureInterface
 {
-    private const INGREDIENTS = [
+    private const array INGREDIENTS = [
         [
             'label' => 'Farine de blé',
-            'type' => 'flour',
+            '_references' => [
+                'type' => [IngredientType::class, 'flour'],
+            ],
         ],
         [
             'label' => 'Levure boulangère',
-            'type' => 'pastry-cooking-helper',
+            '_references' => [
+                'type' => [IngredientType::class, 'pastry-cooking-helper'],
+            ],
         ],
         [
             'label' => 'Eau',
-            'type' => 'water',
+            '_references' => [
+                'type' => [IngredientType::class, 'water'],
+            ],
         ],
         [
             'label' => 'Beurre demi-sel',
-            'type' => 'butter',
+            '_references' => [
+                'type' => [IngredientType::class, 'butter'],
+            ],
         ],
         [
             'label' => 'Crème fraîche',
-            'type' => 'dairy-product',
+            '_references' => [
+                'type' => [IngredientType::class, 'dairy-product'],
+            ],
         ],
         [
             'label' => 'Œufs',
-            'type' => 'egg',
+            '_references' => [
+                'type' => [IngredientType::class, 'egg'],
+            ],
         ],
         [
             'label' => 'Filet de saumon',
-            'type' => 'fish',
+            '_references' => [
+                'type' => [IngredientType::class, 'fish'],
+            ],
         ],
         [
             'label' => 'Carottes',
-            'type' => 'vegetables',
+            '_references' => [
+                'type' => [IngredientType::class, 'vegetables'],
+            ],
         ],
         [
             'label' => 'Pommes de terre',
-            'type' => 'potato',
+            '_references' => [
+                'type' => [IngredientType::class, 'potato'],
+            ],
         ],
         [
             'label' => 'Bœuf haché',
-            'type' => 'meat',
+            '_references' => [
+                'type' => [IngredientType::class, 'meat'],
+            ],
         ],
         [
             'label' => 'Filet de poulet',
-            'type' => 'meat',
+            '_references' => [
+                'type' => [IngredientType::class, 'meat'],
+            ],
         ],
         [
             'label' => 'Poivre noir',
-            'type' => 'spices',
+            '_references' => [
+                'type' => [IngredientType::class, 'spices'],
+            ],
         ],
         [
             'label' => 'Sel',
-            'type' => 'spices',
+            '_references' => [
+                'type' => [IngredientType::class, 'spices'],
+            ],
         ],
         [
             'label' => 'Noisettes',
-            'type' => 'nuts',
+            '_references' => [
+                'type' => [IngredientType::class, 'nuts'],
+            ],
         ],
         [
             'label' => 'Miel',
-            'type' => 'honey',
+            '_references' => [
+                'type' => [IngredientType::class, 'honey'],
+            ],
         ],
         [
-            'label' => 'Huile d’olive',
-            'type' => 'oil',
+            'label' => 'Huile d\'olive',
+            '_references' => [
+                'type' => [IngredientType::class, 'oil'],
+            ],
         ],
         [
             'label' => 'Pâtes',
-            'type' => 'pasta',
+            '_references' => [
+                'type' => [IngredientType::class, 'pasta'],
+            ],
         ],
         [
             'label' => 'Quinoa',
-            'type' => 'cereals',
+            '_references' => [
+                'type' => [IngredientType::class, 'cereals'],
+            ],
         ],
         [
             'label' => 'Cheddar',
-            'type' => 'cheese',
+            '_references' => [
+                'type' => [IngredientType::class, 'cheese'],
+            ],
         ],
         [
             'label' => 'Tomates cerises',
-            'type' => 'vegetables',
+            '_references' => [
+                'type' => [IngredientType::class, 'vegetables'],
+            ],
         ],
         [
             'label' => 'Pavé de cabillaud',
-            'type' => 'fish',
+            '_references' => [
+                'type' => [IngredientType::class, 'fish'],
+            ],
         ],
         [
             'label' => 'Lentilles corail',
-            'type' => 'legumes',
+            '_references' => [
+                'type' => [IngredientType::class, 'legumes'],
+            ],
         ],
         [
             'label' => 'Pois chiches',
-            'type' => 'legumes',
+            '_references' => [
+                'type' => [IngredientType::class, 'legumes'],
+            ],
         ],
         [
             'label' => 'Crevettes roses',
-            'type' => 'crustaceans',
+            '_references' => [
+                'type' => [IngredientType::class, 'crustaceans'],
+            ],
         ],
         [
             'label' => 'Crabe en morceaux',
-            'type' => 'crustaceans',
+            '_references' => [
+                'type' => [IngredientType::class, 'crustaceans'],
+            ],
         ],
         [
             'label' => 'Riz basmati',
-            'type' => 'cereals',
+            '_references' => [
+                'type' => [IngredientType::class, 'cereals'],
+            ],
         ],
         [
             'label' => 'Vin rouge',
-            'type' => 'wine',
+            '_references' => [
+                'type' => [IngredientType::class, 'wine'],
+            ],
         ],
         [
             'label' => 'Vin blanc sec',
-            'type' => 'wine',
+            '_references' => [
+                'type' => [IngredientType::class, 'wine'],
+            ],
         ],
         [
             'label' => 'Bière blonde',
-            'type' => 'beer',
+            '_references' => [
+                'type' => [IngredientType::class, 'beer'],
+            ],
         ],
         [
             'label' => 'Bière brune',
-            'type' => 'beer',
+            '_references' => [
+                'type' => [IngredientType::class, 'beer'],
+            ],
         ],
         [
             'label' => 'Sucre roux',
-            'type' => 'sugar',
+            '_references' => [
+                'type' => [IngredientType::class, 'sugar'],
+            ],
         ],
         [
             'label' => 'Chocolat noir',
-            'type' => 'chocolate',
+            '_references' => [
+                'type' => [IngredientType::class, 'chocolate'],
+            ],
         ],
         [
             'label' => 'Chocolat au lait',
-            'type' => 'chocolate',
+            '_references' => [
+                'type' => [IngredientType::class, 'chocolate'],
+            ],
         ],
         [
             'label' => 'Épinards',
-            'type' => 'vegetables',
+            '_references' => [
+                'type' => [IngredientType::class, 'vegetables'],
+            ],
         ],
         [
             'label' => 'Courgettes',
-            'type' => 'vegetables',
+            '_references' => [
+                'type' => [IngredientType::class, 'vegetables'],
+            ],
         ],
         [
             'label' => 'Pommes',
-            'type' => 'fruits',
+            '_references' => [
+                'type' => [IngredientType::class, 'fruits'],
+            ],
         ],
         [
             'label' => 'Poires',
-            'type' => 'fruits',
+            '_references' => [
+                'type' => [IngredientType::class, 'fruits'],
+            ],
         ],
         [
             'label' => 'Fraises',
-            'type' => 'fruits',
+            '_references' => [
+                'type' => [IngredientType::class, 'fruits'],
+            ],
         ],
         [
             'label' => 'Myrtilles',
-            'type' => 'fruits',
+            '_references' => [
+                'type' => [IngredientType::class, 'fruits'],
+            ],
         ],
         [
             'label' => 'Confiture de fraises',
-            'type' => 'pastry-cooking-helper',
+            '_references' => [
+                'type' => [IngredientType::class, 'pastry-cooking-helper'],
+            ],
         ],
         [
             'label' => 'Basilic',
-            'type' => 'spices',
+            '_references' => [
+                'type' => [IngredientType::class, 'spices'],
+            ],
         ],
         [
             'label' => 'Oignons jaunes',
-            'type' => 'vegetables',
+            '_references' => [
+                'type' => [IngredientType::class, 'vegetables'],
+            ],
         ],
         [
             'label' => 'Ail',
-            'type' => 'vegetables',
+            '_references' => [
+                'type' => [IngredientType::class, 'vegetables'],
+            ],
         ],
         [
             'label' => 'Pâte feuilletée',
-            'type' => 'pastry-cooking-helper',
+            '_references' => [
+                'type' => [IngredientType::class, 'pastry-cooking-helper'],
+            ],
         ],
         [
             'label' => 'Chapelure',
-            'type' => 'pastry-cooking-helper',
+            '_references' => [
+                'type' => [IngredientType::class, 'pastry-cooking-helper'],
+            ],
         ],
         [
             'label' => 'Crème liquide',
-            'type' => 'dairy-product',
+            '_references' => [
+                'type' => [IngredientType::class, 'dairy-product'],
+            ],
         ],
         [
             'label' => 'Saumon fumé',
-            'type' => 'fish',
+            '_references' => [
+                'type' => [IngredientType::class, 'fish'],
+            ],
         ],
         [
             'label' => 'Haricots verts',
-            'type' => 'vegetables',
+            '_references' => [
+                'type' => [IngredientType::class, 'vegetables'],
+            ],
         ],
     ];
 
@@ -210,11 +306,7 @@ class IngredientFixtures extends Fixture implements FixtureGroupInterface, Depen
     {
         foreach (self::INGREDIENTS as $entry) {
             $ingredient = new Ingredient();
-            $ingredient->setLabel($entry['label']);
-
-            $type = $this->getReference(sprintf('ingredient_type_%s', $entry['type']), IngredientType::class);
-            $ingredient->setType($type);
-
+            $this->hydrate($ingredient, $entry);
             $manager->persist($ingredient);
         }
 

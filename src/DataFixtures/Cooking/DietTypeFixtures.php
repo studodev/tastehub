@@ -2,14 +2,14 @@
 
 namespace App\DataFixtures\Cooking;
 
+use App\DataFixtures\Common\AbstractFixture;
 use App\Entity\Cooking\DietType;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class DietTypeFixtures extends Fixture implements FixtureGroupInterface
+class DietTypeFixtures extends AbstractFixture implements FixtureGroupInterface
 {
-    private const DIETS = [
+    private const array DIETS = [
         [
             'label' => 'Sans gluten',
             'icon' => 'no-gluten',
@@ -32,8 +32,7 @@ class DietTypeFixtures extends Fixture implements FixtureGroupInterface
     {
         foreach (self::DIETS as $entry) {
             $dietType = new DietType();
-            $dietType->setLabel($entry['label']);
-            $dietType->setIcon($entry['icon']);
+            $this->hydrate($dietType, $entry);
             $manager->persist($dietType);
         }
 

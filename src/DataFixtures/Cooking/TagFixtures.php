@@ -2,23 +2,54 @@
 
 namespace App\DataFixtures\Cooking;
 
+use App\DataFixtures\Common\AbstractFixture;
 use App\Entity\Cooking\Tag;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class TagFixtures extends Fixture implements FixtureGroupInterface
+class TagFixtures extends AbstractFixture implements FixtureGroupInterface
 {
-    private const TAGS = [
-        'Noël', 'Fraîcheur', 'Sucré / Salé', 'Fêtes', 'Healthy', 'Réconfortant',
-        'Français', 'Italien', 'Belge', 'Méditerranéen', 'Libanais',
+    private const array TAGS = [
+        [
+            'label' => 'Noël',
+        ],
+        [
+            'label' => 'Fraîcheur',
+        ],
+        [
+            'label' => 'Fêtes',
+        ],
+        [
+            'label' => 'Healthy',
+        ],
+        [
+            'label' => 'Réconfortant',
+        ],
+        [
+            'label' => 'Français',
+        ],
+        [
+            'label' => 'Italien',
+        ],
+        [
+            'label' => 'Belge',
+        ],
+        [
+            'label' => 'Sucré / Salé',
+        ],
+        [
+            'label' => 'Méditerranéen',
+        ],
+        [
+            'label' => 'Libanais',
+        ],
     ];
 
     public function load(ObjectManager $manager): void
     {
         foreach (self::TAGS as $entry) {
             $tag = new Tag();
-            $tag->setLabel($entry);
+            $this->hydrate($tag, $entry);
             $manager->persist($tag);
         }
 

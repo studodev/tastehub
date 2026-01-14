@@ -2,14 +2,14 @@
 
 namespace App\DataFixtures\Cooking;
 
+use App\DataFixtures\Common\AbstractFixture;
 use App\Entity\Cooking\Utensil;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class UtensilFixtures extends Fixture implements FixtureGroupInterface
+class UtensilFixtures extends AbstractFixture implements FixtureGroupInterface
 {
-    private const UTENSILS = [
+    private const array UTENSILS = [
         [
             'label' => 'Bol',
             'pictogram' => 'bowl.svg',
@@ -136,9 +136,7 @@ class UtensilFixtures extends Fixture implements FixtureGroupInterface
     {
         foreach (self::UTENSILS as $entry) {
             $utensil = new Utensil();
-            $utensil->setLabel($entry['label']);
-            $utensil->setPictogram($entry['pictogram']);
-
+            $this->hydrate($utensil, $entry);
             $manager->persist($utensil);
         }
 

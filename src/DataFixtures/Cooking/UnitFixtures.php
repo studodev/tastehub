@@ -2,13 +2,13 @@
 
 namespace App\DataFixtures\Cooking;
 
+use App\DataFixtures\Common\AbstractFixture;
 use App\Entity\Cooking\Unit;
 use App\Enum\Cooking\UnitTypeEnum;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class UnitFixtures extends Fixture implements FixtureGroupInterface
+class UnitFixtures extends AbstractFixture implements FixtureGroupInterface
 {
     private const array UNITS = [
         'gram' => [
@@ -23,14 +23,18 @@ class UnitFixtures extends Fixture implements FixtureGroupInterface
             'label' => 'Milligramme',
             'type' => UnitTypeEnum::Mass,
             'baseFactor' => 0.001,
-            'baseUnit' => 'gram',
+            '_references' => [
+                'baseUnit' => [Unit::class, 'gram'],
+            ],
         ],
         'kilogram' => [
             'symbol' => 'kg',
             'label' => 'Kilogramme',
             'type' => UnitTypeEnum::Mass,
             'baseFactor' => 1000,
-            'baseUnit' => 'gram',
+            '_references' => [
+                'baseUnit' => [Unit::class, 'gram'],
+            ],
         ],
         'milliliter' => [
             'symbol' => 'ml',
@@ -44,63 +48,53 @@ class UnitFixtures extends Fixture implements FixtureGroupInterface
             'label' => 'Litre',
             'type' => UnitTypeEnum::Volume,
             'baseFactor' => 1000,
-            'baseUnit' => 'milliliter',
+            '_references' => [
+                'baseUnit' => [Unit::class, 'milliliter'],
+            ],
         ],
         'centiliter' => [
             'symbol' => 'cl',
             'label' => 'Centilitre',
             'type' => UnitTypeEnum::Volume,
             'baseFactor' => 10,
-            'baseUnit' => 'milliliter',
+            '_references' => [
+                'baseUnit' => [Unit::class, 'milliliter'],
+            ],
         ],
         'teaspoon' => [
             'symbol' => 'càc',
             'label' => 'Cuillère à café',
             'type' => UnitTypeEnum::Count,
-            'baseFactor' => null,
-            'baseUnit' => null,
         ],
         'tablespoon' => [
             'symbol' => 'càs',
             'label' => 'Cuillère à soupe',
             'type' => UnitTypeEnum::Count,
-            'baseFactor' => null,
-            'baseUnit' => null,
         ],
         'cup' => [
             'symbol' => 'tasse',
             'label' => 'Tasse',
             'type' => UnitTypeEnum::Count,
-            'baseFactor' => null,
-            'baseUnit' => null,
         ],
         'pot' => [
             'symbol' => 'pot',
             'label' => 'Pot',
             'type' => UnitTypeEnum::Count,
-            'baseFactor' => null,
-            'baseUnit' => null,
         ],
         'piece' => [
             'symbol' => 'pièce',
             'label' => 'Pièce',
             'type' => UnitTypeEnum::Count,
-            'baseFactor' => null,
-            'baseUnit' => null,
         ],
         'pinch' => [
             'symbol' => 'pincée',
             'label' => 'Pincée',
             'type' => UnitTypeEnum::Empirical,
-            'baseFactor' => null,
-            'baseUnit' => null,
         ],
         'splash' => [
             'symbol' => 'filet',
             'label' => 'Filet',
             'type' => UnitTypeEnum::Empirical,
-            'baseFactor' => null,
-            'baseUnit' => null,
         ],
     ];
 
@@ -108,17 +102,8 @@ class UnitFixtures extends Fixture implements FixtureGroupInterface
     {
         foreach (self::UNITS as $key => $entry) {
             $unit = new Unit();
-            $unit->setSymbol($entry['symbol']);
-            $unit->setLabel($entry['label']);
-            $unit->setType($entry['type']);
-            $unit->setBaseFactor($entry['baseFactor']);
-
-            if (null !== $entry['baseUnit']) {
-                $baseUnit = $this->getReference(sprintf('unit_%s', $entry['baseUnit']), Unit::class);
-                $unit->setBaseUnit($baseUnit);
-            }
-
-            $this->addReference(sprintf('unit_%s', $key), $unit);
+            $this->hydrate($unit, $entry);
+            $this->addReference($key, $unit);
             $manager->persist($unit);
         }
 
