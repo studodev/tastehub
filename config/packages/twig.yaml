@@ -7,7 +7,7 @@ twig:
         - 'components/common/form/incremental-number.html.twig'
         - 'components/common/form/upload-file.html.twig'
         - 'components/common/form/widget-countable.html.twig'
-        - 'components/cooking/form/recipe-timer.html.twig'
+        - 'components/cooking/form/recipe-timer-widget.html.twig'
         - 'components/cooking/form/quantity-counter.html.twig'
         - 'components/cooking/form/recipe-ingredients.html.twig'
         - 'components/cooking/form/recipe-utensils.html.twig'

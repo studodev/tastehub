@@ -29,12 +29,12 @@ class Recipe implements SluggableInterface, AllowedUsersInterface
     use SlugEntityTrait;
     use TimableTrait;
 
-    public const TITLE_MIN_LENGTH = 5;
-    public const TITLE_MAX_LENGTH = 60;
-    public const DESCRIPTION_MAX_LENGTH = 350;
-    public const MAX_TAGS = 10;
-    public const MIN_INGREDIENTS = 2;
-    public const MAX_INGREDIENTS = 100;
+    public const int TITLE_MIN_LENGTH = 5;
+    public const int TITLE_MAX_LENGTH = 60;
+    public const int DESCRIPTION_MAX_LENGTH = 350;
+    public const int MAX_TAGS = 10;
+    public const int MIN_INGREDIENTS = 2;
+    public const int MAX_INGREDIENTS = 100;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

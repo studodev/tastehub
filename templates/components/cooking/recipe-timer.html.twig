@@ -1,0 +1,36 @@
+<div class="recipe-timer-container">
+    <div class="recipe-timer">
+        <div class="timer total-timer">
+            Temps total :
+            <span>
+                {{ recipe.timer.totalTime|format_duration }}
+            </span>
+        </div>
+
+        <div class="timer-group">
+            <div class="timer">
+                <img src="{{ asset('build/images/pictogram/preparation-time.svg') }}" alt="Icône représentant un saladier">
+                <span>
+                    {{ recipe.timer.preparationTime|format_duration }}
+                    de <span class="accent">préparation</span>
+                </span>
+            </div>
+
+            <div class="timer">
+                <img src="{{ asset('build/images/pictogram/waiting-time.svg') }}" alt="Icône représentant un chronomètre">
+                <span>
+                    {{ recipe.timer.waitingTime|format_duration }}
+                    de <span class="accent">pose</span>
+                </span>
+            </div>
+
+            <div class="timer">
+                <img src="{{ asset('build/images/pictogram/cooking-time.svg') }}" alt="Icône représentant une poêle sur le feu">
+                <span>
+                    {{ recipe.timer.cookingTime|format_duration }}
+                    de <span class="accent">cuisson</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

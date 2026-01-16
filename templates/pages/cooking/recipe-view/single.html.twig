@@ -28,6 +28,45 @@
                 </div>
             </div>
 
+            {% include 'components/cooking/recipe-timer.html.twig' with {
+                recipe: recipe,
+            } only %}
+
+            <h2>Modes de cuisson</h2>
+            <ul class="compact-list">
+                {% for cookingMethod in recipe.cookingMethods %}
+                    <li>
+                        <i class="icon icon-{{ cookingMethod.icon }}"></i>
+                        {{ cookingMethod.label }}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            {% if recipe.diets|length > 0 %}
+                <h2>Régimes</h2>
+                <ul class="compact-list">
+                    {% for diet in recipe.diets %}
+                        <li>
+                            <i class="icon icon-{{ diet.icon }}"></i>
+                            {{ diet.label }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="header-aligned">
+                {% include 'components/social/profile-card.html.twig' with {
+                    user: recipe.author,
+                } only %}
+
+                <ul class="recipe-tags">
+                    {% for tag in recipe.tags %}
+                        <li class="tag">
+                            {{ tag.label }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </header>
 {% endblock %}

@@ -39,10 +39,6 @@ form {
             color: var(--color-eggplant);
         }
 
-        label .accent, .help-text .accent {
-            color: var(--color-raspberry);
-        }
-
         input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea, select {
             width: 100%;
             background-color: var(--color-white);

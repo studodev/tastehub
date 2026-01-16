@@ -1,0 +1,77 @@
+.recipe-timer-container {
+    container: recipe-timer / inline-size;
+}
+
+.recipe-timer {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--color-white);
+    border-radius: var(--radius-default);
+    overflow: hidden;
+
+    .timer-group {
+        --border-width: 2px;
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        column-gap: 10px;
+        padding: 4px 8px;
+        border: var(--border-width) solid var(--color-pistachio);
+
+        &:first-child {
+            border-right-width: 0;
+        }
+
+        &:last-child {
+            border-left-width: 0;
+        }
+    }
+
+    .timer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        font-family: var(--font-family-content), sans-serif;
+        font-weight: 600;
+        color: var(--color-eggplant);
+
+        img {
+            height: 30px;
+        }
+    }
+
+    .total-timer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+        background-color: var(--color-eggplant);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--color-light);
+    }
+}
+
+@container recipe-timer (width < 820px) {
+    .recipe-timer {
+        flex-direction: column;
+
+        .timer-group {
+            flex-wrap: wrap;
+
+            &:first-child {
+                border-right-width: var(--border-width);
+                border-bottom-width: 0;
+            }
+
+            &:last-child {
+                border-left-width: var(--border-width);
+                border-top-width: 0;
+            }
+
+            .timer {
+                flex: 1 1 auto;
+            }
+        }
+    }
+}
