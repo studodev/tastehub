@@ -23,7 +23,7 @@ readonly class RecipePictureService
             return;
         }
 
-        $filename = $this->fileManager->upload($recipe->getPictureFile(), FileManagerBucketEnum::Recipe);
+        $filename = $this->fileManager->upload($recipe->getPictureFile(), FileManagerBucketEnum::Recipe, $recipe->getSlug());
 
         $this->remove($recipe);
         $recipe->setPicture($filename);
@@ -31,10 +31,12 @@ readonly class RecipePictureService
 
     public function remove(Recipe $recipe): void
     {
-        if (null !== $recipe->getPicture()) {
-            $this->fileManager->remove($recipe->getPicture(), FileManagerBucketEnum::Recipe);
-            $recipe->setPicture(null);
+        if (null === $recipe->getPicture()) {
+            return;
         }
+
+        $this->fileManager->remove($recipe->getPicture(), FileManagerBucketEnum::Recipe);
+        $recipe->setPicture(null);
     }
 
     public function getUrl(Recipe $recipe): string

@@ -17,10 +17,16 @@ readonly class FileManagerService
     ) {
     }
 
-    public function upload(UploadedFile $file, FileManagerBucketEnum $bucket): string
+    public function upload(UploadedFile $file, FileManagerBucketEnum $bucket, ?string $filename = null): string
     {
         $path = $this->buildPath($bucket);
-        $filename = $this->generateName($file->guessExtension());
+
+        if ($filename) {
+            $filename = sprintf('%s.%s', $filename, $file->guessExtension());
+        } else {
+            $filename = $this->generateName($file->guessExtension());
+        }
+
         $file->move($path, $filename);
 
         return $filename;
