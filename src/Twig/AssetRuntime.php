@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Util\Twig;
+namespace App\Twig;
 
 use App\Entity\Cooking\Recipe;
 use App\Enum\Common\PictogramTypeEnum;

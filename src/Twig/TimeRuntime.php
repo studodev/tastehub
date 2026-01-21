@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Util\Twig;
+namespace App\Twig;
 
 use App\Util\Common\TimeUtil;
 use Twig\Attribute\AsTwigFilter;
