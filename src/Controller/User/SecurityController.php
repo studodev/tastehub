@@ -85,7 +85,7 @@ class SecurityController extends AbstractController
         $resetPasswordRequest = $this->resetPasswordService->retrieveRequest($token);
 
         if (!$resetPasswordRequest) {
-            throw new NotFoundHttpException();
+            throw $this->createNotFoundException();
         }
 
         $form = $this->createForm(ChangePasswordType::class, $resetPasswordRequest->getUser());
