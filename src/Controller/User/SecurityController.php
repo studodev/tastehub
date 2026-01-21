@@ -96,7 +96,7 @@ class SecurityController extends AbstractController
             $this->em->remove($resetPasswordRequest);
             $this->em->flush();
 
-            $this->addFlash(FlashMessageTypeEnum::NOTICE->value, 'Votre mot de passe a bien été modifié');
+            $this->addFlash(FlashMessageTypeEnum::Notice->value, 'Votre mot de passe a bien été modifié');
 
             return $this->redirectToRoute('user_security_login');
         }
