@@ -35,7 +35,7 @@ final readonly class AccessDeniedHandler implements AccessDeniedHandlerInterface
 
         if ($accessDeniedException->getMessage()) {
             $flashBag = $this->requestStack->getSession()->getFlashBag();
-            $flashBag->add(FlashMessageTypeEnum::Notice->name, $accessDeniedException->getMessage());
+            $flashBag->add(FlashMessageTypeEnum::Notice->value, $accessDeniedException->getMessage());
         }
 
         return new RedirectResponse($url);

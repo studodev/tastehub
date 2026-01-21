@@ -49,6 +49,7 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($user);
             $this->em->flush();
+            $this->addFlash(FlashMessageTypeEnum::Notice->value, 'Votre compte a bien été créé, vous pouvez dès à présent vous connecter');
 
             return $this->redirectToRoute('user_security_login');
         }
