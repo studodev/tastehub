@@ -2,7 +2,7 @@
 
 namespace App\Event\Common;
 
-use App\Util\Common\SluggableInterface;
+use App\Shared\Contract\SluggableInterface;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Util\Common;
+namespace App\Shared\Contract;
 
 interface SluggableInterface
 {

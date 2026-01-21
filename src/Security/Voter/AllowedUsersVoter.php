@@ -2,7 +2,7 @@
 
 namespace App\Security\Voter;
 
-use App\Util\Common\AllowedUsersInterface;
+use App\Shared\Contract\AllowedUsersInterface;
 use Symfony\Component\Security\Core\Authentication\Token\NullToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Vote;

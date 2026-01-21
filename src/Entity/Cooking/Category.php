@@ -3,8 +3,8 @@
 namespace App\Entity\Cooking;
 
 use App\Repository\Cooking\CategoryRepository;
-use App\Util\Common\SlugEntityTrait;
-use App\Util\Common\SluggableInterface;
+use App\Shared\Contract\SluggableInterface;
+use App\Shared\Trait\SlugEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]

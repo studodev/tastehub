@@ -4,8 +4,8 @@ namespace App\Repository\Cooking;
 
 use App\Entity\Cooking\Ingredient;
 use App\Model\Common\SearchableRepositoryConfiguration;
-use App\Util\Common\AutocompleteRespositoryTrait;
-use App\Util\Common\SearchableRepositoryInterface;
+use App\Shared\Contract\SearchableRepositoryInterface;
+use App\Shared\Trait\AutocompleteRespositoryTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
