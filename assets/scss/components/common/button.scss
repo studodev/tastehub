@@ -9,17 +9,26 @@ button {
 
 .button {
     --button-background-color: var(--color-eggplant);
+    --button-background-hover: color-mix(in srgb, var(--button-background-color) 85%, white 25%);
     --button-text-color: var(--color-light);
 
     position: relative;
     display: inline-block;
-    background-color: var(--button-background-color);
+    background: var(--button-background-color);
     padding: 8px 16px;
     border: 2px solid var(--button-background-color);
     border-radius: var(--radius-default);
     font-family: var(--font-family-title), sans-serif;
     font-size: 1.1rem;
     color: var(--button-text-color);
+    overflow: hidden;
+    transition: background-color 200ms linear, border-color 200ms linear;
+
+
+    &:hover {
+        background: var(--button-background-hover);
+        border-color: var(--button-background-hover);
+    }
 
     &.water {
         --button-background-color: var(--color-water);
@@ -34,6 +43,31 @@ button {
     &.outline {
         background-color: transparent;
         --button-text-color: var(--color-dark);
+
+        &::after {
+            position: absolute;
+            content: '';
+            background: var(--button-background-hover);
+            transition-duration: 400ms;
+            z-index: -1;
+            top: 0;
+            left: -10px;
+            bottom: auto;
+            right: auto;
+            width: 0;
+            height: 100%;
+            opacity: 1;
+            transform: skewX(-20deg);
+        }
+
+        &:hover {
+            &::after {
+                width: calc(100% + 20px);
+                height: 100%;
+                opacity: 1;
+            }
+        }
+
     }
 
     &.small {
