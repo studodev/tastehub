@@ -3,8 +3,129 @@
     <head>
         <meta charset="UTF-8">
         <title>TasteHub - Email</title>
+
+        <style>
+            body {
+                width: 100%;
+                height: 100%;
+                font-family: Helvetica, Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            h1 {
+                text-align: center;
+                color: #A82D54;
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            p, span, a {
+                font-size: 16px;
+                line-height: 1.15;
+            }
+
+            p {
+                margin-bottom: 12px;
+                margin-top: 4px;
+            }
+
+            .small {
+                font-size: 14px;
+                display: block;
+                margin-top: 4px;
+            }
+
+            .greeting {
+                text-align: center;
+                color: #663366;
+                font-size: 24px;
+                margin-top: 32px;
+                margin-bottom: 32px;
+                font-weight: bold;
+            }
+
+            a {
+                color: #663366;
+                font-weight: bold;
+            }
+
+            a.button {
+                text-decoration: none;
+                display: inline-block;
+                text-align: center;
+                padding: 8px 14px;
+                border-radius: 8px;
+                background-color: #B2CC7C;
+                border: solid #B2CC7C 1px;
+                color: #101411;
+            }
+
+            a.button.outline {
+                background: none;
+            }
+
+            .wrapper {
+                padding: 0 8px;
+            }
+
+            .container {
+                display: block;
+                clear: both;
+                margin: 0 auto;
+                max-width: 600px;
+                padding: 32px 48px;
+                border: solid #B2CC7C 1px;
+                border-radius: 8px;
+            }
+
+            .link-container {
+                margin: auto;
+                text-align: center;
+            }
+
+            footer {
+                width: 100%;
+                background-color: #FFE99E;
+                color: #101411;
+                padding: 12px 0;
+                text-align: center;
+            }
+
+            footer p {
+                margin-bottom: 0;
+                font-size: 12px;
+            }
+
+            footer a {
+                font-size: 12px;
+            }
+
+        </style>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="wrapper">
+            <img src="{{ absolute_url(asset('mails/logo.png')) }}" alt="Logo" style="width: 250px; display: block; margin: 32px auto;">
+            <h1>
+                {% block title %}{% endblock %}
+            </h1>
+
+                <div class="container">
+                    {% block content %}{% endblock %}
+                </div>
+            <img src="{{ absolute_url(asset('mails/woman-cooking-tastehub.png')) }}" alt="Illustration de femme qui cuisine" style="display: block; margin: 32px auto; height: 200px;">
+            <p class="greeting">À bientôt sur Tastehub !</p>
+        </div>
+        <footer>
+            <p>
+                {# TODO - Add links #}
+                Vous recevez ce mail car vous êtes inscrit sur l'application <a href="{{ url('main_index') }}">Tastehub</a>.<br>
+                TasteHub - {{ "now"|date('Y') }} - <a href="#">Politique de confidentialité</a> - <a href="#">Mentions légales</a><br>
+                Nous contacter : <a href="#">contact@tastehub.app</a>
+            </p>
+        </footer>
     </body>
 </html>
