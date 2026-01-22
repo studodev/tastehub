@@ -1,9 +1,9 @@
 .recipe-card {
     --card-height: 300px;
-    --card-title-size: 1.2rem;
+    --card-title-size: 1.15rem;
     --card-title-line-height: 1.1;
     --card-title-height: calc(var(--card-padding) * 2 + var(--card-title-size) * var(--card-title-line-height) * 2);
-    --card-padding: 8px;
+    --card-padding: 6px;
     position: relative;
     height: var(--card-height);
     border-radius: var(--radius-default);
@@ -20,33 +20,36 @@
         display: flex;
         align-items: center;
         gap: 4px;
-        background-color: var(--color-eggplant);
+        background-color: var(--color-raspberry);
         border-radius: var(--radius-default);
         color: var(--color-light);
-        padding: 4px 8px;
-        font-weight: 600;
+        padding: 4px 9px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        box-shadow: 2px 2px 5px var(--shadow-default);
 
         i {
+            /* TODO - Change icons (outline instead of filled) */
             color: var(--color-omelette);
+            font-size: 0.8rem;
+            line-height: 0.9rem;
         }
     }
 
     .recipe-rate {
         top: var(--card-padding);
         left: var(--card-padding);
-        box-shadow: 3px 3px var(--color-water);
     }
 
     .recipe-time {
         top: var(--card-padding);
         right: var(--card-padding);
-        box-shadow: -3px 3px var(--color-water);
     }
 
     .recipe-category {
         bottom: calc(var(--card-title-height) + var(--card-padding));
         left: var(--card-padding);
-        background-color: var(--color-water);
+        background-color: var(--color-pistachio);
         color: var(--color-dark);
     }
 
@@ -60,13 +63,12 @@
         align-items: center;
         height: var(--card-title-height);
         padding: var(--card-padding);
-        border-top: 2px solid var(--color-water);
-        background-color: color-mix(in srgb, var(--color-omelette), transparent 15%);
+        background-color: color-mix(in srgb, var(--color-olive), transparent 15%);
         backdrop-filter: blur(2px);
-        color: var(--color-eggplant);
+        color: var(--color-light);
         font-family: var(--font-family-content), sans-serif;
         font-size: var(--card-title-size);
-        font-weight: 600;
+        font-weight: 400;
         line-height: var(--card-title-line-height);
         text-align: center;
     }
