@@ -39,11 +39,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     #[Assert\Length(
         min: 3,
-        max: 30,
+        max: 24,
         minMessage: 'Votre nom d\'utilisateur doit contenir au minimum {{ limit }} caractères',
         maxMessage: 'Votre nom d\'utilisateur doit contenir au maximum {{ limit }} caractères',
     )]
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 24)]
     private ?string $username = null;
 
     #[ORM\Column]
