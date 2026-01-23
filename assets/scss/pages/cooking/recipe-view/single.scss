@@ -94,6 +94,25 @@ h2 {
     }
 }
 
+.quote {
+    display: flex;
+    gap: 10px;
+    width: fit-content;
+    max-width: 650px;
+    margin: 42px auto;
+    font-size: 1.2rem;
+
+    &:before {
+        content: "\e918";
+        display: inline-block;
+        position: relative;
+        top: calc(1.2rem / 2 * -1);
+        font-family: var(--font-family-icon), sans-serif;
+        font-size: 1.2rem;
+        color: var(--color-pistachio);
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .recipe-header {
         flex-direction: column;
@@ -102,7 +121,7 @@ h2 {
 
         .recipe-image {
             margin-top: 10px;
-            aspect-ratio: 1/1;
+            aspect-ratio: 1 / 1;
             max-height: 300px;
             border-right: none;
             border-radius: var(--radius-default);

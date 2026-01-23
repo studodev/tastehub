@@ -67,4 +67,10 @@
             </div>
         </div>
     </header>
+
+    {% if recipe.description %}
+        <p class="quote">
+            {{ recipe.description }}
+        </p>
+    {% endif %}
 {% endblock %}
