@@ -1,0 +1,26 @@
+[data-tab-navigation] {
+    [data-tab-content] {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    .tab-navigator ul {
+        display: flex;
+        gap: 16px;
+
+        button {
+            font-family: var(--font-family-title), sans-serif;
+            font-size: 1rem;
+            border: 2px solid var(--color-water);
+            padding: 6px 10px;
+            border-radius: var(--radius-default);
+
+            &.active {
+                background-color: var(--color-water);
+            }
+        }
+    }
+}

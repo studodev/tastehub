@@ -73,4 +73,38 @@
             {{ recipe.description }}
         </p>
     {% endif %}
+
+    <div data-tab-navigation class="recipe-content">
+        <nav class="tab-navigator">
+            <ul>
+                <li>
+                    <button data-tab-trigger="ingredients" class="active">
+                        Ingrédients & ustensiles
+                    </button>
+                </li>
+                <li>
+                    <button data-tab-trigger="steps">
+                        Étapes
+                    </button>
+                </li>
+                <li>
+                    <button data-tab-trigger="reviews">
+                        Avis
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <section data-tab-content="ingredients" class="active">
+            Ingrédients & ustensiles
+        </section>
+
+        <section data-tab-content="steps">
+            Étapes
+        </section>
+
+        <section data-tab-content="reviews">
+            Avis
+        </section>
+    </div>
 {% endblock %}
