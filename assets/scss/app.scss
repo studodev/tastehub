@@ -14,7 +14,11 @@ body {
 main {
     flex: 1;
     margin: 0 auto;
-    width: min(100%, var(--main-width));
+    width: min(100%, var(--main-width-large));
+
+    &.small {
+        width: min(100%, var(--main-width-small));
+    }
 }
 
 .page-spacer {

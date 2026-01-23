@@ -12,8 +12,6 @@
     {{ encore_entry_script_tags('cooking_recipe_view_single') }}
 {% endblock %}
 
-{% block mainClass %}{% endblock %}
-
 {% block body %}
     <header class="recipe-header">
         <img src="{{ recipe_image_url(recipe) }}" alt="{{ recipe.title }}" class="recipe-image">

@@ -4,6 +4,7 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    align-content: center;
 
     .content {
         display: grid;
@@ -71,6 +72,7 @@ main {
         background-repeat: no-repeat;
         background-position: center;
         background-size: 80% 80%;
+        min-height: 400px;
     }
 }
 
@@ -78,6 +80,10 @@ main {
     main {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
+
+        .decoration {
+            min-height: auto;
+        }
     }
 }
 

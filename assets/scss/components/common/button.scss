@@ -21,7 +21,6 @@ button {
     font-family: var(--font-family-title), sans-serif;
     font-size: 1.1rem;
     color: var(--button-text-color);
-    overflow: hidden;
     transition: background-color 200ms linear, border-color 200ms linear;
 
     &:hover {
@@ -42,6 +41,7 @@ button {
     &.outline {
         --button-text-color: var(--color-dark);
         background-color: transparent;
+        overflow: hidden;
 
         &::after {
             content: "";
