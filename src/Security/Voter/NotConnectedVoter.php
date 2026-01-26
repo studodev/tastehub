@@ -21,7 +21,7 @@ class NotConnectedVoter extends Voter
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token, ?Vote $vote = null): bool
     {
         if (!$token instanceof NullToken) {
-            throw new RedirectAccessDeniedException(self::REDIRECT_ROUTE, [], 'Vous êtes déjà connecté');
+            throw new RedirectAccessDeniedException(self::REDIRECT_ROUTE);
         }
 
         return true;

@@ -26,7 +26,6 @@ class SecurityController extends AbstractController
     ) {
     }
 
-    // TODO - Too many redirect on remember me
     #[Route('/connexion', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
