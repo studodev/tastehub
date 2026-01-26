@@ -3,6 +3,7 @@
 namespace App\Repository\Cooking;
 
 use App\Entity\Cooking\Recipe;
+use App\Entity\User\User;
 use App\Enum\Cooking\RecipeDurationRangeEnum;
 use App\Enum\Cooking\RecipeSortEnum;
 use App\Enum\Cooking\RecipeStateEnum;
@@ -93,6 +94,19 @@ class RecipeRepository extends ServiceEntityRepository
         if ($havingClauses) {
             $qb->having($qb->expr()->andX(...$havingClauses));
         }
+
+        return $qb;
+    }
+
+    public function findByBookAndFilterQueryBuilder(User $user, ?RecipeFilter $filter = null): QueryBuilder
+    {
+        $qb = $this->findByFilterQueryBuilder($filter);
+
+        $qb->andWhere(
+            $qb->expr()->eq('r.author', ':user')
+        );
+
+        $qb->setParameter('user', $user);
 
         return $qb;
     }

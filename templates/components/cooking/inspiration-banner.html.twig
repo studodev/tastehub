@@ -1,3 +1,5 @@
+{% set bookMode = bookMode ?? false %}
+
 <div class="inspiration-banner page-spacer hidden">
     <div class="content">
         <div class="fake-title">
@@ -8,9 +10,15 @@
             <a href="{{ path('cooking_recipe_form_new') }}" class="button water small">
                 Créer ma propre recette
             </a>
-            <a href="#" class="button outline water small">
-                Voir mon livre de recette
-            </a>
+            {% if bookMode %}
+                <a href="{{ path('cooking_recipe_explore_index') }}" class="button outline water small">
+                    Explorer toutes nos recettes
+                </a>
+            {% else %}
+                <a href="{{ path('cooking_recipe_explore_my_book') }}" class="button outline water small">
+                    Voir mon livre de recette
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -19,6 +19,7 @@ Encore
 
     /* ----- Pages entrypoints ---- */
     .addEntry('cooking_recipe_explore_index', './assets/ts/pages/cooking/recipe-explore/index.ts')
+    .addEntry('cooking_recipe_explore_book', './assets/ts/pages/cooking/recipe-explore/book.ts')
 
     .addEntry('cooking_recipe_form_common', './assets/ts/pages/cooking/recipe-form/common.ts')
     .addEntry('cooking_recipe_form_metadata', './assets/ts/pages/cooking/recipe-form/metadata.ts')

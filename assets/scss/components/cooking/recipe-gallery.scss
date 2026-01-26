@@ -97,12 +97,11 @@
 
                 p {
                     flex: 1 1 300px;
-                    display: flex;
-                    gap: 8px;
-                    flex-direction: column;
                     color: var(--color-olive);
 
                     span {
+                        display: block;
+                        margin-bottom: 8px;
                         font-family: var(--font-family-title), sans-serif;
                         color: var(--color-raspberry);
                         font-size: 1.4rem;
