@@ -1,5 +1,9 @@
 p {
     text-wrap: pretty;
+
+    a {
+        color: var(--color-raspberry);
+    }
 }
 
 strong, .accent {
