@@ -28,8 +28,7 @@ final class RecipeExploreController extends AbstractController
         return $this->renderRecipes($request);
     }
 
-    // TODO - Replace id by slug
-    #[Route('/livre/{id:user}', name: 'book')]
+    #[Route('/livre/{slug:user}', name: 'book')]
     public function book(Request $request, User $user): Response
     {
         return $this->renderRecipes($request, $user);

@@ -19,7 +19,7 @@
 
 {% block body %}
     <section class="recipe-gallery"
-         data-url="{{ url('cooking_recipe_explore_book', {id: user.id}) }}"
+         data-url="{{ url('cooking_recipe_explore_book', {slug: user.slug}) }}"
          data-offset="{{ pagination.offset }}"
          data-total="{{ pagination.total }}">
         <header class="title-container page-spacer">

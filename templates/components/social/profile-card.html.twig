@@ -1,8 +1,8 @@
-<div class="profile-card">
+<a href="{{ path('cooking_recipe_explore_book', {slug: user.slug}) }}" class="profile-card">
     <img src="{{ asset('build/images/illustrations/default-recipe.jpg') }}" alt="Image de profil de {{ user.username }}">
     <div class="profile-card-content">
         <div class="username">
             {{ user.username }}
         </div>
     </div>
-</div>
+</a>
