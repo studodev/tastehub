@@ -3,6 +3,8 @@
 namespace App\Entity\User;
 
 use App\Repository\User\UserRepository;
+use App\Shared\Contract\SluggableInterface;
+use App\Shared\Trait\SlugEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Studodev\FormUtilBundle\Validator\NotDisposableEmail as AssertNotDisposableEmail;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -15,8 +17,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\UniqueConstraint(name: 'UNIQ_USERNAME', fields: ['username'])]
 #[UniqueEntity(fields: 'email', message: 'Cette adresse e-mail est déjà associée à un compte')]
 #[UniqueEntity(fields: 'username', message: 'Ce nom d\'utilisateur est déjà associée à un compte')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, SluggableInterface
 {
+    use SlugEntityTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -142,5 +146,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         $this->plainPassword = null;
+    }
+
+    public function getSlugSource(): string
+    {
+        return $this->username;
     }
 }
