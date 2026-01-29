@@ -1,4 +1,6 @@
 parameters:
+    data_loader:
+        directory: '%kernel.project_dir%/data/'
     file_manager:
         directory: '%kernel.project_dir%/public/data/'
         uri: 'data/'
