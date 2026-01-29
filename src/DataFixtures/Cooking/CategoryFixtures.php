@@ -10,27 +10,13 @@ use Doctrine\Persistence\ObjectManager;
 class CategoryFixtures extends AbstractFixture implements FixtureGroupInterface
 {
     private const array CATEGORIES = [
-        [
-            'label' => 'Amuse bouche',
-        ],
-        [
-            'label' => 'Entrée',
-        ],
-        [
-            'label' => 'Plat',
-        ],
-        [
-            'label' => 'Dessert',
-        ],
-        [
-            'label' => 'Sauce',
-        ],
-        [
-            'label' => 'Boisson',
-        ],
-        [
-            'label' => 'Condiment',
-        ],
+        ['label' => 'Amuse bouche'],
+        ['label' => 'Entrée'],
+        ['label' => 'Plat'],
+        ['label' => 'Dessert'],
+        ['label' => 'Sauce'],
+        ['label' => 'Boisson'],
+        ['label' => 'Condiment'],
     ];
 
     public function load(ObjectManager $manager): void
