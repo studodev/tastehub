@@ -4,9 +4,13 @@
 [data-autocomplete-entity] {
     display: flex;
     flex-direction: column;
+    flex: 1;
 
     .ts-wrapper {
+        height: 100%;
+
         .ts-control {
+            height: 100%;
             border: 2px solid var(--color-pistachio);
             border-radius: var(--radius-default);
             gap: 6px;
