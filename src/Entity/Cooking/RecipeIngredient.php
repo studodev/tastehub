@@ -22,13 +22,18 @@ class RecipeIngredient
     #[ORM\JoinColumn(nullable: false)]
     private ?Ingredient $ingredient = null;
 
-    #[Assert\NotBlank(
-        message: 'Vous devez saisir une quantité',
+    #[Assert\When(
+        expression: '!this.getUnit().getType().isEmpirical()',
+        constraints: [
+            new Assert\NotBlank(
+                message: 'Vous devez saisir une quantité',
+            ),
+        ],
     )]
     #[Assert\Positive(
         message: 'Vous devez saisir une quantité positive',
     )]
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $quantity = null;
 
     #[Assert\NotBlank(

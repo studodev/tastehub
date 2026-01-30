@@ -15,4 +15,9 @@ enum UnitTypeEnum: string
     {
         return $translator->trans(sprintf('cooking.unit_type.%s', $this->value), [], 'enum');
     }
+
+    public function isEmpirical(): bool
+    {
+        return self::Empirical === $this;
+    }
 }

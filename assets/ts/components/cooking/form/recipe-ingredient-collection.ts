@@ -13,8 +13,9 @@ export class RecipeIngredientCollection extends RecipeItemCollection {
         const quantityOutputField = prototype.querySelector('.item-data-quantity') as HTMLInputElement;
         const unitInputField = this.elements.itemSource.querySelector('.item-data-unit') as HTMLSelectElement;
         const unitOutputField = prototype.querySelector('.item-data-unit') as HTMLInputElement;
+        const selectedUnit = unitInputField.options[unitInputField.selectedIndex];
 
-        if (!selectedIngredient.value || !quantityInputField.value || !unitInputField.value) {
+        if (!selectedIngredient.value || (!quantityInputField.value && !selectedUnit.hasAttribute('data-empirical')) || !unitInputField.value) {
             flashFeed.push(FlashMessageType.Error, "Vous devez séléctionner un ingrédient, une quantité et une unité");
             return false;
         }

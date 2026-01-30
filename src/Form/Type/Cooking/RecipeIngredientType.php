@@ -16,8 +16,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RecipeIngredientType extends AbstractType
 {
-    public const MODE_SOURCE = 'source';
-    public const MODE_COLLECTION = 'collection';
+    public const string MODE_SOURCE = 'source';
+    public const string MODE_COLLECTION = 'collection';
 
     public function __construct(
         private readonly PictogramService $pictogramService,
@@ -79,6 +79,9 @@ class RecipeIngredientType extends AbstractType
         $builder
             ->add('quantity', null, [
                 'label' => self::MODE_SOURCE === $mode ? 'Quantité' : false,
+                'label_attr' => [
+                    'class' => 'silent-optional-badge',
+                ],
                 'attr' => [
                     'class' => 'item-data-quantity',
                     ...$quantityAttr ?? [],
@@ -95,6 +98,11 @@ class RecipeIngredientType extends AbstractType
                     'class' => 'item-data-unit',
                     ...$unitAttr ?? [],
                 ],
+                'choice_attr' => function (Unit $unit) {
+                    return [
+                        'data-empirical' => $unit->getType()->isEmpirical() ? null : false,
+                    ];
+                },
                 'error_bubbling' => true,
                 ...$unitOptions,
             ])
