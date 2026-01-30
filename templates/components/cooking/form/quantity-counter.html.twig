@@ -1,7 +1,13 @@
 {% block quantity_counter_widget %}
+    {% set modeEditor = constant('App\\Form\\Type\\Cooking\\QuantityCounterType::MODE_EDITOR') %}
+
     <div class="quantity-counter-widget">
-        <span>Recette pour</span>
-        {{ form_row(form.value) }}
-        {{ form_row(form.unit) }}
+        {% if modeEditor is same as form.vars.mode %}
+            <span>Recette pour</span>
+            {{ form_row(form.value) }}
+            {{ form_row(form.unit) }}
+        {% else %}
+            Je veux cuisiner pour {{ form_row(form.value) }} {{ form.vars.data.unit|trans }}
+        {% endif %}
     </div>
 {% endblock %}

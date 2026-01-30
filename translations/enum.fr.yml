@@ -1,7 +1,7 @@
 cooking:
     quantity_counter_unit:
-        person: Personne
-        portion: Portion
+        person: personnes
+        portion: portions
     recipe_sort:
         aplha: Alphabétique
         newest: Plus récents

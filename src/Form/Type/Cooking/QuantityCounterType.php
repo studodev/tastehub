@@ -8,10 +8,15 @@ use App\Model\Cooking\QuantityCounter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class QuantityCounterType extends AbstractType
 {
+    public const string MODE_EDITOR = 'editor';
+    public const string MODE_VIEW = 'view';
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -24,7 +29,10 @@ class QuantityCounterType extends AbstractType
                     'maxlength' => 3,
                 ],
             ])
-            ->add('unit', EnumType::class, [
+        ;
+
+        if (self::MODE_EDITOR === $options['mode']) {
+            $builder->add('unit', EnumType::class, [
                 'class' => QuantityCounterUnitEnum::class,
                 'label' => false,
                 'expanded' => true,
@@ -32,8 +40,13 @@ class QuantityCounterType extends AbstractType
                 'row_attr' => [
                     'class' => 'unit-selector',
                 ],
-            ])
-        ;
+            ]);
+        }
+    }
+
+    public function buildView(FormView $view, FormInterface $form, array $options): void
+    {
+        $view->vars['mode'] = $options['mode'];
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -41,6 +54,9 @@ class QuantityCounterType extends AbstractType
         $resolver->setDefaults([
             'data_class' => QuantityCounter::class,
             'error_bubbling' => false,
+            'mode' => self::MODE_EDITOR,
         ]);
+
+        $resolver->setAllowedValues('mode', [self::MODE_EDITOR, self::MODE_VIEW]);
     }
 }
