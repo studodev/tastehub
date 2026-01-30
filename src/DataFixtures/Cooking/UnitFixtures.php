@@ -87,13 +87,18 @@ class UnitFixtures extends AbstractFixture implements FixtureGroupInterface
             'type' => UnitTypeEnum::Count,
         ],
         'pinch' => [
-            'symbol' => 'pincée',
+            'symbol' => 'une pincée',
             'label' => 'Pincée',
             'type' => UnitTypeEnum::Empirical,
         ],
         'splash' => [
-            'symbol' => 'filet',
+            'symbol' => 'un filet',
             'label' => 'Filet',
+            'type' => UnitTypeEnum::Empirical,
+        ],
+        'taste' => [
+            'symbol' => 'selon le goût',
+            'label' => 'Selon le goût',
             'type' => UnitTypeEnum::Empirical,
         ],
     ];
