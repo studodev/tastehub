@@ -36,12 +36,11 @@ Encore
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
-        config.corejs = '3.23';
+        config.corejs = '3.38';
     })
     .enableSassLoader()
     .enableTypeScriptLoader()
