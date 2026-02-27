@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../vendor/symfony/dependency-injection/Loader/schema/services.schema.json
 parameters:
     data_loader:
         directory: '%kernel.project_dir%/data/'
@@ -23,8 +24,3 @@ services:
 
     App\:
         resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-
