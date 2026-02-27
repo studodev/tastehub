@@ -1,0 +1,13 @@
+<div class="ingredient-list content-frame">
+    <h2 class="frame-title">Ingrédients</h2>
+
+    <ul>
+        {% for recipeIngredient in recipeIngredients %}
+            <li>
+                <img src="{{ pictogram_url(enum(enum.pictogramType).Ingredient, recipeIngredient.ingredient.type.pictogram) }}" alt="Pictogramme {{ recipeIngredient.ingredient.type.label }}">
+                {{ recipeIngredient.quantity }} {{ recipeIngredient.unit.symbol }}
+                <span>{{ recipeIngredient.ingredient.label }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,8 +1,8 @@
 {% block _recipe_recipeIngredients_entry_widget %}
     <div class="item">
         <div class="item-content">
-            {% set pictogramType = enum('App\\Enum\\Common\\PictogramTypeEnum').Ingredient %}
-            <img src="{{ value is null ? '' : pictogram_url(pictogramType, value.ingredient.type.pictogram) }}" alt=" " class="item-data-ingredient-pictogram">
+            {# TODO - Check empty alt #}
+            <img src="{{ value is null ? '' : pictogram_url(enum(enum.pictogramType).Ingredient, value.ingredient.type.pictogram) }}" alt=" " class="item-data-ingredient-pictogram">
 
             <div class="item-form">
                 {{ form_row(form.ingredient) }}

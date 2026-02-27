@@ -1,0 +1,10 @@
+.content-frame {
+    background-color: var(--color-white);
+    border-radius: var(--radius-default);
+    box-shadow: 2px 2px 10px var(--shadow-default);
+    padding: 32px;
+
+    .frame-title {
+        text-align: center;
+    }
+}

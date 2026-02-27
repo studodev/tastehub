@@ -1,0 +1,28 @@
+@use "../common/pictogram";
+
+.utensil-list {
+    ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        grid-template-rows: repeat(2, auto);
+        gap: 20px 16px;
+        margin-top: 24px;
+
+        li {
+            display: grid;
+            grid-template-rows: subgrid;
+            grid-row: span 2;
+            justify-items: center;
+            gap: 4px;
+            text-align: center;
+            word-break: break-word;
+
+            img {
+                align-self: end;
+                max-width: 40px;
+                max-height: 40px;
+                @include pictogram.colored();
+            }
+        }
+    }
+}

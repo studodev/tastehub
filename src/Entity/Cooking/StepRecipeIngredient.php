@@ -18,7 +18,7 @@ class StepRecipeIngredient
     #[ORM\JoinColumn(nullable: false)]
     private ?RecipeIngredient $recipeIngredient = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $quantity = null;
 
     public function getStep(): ?Step

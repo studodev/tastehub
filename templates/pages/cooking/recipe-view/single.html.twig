@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block body %}
-    <header class="recipe-header">
+    <header class="recipe-header content-frame">
         <img src="{{ recipe_image_url(recipe) }}" alt="{{ recipe.title }}" class="recipe-image">
         <div class="recipe-summary">
             <div class="header-aligned">
@@ -97,15 +97,21 @@
             </ul>
         </nav>
 
-        <section data-tab-content="ingredients" class="active">
-            Ingrédients & ustensiles
+        <section data-tab-content="ingredients" class="ingredient-utensil-container active">
+            {% include 'components/cooking/ingredient-list.html.twig' with {
+                recipeIngredients: recipe.recipeIngredients,
+            } only %}
+
+            {% include 'components/cooking/utensil-list.html.twig' with {
+                utensils: recipe.utensils,
+            } only %}
         </section>
 
-        <section data-tab-content="steps">
+        <section data-tab-content="steps" class="step-container">
             Étapes
         </section>
 
-        <section data-tab-content="reviews">
+        <section data-tab-content="reviews" class="review-container">
             Avis
         </section>
     </div>

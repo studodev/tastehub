@@ -1,0 +1,12 @@
+<div class="utensil-list content-frame">
+    <h2 class="frame-title">Ustensiles</h2>
+
+    <ul>
+        {% for utensil in utensils %}
+            <li>
+                <img src="{{ pictogram_url(enum(enum.pictogramType).Utensil, utensil.pictogram) }}" alt="Pictogramme {{ utensil.label }}">
+                <span>{{ utensil.label }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

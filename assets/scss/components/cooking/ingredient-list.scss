@@ -1,0 +1,30 @@
+@use "../common/pictogram";
+
+.ingredient-list {
+    ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px 16px;
+        margin-top: 24px;
+
+        li {
+            display: inline-grid;
+            grid-template-columns: max-content 1fr;
+            column-gap: 8px;
+            align-content: center;
+            word-break: break-word;
+
+            img {
+                grid-row: span 2;
+                align-self: center;
+                @include pictogram.base();
+                @include pictogram.small();
+                @include pictogram.colored();
+            }
+
+            span {
+                font-weight: 700;
+            }
+        }
+    }
+}

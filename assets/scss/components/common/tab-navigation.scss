@@ -1,10 +1,6 @@
 [data-tab-navigation] {
-    [data-tab-content] {
+    [data-tab-content]:not(.active) {
         display: none;
-
-        &.active {
-            display: block;
-        }
     }
 
     .tab-navigator ul {

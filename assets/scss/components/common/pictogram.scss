@@ -1,0 +1,11 @@
+@mixin base {
+    aspect-ratio: 1 / 1;
+}
+
+@mixin small {
+    height: 40px;
+}
+
+@mixin colored {
+    filter: invert(23%) sepia(52%) saturate(1905%) hue-rotate(309deg) brightness(97%) contrast(95%);
+}

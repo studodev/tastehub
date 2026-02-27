@@ -1,6 +1,9 @@
+@use "../../../components/common/content-frame";
 @use "../../../components/common/form/common";
 @use "../../../components/cooking/form/quantity-counter-widget";
 @use "../../../components/cooking/recipe-timer";
+@use "../../../components/cooking/ingredient-list";
+@use "../../../components/cooking/utensil-list";
 @use "../../../components/social/profile-card";
 
 h2 {
@@ -9,12 +12,10 @@ h2 {
 }
 
 .recipe-header {
-    background-color: var(--color-white);
     display: flex;
-    border-radius: var(--radius-default);
     overflow: hidden;
-    box-shadow: 2px 2px 10px var(--shadow-default);
     min-height: 450px;
+    padding: 0;
 
     .recipe-image {
         width: 450px;
@@ -130,6 +131,27 @@ h2 {
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--color-eggplant);
+        }
+    }
+
+    section {
+        width: 100%;
+
+        &.ingredient-utensil-container {
+            display: flex;
+            align-items: start;
+            flex-wrap: wrap;
+            gap: 30px;
+
+            .ingredient-list {
+                flex: 3;
+                min-width: min(100%, 600px);
+            }
+
+            .utensil-list {
+                flex: 1;
+                min-width: min(100%, 400px);
+            }
         }
     }
 }
