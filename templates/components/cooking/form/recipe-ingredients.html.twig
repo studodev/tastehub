@@ -1,8 +1,8 @@
 {% block _recipe_recipeIngredients_entry_widget %}
     <div class="item">
         <div class="item-content">
-            {# TODO - Check empty alt #}
-            <img src="{{ value is null ? '' : pictogram_url(enum(enum.pictogramType).Ingredient, value.ingredient.type.pictogram) }}" alt=" " class="item-data-ingredient-pictogram">
+            {% set pictogram = value is not null ? pictogram_url(enum(enum.pictogramType).Ingredient, value.ingredient.type.pictogram) %}
+            <img src="{{ pictogram }}" alt="{{ value is not null ? 'Pictogramme ' ~ value.ingredient.type.label }}" class="item-data-ingredient-pictogram">
 
             <div class="item-form">
                 {{ form_row(form.ingredient) }}
@@ -11,7 +11,7 @@
             </div>
 
             <span class="item-data-ingredient-label">
-                {{ value is null ?: value.ingredient.label }}
+                {{ value is not null ? value.ingredient.label }}
             </span>
         </div>
 
