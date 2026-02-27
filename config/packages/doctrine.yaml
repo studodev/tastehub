@@ -11,6 +11,8 @@ doctrine:
         report_fields_where_declared: true
         validate_xml_mapping: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        identity_generation_preferences:
+            Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
         auto_mapping: true
         mappings:
             App:
@@ -20,7 +22,7 @@ doctrine:
                 prefix: 'App\Entity'
                 alias: App
         controller_resolver:
-            auto_mapping: true
+            auto_mapping: false
         dql:
             string_functions:
                 JSON_VALUE: Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mariadb\JsonValue
