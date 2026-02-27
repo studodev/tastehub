@@ -26,6 +26,9 @@ class StepRecipeIngredientType extends AbstractType
         if (self::MODE_COLLECTION === $options['mode']) {
             $builder->add('quantity', null, [
                 'label' => 'Quantité à utiliser',
+                'label_attr' => [
+                    'class' => 'silent-optional-badge',
+                ],
                 'attr' => [
                     'class' => 'item-data-quantity',
                 ],

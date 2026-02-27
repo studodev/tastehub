@@ -13,10 +13,12 @@ twig:
         - 'components/cooking/form/recipe-utensils.html.twig'
         - 'components/cooking/form/recipe-steps.html.twig'
         - 'components/cooking/form/step-recipe-ingredients.html.twig'
-    # TODO - Add others enums
     globals:
         enum:
-            pictogramType: App\Enum\Common\PictogramTypeEnum
+            common:
+                pictogramType: App\Enum\Common\PictogramTypeEnum
+            cooking:
+                draftRecipeStatus: App\Enum\Cooking\DraftRecipeStatusEnum
 
 when@test:
     twig:

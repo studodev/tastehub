@@ -1,7 +1,7 @@
 {% block _recipe_utensils_entry_widget %}
     <div class="item">
         <div class="item-content">
-            {% set pictogram = data is not empty ? pictogram_url(enum(enum.pictogramType).Utensil, data.pictogram) %}
+            {% set pictogram = data is not empty ? pictogram_url(enum(enum.common.pictogramType).Utensil, data.pictogram) %}
             <img src="{{ pictogram }}" alt="{{ data is not empty ? 'Pictogramme ' ~ data.label }}" class="item-data-utensil-pictogram">
 
             <div class="item-form hidden">

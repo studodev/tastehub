@@ -4,7 +4,7 @@
     <ul>
         {% for utensil in utensils %}
             <li>
-                <img src="{{ pictogram_url(enum(enum.pictogramType).Utensil, utensil.pictogram) }}" alt="Pictogramme {{ utensil.label }}">
+                <img src="{{ pictogram_url(enum(enum.common.pictogramType).Utensil, utensil.pictogram) }}" alt="Pictogramme {{ utensil.label }}">
                 <span>{{ utensil.label }}</span>
             </li>
         {% endfor %}

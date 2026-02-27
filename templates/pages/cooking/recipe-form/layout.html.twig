@@ -26,9 +26,9 @@
 
     <div class="timeline-container">
         <ol class="timeline">
-            {% set steps = enum_cases('App\\Enum\\Cooking\\DraftRecipeStatusEnum') %}
+            {% set steps = enum_cases(enum.cooking.draftRecipeStatus) %}
             {% for step in steps %}
-                {% if step is not same as enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Completed %}
+                {% if step is not same as enum(enum.cooking.draftRecipeStatus).Completed %}
                     <li {{ step is same as draft.status ? 'class="active"' : '' }}>
                         {{ step.value }}
                     </li>
@@ -41,14 +41,14 @@
 
     <div class="form-actions">
         <button class="button water">
-            {% if enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Steps is same as draft.status %}
+            {% if enum(enum.cooking.draftRecipeStatus).Steps is same as draft.status %}
                 Valider ma recette
             {% else %}
                 Sauvegarder et continuer
             {% endif %}
         </button>
 
-        {% if enum('App\\Enum\\Cooking\\DraftRecipeStatusEnum').Metadata is not same as draft.status %}
+        {% if enum(enum.cooking.draftRecipeStatus).Metadata is not same as draft.status %}
             <button formaction="{{ path('cooking_recipe_form_rewind') }}" class="button water outline">
                 Étape précédente
             </button>
