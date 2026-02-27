@@ -1,7 +1,6 @@
-import TomSelect from "tom-select";
 import 'tom-select/dist/css/tom-select.css';
 import "@styles/components/common/form/autocomplete-entity.scss";
-import { RecursivePartial, TomSettings } from "tom-select/dist/types/types";
+import TomSelect from "tom-select";
 import { AbstractComponent } from "../../abstract-component";
 import { flashFeed } from "../../layout/flash-feed/flash-feed";
 import { FlashMessageType } from "../../layout/flash-feed/flash-message-type";
@@ -43,7 +42,7 @@ export class AutocompleteEntity extends AbstractComponent{
     }
 
     private buildWidget(): void {
-        const options: RecursivePartial<TomSettings> = {
+        const options = {
             highlight: false,
             placeholder: this.options.placeholder,
             hidePlaceholder: true,
