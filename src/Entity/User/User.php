@@ -143,13 +143,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Sluggab
         return $this;
     }
 
-    public function eraseCredentials(): void
-    {
-        $this->plainPassword = null;
-    }
-
     public function getSlugSource(): string
     {
         return $this->username;
+    }
+
+    public function eraseCredentials(): void
+    {
     }
 }
