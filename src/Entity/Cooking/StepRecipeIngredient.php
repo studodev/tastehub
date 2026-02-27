@@ -10,12 +10,10 @@ class StepRecipeIngredient
 {
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'stepRecipeIngredients')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Step $step = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
     private ?RecipeIngredient $recipeIngredient = null;
 
     #[ORM\Column(nullable: true)]
