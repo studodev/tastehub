@@ -3,6 +3,7 @@
 namespace App\Service\Common;
 
 use App\Entity\User\ResetPasswordRequest;
+use App\Entity\User\User;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -15,6 +16,17 @@ readonly class MailerService
         private MailerInterface $mailer,
         #[Autowire('%mailer%')] private array $config,
     ) {
+    }
+
+    public function sendRegisterConfirmation(User $recipient): bool
+    {
+        $subject = 'Bienvenue sur TasteHub';
+        $recipientEmail = $recipient->getEmail();
+
+        return $this->send($recipientEmail, $subject, 'register-confirmation', [
+            'user' => $recipient,
+        ]);
+
     }
 
     public function sendResetPasswordRequest(ResetPasswordRequest $resetPasswordRequest): bool

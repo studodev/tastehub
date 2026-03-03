@@ -7,6 +7,7 @@ use App\Enum\Common\FlashMessageTypeEnum;
 use App\Form\Type\User\ChangePasswordType;
 use App\Form\Type\User\RegisterType;
 use App\Form\Type\User\ResetPasswordRequestType;
+use App\Service\Common\MailerService;
 use App\Service\User\ResetPasswordService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +23,7 @@ class SecurityController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly ResetPasswordService $resetPasswordService,
+        private readonly ResetPasswordService   $resetPasswordService, private readonly MailerService $mailerService,
     ) {
     }
 
@@ -49,7 +50,7 @@ class SecurityController extends AbstractController
             $this->em->persist($user);
             $this->em->flush();
             $this->addFlash(FlashMessageTypeEnum::Notice->value, 'Votre compte a bien été créé, vous pouvez dès à présent vous connecter');
-
+            $this->mailerService->sendRegisterConfirmation($user);
             return $this->redirectToRoute('user_security_login');
         }
 

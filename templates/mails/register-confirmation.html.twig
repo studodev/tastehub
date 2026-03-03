@@ -1,0 +1,35 @@
+{% extends 'mails/base.html.twig' %}
+
+{% block title %}
+    <h1>Bienvenue sur TasteHub !</h1>
+{% endblock %}
+
+{% block content %}
+    <p class="center">
+        Bonjour {{ user.username }},
+    </p>
+    <p class="center">
+        Bienvenue sur <a href="{{ url('main_index') }}">Tastehub</a> ! 🍽️
+    </p>
+    <p class="center">
+        Ton compte est maintenant créé. <br>
+        Tu peux commencer à explorer des recettes ou créer ton propre livre de recettes en <a href="#">ajoutant ta première recette</a>.
+    </p>
+    <div class="features">
+        <h2>Ce que tu peux faire sur TasteHub</h2>
+        <ul class="first-ul">
+            <li>🍝 <strong>Explorer des recettes</strong> pour trouver des idées de repas</li>
+            <li>📖 <strong>Créer ton propre livre</strong> pour centraliser tes recettes préférées</li>
+            <li>⭐ <strong>Partager ton avis et tes conseils</strong> avec la communauté</li>
+        </ul>
+        <h2>Et bientôt, tu pourras également...</h2>
+        <ul>
+            <li>🙌 <strong>Préparer une recette sans les mains</strong> grâce au mode préparation</li>
+            <li>👥 <strong>Partager ton livre de recettes</strong> avec tes proches</li>
+        </ul>
+    </div>
+    <div class="link-container">
+        <p class="small"> Pour commencer, connecte-toi ici 👇</p>
+        <a href="{{ url('user_security_login') }}" class="button">Me connecter</a>
+    </div>
+{% endblock %}
