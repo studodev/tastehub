@@ -102,21 +102,22 @@ h2 {
     gap: 10px;
     width: fit-content;
     max-width: 650px;
-    margin: 42px auto 24px;
+    margin: 36px auto 24px;
     font-size: 1.2rem;
 
     &:before {
         content: "\e918";
         display: inline-block;
         position: relative;
-        top: calc(1.2rem / 2 * -1);
+        top: calc(0.8rem / 2 * -1);
         font-family: var(--font-family-icon), sans-serif;
-        font-size: 1.2rem;
+        font-size: 0.8rem;
         color: var(--color-pistachio);
     }
 }
 
 .recipe-content {
+    margin-top: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
