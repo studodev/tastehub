@@ -13,6 +13,7 @@
             column-gap: 8px;
             align-content: center;
             word-break: break-word;
+            line-height: 1;
 
             img {
                 grid-row: span 2;
@@ -23,7 +24,7 @@
             }
 
             span {
-                font-weight: 700;
+                font-weight: 600;
             }
         }
     }

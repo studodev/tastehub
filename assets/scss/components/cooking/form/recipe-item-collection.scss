@@ -63,10 +63,11 @@
                 .item-data {
                     display: flex;
                     flex-direction: column;
+                }
 
-                    .item-data-ingredient-label {
-                        font-weight: 600;
-                    }
+                .item-data-ingredient-label, .item-data-utensil-label {
+                    font-weight: 600;
+                    line-height: 1.05;
                 }
 
                 .item-remove-trigger {

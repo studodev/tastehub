@@ -35,7 +35,7 @@ h2 {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            gap: 8px;
+            gap: 28px 40px;
 
             &.end {
                 flex-wrap: wrap-reverse;
@@ -85,7 +85,6 @@ h2 {
             align-items: end;
             gap: 8px;
             max-width: 450px;
-            margin-top: 24px;
             margin-left: auto;
 
             .tag {

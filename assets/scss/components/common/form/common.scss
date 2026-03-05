@@ -72,6 +72,7 @@ form {
                 position: relative;
                 margin-left: calc(var(--checkbox-size) + var(--checkbox-spacer));
                 font-size: 1rem;
+                font-weight: 500;
                 vertical-align: center;
 
                 &::before {

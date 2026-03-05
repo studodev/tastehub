@@ -16,6 +16,11 @@
             gap: 4px;
             text-align: center;
             word-break: break-word;
+            line-height: 1;
+
+            span {
+                font-weight: 600;
+            }
 
             img {
                 align-self: end;
