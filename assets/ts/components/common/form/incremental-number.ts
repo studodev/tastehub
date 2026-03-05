@@ -3,6 +3,7 @@ import { AbstractComponent } from "../../abstract-component";
 
 export class IncrementalNumber extends AbstractComponent{
     private elements: IncrementalNumberElements;
+    private options: IncrementalNumberOptions;
 
     static getComponentSelector(): string {
         return '[data-incremental-number]';
@@ -11,6 +12,7 @@ export class IncrementalNumber extends AbstractComponent{
     constructor(container: HTMLElement) {
         super();
         this.buildElements(container);
+        this.buildOptions();
         this.bindEvents();
     }
 
@@ -23,7 +25,14 @@ export class IncrementalNumber extends AbstractComponent{
         };
     }
 
-    private bindEvents() {
+    private buildOptions(): void {
+        this.options = {
+            min: Number(this.elements.input.dataset.min),
+            max: Number(this.elements.input.dataset.max),
+        };
+    }
+
+    private bindEvents(): void {
         this.elements.minusButton.addEventListener("click", () => this.updateValue(false));
         this.elements.plusButton.addEventListener("click", () => this.updateValue(true));
     }
@@ -32,11 +41,17 @@ export class IncrementalNumber extends AbstractComponent{
         let value = parseInt(this.elements.input.value);
 
         if (isNaN(value)) {
-            value = 0;
+            value = this.options.min;
         } else if (up) {
             value++;
         } else {
             value--;
+        }
+
+        if (value < this.options.min) {
+            value = this.options.min;
+        } else if (value > this.options.max) {
+            value = this.options.max;
         }
 
         this.elements.input.value = String(value);
@@ -48,4 +63,9 @@ interface IncrementalNumberElements {
     minusButton: HTMLButtonElement;
     plusButton: HTMLButtonElement;
     input: HTMLInputElement;
+}
+
+interface IncrementalNumberOptions {
+    min: number;
+    max: number;
 }

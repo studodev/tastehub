@@ -24,6 +24,8 @@ class QuantityCounterType extends AbstractType
                 'label' => false,
                 'error_bubbling' => true,
                 'invalid_message' => 'La quantité réalisée doit être un nombre entier',
+                'min' => 1,
+                'max' => 999,
                 'attr' => [
                     'class' => 'input-value',
                     'maxlength' => 3,

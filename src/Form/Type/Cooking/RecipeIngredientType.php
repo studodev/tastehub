@@ -7,6 +7,7 @@ use App\Entity\Cooking\RecipeIngredient;
 use App\Entity\Cooking\Unit;
 use App\Enum\Common\PictogramTypeEnum;
 use App\Form\Type\Common\AutocompleteEntityType;
+use App\Form\Type\Common\FormattedNumberType;
 use App\Service\Common\PictogramService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -67,7 +68,7 @@ class RecipeIngredientType extends AbstractType
         }
 
         $builder
-            ->add('quantity', null, [
+            ->add('quantity', FormattedNumberType::class, [
                 'label' => self::MODE_SOURCE === $mode ? 'Quantité' : false,
                 'label_attr' => [
                     'class' => 'silent-optional-badge',
@@ -76,6 +77,9 @@ class RecipeIngredientType extends AbstractType
                     'class' => 'item-data-quantity',
                 ],
                 'error_bubbling' => true,
+                'scale' => 2,
+                'min' => 0.1,
+                'max' => 10000,
             ])
             ->add('unit', null, [
                 'label' => self::MODE_SOURCE === $mode ? 'Unité de mesure' : false,

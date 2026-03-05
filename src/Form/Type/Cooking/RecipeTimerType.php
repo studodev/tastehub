@@ -2,9 +2,9 @@
 
 namespace App\Form\Type\Cooking;
 
+use App\Form\Type\Common\FormattedNumberType;
 use App\Model\Cooking\RecipeTimer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,19 +13,21 @@ class RecipeTimerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('preparationTime', IntegerType::class, [
+            ->add('preparationTime', FormattedNumberType::class, [
                 'label' => 'minutes de <span class="accent">préparation</span>',
                 'label_html' => true,
                 'error_bubbling' => true,
                 'grouping' => true,
                 'invalid_message' => 'Le temps de préparation doit être un nombre entier',
+                'min' => 1,
+                'max' => 9999,
                 'attr' => [
                     'placeholder' => '...',
                     'class' => 'timer-preparation',
                     'maxlength' => 4,
                 ],
             ])
-            ->add('waitingTime', IntegerType::class, [
+            ->add('waitingTime', FormattedNumberType::class, [
                 'label' => 'minutes de <span class="accent">pose</span>',
                 'label_html' => true,
                 'label_attr' => [
@@ -34,13 +36,15 @@ class RecipeTimerType extends AbstractType
                 'error_bubbling' => true,
                 'grouping' => true,
                 'invalid_message' => 'Le temps de pose doit être un nombre entier',
+                'min' => 0,
+                'max' => 9999,
                 'attr' => [
                     'placeholder' => '...',
                     'class' => 'timer-waiting',
                     'maxlength' => 4,
                 ],
             ])
-            ->add('cookingTime', IntegerType::class, [
+            ->add('cookingTime', FormattedNumberType::class, [
                 'label' => 'minutes de <span class="accent">cuisson</span>',
                 'label_html' => true,
                 'label_attr' => [
@@ -49,6 +53,8 @@ class RecipeTimerType extends AbstractType
                 'error_bubbling' => true,
                 'grouping' => true,
                 'invalid_message' => 'Le temps de cuisson doit être un nombre entier',
+                'min' => 0,
+                'max' => 9999,
                 'attr' => [
                     'placeholder' => '...',
                     'class' => 'timer-cooking',
