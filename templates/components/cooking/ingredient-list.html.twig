@@ -6,7 +6,7 @@
             <li>
                 <img src="{{ pictogram_url(enum(enum.common.pictogramType).Ingredient, recipeIngredient.ingredient.type.pictogram) }}" alt="Pictogramme {{ recipeIngredient.ingredient.type.label }}">
                 <span>{{ recipeIngredient.ingredient.label }}</span>
-                {{ recipeIngredient.quantity }} {{ recipeIngredient.unit.symbol }}
+                {{ recipeIngredient.quantity }} {{ recipeIngredient.unit.displaySymbol }}
             </li>
         {% endfor %}
     </ul>

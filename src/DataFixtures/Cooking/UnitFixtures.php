@@ -13,14 +13,14 @@ class UnitFixtures extends AbstractFixture implements FixtureGroupInterface
     private const array UNITS = [
         'gram' => [
             'symbol' => 'g',
-            'label' => 'Gramme',
+            'label' => 'gramme',
             'type' => UnitTypeEnum::Mass,
             'baseFactor' => 1,
             'baseUnit' => null,
         ],
         'milligram' => [
             'symbol' => 'mg',
-            'label' => 'Milligramme',
+            'label' => 'milligramme',
             'type' => UnitTypeEnum::Mass,
             'baseFactor' => 0.001,
             '_references' => [
@@ -29,7 +29,7 @@ class UnitFixtures extends AbstractFixture implements FixtureGroupInterface
         ],
         'kilogram' => [
             'symbol' => 'kg',
-            'label' => 'Kilogramme',
+            'label' => 'kilogramme',
             'type' => UnitTypeEnum::Mass,
             'baseFactor' => 1000,
             '_references' => [
@@ -38,14 +38,14 @@ class UnitFixtures extends AbstractFixture implements FixtureGroupInterface
         ],
         'milliliter' => [
             'symbol' => 'ml',
-            'label' => 'Millilitre',
+            'label' => 'millilitre',
             'type' => UnitTypeEnum::Volume,
             'baseFactor' => 1,
             'baseUnit' => null,
         ],
         'liter' => [
             'symbol' => 'l',
-            'label' => 'Litre',
+            'label' => 'litre',
             'type' => UnitTypeEnum::Volume,
             'baseFactor' => 1000,
             '_references' => [
@@ -54,7 +54,7 @@ class UnitFixtures extends AbstractFixture implements FixtureGroupInterface
         ],
         'centiliter' => [
             'symbol' => 'cl',
-            'label' => 'Centilitre',
+            'label' => 'centilitre',
             'type' => UnitTypeEnum::Volume,
             'baseFactor' => 10,
             '_references' => [
@@ -63,42 +63,38 @@ class UnitFixtures extends AbstractFixture implements FixtureGroupInterface
         ],
         'teaspoon' => [
             'symbol' => 'càc',
-            'label' => 'Cuillère à café',
+            'label' => 'cuillère à café',
             'type' => UnitTypeEnum::Count,
         ],
         'tablespoon' => [
             'symbol' => 'càs',
-            'label' => 'Cuillère à soupe',
+            'label' => 'cuillère à soupe',
             'type' => UnitTypeEnum::Count,
         ],
         'cup' => [
-            'symbol' => 'tasse',
-            'label' => 'Tasse',
+            'label' => 'tasse',
             'type' => UnitTypeEnum::Count,
         ],
         'pot' => [
-            'symbol' => 'pot',
-            'label' => 'Pot',
+            'label' => 'pot',
             'type' => UnitTypeEnum::Count,
         ],
         'piece' => [
-            'symbol' => 'pièce',
-            'label' => 'Pièce',
+            'label' => 'pièce',
             'type' => UnitTypeEnum::Count,
         ],
         'pinch' => [
             'symbol' => 'une pincée',
-            'label' => 'Pincée',
+            'label' => 'pincée',
             'type' => UnitTypeEnum::Empirical,
         ],
         'splash' => [
             'symbol' => 'un filet',
-            'label' => 'Filet',
+            'label' => 'filet',
             'type' => UnitTypeEnum::Empirical,
         ],
         'taste' => [
-            'symbol' => 'selon le goût',
-            'label' => 'Selon le goût',
+            'label' => 'selon le goût',
             'type' => UnitTypeEnum::Empirical,
         ],
     ];

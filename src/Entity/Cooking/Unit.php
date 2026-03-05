@@ -14,7 +14,7 @@ class Unit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $symbol = null;
 
     #[ORM\Column(length: 50)]
@@ -96,6 +96,17 @@ class Unit
 
     public function getDisplayName(): string
     {
-        return sprintf('%s (%s)', $this->getLabel(), $this->getSymbol());
+        if (null === $this->getSymbol()) {
+            return ucfirst($this->getLabel());
+        }
+
+        return sprintf('%s (%s)', ucfirst($this->getLabel()), $this->getSymbol());
+    }
+
+    public function getDisplaySymbol(): string
+    {
+        $displaySymbol = $this->getSymbol() ?? $this->getLabel();
+
+        return UnitTypeEnum::Empirical === $this->getType() ? ucfirst($displaySymbol) : $displaySymbol;
     }
 }

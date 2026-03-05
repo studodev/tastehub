@@ -7,7 +7,7 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-final class Version20260305110045 extends AbstractMigration
+final class Version20260305125417 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -31,7 +31,7 @@ final class Version20260305110045 extends AbstractMigration
         $this->addSql('CREATE TABLE step (id INT AUTO_INCREMENT NOT NULL, description LONGTEXT NOT NULL, number INT NOT NULL, recipe_id INT NOT NULL, INDEX IDX_43B9FE3C59D8A214 (recipe_id), PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('CREATE TABLE step_recipe_ingredient (step_id INT NOT NULL, recipe_ingredient_id INT NOT NULL, INDEX IDX_B56C9F1173B21E9C (step_id), INDEX IDX_B56C9F113CAF64A (recipe_ingredient_id), PRIMARY KEY (step_id, recipe_ingredient_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('CREATE TABLE tag (id INT AUTO_INCREMENT NOT NULL, label VARCHAR(30) NOT NULL, PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci`');
-        $this->addSql('CREATE TABLE unit (id INT AUTO_INCREMENT NOT NULL, symbol VARCHAR(20) NOT NULL, label VARCHAR(50) NOT NULL, type VARCHAR(20) NOT NULL, base_factor DOUBLE PRECISION DEFAULT NULL, base_unit_id INT DEFAULT NULL, INDEX IDX_DCBB0C53CCBBC969 (base_unit_id), PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci`');
+        $this->addSql('CREATE TABLE unit (id INT AUTO_INCREMENT NOT NULL, symbol VARCHAR(20) DEFAULT NULL, label VARCHAR(50) NOT NULL, type VARCHAR(20) NOT NULL, base_factor DOUBLE PRECISION DEFAULT NULL, base_unit_id INT DEFAULT NULL, INDEX IDX_DCBB0C53CCBBC969 (base_unit_id), PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, username VARCHAR(24) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, slug VARCHAR(180) NOT NULL, UNIQUE INDEX UNIQ_8D93D649989D9B62 (slug), UNIQUE INDEX UNIQ_IDENTIFIER_EMAIL (email), UNIQUE INDEX UNIQ_USERNAME (username), PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('CREATE TABLE utensil (id INT AUTO_INCREMENT NOT NULL, label VARCHAR(30) NOT NULL, pictogram VARCHAR(255) NOT NULL, PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('ALTER TABLE ingredient ADD CONSTRAINT FK_6BAF7870C54C8C93 FOREIGN KEY (type_id) REFERENCES ingredient_type (id)');

@@ -63,7 +63,7 @@ class RecipeIngredientType extends AbstractType
 
             $unitOptions = [
                 'placeholder' => 'Unité',
-                'choice_label' => 'symbol',
+                'choice_label' => 'displaySymbol',
             ];
             $quantityAttr = [
                 'aria-label' => 'Quantité',
