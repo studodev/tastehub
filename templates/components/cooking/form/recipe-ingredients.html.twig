@@ -4,15 +4,22 @@
             {% set pictogram = value is not null ? pictogram_url(enum(enum.common.pictogramType).Ingredient, value.ingredient.type.pictogram) %}
             <img src="{{ pictogram }}" alt="{{ value is not null ? 'Pictogramme ' ~ value.ingredient.type.label }}" class="item-data-ingredient-pictogram">
 
-            <div class="item-form">
+            <div class="item-form hidden">
                 {{ form_row(form.ingredient) }}
                 {{ form_row(form.quantity) }}
                 {{ form_row(form.unit) }}
             </div>
 
-            <span class="item-data-ingredient-label">
-                {{ value is not null ? value.ingredient.label }}
-            </span>
+            <div class="item-data">
+                <span class="item-data-ingredient-label">
+                    {{ value is not null ? value.ingredient.label }}
+                </span>
+                <span class="item-data-ingredient-quantity-unit">
+                    {% if value is not null %}
+                        {{ value.quantity }} {{ value.unit.symbol }}
+                    {% endif %}
+                </span>
+            </div>
         </div>
 
         <button type="button" class="item-remove-trigger" aria-label="Supprimer l'ingrédient">

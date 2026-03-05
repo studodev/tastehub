@@ -56,9 +56,6 @@ class RecipeIngredientType extends AbstractType
                 'class' => Ingredient::class,
                 'label' => false,
                 'choice_label' => 'label',
-                'row_attr' => [
-                    'class' => 'hidden',
-                ],
                 'attr' => [
                     'class' => 'item-data-ingredient',
                 ],

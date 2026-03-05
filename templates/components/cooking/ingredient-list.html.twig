@@ -5,8 +5,8 @@
         {% for recipeIngredient in recipeIngredients %}
             <li>
                 <img src="{{ pictogram_url(enum(enum.common.pictogramType).Ingredient, recipeIngredient.ingredient.type.pictogram) }}" alt="Pictogramme {{ recipeIngredient.ingredient.type.label }}">
-                {{ recipeIngredient.quantity }} {{ recipeIngredient.unit.symbol }}
                 <span>{{ recipeIngredient.ingredient.label }}</span>
+                {{ recipeIngredient.quantity }} {{ recipeIngredient.unit.symbol }}
             </li>
         {% endfor %}
     </ul>

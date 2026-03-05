@@ -60,9 +60,23 @@
                     }
                 }
 
+                .item-data {
+                    display: flex;
+                    flex-direction: column;
+
+                    .item-data-ingredient-label {
+                        font-weight: 600;
+                    }
+                }
+
                 .item-remove-trigger {
+                    align-self: stretch;
                     font-size: 1.2rem;
                     color: var(--color-warn);
+
+                    .icon {
+                        vertical-align: middle;
+                    }
                 }
             }
 

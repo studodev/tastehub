@@ -5,14 +5,18 @@ import { RecipeItemCollection } from "./recipe-item-collection";
 export class RecipeIngredientCollection extends RecipeItemCollection {
     protected prepareItem(prototype: HTMLElement): boolean {
         const ingredientInputField = this.elements.itemSource.querySelector('.item-data-ingredient') as HTMLSelectElement;
-        const ingredientOutputField = prototype.querySelector('.item-data-ingredient') as HTMLSelectElement;
-        const ingredientOutputLabel = prototype.querySelector('.item-data-ingredient-label');
-        const ingredientOutputPictogram = prototype.querySelector('.item-data-ingredient-pictogram') as HTMLImageElement;
-        const selectedIngredient = ingredientInputField.options[ingredientInputField.selectedIndex];
         const quantityInputField = this.elements.itemSource.querySelector('.item-data-quantity') as HTMLInputElement;
-        const quantityOutputField = prototype.querySelector('.item-data-quantity') as HTMLInputElement;
         const unitInputField = this.elements.itemSource.querySelector('.item-data-unit') as HTMLSelectElement;
-        const unitOutputField = prototype.querySelector('.item-data-unit') as HTMLInputElement;
+
+        const ingredientOutputField = prototype.querySelector('.item-data-ingredient') as HTMLSelectElement;
+        const quantityOutputField = prototype.querySelector('.item-data-quantity') as HTMLInputElement;
+        const unitOutputField = prototype.querySelector('.item-data-unit') as HTMLSelectElement;
+
+        const ingredientOutputPictogram = prototype.querySelector('.item-data-ingredient-pictogram') as HTMLImageElement;
+        const ingredientOutputLabel = prototype.querySelector('.item-data-ingredient-label');
+        const ingredientOutputQuantityUnit = prototype.querySelector('.item-data-ingredient-quantity-unit');
+
+        const selectedIngredient = ingredientInputField.options[ingredientInputField.selectedIndex];
         const selectedUnit = unitInputField.options[unitInputField.selectedIndex];
 
         if (!selectedIngredient.value || (!quantityInputField.value && !selectedUnit.hasAttribute('data-empirical')) || !unitInputField.value) {
@@ -21,10 +25,17 @@ export class RecipeIngredientCollection extends RecipeItemCollection {
         }
 
         ingredientOutputField.value = ingredientInputField.value;
+        unitOutputField.value = unitInputField.value;
+
         ingredientOutputLabel.textContent = selectedIngredient.textContent;
         ingredientOutputPictogram.src = selectedIngredient.dataset.pictogram;
-        quantityOutputField.value = quantityInputField.value;
-        unitOutputField.value = unitInputField.value;
+
+        if (selectedUnit.hasAttribute('data-empirical')) {
+            ingredientOutputQuantityUnit.textContent = unitOutputField.options[unitOutputField.selectedIndex].textContent;
+        } else {
+            ingredientOutputQuantityUnit.textContent = quantityInputField.value + ' ' + unitOutputField.options[unitOutputField.selectedIndex].textContent;
+            quantityOutputField.value = quantityInputField.value;
+        }
 
         ingredientInputField.selectedIndex = null;
         ingredientInputField.dispatchEvent(new Event('change'));
