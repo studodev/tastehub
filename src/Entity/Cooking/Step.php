@@ -4,7 +4,6 @@ namespace App\Entity\Cooking;
 
 use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Repository\Cooking\StepRepository;
-use App\Validator\UniqueCollectionElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -40,19 +39,14 @@ class Step
     private ?Recipe $recipe = null;
 
     /**
-     * @var Collection<int, StepRecipeIngredient>
+     * @var Collection<int, RecipeIngredient>
      */
-    #[UniqueCollectionElement(
-        field: 'recipeIngredient',
-        label: 'ingredient.label',
-        message: 'L\'ingredient "{{ label }}" est présent plusieurs fois'
-    )]
-    #[ORM\OneToMany(targetEntity: StepRecipeIngredient::class, mappedBy: 'step', cascade: ['persist'], orphanRemoval: true)]
-    private Collection $stepRecipeIngredients;
+    #[ORM\ManyToMany(targetEntity: RecipeIngredient::class)]
+    private Collection $recipeIngredients;
 
     public function __construct()
     {
-        $this->stepRecipeIngredients = new ArrayCollection();
+        $this->recipeIngredients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,30 +91,25 @@ class Step
     }
 
     /**
-     * @return Collection<int, StepRecipeIngredient>
+     * @return Collection<int, RecipeIngredient>
      */
-    public function getStepRecipeIngredients(): Collection
+    public function getRecipeIngredients(): Collection
     {
-        return $this->stepRecipeIngredients;
+        return $this->recipeIngredients;
     }
 
-    public function addStepRecipeIngredient(StepRecipeIngredient $stepRecipeIngredient): static
+    public function addRecipeIngredient(RecipeIngredient $recipeIngredient): static
     {
-        if (!$this->stepRecipeIngredients->contains($stepRecipeIngredient)) {
-            $this->stepRecipeIngredients->add($stepRecipeIngredient);
-            $stepRecipeIngredient->setStep($this);
+        if (!$this->recipeIngredients->contains($recipeIngredient)) {
+            $this->recipeIngredients->add($recipeIngredient);
         }
 
         return $this;
     }
 
-    public function removeStepRecipeIngredient(StepRecipeIngredient $stepRecipeIngredient): static
+    public function removeRecipeIngredient(RecipeIngredient $recipeIngredient): static
     {
-        if ($this->stepRecipeIngredients->removeElement($stepRecipeIngredient)) {
-            if ($stepRecipeIngredient->getStep() === $this) {
-                $stepRecipeIngredient->setStep(null);
-            }
-        }
+        $this->recipeIngredients->removeElement($recipeIngredient);
 
         return $this;
     }

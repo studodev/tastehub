@@ -12,7 +12,6 @@ twig:
         - 'components/cooking/form/recipe-ingredients.html.twig'
         - 'components/cooking/form/recipe-utensils.html.twig'
         - 'components/cooking/form/recipe-steps.html.twig'
-        - 'components/cooking/form/step-recipe-ingredients.html.twig'
     globals:
         enum:
             common:
