@@ -79,7 +79,7 @@ class RecipeIngredientType extends AbstractType
                 'error_bubbling' => true,
                 'scale' => 2,
                 'min' => 0.1,
-                'max' => 10000,
+                'max' => RecipeIngredient::MAX_QUANTITY,
             ])
             ->add('unit', null, [
                 'label' => self::MODE_SOURCE === $mode ? 'Unité de mesure' : false,

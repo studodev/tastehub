@@ -9,6 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: RecipeIngredientRepository::class)]
 class RecipeIngredient
 {
+    public const int MAX_QUANTITY = 10000;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -32,6 +34,10 @@ class RecipeIngredient
     )]
     #[Assert\Positive(
         message: 'Vous devez saisir une quantité positive',
+    )]
+    #[Assert\LessThanOrEqual(
+        value: self::MAX_QUANTITY,
+        message: 'La quantité ne doit pas dépasser {{ compared_value }}',
     )]
     #[ORM\Column(nullable: true)]
     private ?float $quantity = null;
