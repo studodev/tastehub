@@ -15,9 +15,7 @@
                     {{ value is not null ? value.ingredient.label }}
                 </span>
                 <span class="item-data-ingredient-quantity-unit">
-                    {% if value is not null %}
-                        {{ value.quantity }} {{ value.unit.displaySymbol }}
-                    {% endif %}
+                    {{ value is not null ? value.measure }}
                 </span>
             </div>
         </div>

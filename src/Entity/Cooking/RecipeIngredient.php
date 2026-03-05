@@ -94,4 +94,13 @@ class RecipeIngredient
 
         return $this;
     }
+
+    public function getMeasure(): string
+    {
+        if (null === $this->getQuantity()) {
+            return $this->getUnit()->getDisplaySymbol();
+        }
+
+        return sprintf('%s %s', $this->getQuantity(), $this->getUnit()->getDisplaySymbol($this->getQuantity() > 1));
+    }
 }

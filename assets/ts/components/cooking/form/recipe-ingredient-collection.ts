@@ -33,8 +33,14 @@ export class RecipeIngredientCollection extends RecipeItemCollection {
         if (selectedUnit.hasAttribute('data-empirical')) {
             ingredientOutputQuantityUnit.textContent = unitOutputField.options[unitOutputField.selectedIndex].textContent;
         } else {
-            ingredientOutputQuantityUnit.textContent = quantityInputField.value + ' ' + unitOutputField.options[unitOutputField.selectedIndex].textContent;
             quantityOutputField.value = quantityInputField.value;
+            const targetedUnit = unitOutputField.options[unitOutputField.selectedIndex];
+
+            if (Number(quantityInputField.value) > 1) {
+                ingredientOutputQuantityUnit.textContent = quantityInputField.value + ' ' + targetedUnit.dataset.plural;
+            } else {
+                ingredientOutputQuantityUnit.textContent = quantityInputField.value + ' ' + targetedUnit.textContent;
+            }
         }
 
         ingredientInputField.selectedIndex = null;

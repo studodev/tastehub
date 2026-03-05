@@ -5,6 +5,7 @@ namespace App\Entity\Cooking;
 use App\Enum\Cooking\UnitTypeEnum;
 use App\Repository\Cooking\UnitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Inflector\FrenchInflector;
 
 #[ORM\Entity(repositoryClass: UnitRepository::class)]
 class Unit
@@ -103,9 +104,14 @@ class Unit
         return sprintf('%s (%s)', ucfirst($this->getLabel()), $this->getSymbol());
     }
 
-    public function getDisplaySymbol(): string
+    public function getDisplaySymbol(bool $plural = false): string
     {
         $displaySymbol = $this->getSymbol() ?? $this->getLabel();
+
+        if (true === $plural && null === $this->getSymbol()) {
+            $inflector = new FrenchInflector();
+            $displaySymbol = array_first($inflector->pluralize($displaySymbol));
+        }
 
         return UnitTypeEnum::Empirical === $this->getType() ? ucfirst($displaySymbol) : $displaySymbol;
     }

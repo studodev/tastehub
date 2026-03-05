@@ -62,14 +62,7 @@ class RecipeIngredientType extends AbstractType
             ]);
 
             $unitOptions = [
-                'placeholder' => 'Unité',
                 'choice_label' => 'displaySymbol',
-            ];
-            $quantityAttr = [
-                'aria-label' => 'Quantité',
-            ];
-            $unitAttr = [
-                'aria-label' => 'Unité de mesure',
             ];
         }
 
@@ -81,7 +74,6 @@ class RecipeIngredientType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'item-data-quantity',
-                    ...$quantityAttr ?? [],
                 ],
                 'error_bubbling' => true,
             ])
@@ -93,10 +85,10 @@ class RecipeIngredientType extends AbstractType
                 },
                 'attr' => [
                     'class' => 'item-data-unit',
-                    ...$unitAttr ?? [],
                 ],
                 'choice_attr' => function (Unit $unit) {
                     return [
+                        'data-plural' => $unit->getDisplaySymbol(true),
                         'data-empirical' => $unit->getType()->isEmpirical() ? null : false,
                     ];
                 },
