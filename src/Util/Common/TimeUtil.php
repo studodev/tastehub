@@ -10,9 +10,9 @@ class TimeUtil
             $hours = intdiv($duration, 60);
             $minutes = $duration % 60;
 
-            return sprintf('%sh%s', $hours, $minutes);
+            return sprintf('%dh%02d', $hours, $minutes);
         }
 
-        return sprintf('%s min', $duration);
+        return sprintf('%d min', $duration);
     }
 }
