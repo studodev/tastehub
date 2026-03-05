@@ -10,7 +10,7 @@ form {
             display: inline-block;
             width: fit-content;
             font-family: var(--font-family-title), sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1;
             color: var(--color-eggplant);
             cursor: pointer;
@@ -30,7 +30,7 @@ form {
         &.highlight-row {
             label {
                 color: var(--color-olive);
-                font-size: 1.3rem;
+                font-size: 1.25rem;
             }
         }
 
