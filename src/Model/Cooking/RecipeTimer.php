@@ -7,6 +7,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class RecipeTimer
 {
+    public const int MAX_TIME = 9999;
+
     #[Assert\NotBlank(
         message: 'Veuillez renseigner le temps de préparation',
         groups: [DraftRecipeStatusEnum::Details->value],
@@ -15,16 +17,31 @@ class RecipeTimer
         message: 'Le temps de préparation doit être un nombre entier positif',
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
+    #[Assert\LessThanOrEqual(
+        value: self::MAX_TIME,
+        message: 'Le temps de préparation ne doit pas dépasser {{ compared_value }} minutes',
+        groups: [DraftRecipeStatusEnum::Details->value],
+    )]
     private ?int $preparationTime = null;
 
     #[Assert\PositiveOrZero(
         message: 'Le temps de cuisson doit être un nombre entier positif',
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
+    #[Assert\LessThanOrEqual(
+        value: self::MAX_TIME,
+        message: 'Le temps de cuisson ne doit pas dépasser {{ compared_value }} minutes',
+        groups: [DraftRecipeStatusEnum::Details->value],
+    )]
     private ?int $cookingTime = null;
 
     #[Assert\PositiveOrZero(
         message: 'Le temps de pose doit être un nombre entier positif',
+        groups: [DraftRecipeStatusEnum::Details->value],
+    )]
+    #[Assert\LessThanOrEqual(
+        value: self::MAX_TIME,
+        message: 'Le temps de pose ne doit pas dépasser {{ compared_value }} minutes',
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
     private ?int $waitingTime = null;
