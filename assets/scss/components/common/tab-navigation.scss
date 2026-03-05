@@ -3,19 +3,25 @@
         display: none;
     }
 
-    .tab-navigator ul {
-        display: flex;
-        gap: 16px;
+    .tab-navigator {
+        max-width: 100%;
 
-        button {
-            font-family: var(--font-family-title), sans-serif;
-            font-size: 1rem;
-            border: 2px solid var(--color-water);
-            padding: 6px 10px;
-            border-radius: var(--radius-default);
+        ul {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
 
-            &.active {
-                background-color: var(--color-water);
+            button {
+                font-family: var(--font-family-title), sans-serif;
+                font-size: 1rem;
+                border: 2px solid var(--color-water);
+                padding: 6px 10px;
+                border-radius: var(--radius-default);
+                white-space: nowrap;
+
+                &.active {
+                    background-color: var(--color-water);
+                }
             }
         }
     }

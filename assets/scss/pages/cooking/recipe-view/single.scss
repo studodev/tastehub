@@ -178,3 +178,11 @@ h2 {
         }
     }
 }
+
+@media screen and (max-width: 480px) {
+    .recipe-content .quantity-counter-widget {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
