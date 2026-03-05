@@ -23,7 +23,8 @@ class SecurityController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly ResetPasswordService   $resetPasswordService, private readonly MailerService $mailerService,
+        private readonly MailerService $mailerService,
+        private readonly ResetPasswordService $resetPasswordService,
     ) {
     }
 
@@ -49,8 +50,9 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($user);
             $this->em->flush();
-            $this->addFlash(FlashMessageTypeEnum::Notice->value, 'Votre compte a bien été créé, vous pouvez dès à présent vous connecter');
             $this->mailerService->sendRegisterConfirmation($user);
+            $this->addFlash(FlashMessageTypeEnum::Notice->value, 'Votre compte a bien été créé, vous pouvez dès à présent vous connecter');
+
             return $this->redirectToRoute('user_security_login');
         }
 
