@@ -19,7 +19,7 @@ h2 {
 
     .recipe-image {
         width: 450px;
-        max-height: 475px;
+        aspect-ratio: 1 / 1;
         object-fit: cover;
         object-position: center;
         border-right: 2px solid var(--color-water);
