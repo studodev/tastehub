@@ -1,6 +1,10 @@
 p {
     text-wrap: pretty;
 
+    &.semibold {
+        font-weight: 500;
+    }
+
     a {
         color: var(--color-raspberry);
     }

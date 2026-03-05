@@ -35,7 +35,7 @@ h2 {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            gap: 8px;
+            gap: 28px 40px;
 
             &.end {
                 flex-wrap: wrap-reverse;
@@ -45,7 +45,7 @@ h2 {
 
         .recipe-title {
             .recipe-category {
-                font-size: 1.2rem;
+                font-size: 0.95rem;
                 font-weight: 700;
                 text-transform: uppercase;
             }
@@ -56,7 +56,7 @@ h2 {
         }
 
         .compact-list {
-            margin: 4px 0 24px;
+            margin: 6px 0 24px;
             display: flex;
             flex-wrap: wrap;
             gap: 12px 24px;
@@ -65,11 +65,13 @@ h2 {
             li {
                 display: flex;
                 align-items: center;
-                gap: 4px;
+                gap: 6px;
+                font-size: 1.2rem;
 
                 i {
                     font-size: 1.8rem;
                     color: var(--color-raspberry);
+                    vertical-align: middle;
                 }
             }
         }
@@ -85,7 +87,6 @@ h2 {
             align-items: end;
             gap: 8px;
             max-width: 450px;
-            margin-top: 24px;
             margin-left: auto;
 
             .tag {

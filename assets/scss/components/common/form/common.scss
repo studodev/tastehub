@@ -10,7 +10,7 @@ form {
             display: inline-block;
             width: fit-content;
             font-family: var(--font-family-title), sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1;
             color: var(--color-eggplant);
             cursor: pointer;
@@ -25,17 +25,21 @@ form {
                 color: var(--color-dark);
                 vertical-align: middle;
             }
+
+            &.label-checkbox-group {
+                margin-bottom: 6px;
+            }
         }
 
         &.highlight-row {
             label {
                 color: var(--color-olive);
-                font-size: 1.3rem;
+                font-size: 1.25rem;
             }
         }
 
         .help-text {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--color-eggplant);
         }
 
@@ -72,6 +76,7 @@ form {
                 position: relative;
                 margin-left: calc(var(--checkbox-size) + var(--checkbox-spacer));
                 font-size: 1rem;
+                font-weight: 500;
                 vertical-align: center;
 
                 &::before {
@@ -85,9 +90,9 @@ form {
                     height: var(--checkbox-size);
                     margin-right: var(--checkbox-spacer);
                     border: 2px solid var(--color-raspberry);
-                    border-radius: 2px;
+                    border-radius: 4px;
                     font-family: var(--font-family-icon), sans-serif;
-                    font-size: 0.6rem;
+                    font-size: 0.65rem;
                     color: var(--color-light);
                 }
 
@@ -128,6 +133,7 @@ form {
                 font-family: var(--font-family-content), sans-serif;
                 font-size: 1rem;
                 color: var(--color-raspberry);
+                font-weight: 500;
             }
 
             &:checked + label {

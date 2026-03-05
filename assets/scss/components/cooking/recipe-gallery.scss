@@ -55,7 +55,7 @@
                 position: relative;
                 width: 100%;
                 font-family: var(--font-family-title), sans-serif;
-                font-size: 1.4rem;
+                font-size: 1.25rem;
                 color: var(--color-raspberry);
                 margin-bottom: 8px;
             }
@@ -89,15 +89,18 @@
                 margin: 0 auto;
                 justify-content: center;
                 align-items: center;
-                max-width: 600px;
+                max-width: 675px;
+                padding: 12px;
 
                 img {
-                    height: 250px;
+                    height: 260px;
                 }
 
                 p {
                     flex: 1 1 300px;
                     color: var(--color-olive);
+                    font-weight: 500;
+                    line-height: 1.2;
 
                     span {
                         display: block;
