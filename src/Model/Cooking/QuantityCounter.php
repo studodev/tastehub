@@ -8,14 +8,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class QuantityCounter
 {
+    public const int MIN_VALUE = 1;
+    public const int MAX_VALUE = 999;
+
     #[Assert\NotBlank(
         message: 'Veuillez renseigner la quantité réalisée',
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
     #[Assert\Range(
         notInRangeMessage: 'La quantité réalisée doit être comprise entre {{ min }} et {{ max }}',
-        min: 1,
-        max: 100,
+        min: self::MIN_VALUE,
+        max: self::MAX_VALUE,
         groups: [DraftRecipeStatusEnum::Details->value],
     )]
     private ?int $value = 2;
