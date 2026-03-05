@@ -133,6 +133,9 @@ class RecipeType extends AbstractType
                     return sprintf('%s <i class="icon icon-%s"></i>', $dietType->getLabel(), $dietType->getIcon());
                 },
                 'label_html' => true,
+                'label_attr' => [
+                    'class' => 'label-checkbox-group'
+                ]
             ])
             ->add('cookingMethods', EntityType::class, [
                 'label' => 'Modes de cuisson',
@@ -143,6 +146,9 @@ class RecipeType extends AbstractType
                     return sprintf('%s <i class="icon icon-%s"></i>', $cookingMethod->getLabel(), $cookingMethod->getIcon());
                 },
                 'label_html' => true,
+                'label_attr' => [
+                    'class' => 'label-checkbox-group'
+                ]
             ])
             ->add('tags', AutocompleteEntityType::class, [
                 'label' => 'Tags',

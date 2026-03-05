@@ -16,8 +16,8 @@
     <h1>{{ draft.updating ? 'Édition' : 'Création' }} d'une recette</h1>
 
     <section>
-        <h2>Bravo</h2>
-        <p>
+        <h2>Bravo {{ app.user.username }}&nbsp;!</h2>
+        <p class="semibold">
             Votre recette <strong>{{ draft.recipe.title }}</strong> a bien été {{ draft.updating ? 'mise à jour' : 'mise en ligne'}} !
         </p>
 

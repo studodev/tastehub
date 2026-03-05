@@ -25,6 +25,10 @@ form {
                 color: var(--color-dark);
                 vertical-align: middle;
             }
+
+            &.label-checkbox-group {
+                margin-bottom: 6px;
+            }
         }
 
         &.highlight-row {
@@ -35,7 +39,7 @@ form {
         }
 
         .help-text {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--color-eggplant);
         }
 
@@ -86,9 +90,9 @@ form {
                     height: var(--checkbox-size);
                     margin-right: var(--checkbox-spacer);
                     border: 2px solid var(--color-raspberry);
-                    border-radius: 2px;
+                    border-radius: 4px;
                     font-family: var(--font-family-icon), sans-serif;
-                    font-size: 0.6rem;
+                    font-size: 0.65rem;
                     color: var(--color-light);
                 }
 
@@ -129,6 +133,7 @@ form {
                 font-family: var(--font-family-content), sans-serif;
                 font-size: 1rem;
                 color: var(--color-raspberry);
+                font-weight: 500;
             }
 
             &:checked + label {
