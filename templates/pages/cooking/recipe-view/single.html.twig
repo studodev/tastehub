@@ -108,7 +108,9 @@
         </section>
 
         <section data-tab-content="steps" class="step-container">
-            Étapes
+            {% include 'components/cooking/step-list.html.twig' with {
+                steps: recipe.steps,
+            } only %}
         </section>
 
         <section data-tab-content="reviews" class="review-container">

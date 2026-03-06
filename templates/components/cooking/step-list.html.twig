@@ -1,0 +1,26 @@
+<ol class="step-list">
+    {% for step in steps %}
+        <li class="step content-frame">
+            <p class="step-description">
+                {{ step.description|nl2br }}
+            </p>
+            <div class="step-ingredients">
+                <span class="step-ingredients-title">Ingrédients :</span>
+
+                {% if step.recipeIngredients|length > 0 %}
+                    <ul>
+                        {% for recipeIngredient in step.recipeIngredients %}
+                            <li>
+                                {{ recipeIngredient.ingredient.label }} : {{ recipeIngredient.measure }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <span class="step-empty-list">
+                        Aucun ingrédient renseigné
+                    </span>
+                {% endif %}
+            </div>
+        </li>
+    {% endfor %}
+</ol>

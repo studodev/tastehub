@@ -1,0 +1,105 @@
+.step-list {
+    counter-reset: recipe-step-count;
+    list-style-type: none;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .step {
+        --content-gap: 18px;
+        --padding-content: 32px;
+        display: flex;
+        gap: var(--content-gap);
+        margin-bottom: 24px;
+        padding-block: 0;
+
+        &::before {
+            --marker-font-size: 1.6rem;
+            --marker-size: calc(var(--marker-font-size) * 1.6);
+            content: counter(recipe-step-count);
+            counter-increment: recipe-step-count;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: var(--marker-size);
+            height: var(--marker-size);
+            margin-block: var(--padding-content);
+            border-radius: 50%;
+            background-color: var(--color-eggplant);
+            font-family: var(--font-family-title), sans-serif;
+            font-size: var(--marker-font-size);
+            color: var(--color-light);
+            line-height: 1;
+        }
+
+        & > * {
+            padding-block: var(--padding-content);
+        }
+
+        .step-description {
+            flex: 1;
+            font-size: 1.1rem;
+            border-right: 2px solid var(--color-water);
+            padding-right: var(--content-gap);
+        }
+
+        .step-ingredients {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+
+            .step-ingredients-title {
+                font-size: 1.1rem;
+                color: var(--color-raspberry);
+            }
+
+            .step-empty-list {
+                font-style: italic;
+                color: color-mix(in srgb, var(--color-dark) 60%, transparent);
+            }
+
+            ul {
+                list-style-type: disc;
+                margin-left: 24px;
+
+                li {
+                    padding-left: 0;
+
+                    &::marker {
+                        color: var(--color-olive);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .step-list .step {
+        --padding-content: 16px;
+        flex-direction: column;
+        margin-bottom: 28px;
+        padding: var(--padding-content);
+
+        &::before {
+            --marker-font-size: 1.2rem;
+            align-self: center;
+            margin-top: calc(var(--padding-content) * -1.8);
+            margin-bottom: 0;
+        }
+
+        & > * {
+            padding-block: 0;
+        }
+
+        .step-description {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .step-ingredients {
+            border-top: 2px solid var(--color-water);
+            padding-top: var(--content-gap);
+            width: 100%;
+        }
+    }
+}

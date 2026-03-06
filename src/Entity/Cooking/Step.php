@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: StepRepository::class)]
 class Step
 {
-    public const DESCRIPTION_MAX_LENGTH = 500;
+    public const int DESCRIPTION_MAX_LENGTH = 500;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

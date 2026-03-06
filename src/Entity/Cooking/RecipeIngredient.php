@@ -107,6 +107,6 @@ class RecipeIngredient
             return $this->getUnit()->getDisplaySymbol();
         }
 
-        return sprintf('%s %s', $this->getQuantity(), $this->getUnit()->getDisplaySymbol($this->getQuantity() > 1));
+        return sprintf('%s %s', $this->getQuantity(), $this->getUnit()->getDisplaySymbol($this->getQuantity() >= 2));
     }
 }
