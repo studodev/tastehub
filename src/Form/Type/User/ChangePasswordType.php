@@ -14,7 +14,7 @@ class ChangePasswordType extends AbstractType
     {
         $builder
             ->add('plainPassword', PasswordType::class, [
-                'label' => 'Mot de passe',
+                'label' => 'Nouveau mot de passe',
             ])
         ;
     }
