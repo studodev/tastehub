@@ -18,6 +18,8 @@ Encore
     .addEntry('app', './assets/ts/app.ts')
 
     /* ----- Pages entrypoints ---- */
+    .addEntry('main_index', './assets/ts/pages/main/index.ts')
+
     .addEntry('cooking_recipe_explore_index', './assets/ts/pages/cooking/recipe-explore/index.ts')
     .addEntry('cooking_recipe_explore_book', './assets/ts/pages/cooking/recipe-explore/book.ts')
 
