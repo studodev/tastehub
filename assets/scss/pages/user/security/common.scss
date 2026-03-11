@@ -45,8 +45,8 @@ main {
 
         form, p.information {
             grid-column-start: 2 span;
-            width: min(100%, 350px);
-            margin: 40px auto;
+            width: min(100%, 400px);
+            margin: 40px 0;
 
             .form-actions {
                 display: flex;
@@ -60,10 +60,47 @@ main {
                     font-size: 0.8rem;
                 }
             }
+
+            p.information {
+                margin: 0 0 16px 0;
+            }
         }
 
         p.information {
-            width: 100%;
+            width: min(100%, 375px);
+
+            &.completed {
+                text-align: center;
+            }
+
+
+            span {
+                font-size: 1.1rem;
+                line-height: 1;
+                font-weight: 600;
+                color: var(--color-eggplant);
+                display: block;
+                margin-bottom: 0;
+
+                &.completed {
+                    text-align: center;
+
+                    &::before {
+                        content: "\e904";
+                        font-family: var(--font-family-icon), sans-serif;
+                        font-size: 1.5rem;
+                        color: var(--color-pistachio);
+                        display: block;
+                        text-align: center;
+                        border: 3px solid var(--color-pistachio);
+                        border-radius: 50%;
+                        width: 48px;
+                        height: 48px;
+                        line-height: 46px;
+                        margin: 0 auto 24px auto;
+                    }
+                }
+            }
         }
     }
 
