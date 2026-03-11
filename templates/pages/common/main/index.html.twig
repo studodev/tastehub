@@ -13,5 +13,25 @@
 {% endblock %}
 
 {% block body %}
-
+    <section class="hero">
+        <div>
+            <h1>
+                Gérez votre livre de recettes et explorez de nouveaux horizons culinaires !
+            </h1>
+            <p>
+                Avec TasteHub, <strong>centralisez et maîtrisez vos recettes</strong> comme un chef tout en enrichissant votre <strong>bibliothèque de recettes</strong> grâce à celles de la communauté !
+            </p>
+            <ul>
+                <li><span class="icon cookbook"></span> <a href="{{ path('cooking_recipe_form_new') }}">Créez vos recettes</a> pour les ajouter à votre livre de recettes</li>
+                <li><span class="icon search"></span> <a href="{{ path('cooking_recipe_explore_index') }}">Découvrez de nouvelles recettes</a> pour régaler votre palais</li>
+                <li><span class="icon whisk"></span> Réalisez vos recettes sans les mains grâce au <strong>mode préparation</strong> (à venir)</li>
+                <li><span class="icon icon-chef-hat"></span> <strong>Partagez votre livre de recette</strong> avec d'autres membres de la brigade (à venir)</li>
+            </ul>
+            <div class="cta-container">
+                <a href="{{ path('cooking_recipe_explore_index') }}" class="button small water">Explorer les recettes</a>
+                <a href="{{ path('cooking_recipe_form_new') }}" class="button small outline water">Ajouter une recette</a>
+            </div>
+        </div>
+        <img src="{{ asset('build/images/illustrations/woman-cooking.svg') }}" alt="Illustration de femme cuisinant en faisant sauter des aliments dans une poêle">
+    </section>
 {% endblock %}
