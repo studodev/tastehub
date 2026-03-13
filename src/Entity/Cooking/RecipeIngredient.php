@@ -48,6 +48,8 @@ class RecipeIngredient
     #[ORM\ManyToOne]
     private ?Unit $unit = null;
 
+    private ?float $customQuantity = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -101,12 +103,26 @@ class RecipeIngredient
         return $this;
     }
 
+    public function getCustomQuantity(): ?float
+    {
+        return $this->customQuantity;
+    }
+
+    public function setCustomQuantity(?float $customQuantity): static
+    {
+        $this->customQuantity = $customQuantity;
+
+        return $this;
+    }
+
     public function getMeasure(): string
     {
         if (null === $this->getQuantity()) {
             return $this->getUnit()->getDisplaySymbol();
         }
 
-        return sprintf('%s %s', $this->getQuantity(), $this->getUnit()->getDisplaySymbol($this->getQuantity() >= 2));
+        $quantity = $this->getCustomQuantity() ?? $this->getQuantity();
+
+        return sprintf('%s %s', $quantity, $this->getUnit()->getDisplaySymbol($this->getQuantity() >= 2));
     }
 }

@@ -55,6 +55,9 @@ export class IncrementalNumber extends AbstractComponent{
         }
 
         this.elements.input.value = String(value);
+        this.elements.input.dispatchEvent(new Event('change', {
+            bubbles: true
+        }));
     }
 }
 

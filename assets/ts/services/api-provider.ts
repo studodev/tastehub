@@ -40,6 +40,7 @@ class ApiProvider {
 export interface ApiResponse {
     status: boolean;
     view?: string;
+    views?: {[key: string]: string};
     message?: string;
     items?: any[];
     details?: {[key: string]: any};

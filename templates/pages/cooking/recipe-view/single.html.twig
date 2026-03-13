@@ -74,47 +74,53 @@
         </p>
     {% endif %}
 
-    <div data-tab-navigation class="recipe-content">
+    <div data-recipe-customizer="{{ url('cooking_recipe_view_customize', {slug: recipe.slug}) }}" class="recipe-content">
         {{ form(quantityForm) }}
 
-        <nav class="tab-navigator">
-            <ul>
-                <li>
-                    <button data-tab-trigger="ingredients" class="active">
-                        Ingrédients & ustensiles
-                    </button>
-                </li>
-                <li>
-                    <button data-tab-trigger="steps">
-                        Étapes
-                    </button>
-                </li>
-                <li>
-                    <button data-tab-trigger="reviews">
-                        Avis
-                    </button>
-                </li>
-            </ul>
-        </nav>
+        <div data-tab-navigation class="recipe-navigator">
+            <nav class="tab-navigator">
+                <ul>
+                    <li>
+                        <button data-tab-trigger="ingredients" class="active">
+                            Ingrédients & ustensiles
+                        </button>
+                    </li>
+                    <li>
+                        <button data-tab-trigger="steps">
+                            Étapes
+                        </button>
+                    </li>
+                    <li>
+                        <button data-tab-trigger="reviews">
+                            Avis
+                        </button>
+                    </li>
+                </ul>
+            </nav>
 
-        <section data-tab-content="ingredients" class="ingredient-utensil-container active">
-            {% include 'components/cooking/ingredient-list.html.twig' with {
-                recipeIngredients: recipe.recipeIngredients,
-            } only %}
+            <section data-tab-content="ingredients" class="ingredient-utensil-container active">
+                <div class="ingredient-list content-frame">
+                    {% include 'components/cooking/ingredient-list.html.twig' with {
+                        recipeIngredients: recipe.recipeIngredients,
+                    } only %}
+                </div>
 
-            {% include 'components/cooking/utensil-list.html.twig' with {
-                utensils: recipe.utensils,
-            } only %}
-        </section>
+                <div class="utensil-list content-frame">
+                    {% include 'components/cooking/utensil-list.html.twig' with {
+                        utensils: recipe.utensils,
+                    } only %}
+                </div>
+            </section>
 
-        <section data-tab-content="steps" class="step-container">
-            {% include 'components/cooking/step-list.html.twig' with {
-                steps: recipe.steps,
-            } only %}
-        </section>
+            <section data-tab-content="steps" class="step-container">
+                {% include 'components/cooking/step-list.html.twig' with {
+                    steps: recipe.steps,
+                } only %}
+            </section>
 
-        <section data-tab-content="reviews" class="review-container">
-            Avis
-        </section>
+            <section data-tab-content="reviews" class="review-container">
+                Avis
+            </section>
+        </div>
     </div>
 {% endblock %}

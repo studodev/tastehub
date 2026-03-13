@@ -1,9 +1,10 @@
-import IMask from "imask";
+import IMask, { InputMask } from "imask";
 import { AbstractComponent } from "../../abstract-component";
 
 export class NumberWidget extends AbstractComponent {
     private elements: NumberWidgetElements;
     private options: NumberWidgetOptions;
+    private mask: InputMask;
 
     static getComponentSelector(): string {
         return '[data-number-widget]';
@@ -31,13 +32,17 @@ export class NumberWidget extends AbstractComponent {
     }
 
     private buildWidget(): void {
-        IMask(this.elements.container, {
+        this.mask = IMask(this.elements.container, {
             mask: Number,
             radix: '.',
             mapToRadix: [','],
             scale: this.options.scale,
             min: this.options.min,
             max: this.options.max,
+        });
+
+        this.elements.container.addEventListener('change', () => {
+            this.mask.updateValue();
         });
     }
 }

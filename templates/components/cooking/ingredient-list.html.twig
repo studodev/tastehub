@@ -1,13 +1,11 @@
-<div class="ingredient-list content-frame">
-    <h2 class="frame-title">Ingrédients</h2>
+<h2 class="frame-title">Ingrédients</h2>
 
-    <ul>
-        {% for recipeIngredient in recipeIngredients %}
-            <li>
-                <img src="{{ pictogram_url(enum(enum.common.pictogramType).Ingredient, recipeIngredient.ingredient.type.pictogram) }}" alt="Pictogramme {{ recipeIngredient.ingredient.type.label }}">
-                <span>{{ recipeIngredient.ingredient.label }}</span>
-                {{ recipeIngredient.measure }}
-            </li>
-        {% endfor %}
-    </ul>
-</div>
+<ul>
+    {% for recipeIngredient in recipeIngredients %}
+        <li>
+            <img src="{{ pictogram_url(enum(enum.common.pictogramType).Ingredient, recipeIngredient.ingredient.type.pictogram) }}" alt="Pictogramme {{ recipeIngredient.ingredient.type.label }}">
+            <span>{{ recipeIngredient.ingredient.label }}</span>
+            {{ recipeIngredient.measure }}
+        </li>
+    {% endfor %}
+</ul>
