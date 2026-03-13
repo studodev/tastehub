@@ -4,14 +4,18 @@
             <p class="step-description">
                 {{ step.description|nl2br }}
             </p>
-            <div class="step-ingredients">
-                <span class="step-ingredients-title">Ingrédients :</span>
+            <div class="step-ingredients" data-expander>
+                <button class="step-ingredients-title expander-trigger">
+                    Ingrédients
+                    <i class="icon icon-arrow-down"></i>
+                </button>
 
                 {% if step.recipeIngredients|length > 0 %}
                     <ul>
                         {% for recipeIngredient in step.recipeIngredients %}
                             <li>
-                                {{ recipeIngredient.ingredient.label }} : {{ recipeIngredient.measure }}
+                                <span>{{ recipeIngredient.ingredient.label }}</span>
+                                {{ recipeIngredient.measure }}
                             </li>
                         {% endfor %}
                     </ul>
