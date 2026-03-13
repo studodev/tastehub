@@ -5,16 +5,16 @@
 {% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('main_index') }}
+    {{ encore_entry_link_tags('common_main_index') }}
 {% endblock %}
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('main_index') }}
+    {{ encore_entry_script_tags('common_main_index') }}
 {% endblock %}
 
 {% block body %}
     <section class="hero">
-        <div>
+        <div class="hero-content">
             <h1>
                 Gérez votre livre de recettes et explorez de nouveaux horizons culinaires !
             </h1>
@@ -22,10 +22,22 @@
                 Avec TasteHub, <strong>centralisez et maîtrisez vos recettes</strong> comme un chef tout en enrichissant votre <strong>bibliothèque de recettes</strong> grâce à celles de la communauté !
             </p>
             <ul>
-                <li><span class="icon cookbook"></span> <a href="{{ path('cooking_recipe_form_new') }}">Créez vos recettes</a> pour les ajouter à votre livre de recettes</li>
-                <li><span class="icon search"></span> <a href="{{ path('cooking_recipe_explore_index') }}">Découvrez de nouvelles recettes</a> pour régaler votre palais</li>
-                <li><span class="icon whisk"></span> Réalisez vos recettes sans les mains grâce au <strong>mode préparation</strong> (à venir)</li>
-                <li><span class="icon icon-chef-hat"></span> <strong>Partagez votre livre de recette</strong> avec d'autres membres de la brigade (à venir)</li>
+                <li>
+                    <i class="icon cookbook"></i>
+                    <a href="{{ path('cooking_recipe_form_new') }}">Créez vos recettes</a> pour les ajouter à votre livre de recettes
+                </li>
+                <li>
+                    <span class="icon search"></span>
+                    <a href="{{ path('cooking_recipe_explore_index') }}">Découvrez de nouvelles recettes</a> pour régaler votre palais
+                </li>
+                <li>
+                    <span class="icon whisk"></span>
+                    Réalisez vos recettes sans les mains grâce au <strong>mode préparation</strong> (à venir)
+                </li>
+                <li>
+                    <span class="icon icon-chef-hat"></span>
+                    <strong>Partagez votre livre de recette</strong> avec d'autres membres de la brigade (à venir)
+                </li>
             </ul>
             <div class="cta-container">
                 <a href="{{ path('cooking_recipe_explore_index') }}" class="button small water">Explorer les recettes</a>

@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('', name: 'main_')]
+#[Route('', name: 'common_main_')]
 class MainController extends AbstractController
 {
     #[Route('/', name: 'index')]

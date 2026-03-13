@@ -12,8 +12,8 @@ use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface
 
 final readonly class MainEntryPoint implements AuthenticationEntryPointInterface
 {
+    public const string DEFAULT_DESTINATION_ROUTE = 'common_main_index';
     private const string LOGIN_ROUTE = 'user_security_login';
-    private const string DEFAULT_DESTINATION_ROUTE = 'main_index';
 
     public function __construct(
         private Security $security,
