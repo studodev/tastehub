@@ -3,7 +3,10 @@
 namespace App\Controller\Cooking;
 
 use App\Entity\Cooking\Recipe;
+use App\Entity\Cooking\Review;
 use App\Form\Type\Cooking\QuantityCounterType;
+use App\Form\Type\Cooking\ReviewType;
+use App\Security\Voter\Cooking\ReviewVoter;
 use App\Service\Cooking\RecipeCustomizerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,9 +27,17 @@ class RecipeViewController extends AbstractController
             'mode' => QuantityCounterType::MODE_VIEW,
         ]);
 
+        $review = new Review();
+        $review->setRecipe($recipe);
+
+        if ($this->isGranted(ReviewVoter::ATTRIBUTE_CREATE, $review)) {
+            $reviewForm = $this->createForm(ReviewType::class, $review);
+        }
+
         return $this->render('pages/cooking/recipe-view/single.html.twig', [
             'recipe' => $recipe,
             'quantityForm' => $quantiyForm->createView(),
+            'reviewForm' => $reviewForm ?? null,
         ]);
     }
 

@@ -1,5 +1,6 @@
 @use "../../../components/common/content-frame";
 @use "../../../components/common/form/common";
+@use "../../../components/common/form/rating-widget";
 @use "../../../components/cooking/form/quantity-counter-widget";
 @use "../../../components/cooking/recipe-timer";
 @use "../../../components/cooking/ingredient-list";
@@ -165,6 +166,11 @@ h2 {
                 flex: 1;
                 min-width: min(100%, 400px);
             }
+        }
+
+        &.review-container {
+            width: 100%;
+            max-width: 850px;
         }
     }
 }

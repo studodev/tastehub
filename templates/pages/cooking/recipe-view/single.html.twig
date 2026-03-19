@@ -119,7 +119,13 @@
             </section>
 
             <section data-tab-content="reviews" class="review-container">
-                Avis
+                {% if reviewForm is not null %}
+                    <div class="content-frame">
+                        {% include 'components/cooking/form/review-form.html.twig' with {
+                            form: reviewForm,
+                        } only %}
+                    </div>
+                {% endif %}
             </section>
         </div>
     </div>

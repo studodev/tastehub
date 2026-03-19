@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class AllowedUsersVoter extends Voter
 {
-    public const ATTRIBUTE = 'ALLOWED_USERS';
+    public const string ATTRIBUTE = 'ALLOWED_USERS';
 
     protected function supports(string $attribute, mixed $subject): bool
     {
