@@ -105,3 +105,11 @@
 .icon-star-half:before {
     content: "\f001";
 }
+.icon-chevron-down:before {
+    content: "\f002";
+}
+.icon-chevron-up:before {
+    content: "\f002";
+    display: inline-block;
+    transform: rotate(180deg);
+}

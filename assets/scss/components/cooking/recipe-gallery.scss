@@ -154,12 +154,13 @@
                     align-items: center;
 
                     &:after {
-                        content: "\e915";
+                        content: "\f002";
                         display: inline-block;
                         transform: rotate(180deg);
-                        font-size: 1.4rem;
+                        font-size: 0.6rem;
                         color: inherit;
                         font-family: var(--font-family-icon), sans-serif;
+                        margin-top: 2px;
                     }
                 }
 

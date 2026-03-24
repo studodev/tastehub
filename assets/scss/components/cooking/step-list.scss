@@ -5,7 +5,7 @@
     margin: 0 auto;
 
     .step {
-        --content-gap: 18px;
+        --content-gap: 12px;
         display: flex;
         flex-wrap: wrap;
         gap: var(--content-gap);
@@ -52,7 +52,8 @@
                 color: var(--color-raspberry);
 
                 i {
-                    font-size: 1.3rem;
+                    font-size: 0.6rem;
+
                 }
             }
 
