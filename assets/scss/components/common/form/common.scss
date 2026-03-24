@@ -71,11 +71,12 @@ form {
             & + label {
                 --checkbox-size: 1.2rem;
                 --checkbox-spacer: 8px;
+                font-family: var(--font-family-content), sans-serif;
                 display: flex;
                 align-items: center;
                 position: relative;
                 margin-left: calc(var(--checkbox-size) + var(--checkbox-spacer));
-                font-size: 1rem;
+                font-size: 1.05rem;
                 font-weight: 500;
                 vertical-align: center;
 
@@ -148,6 +149,7 @@ form {
         padding-left: 6px;
         margin-left: 2px;
         margin-bottom: 8px;
+        font-weight: 500;
     }
 
     .row-group {

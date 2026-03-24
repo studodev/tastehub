@@ -26,6 +26,7 @@ main {
             span {
                 align-self: start;
                 color: var(--color-olive);
+                font-weight: 500;
             }
 
             .button {
@@ -58,7 +59,8 @@ main {
                 a {
                     color: var(--color-raspberry);
                     text-decoration: underline;
-                    font-size: 0.8rem;
+                    font-size: 0.85rem;
+                    font-weight: 500;
                 }
             }
 

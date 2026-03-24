@@ -29,7 +29,7 @@ class RegisterType extends AbstractType
                 'label' => 'Mot de passe',
             ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'J\'accepte les conditions générales d\'utilisations',
+                'label' => 'J\'accepte les conditions générales d\'utilisation',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue(message: 'Vous devez accepter les CGU'),
