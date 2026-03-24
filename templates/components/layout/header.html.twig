@@ -24,10 +24,22 @@
                 </a>
             </li>
             <li>
-                <a href="{{ path('user_security_login') }}">
-                    <i class="icon icon-user"></i>
-                    <span>Compte</span>
-                </a>
+                {% if app.user %}
+                    {# TODO - Add link to manage account #}
+                    <a href="#">
+                        <i class="icon icon-user"></i>
+                        <span>
+                            {{ app.user.username }}
+                        </span>
+                    </a>
+                {% else %}
+                    <a href="{{ path('user_security_login') }}">
+                        <i class="icon icon-user"></i>
+                        <span>
+                        Me connecter
+                        </span>
+                    </a>
+                {% endif %}
             </li>
         </ul>
     </nav>
