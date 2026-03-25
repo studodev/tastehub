@@ -42,6 +42,10 @@ body > header {
                         background-color: var(--color-raspberry);
                         transition: width 300ms;
                     }
+
+                    &.appbar-only {
+                        display: none;
+                    }
                 }
 
                 &:hover span:after {
@@ -89,6 +93,14 @@ body > header {
                         span {
                             font-size: 0.8rem;
                             padding: 0;
+
+                            &.appbar-only {
+                                display: inline;
+                            }
+
+                            &.nav-only {
+                                display: none;
+                            }
                         }
 
                         &:hover span:after {

@@ -28,16 +28,14 @@
                     {# TODO - Add link to manage account #}
                     <a href="#">
                         <i class="icon icon-user"></i>
-                        <span>
-                            {{ app.user.username }}
-                        </span>
+                        <span class="appbar-only">Compte</span>
+                        <span class="nav-only">{{ app.user.username }}</span>
                     </a>
                 {% else %}
                     <a href="{{ path('user_security_login') }}">
                         <i class="icon icon-user"></i>
-                        <span>
-                        Me connecter
-                        </span>
+                        <span class="appbar-only">Compte</span>
+                        <span class="nav-only">Me connecter</span>
                     </a>
                 {% endif %}
             </li>
