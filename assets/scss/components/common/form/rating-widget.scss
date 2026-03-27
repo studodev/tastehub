@@ -2,7 +2,7 @@
     margin-top: 12px;
 
     .choices {
-        gap: 2px;
+        gap: 0;
 
         input[type="radio"] + label {
             background-color: transparent;
@@ -20,6 +20,11 @@
                 content: "\f000";
                 color: var(--color-raspberry);
             }
+        }
+
+        input[type="radio"] + label:has(~ label:hover):before, input[type="radio"] + label:hover:before {
+            content: "\f000";
+            color: var(--color-raspberry);
         }
     }
 }
