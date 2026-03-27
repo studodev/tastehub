@@ -2,6 +2,7 @@
 
 namespace App\Repository\Cooking;
 
+use App\Entity\Cooking\Recipe;
 use App\Entity\Cooking\Review;
 use App\Enum\Cooking\ReviewSortEnum;
 use App\Model\Cooking\ReviewFilter;
@@ -19,7 +20,7 @@ class ReviewRepository extends ServiceEntityRepository
         parent::__construct($registry, Review::class);
     }
 
-    public function findByFilterQueryBuilder(?ReviewFilter $filter = null): QueryBuilder
+    public function findByFilterQueryBuilder(Recipe $recipe, ?ReviewFilter $filter = null): QueryBuilder
     {
         $qb = $this->createQueryBuilder('r');
 
@@ -30,6 +31,10 @@ class ReviewRepository extends ServiceEntityRepository
         };
 
         $qb
+            ->where(
+                $qb->expr()->eq('r.recipe', ':recipe')
+            )
+            ->setParameter('recipe', $recipe)
             ->orderBy($sort[0], $sort[1])
         ;
 

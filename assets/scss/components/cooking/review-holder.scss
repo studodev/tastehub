@@ -1,7 +1,7 @@
 @use "../common/loader";
 
 .review-holder-wrapper {
-    margin-block: 20px;
+    margin-bottom: 20px;
 
     .async-list-filter {
         display: flex;
@@ -23,6 +23,11 @@
         display: inline-block;
         align-self: center;
         margin-top: 20px;
+    }
+
+    .async-list-holder-empty {
+        font-style: italic;
+        color: color-mix(in srgb, var(--color-dark) 60%, transparent);
     }
 
     &.loading {
