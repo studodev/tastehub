@@ -1,6 +1,14 @@
-<h2>Laisser un avis</h2>
-{{ form_start(form) }}
-{{ form_row(form.rating) }}
-{{ form_row(form.comment) }}
-<button class="button small">Publier mon avis</button>
-{{ form_end(form) }}
+<div class="review-form">
+    <h2>Laisser un avis</h2>
+    {% if success is defined and success === true %}
+        <p class="success">
+            Merci d'avoir laissé un avis sur la recette de {{ recipe.author.username }}.
+        </p>
+    {% else %}
+        {{ form_start(form) }}
+        {{ form_row(form.rating) }}
+        {{ form_row(form.comment) }}
+        <button class="button small">Publier mon avis</button>
+        {{ form_end(form) }}
+    {% endif %}
+</div>

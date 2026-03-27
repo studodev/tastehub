@@ -7,6 +7,7 @@ use App\Repository\Cooking\ReviewRepository;
 use App\Shared\Trait\CreatedAtTrait;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -21,9 +22,16 @@ class Review
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotNull(
+        message: 'Veuillez choisir une note',
+    )]
     #[ORM\Column]
     private ?int $rating = null;
 
+    #[Assert\Length(
+        max: self::COMMENT_MAX_LENGTH,
+        maxMessage: 'Votre commentaire doit contenir au maximum {{ max }} caractères',
+    )]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $comment = null;
 

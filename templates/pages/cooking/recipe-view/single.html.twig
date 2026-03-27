@@ -119,11 +119,8 @@
             </section>
 
             <section data-tab-content="reviews" class="review-container">
-                {% if reviewForm is not null %}
-                    <div class="content-frame">
-                        {% include 'components/cooking/form/review-form.html.twig' with {
-                            form: reviewForm,
-                        } only %}
+                {% if is_granted('REVIEW_CREATE', recipe)%}
+                    <div data-async-form="{{ url('cooking_recipe_view_reviewForm', {slug: recipe.slug}) }}" class="content-frame">
                     </div>
                 {% endif %}
             </section>
