@@ -15,7 +15,7 @@
 {% block mainClass %}{% endblock %}
 
 {% block body %}
-    <section class="recipe-gallery"
+    <section class="recipe-gallery" data-async-list
          data-url="{{ url('cooking_recipe_explore_index') }}"
          data-offset="{{ pagination.offset }}"
          data-total="{{ pagination.total }}">
@@ -48,15 +48,15 @@
         </aside>
 
         <div class="recipe-holder-wrapper">
-            <ul class="recipe-holder">
+            <div class="async-list-holder">
                 {% include 'components/cooking/recipe-list.html.twig' with {
                     recipes: pagination.results,
                 } only %}
-            </ul>
+            </div>
 
-            <button type="button" class="recipe-load-more button">Voir plus</button>
+            <button type="button" class="async-list-load-more button">Voir plus</button>
 
-            <div class="recipe-holder-empty">
+            <div class="async-list-holder-empty">
                 <img src="{{ asset('build/images/illustrations/empty.svg') }}" alt="Une personne entourée d'ingrédients devant une assiette vide">
                 <p>
                     <span>Oh non, nous n'avons rien pour vous régaler</span>

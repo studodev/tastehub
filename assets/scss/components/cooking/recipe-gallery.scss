@@ -69,7 +69,7 @@
             padding-block: 12px;
             padding-inline: var(--page-spacer-inline);
 
-            .recipe-holder {
+            .async-list-holder {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 gap: 24px;
@@ -77,12 +77,12 @@
                 width: 100%;
             }
 
-            .recipe-load-more {
+            .async-list-load-more {
                 display: inline-block;
                 align-self: center;
             }
 
-            .recipe-holder-empty {
+            .async-list-holder-empty {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 30px;
@@ -117,7 +117,7 @@
     }
 
     &.loading {
-        .recipe-holder {
+        .async-list-holder {
             filter: blur(5px) opacity(90%);
         }
 

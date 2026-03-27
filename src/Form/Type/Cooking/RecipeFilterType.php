@@ -72,7 +72,7 @@ class RecipeFilterType extends AbstractType
             'data_class' => RecipeFilter::class,
             'method' => 'GET',
             'attr' => [
-                'class' => 'recipe-filter',
+                'class' => 'async-list-filter',
             ],
         ]);
     }

@@ -1,0 +1,21 @@
+<div class="review-holder-wrapper" data-async-list
+     data-url="{{ url('cooking_recipe_view_review', {slug: recipe.slug}) }}"
+     data-offset="{{ pagination.offset }}"
+     data-total="{{ pagination.total }}">
+    {{ form_start(form) }}
+    {{ form_row(form.sort) }}
+
+    <div class="async-list-holder">
+        {% include 'components/cooking/review-list.html.twig' with {
+            reviews: pagination.results,
+        } only %}
+    </div>
+
+    <button type="button" class="async-list-load-more button small">Voir plus</button>
+
+    <div class="async-list-holder-empty content-frame">
+        Cette recette n'a pas encore d'avis.
+    </div>
+
+    {{ form_end(form) }}
+</div>

@@ -123,6 +123,12 @@
                     <div data-async-form="{{ url('cooking_recipe_view_reviewForm', {slug: recipe.slug}) }}" class="content-frame">
                     </div>
                 {% endif %}
+
+                {% include 'components/cooking/review-holder.html.twig' with {
+                    form: reviewFilterForm,
+                    pagination: reviewPagination,
+                    recipe: recipe,
+                } only %}
             </section>
         </div>
     </div>

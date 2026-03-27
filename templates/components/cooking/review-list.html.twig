@@ -1,0 +1,5 @@
+{% for review in reviews %}
+    <article class="content-frame">
+        {{ review.comment|nl2br }}
+    </article>
+{% endfor %}
