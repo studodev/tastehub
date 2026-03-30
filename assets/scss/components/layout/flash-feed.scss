@@ -15,7 +15,7 @@
             margin-bottom: 12px;
             padding: 8px 4px 8px 12px;
             background-color: var(--color-white);
-            box-shadow: 1px 1px 2px 0 var(--color-pistachio);
+            box-shadow: 1px 1px 2px 0 var(--shadow-default);
             border-left: 4px solid var(--color-success);
             border-radius: var(--radius-default);
             word-break: break-word;
@@ -26,6 +26,7 @@
                 border-left: 1px solid var(--color-pistachio);
                 color: var(--color-olive);
                 font-size: 0.7rem;
+                line-height: 0.7rem;
                 margin-left: 8px;
 
                 i {
