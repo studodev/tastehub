@@ -21,7 +21,7 @@
                 background-color: var(--color-omelette);
                 border-radius: var(--radius-default);
                 font-size: 0.95rem;
-                font-weight: 500;
+                font-weight: 600;
 
                 .remove {
                     border-left: 2px solid var(--color-light);
@@ -45,6 +45,7 @@
 
             .ts-dropdown-content .option {
                 font-size: 0.95rem;
+                font-weight: 600;
                 color: var(--color-dark);
 
                 &.active {

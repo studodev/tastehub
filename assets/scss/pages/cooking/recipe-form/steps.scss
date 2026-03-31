@@ -8,16 +8,18 @@ form [data-recipe-item-collection] .item-holder {
         width: 100%;
 
         .step-order-control {
+            margin-top: 6px;
             display: flex;
             flex-direction: column;
+            gap: 6px;
 
             button {
                 padding: 0;
                 line-height: 0;
 
                 i {
-                    font-size: 1.2rem;
-                    color: var(--color-pistachio);
+                    font-size: 0.55rem;
+                    color: var(--color-raspberry);
                 }
             }
         }

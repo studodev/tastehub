@@ -15,7 +15,7 @@ button {
     position: relative;
     display: inline-block;
     background-color: var(--button-background-color);
-    padding: 8px 16px;
+    padding: 6px 14px;
     border: 2px solid var(--button-background-color);
     border-radius: var(--radius-default);
     font-family: var(--font-family-title), sans-serif;
@@ -66,8 +66,13 @@ button {
     }
 
     &.small {
-        font-size: 1rem;
-        padding: 6px 12px;
+        font-size: 0.95rem;
+        padding: 6px 10px;
+    }
+
+    &.extra-small {
+        font-size: 0.8rem;
+        padding: 4px 8px;
     }
 
     &.busy {
