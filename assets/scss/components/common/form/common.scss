@@ -17,13 +17,15 @@ form {
 
             &:not(.required, .silent-optional-badge):after {
                 content: "Facultatif";
-                margin-left: 8px;
-                padding: 2px 6px;
+                margin-left: 6px;
+                padding: 1px 6px;
                 background-color: var(--color-pistachio);
                 border-radius: var(--radius-default);
-                font-size: 0.8rem;
+                font-size: 0.74rem;
                 color: var(--color-dark);
                 vertical-align: middle;
+                font-family: var(--font-family-content), sans-serif;
+                font-weight: 600;
             }
 
             &.label-checkbox-group {
@@ -167,7 +169,7 @@ form {
         gap: 10px;
         flex-direction: row-reverse;
         justify-content: space-between;
-        margin-top: 24px;
+        margin-top: 12px;
     }
 }
 
