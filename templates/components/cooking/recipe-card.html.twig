@@ -2,10 +2,12 @@
     <article class="recipe-card">
         <img src="{{ recipe_image_url(recipe) }}" alt="{{ recipe.title }}">
 
-        <div class="recipe-rate">
-            <i class="icon icon-star"></i>
-            4.3
-        </div>
+        {% if recipe.averageRating is not null %}
+            <div class="recipe-rate">
+                <i class="icon icon-star"></i>
+                {{ recipe.averageRating|number_format(1, '.') }}
+            </div>
+        {% endif %}
         <div class="recipe-time">
             <i class="icon icon-clock"></i>
             {{ recipe.timer.totalTime|format_duration }}

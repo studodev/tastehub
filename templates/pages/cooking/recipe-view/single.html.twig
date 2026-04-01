@@ -21,9 +21,22 @@
                     <span class="recipe-category">{{ recipe.category.label }}</span>
                     <h1>{{ recipe.title }}</h1>
                 </div>
-                <div class="recipe-review">
 
-                </div>
+                {% if recipe.averageRating is not null %}
+                    <div class="recipe-review">
+                        {% for i in 1..5 %}
+                            {% if i <= recipe.approximateRating %}
+                                <i class="icon icon-star-filled"></i>
+                            {% elseif i < recipe.approximateRating + 1 %}
+                                <i class="icon icon-star-half"></i>
+                            {% else %}
+                                <i class="icon icon-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                        <span>{{ recipe.averageRating }}/5</span>
+                        ({{ reviewPagination.total }} avis)
+                    </div>
+                {% endif %}
             </div>
 
             {% include 'components/cooking/recipe-timer.html.twig' with {

@@ -40,9 +40,10 @@ h2 {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            gap: 28px 40px;
+            gap: 6px 40px;
 
             &.end {
+                gap: 28px 40px;
                 flex-wrap: wrap-reverse;
                 margin-top: auto;
             }
@@ -53,6 +54,25 @@ h2 {
                 font-size: 0.95rem;
                 font-weight: 700;
                 text-transform: uppercase;
+            }
+        }
+
+        // TODO - Deduplicate
+        .recipe-review {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px;
+            font-size: 1rem;
+            color: var(--color-raspberry);
+
+            .icon {
+                font-size: 1.1rem;
+                color: var(--color-pistachio);
+            }
+
+            span {
+                font-weight: 700;
             }
         }
 

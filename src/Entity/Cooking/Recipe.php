@@ -462,6 +462,15 @@ class Recipe implements SluggableInterface, AllowedUsersInterface
         return $this->title;
     }
 
+    public function getApproximateRating(): ?float
+    {
+        if (null === $this->averageRating) {
+            return null;
+        }
+
+        return round($this->averageRating * 2) / 2;
+    }
+
     #[Assert\Callback]
     public function validateCookingMethod(ExecutionContextInterface $context): void
     {
