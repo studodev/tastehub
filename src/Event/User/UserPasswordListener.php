@@ -9,9 +9,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsEntityListener(event: Events::prePersist, method: 'hashPassword', entity: User::class)]
 #[AsEntityListener(event: Events::preUpdate, method: 'hashPassword', entity: User::class)]
-class UserPasswordListener
+final readonly class UserPasswordListener
 {
-    public function __construct(private readonly UserPasswordHasherInterface $hasher)
+    public function __construct(private UserPasswordHasherInterface $hasher)
     {
     }
 

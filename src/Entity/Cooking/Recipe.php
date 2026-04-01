@@ -60,6 +60,9 @@ class Recipe implements SluggableInterface, AllowedUsersInterface
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $averageRating = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
@@ -200,6 +203,18 @@ class Recipe implements SluggableInterface, AllowedUsersInterface
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getAverageRating(): ?float
+    {
+        return $this->averageRating;
+    }
+
+    public function setAverageRating(?float $averageRating): static
+    {
+        $this->averageRating = $averageRating;
 
         return $this;
     }

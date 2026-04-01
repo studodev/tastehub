@@ -78,10 +78,9 @@ class RecipeRepository extends ServiceEntityRepository
             }
         }
 
-        // TODO - Add rating order
         $sort = match ($filter?->getSort()) {
             RecipeSortEnum::Alpha => ['r.title', 'ASC'],
-            RecipeSortEnum::Rating => ['r.title', 'DESC'],
+            RecipeSortEnum::Rating => ['r.averageRating', 'DESC'],
             default => ['r.createdAt', 'DESC'],
         };
 

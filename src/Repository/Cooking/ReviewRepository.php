@@ -40,4 +40,17 @@ class ReviewRepository extends ServiceEntityRepository
 
         return $qb;
     }
+
+    public function calculateAverageRating(Recipe $recipe): ?float
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        $qb
+            ->select('AVG(r.rating)')
+            ->where('r.recipe = :recipe')
+            ->setParameter('recipe', $recipe)
+        ;
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }
