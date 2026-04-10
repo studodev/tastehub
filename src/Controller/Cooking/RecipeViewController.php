@@ -86,7 +86,6 @@ class RecipeViewController extends AbstractController
         ]);
     }
 
-    // TODO - Reload review list on form submission
     #[Route('/{slug:recipe}/avis/deposer', name: 'reviewForm')]
     #[IsGranted(ReviewVoter::ATTRIBUTE_CREATE, 'recipe')]
     public function reviewForm(Request $request, Recipe $recipe): Response
@@ -103,6 +102,9 @@ class RecipeViewController extends AbstractController
 
             return $this->json([
                 'status' => true,
+                'details' => [
+                    'success' => true,
+                ],
                 'view' => $this->renderView('components/cooking/form/review-form.html.twig', [
                     'recipe' => $recipe,
                     'success' => true,

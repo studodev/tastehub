@@ -17,7 +17,7 @@ export class AsyncForm extends AbstractComponent {
         this.load();
     }
 
-    private buildElements(container: HTMLElement): void {
+    protected buildElements(container: HTMLElement): void {
         this.elements = {
             container: container,
         };
@@ -25,7 +25,7 @@ export class AsyncForm extends AbstractComponent {
 
     private buildOptions(): void {
         this.options = {
-            url: this.elements.container.dataset.asyncForm,
+            url: this.elements.container.dataset.url,
         };
     }
 
@@ -42,6 +42,10 @@ export class AsyncForm extends AbstractComponent {
 
         apiProvider.fetch(this.options.url, options).then(data => {
             this.render(data.view);
+
+            if (data.details !== undefined && data.details.success === true) {
+                this.onSuccess();
+            }
         }).finally(() => {
             this.elements.container.classList.remove('loading');
         });
@@ -63,9 +67,11 @@ export class AsyncForm extends AbstractComponent {
         const formData = new FormData(this.elements.form);
         this.load(formData);
     }
+
+    protected onSuccess(): void {}
 }
 
-interface AsyncFormElements {
+export interface AsyncFormElements {
     container: HTMLElement;
     form?: HTMLFormElement;
 }

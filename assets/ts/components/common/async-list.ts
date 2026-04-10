@@ -2,6 +2,9 @@ import { apiProvider } from "../../services/api-provider";
 import { AbstractComponent } from "../abstract-component";
 
 export class AsyncList extends AbstractComponent {
+    public static readonly events = {
+        reload: 'async-list:reload',
+    };
     protected elements: AsyncListElements;
     protected options: AsyncListOptions;
 
@@ -42,6 +45,10 @@ export class AsyncList extends AbstractComponent {
 
         this.elements.filter.addEventListener('input', () => {
             this.filterChanged();
+        });
+
+        this.elements.container.addEventListener(AsyncList.events.reload, () => {
+            this.search();
         });
     }
 
