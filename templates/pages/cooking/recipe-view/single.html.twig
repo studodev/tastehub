@@ -134,7 +134,7 @@
             <section data-tab-content="reviews" class="review-container">
                 {% if is_granted('REVIEW_CREATE', recipe)%}
                     <div data-review-form data-url="{{ url('cooking_recipe_view_reviewForm', {slug: recipe.slug}) }}"
-                         class="review-form-wrapper content-frame">
+                         class="review-form-wrapper content-frame async-form">
                     </div>
                 {% endif %}
 

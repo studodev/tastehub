@@ -1,6 +1,6 @@
 @use "../loader";
 
-[data-async-form].loading {
+.async-form.loading {
     position: relative;
     min-height: 150px;
 
