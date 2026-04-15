@@ -19,13 +19,26 @@ h2 {
     min-height: 450px;
     padding: 0;
 
-    .recipe-image {
-        width: 450px;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        object-position: center;
+    .recipe-image-container {
+        position: relative;
         border-right: 2px solid var(--color-water);
-        overflow-clip-margin: unset;
+
+        .recipe-image {
+            width: 450px;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            object-position: center;
+            overflow-clip-margin: unset;
+        }
+
+        .recipe-actions {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 8px;
+        }
     }
 
     .recipe-summary {
@@ -202,12 +215,15 @@ h2 {
         align-items: center;
         padding-inline: 10px;
 
-        .recipe-image {
-            margin-top: 12px;
-            aspect-ratio: 1 / 1;
-            max-height: 300px;
+        .recipe-image-container {
             border-right: none;
-            border-radius: var(--radius-default);
+            margin-top: 12px;
+
+            .recipe-image {
+                aspect-ratio: 1 / 1;
+                max-height: 300px;
+                border-radius: var(--radius-default);
+            }
         }
 
         .recipe-summary {

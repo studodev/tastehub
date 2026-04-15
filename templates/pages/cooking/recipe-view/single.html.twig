@@ -14,7 +14,18 @@
 
 {% block body %}
     <header class="recipe-header content-frame">
-        <img src="{{ recipe_image_url(recipe) }}" alt="{{ recipe.title }}" class="recipe-image">
+        <div class="recipe-image-container">
+            <img src="{{ recipe_image_url(recipe) }}" alt="{{ recipe.title }}" class="recipe-image">
+
+            {% if recipe.author === app.user %}
+                <div class="recipe-actions">
+                    <a href="{{ url('cooking_recipe_form_update', {id: recipe.id}) }}" class="button extra-small water">
+                        Modifier
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
         <div class="recipe-summary">
             <div class="header-aligned">
                 <div class="recipe-title">
