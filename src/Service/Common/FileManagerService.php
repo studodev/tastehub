@@ -43,6 +43,11 @@ readonly class FileManagerService
         return $this->package->getUrl(sprintf('%s%s', $this->buildBaseUrl($bucket), $filename));
     }
 
+    public function getFilePath(string $filename, FileManagerBucketEnum $bucket): string
+    {
+        return sprintf('%s%s', $this->buildPath($bucket), $filename);
+    }
+
     private function buildBaseUrl(FileManagerBucketEnum $bucket): string
     {
         return sprintf('%s%s', $this->config['uri'], $bucket->value);

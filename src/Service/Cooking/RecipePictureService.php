@@ -5,18 +5,20 @@ namespace App\Service\Cooking;
 use App\Entity\Cooking\Recipe;
 use App\Enum\Common\FileManagerBucketEnum;
 use App\Service\Common\FileManagerService;
+use App\Service\Common\PictureOptimizerService;
 use Symfony\Component\Asset\PackageInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
-readonly class RecipePictureService
+final readonly class RecipePictureService
 {
     public function __construct(
         private FileManagerService $fileManager,
+        private PictureOptimizerService $pictureOptimizerService,
         #[Autowire('@assets._default_package')] private PackageInterface $package,
     ) {
     }
 
-    // TODO - Resize and optimize images
+    // TODO - Fix slug generation
     public function upload(Recipe $recipe): void
     {
         if (null === $recipe->getPictureFile()) {
@@ -24,6 +26,9 @@ readonly class RecipePictureService
         }
 
         $filename = $this->fileManager->upload($recipe->getPictureFile(), FileManagerBucketEnum::Recipe, $recipe->getSlug());
+
+        $filePath = $this->fileManager->getFilePath($filename, FileManagerBucketEnum::Recipe);
+        $this->pictureOptimizerService->limitSize($filePath, 500);
 
         $this->remove($recipe);
         $recipe->setPicture($filename);
