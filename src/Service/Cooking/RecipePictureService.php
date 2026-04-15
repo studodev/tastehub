@@ -24,7 +24,8 @@ final readonly class RecipePictureService
             return;
         }
 
-        $filename = $this->fileManager->upload($recipe->getPictureFile(), FileManagerBucketEnum::Recipe, $recipe->getSlug());
+        $pictureName = sprintf('%s%s', $recipe->getSlug(), uniqid());
+        $filename = $this->fileManager->upload($recipe->getPictureFile(), FileManagerBucketEnum::Recipe, $pictureName);
 
         $filePath = $this->fileManager->getFilePath($filename, FileManagerBucketEnum::Recipe);
         $this->pictureOptimizerService->limitSize($filePath, 500);
