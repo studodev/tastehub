@@ -7,6 +7,10 @@ use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 $finder = (new Finder())
     ->in(__DIR__)
     ->exclude('var')
+    ->notPath([
+        'config/bundles.php',
+        'config/reference.php',
+    ])
 ;
 
 $config = new Config();
