@@ -2,7 +2,6 @@ doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
         server_version: '10.11.2-mariadb'
-
         profiling_collect_backtrace: '%kernel.debug%'
         use_savepoints: true
     orm:
