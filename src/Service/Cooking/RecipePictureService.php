@@ -18,7 +18,6 @@ final readonly class RecipePictureService
     ) {
     }
 
-    // TODO - Fix slug generation
     public function upload(Recipe $recipe): void
     {
         if (null === $recipe->getPictureFile()) {

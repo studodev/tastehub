@@ -69,9 +69,8 @@ class RecipeFormController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recipe->setAuthor($this->getUser());
-            $this->recipePictureService->upload($recipe);
-
             $this->em->persist($recipe);
+            $this->recipePictureService->upload($recipe);
             $this->em->flush();
 
             if (!$isRestoredState) {
