@@ -25,8 +25,7 @@
             </li>
             <li>
                 {% if app.user %}
-                    {# TODO - Add link to manage account #}
-                    <a href="#">
+                    <a href="{{ path('user_account_detail') }}">
                         <i class="icon icon-user"></i>
                         <span class="appbar-only">Compte</span>
                         <span class="nav-only">{{ app.user.username }}</span>

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('user_account_common') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('user_account_common') }}
+{% endblock %}
+
+{% block body %}
+    {% set route = app.request.attributes.get('_route') %}
+
+    <div class="account-nav">
+        <h1>Gérer mon compte</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ path('user_account_detail') }}" class="{{ html_classes({
+                        'active': route === 'user_account_detail',
+                    }) }}">
+                        Mes informations
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('user_account_password') }}" class="{{ html_classes({
+                        'active': route === 'user_account_password',
+                    }) }}">
+                        Mon mot de passe
+                    </a>
+                </li>
+                <li class="separator"></li>
+                <li>
+                    <a href="{{ logout_path() }}" class="warn">
+                        Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="account-container">
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}

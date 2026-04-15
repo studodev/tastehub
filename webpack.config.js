@@ -33,6 +33,7 @@ Encore
 
     .addEntry('cooking_recipe_view_single', './assets/ts/pages/cooking/recipe-view/single.ts')
 
+    .addEntry('user_account_common', './assets/ts/pages/user/account/common.ts')
     .addEntry('user_security_common', './assets/ts/pages/user/security/common.ts')
 
     .splitEntryChunks()

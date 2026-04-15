@@ -58,6 +58,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Sluggab
 
     #[Assert\NotBlank(
         message: 'Veuillez choisir un mot de passe',
+        groups: ['password'],
     )]
     #[Assert\Length(
         min: 8,
@@ -80,7 +81,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Sluggab
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(?string $email): static
     {
         $this->email = $email;
 
@@ -97,7 +98,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Sluggab
         return $this->username;
     }
 
-    public function setUsername(string $username): static
+    public function setUsername(?string $username): static
     {
         $this->username = $username;
 

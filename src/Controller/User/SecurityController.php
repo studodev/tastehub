@@ -91,7 +91,9 @@ class SecurityController extends AbstractController
             throw $this->createNotFoundException();
         }
 
-        $form = $this->createForm(ChangePasswordType::class, $resetPasswordRequest->getUser());
+        $form = $this->createForm(ChangePasswordType::class, $resetPasswordRequest->getUser(), [
+            'mode' => ChangePasswordType::MODE_RESET,
+        ]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
