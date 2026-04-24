@@ -105,6 +105,8 @@ export class AutocompleteEntity extends AbstractComponent{
                     }
                 }
             }
+
+            this.elements.select.dispatchEvent(new CustomEvent('autocomplete-entity:change'))
         });
 
         this.elements.select.addEventListener("change", () => {

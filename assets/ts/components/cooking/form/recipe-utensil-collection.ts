@@ -3,6 +3,13 @@ import { FlashMessageType } from "../../layout/flash-feed/flash-message-type";
 import { RecipeItemCollection } from "./recipe-item-collection";
 
 export class RecipeUtensilCollection extends RecipeItemCollection {
+    protected bindEvents(): void {
+        super.bindEvents();
+
+        const utensilInputField = this.elements.itemSource.querySelector('.item-data-utensil') as HTMLSelectElement;
+        utensilInputField.addEventListener('autocomplete-entity:change', () => this.addItem());
+    }
+
     protected prepareItem(prototype: HTMLElement): boolean {
         const utensilInputField = this.elements.itemSource.querySelector('.item-data-utensil') as HTMLSelectElement;
         const utensilOutputField = prototype.querySelector('.item-data-utensil') as HTMLSelectElement;
