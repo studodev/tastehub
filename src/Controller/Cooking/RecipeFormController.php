@@ -63,131 +63,76 @@ class RecipeFormController extends AbstractController
     public function metadata(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
         $recipe = $draft->getRecipe();
-        $form = $this->createForm(RecipeType::class, $recipe, [
-            'mode' => $draft->getStatus(),
-        ]);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $recipe->setAuthor($this->getUser());
-            $this->em->persist($recipe);
-            $this->recipePictureService->upload($recipe);
-            $this->em->flush();
-
-            if (!$isRestoredState) {
-                $draft->setStatus(DraftRecipeStatusEnum::Details);
-                $this->draftRecipeService->update($draft);
-
-                return $this->redirectToRoute('cooking_recipe_form_editor');
-            }
-        }
-
-        return $this->render('pages/cooking/recipe-form/metadata.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->process(
+            request: $request,
+            draft: $draft,
+            isRestoredState: $isRestoredState,
+            templateName: 'metadata',
+            nextStatus: DraftRecipeStatusEnum::Details,
+            onPreFlush: function () use ($recipe) {
+                $recipe->setAuthor($this->getUser());
+                $this->em->persist($recipe);
+                $this->recipePictureService->upload($recipe);
+            },
+        );
     }
 
     public function details(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
         $recipe = $draft->getRecipe();
-        $form = $this->createForm(RecipeType::class, $recipe, [
-            'mode' => $draft->getStatus(),
-        ]);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $recipe->setQuantityCounter(clone $recipe->getQuantityCounter());
-            $recipe->setTimer(clone $recipe->getTimer());
-            $this->em->flush();
-
-            if (!$isRestoredState) {
-                $draft->setStatus(DraftRecipeStatusEnum::Ingredients);
-                $this->draftRecipeService->update($draft);
-
-                return $this->redirectToRoute('cooking_recipe_form_editor');
-            }
-        }
-
-        return $this->render('pages/cooking/recipe-form/details.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->process(
+            request: $request,
+            draft: $draft,
+            isRestoredState: $isRestoredState,
+            templateName: 'details',
+            nextStatus: DraftRecipeStatusEnum::Ingredients,
+            onPreFlush: function () use ($recipe) {
+                $recipe->setQuantityCounter(clone $recipe->getQuantityCounter());
+                $recipe->setTimer(clone $recipe->getTimer());
+            },
+        );
     }
 
     public function ingredients(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
-        $recipe = $draft->getRecipe();
-        $form = $this->createForm(RecipeType::class, $recipe, [
-            'mode' => $draft->getStatus(),
-        ]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->flush();
-
-            if (!$isRestoredState) {
-                $draft->setStatus(DraftRecipeStatusEnum::Utensils);
-                $this->draftRecipeService->update($draft);
-
-                return $this->redirectToRoute('cooking_recipe_form_editor');
-            }
-        }
-
-        return $this->render('pages/cooking/recipe-form/ingredients.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->process(
+            request: $request,
+            draft: $draft,
+            isRestoredState: $isRestoredState,
+            templateName: 'ingredients',
+            nextStatus: DraftRecipeStatusEnum::Utensils,
+        );
     }
 
     public function utensils(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
-        $recipe = $draft->getRecipe();
-        $form = $this->createForm(RecipeType::class, $recipe, [
-            'mode' => $draft->getStatus(),
-        ]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->flush();
-
-            if (!$isRestoredState) {
-                $draft->setStatus(DraftRecipeStatusEnum::Steps);
-                $this->draftRecipeService->update($draft);
-
-                return $this->redirectToRoute('cooking_recipe_form_editor');
-            }
-        }
-
-        return $this->render('pages/cooking/recipe-form/utensils.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->process(
+            request: $request,
+            draft: $draft,
+            isRestoredState: $isRestoredState,
+            templateName: 'utensils',
+            nextStatus: DraftRecipeStatusEnum::Steps,
+        );
     }
 
     public function steps(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
         $recipe = $draft->getRecipe();
 
-        if (0 === $recipe->getSteps()->count()) {
-            $recipe->addStep(new Step());
-        }
-
-        $form = $this->createForm(RecipeType::class, $recipe, [
-            'mode' => $draft->getStatus(),
-        ]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->flush();
-
-            if (!$isRestoredState) {
-                $draft->setStatus(DraftRecipeStatusEnum::Completed);
-                $this->draftRecipeService->update($draft);
-
-                return $this->redirectToRoute('cooking_recipe_form_editor');
-            }
-        }
-
-        return $this->render('pages/cooking/recipe-form/steps.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->process(
+            request: $request,
+            draft: $draft,
+            isRestoredState: $isRestoredState,
+            templateName: 'steps',
+            nextStatus: DraftRecipeStatusEnum::Completed,
+            onPreRender: function () use ($recipe) {
+                if (0 === $recipe->getSteps()->count()) {
+                    $recipe->addStep(new Step());
+                }
+            },
+        );
     }
 
     public function completed(DraftRecipe $draft): Response
@@ -263,6 +208,47 @@ class RecipeFormController extends AbstractController
 
         return $this->json([
             'status' => true,
+        ]);
+    }
+
+    private function process(
+        Request $request,
+        DraftRecipe $draft,
+        bool $isRestoredState,
+        string $templateName,
+        DraftRecipeStatusEnum $nextStatus,
+        ?callable $onPreFlush = null,
+        ?callable $onPreRender = null,
+    ): Response {
+        $recipe = $draft->getRecipe();
+        $form = $this->createForm(RecipeType::class, $recipe, [
+            'mode' => $draft->getStatus(),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (null !== $onPreFlush) {
+                $onPreFlush();
+            }
+
+            $this->em->flush();
+
+            if (!$isRestoredState) {
+                $draft->setStatus($nextStatus);
+                $this->draftRecipeService->update($draft);
+
+                return $this->redirectToRoute('cooking_recipe_form_editor');
+            }
+        }
+
+        if (null !== $onPreRender) {
+            $onPreRender();
+        }
+
+        $templatePath = sprintf('pages/cooking/recipe-form/%s.html.twig', $templateName);
+
+        return $this->render($templatePath, [
+            'form' => $form->createView(),
         ]);
     }
 }
