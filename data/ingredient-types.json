@@ -1,0 +1,122 @@
+{
+    "alcohol": {
+        "label": "alcool",
+        "pictogram": "alcohol.svg"
+    },
+    "fish": {
+        "label": "poisson",
+        "pictogram": "fish.svg"
+    },
+    "meat": {
+        "label": "viande",
+        "pictogram": "meat.svg"
+    },
+    "sweets-biscuits": {
+        "label": "biscuits et sucreries",
+        "pictogram": "sweets-biscuits.svg"
+    },
+    "bread": {
+        "label": "pain",
+        "pictogram": "bread.svg"
+    },
+    "flour": {
+        "label": "farine",
+        "pictogram": "flour.svg"
+    },
+    "nuts": {
+        "label": "fruits à coque",
+        "pictogram": "nuts.svg"
+    },
+    "sugar": {
+        "label": "sucrants",
+        "pictogram": "sugar.svg"
+    },
+    "cereals": {
+        "label": "céréales",
+        "pictogram": "cereals.svg"
+    },
+    "fresh-herbs": {
+        "label": "herbes fraîches",
+        "pictogram": "fresh-herbs.svg"
+    },
+    "oils": {
+        "label": "huiles",
+        "pictogram": "oils.svg"
+    },
+    "vegetables": {
+        "label": "légumes",
+        "pictogram": "vegetables.svg"
+    },
+    "cheese": {
+        "label": "fromage",
+        "pictogram": "cheese.svg"
+    },
+    "frozen": {
+        "label": "surgelé",
+        "pictogram": "frozen.svg"
+    },
+    "pasta": {
+        "label": "pâtes",
+        "pictogram": "pasta.svg"
+    },
+    "water": {
+        "label": "eau",
+        "pictogram": "water.svg"
+    },
+    "cooking-aids": {
+        "label": "aides culinaires",
+        "pictogram": "cooking-aids.svg"
+    },
+    "fruits": {
+        "label": "fruits",
+        "pictogram": "fruits.svg"
+    },
+    "plant-based": {
+        "label": "produits végétaux",
+        "pictogram": "plant-based.svg"
+    },
+    "yogurt": {
+        "label": "yaourt",
+        "pictogram": "yogurt.svg"
+    },
+    "crustaceans": {
+        "label": "crustacés",
+        "pictogram": "crustaceans.svg"
+    },
+    "jam-spread": {
+        "label": "confitures et pâtes à tartiner",
+        "pictogram": "jam-spread.svg"
+    },
+    "potato": {
+        "label": "pomme de terre",
+        "pictogram": "potato.svg"
+    },
+    "dairy-products": {
+        "label": "produits laitiers",
+        "pictogram": "dairy-products.svg"
+    },
+    "juice-soda": {
+        "label": "jus et sodas",
+        "pictogram": "juice-soda.svg"
+    },
+    "sauce": {
+        "label": "sauces",
+        "pictogram": "sauce.svg"
+    },
+    "eggs": {
+        "label": "œufs",
+        "pictogram": "eggs.svg"
+    },
+    "legumes": {
+        "label": "légumineuses",
+        "pictogram": "legumes.svg"
+    },
+    "spices": {
+        "label": "épices",
+        "pictogram": "spices.svg"
+    },
+    "hot-drink": {
+        "label": "boissons chaudes",
+        "pictogram": "hot-drink.svg"
+    }
+}

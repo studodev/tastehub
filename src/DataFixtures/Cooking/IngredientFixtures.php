@@ -21,7 +21,7 @@ class IngredientFixtures extends AbstractFixture implements FixtureGroupInterfac
         [
             'label' => 'Levure boulangère',
             '_references' => [
-                'type' => [IngredientType::class, 'pastry-cooking-helper'],
+                'type' => [IngredientType::class, 'cooking-aids'],
             ],
         ],
         [
@@ -33,19 +33,19 @@ class IngredientFixtures extends AbstractFixture implements FixtureGroupInterfac
         [
             'label' => 'Beurre demi-sel',
             '_references' => [
-                'type' => [IngredientType::class, 'butter'],
+                'type' => [IngredientType::class, 'dairy-products'],
             ],
         ],
         [
             'label' => 'Crème fraîche',
             '_references' => [
-                'type' => [IngredientType::class, 'dairy-product'],
+                'type' => [IngredientType::class, 'dairy-products'],
             ],
         ],
         [
             'label' => 'Œufs',
             '_references' => [
-                'type' => [IngredientType::class, 'egg'],
+                'type' => [IngredientType::class, 'eggs'],
             ],
         ],
         [
@@ -99,13 +99,13 @@ class IngredientFixtures extends AbstractFixture implements FixtureGroupInterfac
         [
             'label' => 'Miel',
             '_references' => [
-                'type' => [IngredientType::class, 'honey'],
+                'type' => [IngredientType::class, 'sugar'],
             ],
         ],
         [
             'label' => 'Huile d\'olive',
             '_references' => [
-                'type' => [IngredientType::class, 'oil'],
+                'type' => [IngredientType::class, 'oils'],
             ],
         ],
         [
@@ -171,25 +171,25 @@ class IngredientFixtures extends AbstractFixture implements FixtureGroupInterfac
         [
             'label' => 'Vin rouge',
             '_references' => [
-                'type' => [IngredientType::class, 'wine'],
+                'type' => [IngredientType::class, 'alcohol'],
             ],
         ],
         [
             'label' => 'Vin blanc sec',
             '_references' => [
-                'type' => [IngredientType::class, 'wine'],
+                'type' => [IngredientType::class, 'alcohol'],
             ],
         ],
         [
             'label' => 'Bière blonde',
             '_references' => [
-                'type' => [IngredientType::class, 'beer'],
+                'type' => [IngredientType::class, 'alcohol'],
             ],
         ],
         [
             'label' => 'Bière brune',
             '_references' => [
-                'type' => [IngredientType::class, 'beer'],
+                'type' => [IngredientType::class, 'alcohol'],
             ],
         ],
         [
@@ -201,13 +201,13 @@ class IngredientFixtures extends AbstractFixture implements FixtureGroupInterfac
         [
             'label' => 'Chocolat noir',
             '_references' => [
-                'type' => [IngredientType::class, 'chocolate'],
+                'type' => [IngredientType::class, 'sweets-biscuits'],
             ],
         ],
         [
             'label' => 'Chocolat au lait',
             '_references' => [
-                'type' => [IngredientType::class, 'chocolate'],
+                'type' => [IngredientType::class, 'sweets-biscuits'],
             ],
         ],
         [
@@ -249,13 +249,13 @@ class IngredientFixtures extends AbstractFixture implements FixtureGroupInterfac
         [
             'label' => 'Confiture de fraises',
             '_references' => [
-                'type' => [IngredientType::class, 'pastry-cooking-helper'],
+                'type' => [IngredientType::class, 'jam-spread'],
             ],
         ],
         [
             'label' => 'Basilic',
             '_references' => [
-                'type' => [IngredientType::class, 'spices'],
+                'type' => [IngredientType::class, 'fresh-herbs'],
             ],
         ],
         [
@@ -273,19 +273,19 @@ class IngredientFixtures extends AbstractFixture implements FixtureGroupInterfac
         [
             'label' => 'Pâte feuilletée',
             '_references' => [
-                'type' => [IngredientType::class, 'pastry-cooking-helper'],
+                'type' => [IngredientType::class, 'cooking-aids'],
             ],
         ],
         [
             'label' => 'Chapelure',
             '_references' => [
-                'type' => [IngredientType::class, 'pastry-cooking-helper'],
+                'type' => [IngredientType::class, 'cooking-aids'],
             ],
         ],
         [
             'label' => 'Crème liquide',
             '_references' => [
-                'type' => [IngredientType::class, 'dairy-product'],
+                'type' => [IngredientType::class, 'dairy-products'],
             ],
         ],
         [
