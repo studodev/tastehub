@@ -38,8 +38,8 @@ final class RecipeExploreController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function myBook(): Response
     {
-        return $this->forward('App\Controller\Cooking\RecipeExploreController::book', [
-            'user' => $this->getUser(),
+        return $this->redirectToRoute('cooking_recipe_explore_book', [
+            'slug' => $this->getUser()->getSlug(),
         ]);
     }
 
