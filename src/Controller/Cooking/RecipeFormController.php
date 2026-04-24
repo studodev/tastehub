@@ -3,6 +3,7 @@
 namespace App\Controller\Cooking;
 
 use App\Entity\Cooking\Recipe;
+use App\Entity\Cooking\Step;
 use App\Enum\Cooking\DraftRecipeStatusEnum;
 use App\Enum\Cooking\RecipeStateEnum;
 use App\Form\Type\Cooking\RecipeType;
@@ -163,6 +164,11 @@ class RecipeFormController extends AbstractController
     public function steps(Request $request, DraftRecipe $draft, bool $isRestoredState): Response
     {
         $recipe = $draft->getRecipe();
+
+        if (0 === $recipe->getSteps()->count()) {
+            $recipe->addStep(new Step());
+        }
+
         $form = $this->createForm(RecipeType::class, $recipe, [
             'mode' => $draft->getStatus(),
         ]);
